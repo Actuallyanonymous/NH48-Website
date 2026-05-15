@@ -1,0 +1,6 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Barlow Condensed', sans-serif; background: #F5EFE0; overflow-x: hidden; }
+h1,h2,h3,h4,h5,h6 { font-family: 'Bebas Neue', cursive; letter-spacing: 0.05em; text-transform: uppercase; }
+img { display: block; max-width: 100%; }
+#root { width: 100%; }
+a { text-decoration: none; }
