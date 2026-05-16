@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -557,8 +558,8 @@ function FoodShowcaseSection() {
           gap: "20px",
         }}
       >
-        <a
-          href="/menu/food"
+        <Link
+          to="/menu/food"
           style={btnStyle}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = "#1B5C4F";
@@ -570,10 +571,10 @@ function FoodShowcaseSection() {
           }}
         >
           VIEW FULL MENU
-        </a>
+        </Link>
 
-        <a
-          href="#"
+        <Link
+          to="#"
           style={btnStyle}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = "#1B5C4F";
@@ -585,7 +586,7 @@ function FoodShowcaseSection() {
           }}
         >
           ORDER ONLINE
-        </a>
+        </Link>
       </div>
     </section>
   );
