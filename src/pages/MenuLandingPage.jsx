@@ -70,7 +70,7 @@ function CitySkylineBorder({ mob }) {
         width: '100%',
         height: `${h}px`,
         overflow: 'hidden',
-        backgroundImage: 'url(/assets/indian-city-skyline.png)',
+        backgroundImage: 'url(/assets/menu/indian-city-skyline.png)',
         backgroundRepeat: 'repeat-x',
         // Scale so the full image height maps to ~6x the display height
         // → only the very top row (first band of domes) is visible
@@ -156,10 +156,10 @@ function MenuBtn({ label, to }) {
 function TealSection({ mob }) {
   // 4 cards: Samosa (oval), Kachori (rect), Chai (oval), Vada Pav (rect)
   const cards = [
-    { src: '/assets/label-samosa.png',  alt: 'Samosa',    shape: 'oval' },
-    { src: '/assets/label-kachori.png', alt: 'Kachori',   shape: 'rect' },
-    { src: '/assets/label-chai.png',    alt: 'Chai',      shape: 'oval' },
-    { src: '/assets/label-vadapav.png', alt: 'Vada Pav',  shape: 'rect' },
+    { src: '/assets/menu/label-samosa.png',  alt: 'Samosa',    shape: 'oval' },
+    { src: '/assets/menu/label-kachori.png', alt: 'Kachori',   shape: 'rect' },
+    { src: '/assets/menu/label-chai.png',    alt: 'Chai',      shape: 'oval' },
+    { src: '/assets/menu/label-vadapav.png', alt: 'Vada Pav',  shape: 'rect' },
   ]
 
   return (
@@ -250,7 +250,7 @@ function CreamSection({ mob }) {
         }}>
           {[
             { src: '/assets/dishes/butter-chicken.png', alt: 'Food menu — butter chicken' },
-            { src: '/assets/menu-drinks.png',            alt: 'Drinks menu — cocktails' },
+            { src: '/assets/menu/menu-drinks.png',            alt: 'Drinks menu — cocktails' },
           ].map(({ src, alt }, i) => (
             <div key={i} style={{
               position: 'relative',
@@ -392,7 +392,7 @@ export default function MenuLandingPage() {
         overflow: 'hidden',
       }}>
         <img
-          src="/assets/menu-hero.png"
+          src="/assets/menu/menu-hero.png"
           alt="NH48 signature dishes"
           style={{
             width: '100%', height: '100%',
