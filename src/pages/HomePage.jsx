@@ -140,27 +140,7 @@ function CityCardsSection() {
   const sectionRef = useRef(null);
   const width = useWindowWidth();
 
-  useGSAP(
-    () => {
-      const tl = {
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.5,
-      };
-      gsap.to(sectionRef.current.querySelectorAll(".drift-left"), {
-        x: -50,
-        ease: "none",
-        scrollTrigger: tl,
-      });
-      gsap.to(sectionRef.current.querySelectorAll(".drift-right"), {
-        x: 50,
-        ease: "none",
-        scrollTrigger: tl,
-      });
-    },
-    { scope: sectionRef },
-  );
+  // No horizontal drift on cards — gap stays constant
 
   const cardW = "clamp(180px, 20vw, 260px)";
   const mob = width < 768;
@@ -171,33 +151,91 @@ function CityCardsSection() {
       style={{
         position: "relative",
         width: "100%",
-        backgroundColor: "#1B5C4F",
-        paddingTop: "80px",
-        paddingBottom: "160px",
+        backgroundColor: "#14534D",
+        minHeight: "754px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingTop: "72px",
+        paddingBottom: "120px",
         overflow: "hidden",
       }}
     >
-      {/* Cards row — scrollable on mobile */}
+      {/* Islamic 8-pointed star motif — left, vertically centred in upper half */}
+      {/* Two overlapping squares, one rotated 45°, matching Figma asset */}
+      <svg
+        viewBox="0 0 174 174"
+        style={{
+          position: "absolute",
+          left: "43px",
+          top: "calc(50% - 87px)",
+          width: "clamp(90px, 11.5vw, 174px)",
+          height: "auto",
+          opacity: 0.9,
+          pointerEvents: "none",
+        }}
+        fill="none"
+      >
+        {/* Outer square — straight */}
+        <rect x="22" y="22" width="130" height="130" stroke="#D4B84A" strokeWidth="3" fill="none" />
+        {/* Outer square — rotated 45° */}
+        <rect x="22" y="22" width="130" height="130" stroke="#D4B84A" strokeWidth="3" fill="none" transform="rotate(45 87 87)" />
+        {/* Inner square — straight (inset ~28px) */}
+        <rect x="44" y="44" width="86" height="86" stroke="#D4B84A" strokeWidth="2" fill="none" />
+        {/* Inner square — rotated 45° */}
+        <rect x="44" y="44" width="86" height="86" stroke="#D4B84A" strokeWidth="2" fill="none" transform="rotate(45 87 87)" />
+      </svg>
+
+      {/* Red bird / flower decoration — right side */}
+      <svg
+        viewBox="0 0 120 120"
+        style={{
+          position: "absolute",
+          right: "20px",
+          top: "calc(50% + 60px)",
+          width: "clamp(60px, 7vw, 90px)",
+          height: "auto",
+          pointerEvents: "none",
+          opacity: 0.95,
+        }}
+        fill="none"
+      >
+        {/* Body */}
+        <ellipse cx="70" cy="72" rx="28" ry="18" fill="#8B1A1A" />
+        {/* Tail — sweeping left */}
+        <path d="M46,76 C20,90 8,110 18,118 C28,126 50,100 60,80" fill="#8B1A1A" />
+        {/* Wing */}
+        <path d="M58,62 C70,38 100,32 108,50 C90,46 75,58 70,72" fill="#A52020" />
+        {/* Head */}
+        <circle cx="94" cy="62" r="13" fill="#8B1A1A" />
+        {/* Beak */}
+        <path d="M105,58 L118,54 L108,62 Z" fill="#C8A010" />
+        {/* Eye */}
+        <circle cx="98" cy="59" r="2.5" fill="white" />
+        <circle cx="98.8" cy="59" r="1.2" fill="#1a1a1a" />
+      </svg>
+
+      {/* Cards row */}
       <div
         style={{
           display: "flex",
-          justifyContent: mob ? "flex-start" : "space-evenly",
-          alignItems: "flex-end",
+          justifyContent: "center",
+          alignItems: "center",
           width: "100%",
-          padding: mob ? "0 24px" : "0 40px",
-          minHeight: mob ? "auto" : "320px",
+          maxWidth: "1397px",
+          padding: mob ? "0 24px" : "0 48px",
+          gap: mob ? "20px" : "clamp(24px, 3vw, 48px)",
           overflowX: mob ? "auto" : "visible",
-          gap: mob ? "20px" : "0",
-          paddingBottom: mob ? "24px" : "0",
           scrollSnapType: mob ? "x mandatory" : "none",
+          paddingBottom: mob ? "24px" : "0",
+          flexShrink: 0,
         }}
       >
-        {/* Card 1 — Oval food */}
+        {/* Card 1 — Oval food (Delhi food) */}
         <div
-          className="drift-left"
           style={{
-            width: mob ? "clamp(150px, 55vw, 200px)" : cardW,
-            marginBottom: 0,
+            width: mob ? "clamp(140px, 48vw, 190px)" : cardW,
             flexShrink: 0,
             scrollSnapAlign: mob ? "start" : "none",
           }}
@@ -205,7 +243,7 @@ function CityCardsSection() {
           <div
             style={{
               width: "100%",
-              aspectRatio: "1/1",
+              aspectRatio: "3/4",
               borderRadius: "50%",
               overflow: "hidden",
               border: "3px solid #D4B84A",
@@ -221,12 +259,9 @@ function CityCardsSection() {
 
         {/* Card 2 — Arch Delhi */}
         <div
-          className="drift-right"
           style={{
-            width: mob ? "clamp(150px, 55vw, 200px)" : cardW,
+            width: mob ? "clamp(140px, 48vw, 190px)" : cardW,
             flexShrink: 0,
-            position: "relative",
-            marginBottom: mob ? "0" : "60px",
             scrollSnapAlign: mob ? "start" : "none",
           }}
         >
@@ -236,12 +271,12 @@ function CityCardsSection() {
               aspectRatio: "3/4",
               overflow: "hidden",
               border: "3px solid #D4B84A",
-              clipPath: "polygon(0% 100%, 0% 35%, 50% 0%, 100% 35%, 100% 100%)",
+              clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
               position: "relative",
             }}
           >
             <img
-              src={CARD_IMAGES.delhi}
+              src="/assets/journey/delhi.jpg"
               alt="Delhi"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
@@ -250,32 +285,31 @@ function CityCardsSection() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to top, rgba(0,0,0,0.75) 30%, transparent)",
+                  "linear-gradient(to top, rgba(0,0,0,0.72) 28%, transparent)",
                 display: "flex",
                 alignItems: "flex-end",
                 justifyContent: "center",
-                paddingBottom: "20px",
+                paddingBottom: "18px",
               }}
             >
               <p
                 style={{
                   fontFamily: "Bebas Neue, cursive",
                   color: "#F5C42C",
-                  fontSize: "clamp(14px, 1.4vw, 18px)",
-                  letterSpacing: "0.1em",
+                  fontSize: "clamp(20px, 2vw, 28px)",
+                  letterSpacing: "0.12em",
                 }}
               >
-                DELHI / NH48
+                DELHI
               </p>
             </div>
           </div>
         </div>
 
-        {/* Card 3 — Oval food */}
+        {/* Card 3 — Oval food (Mumbai food) */}
         <div
-          className="drift-left"
           style={{
-            width: mob ? "clamp(150px, 55vw, 200px)" : cardW,
+            width: mob ? "clamp(140px, 48vw, 190px)" : cardW,
             flexShrink: 0,
             scrollSnapAlign: mob ? "start" : "none",
           }}
@@ -283,7 +317,7 @@ function CityCardsSection() {
           <div
             style={{
               width: "100%",
-              aspectRatio: "1/1",
+              aspectRatio: "3/4",
               borderRadius: "50%",
               overflow: "hidden",
               border: "3px solid #D4B84A",
@@ -299,12 +333,9 @@ function CityCardsSection() {
 
         {/* Card 4 — Arch Mumbai */}
         <div
-          className="drift-right"
           style={{
-            width: mob ? "clamp(150px, 55vw, 200px)" : cardW,
+            width: mob ? "clamp(140px, 48vw, 190px)" : cardW,
             flexShrink: 0,
-            position: "relative",
-            marginBottom: mob ? "0" : "60px",
             scrollSnapAlign: mob ? "start" : "none",
           }}
         >
@@ -314,12 +345,12 @@ function CityCardsSection() {
               aspectRatio: "3/4",
               overflow: "hidden",
               border: "3px solid #D4B84A",
-              clipPath: "polygon(0% 100%, 0% 35%, 50% 0%, 100% 35%, 100% 100%)",
+              clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
               position: "relative",
             }}
           >
             <img
-              src={CARD_IMAGES.mumbai}
+              src="/assets/journey/mumbai.jpg"
               alt="Mumbai"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
@@ -328,47 +359,47 @@ function CityCardsSection() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to top, rgba(0,0,0,0.75) 30%, transparent)",
+                  "linear-gradient(to top, rgba(0,0,0,0.72) 28%, transparent)",
                 display: "flex",
                 alignItems: "flex-end",
                 justifyContent: "center",
-                paddingBottom: "20px",
+                paddingBottom: "18px",
               }}
             >
               <p
                 style={{
                   fontFamily: "Bebas Neue, cursive",
                   color: "#F5C42C",
-                  fontSize: "clamp(14px, 1.4vw, 18px)",
-                  letterSpacing: "0.1em",
+                  fontSize: "clamp(20px, 2vw, 28px)",
+                  letterSpacing: "0.12em",
                 }}
               >
-                MUMBAI / NH48
+                MUMBAI
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Tagline */}
+      {/* Tagline — centered below cards */}
       <div
         style={{
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          marginTop: "48px",
+          marginTop: "52px",
           padding: "0 32px",
         }}
       >
         <p
           style={{
-            fontFamily: "Bebas Neue, cursive",
+            fontFamily: "'Bebas Neue', cursive",
             color: "white",
-            fontSize: mob ? "22px" : "clamp(20px, 2.8vw, 36px)",
+            fontSize: mob ? "22px" : "clamp(28px, 2.8vw, 40px)",
+            lineHeight: "1.05",
             textAlign: "center",
             letterSpacing: "0.04em",
-            lineHeight: 1.3,
-            maxWidth: "700px",
+            maxWidth: "560px",
           }}
         >
           FOURTEEN HUNDRED KILOMETERS OF FLAVOR, DISTILLED INTO A SINGLE SEAT AT
@@ -376,7 +407,7 @@ function CityCardsSection() {
         </p>
       </div>
 
-      {/* Scallop — absolute at bottom, never overlaps text */}
+      {/* Scallop divider — small tight downward bumps matching Figma */}
       <div
         style={{
           position: "absolute",
@@ -388,14 +419,25 @@ function CityCardsSection() {
         }}
       >
         <svg
-          viewBox="0 0 1200 64"
+          viewBox="0 0 1200 20"
           preserveAspectRatio="none"
-          style={{ width: "100%", height: "64px", display: "block" }}
+          style={{ width: "100%", height: "20px", display: "block" }}
         >
+          {/* 75 small semicircle bumps pointing DOWN: cream fills from bump-bottom to SVG bottom */}
           <path
-            d="M0,0 C50,64 100,64 150,0 C200,64 250,64 300,0 C350,64 400,64 450,0
-               C500,64 550,64 600,0 C650,64 700,64 750,0 C800,64 850,64 900,0
-               C950,64 1000,64 1050,0 C1100,64 1150,64 1200,0 L1200,64 L0,64 Z"
+            d={(() => {
+              const step = 16;
+              const count = Math.ceil(1200 / step);
+              let d = `M0,0`;
+              for (let i = 0; i < count; i++) {
+                const x0 = i * step;
+                const x1 = x0 + step;
+                const mx = x0 + step / 2;
+                d += ` Q${mx},20 ${x1},0`;
+              }
+              d += ` L1200,20 L0,20 Z`;
+              return d;
+            })()}
             fill="#F5EFE0"
           />
         </svg>
