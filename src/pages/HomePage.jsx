@@ -31,9 +31,9 @@ export default function HomePage() {
       <Sayings />
       <Plates />
       <Journey />
-      <Jaipur /> 
-      <Delhi />
-      <Mumbai />
+      <LocationTimings />
+      <FoodGridSection />
+      <SiteFooter />
     </div>
   )
 }
@@ -935,14 +935,703 @@ const LotusIcon = ({ color, size = 40 }) => (
   </svg>
 );
 
-function Jaipur(){
+// ─── Scallop border helper ───────────────────────────────────────────────────
+// Renders a horizontal scallop strip:
+//   position='top'    → gold strip at top edge, dark-red bumps face DOWN into section
+//   position='bottom' → gold strip at bottom edge, dark-red bumps face UP into section
+function ScallopBorder({ position = 'top', bg = '#D4BA5A', scallop = '#8B3A3A', height = 36 }) {
+  const count = 28                  // fewer, larger scallops matching Figma
+  const arcW  = 1200 / count
+  const r     = arcW / 2
 
+  // The gold strip occupies the full SVG height.
+  // The dark-red scallop path is drawn at the INNER edge (facing the section body).
+  let d
+  if (position === 'top') {
+    // Strip sits at top; bumps point DOWN (into the yellow section)
+    // Start at bottom-left of strip, arch up-and-back-down along the bottom edge
+    d = `M0,${height}`
+    for (let i = 0; i < count; i++) {
+      const x2 = (i + 1) * arcW
+      // sweep=0 → arc bows UPWARD (bump points into the strip = upward = away from section)
+      // sweep=1 → arc bows DOWNWARD (bump points INTO the section below)
+      d += ` A${r},${r} 0 0,1 ${x2},${height}`
+    }
+    d += ` L1200,0 L0,0 Z`
+  } else {
+    // Strip sits at bottom; bumps point UP (into the yellow section above)
+    d = `M0,0`
+    for (let i = 0; i < count; i++) {
+      const x2 = (i + 1) * arcW
+      d += ` A${r},${r} 0 0,0 ${x2},0`
+    }
+    d += ` L1200,${height} L0,${height} Z`
+  }
+
+  return (
+    <div style={{ lineHeight: 0, pointerEvents: 'none', width: '100%' }}>
+      <svg
+        viewBox={`0 0 1200 ${height}`}
+        preserveAspectRatio="none"
+        style={{ width: '100%', height: `${height}px`, display: 'block' }}
+      >
+        {/* Gold background strip */}
+        <rect width="1200" height={height} fill={bg} />
+        {/* Dark-red scallops cut into the strip from the inner edge */}
+        <path d={d} fill={scallop} />
+      </svg>
+    </div>
+  )
 }
 
-function Delhi(){
+// ─── Illustrated DC Map ──────────────────────────────────────────────────────
+function DCMapIllustration() {
+  return (
+    <svg
+      viewBox="0 0 520 300"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ width: '100%', height: '100%', display: 'block' }}
+    >
+      {/* Background — aged paper */}
+      <rect width="520" height="300" fill="#F2E8C4" />
 
+      {/* Grid lines */}
+      {Array.from({ length: 14 }, (_, i) => (
+        <line key={`h${i}`} x1="0" y1={i * 22} x2="520" y2={i * 22} stroke="#D9C99A" strokeWidth="0.5" />
+      ))}
+      {Array.from({ length: 24 }, (_, i) => (
+        <line key={`v${i}`} x1={i * 22} y1="0" x2={i * 22} y2="300" stroke="#D9C99A" strokeWidth="0.5" />
+      ))}
+
+      {/* Potomac River — organic teal shape */}
+      <path
+        d="M0,60 Q30,40 50,80 Q70,120 40,150 Q20,180 0,200 Z"
+        fill="#5AADBD"
+        opacity="0.85"
+      />
+      <path
+        d="M0,200 Q30,220 20,260 Q10,285 0,300 Z"
+        fill="#5AADBD"
+        opacity="0.85"
+      />
+
+      {/* Inner river body continuation */}
+      <path
+        d="M40,150 Q60,160 70,200 Q75,230 55,270 Q35,300 0,300 L0,200 Q20,180 40,150 Z"
+        fill="#5AADBD"
+        opacity="0.75"
+      />
+
+      {/* POTOMAC RIVER label */}
+      <text
+        x="18" y="130"
+        transform="rotate(-70, 18, 130)"
+        fontFamily="'Bebas Neue', cursive"
+        fontSize="9"
+        fill="#2E7D8A"
+        letterSpacing="2"
+      >POTOMAC RIVER</text>
+
+      {/* Main road — MacArthur Blvd (diagonal) */}
+      <line x1="80" y1="60" x2="320" y2="220" stroke="#E8A830" strokeWidth="6" />
+      <text
+        x="155" y="120"
+        transform="rotate(33, 155, 120)"
+        fontFamily="Arial"
+        fontSize="7"
+        fill="#7A5A00"
+        fontWeight="bold"
+        letterSpacing="1"
+      >MACARTHUR BLVD NW</text>
+
+      {/* Secondary roads */}
+      <line x1="80" y1="60" x2="420" y2="60" stroke="#D4B84A" strokeWidth="3" opacity="0.7" />
+      <line x1="200" y1="60" x2="200" y2="240" stroke="#D4B84A" strokeWidth="3" opacity="0.7" />
+      <line x1="300" y1="60" x2="300" y2="240" stroke="#D4B84A" strokeWidth="3" opacity="0.7" />
+      <line x1="80" y1="150" x2="420" y2="150" stroke="#D4B84A" strokeWidth="3" opacity="0.7" />
+      <line x1="80" y1="220" x2="420" y2="220" stroke="#D4B84A" strokeWidth="3" opacity="0.7" />
+
+      {/* Georgetown label */}
+      <text
+        x="290" y="205"
+        fontFamily="'Bebas Neue', cursive"
+        fontSize="18"
+        fill="#5A3A1A"
+        letterSpacing="2"
+      >GEORGETOWN</text>
+
+      {/* Clover Archbold Park — green blob */}
+      <ellipse cx="220" cy="258" rx="48" ry="28" fill="#4A8A50" opacity="0.7" />
+      <text x="195" y="253" fontFamily="'Bebas Neue', cursive" fontSize="6.5" fill="white" textAnchor="middle">CLOVER</text>
+      <text x="195" y="261" fontFamily="'Bebas Neue', cursive" fontSize="6.5" fill="white" textAnchor="middle">ARCHBOLD</text>
+      <text x="195" y="269" fontFamily="'Bebas Neue', cursive" fontSize="6.5" fill="white" textAnchor="middle">PARK</text>
+
+      {/* Capitol Building simplified */}
+      <rect x="380" y="62" width="32" height="30" fill="#E8E0CC" stroke="#888" strokeWidth="0.8" />
+      <polygon points="396,50 378,64 414,64" fill="#D0C8B0" stroke="#888" strokeWidth="0.8" />
+      {/* Dome */}
+      <ellipse cx="396" cy="52" rx="8" ry="10" fill="#C8C0A0" stroke="#888" strokeWidth="0.8" />
+      <rect x="393" y="40" width="6" height="12" fill="#B8B0A0" />
+      <line x1="396" y1="36" x2="396" y2="33" stroke="#888" strokeWidth="1" />
+
+      {/* Lincoln Memorial simplified */}
+      <rect x="110" y="78" width="28" height="18" fill="#E0D8C0" stroke="#999" strokeWidth="0.8" />
+      {Array.from({ length: 5 }, (_, i) => (
+        <line key={i} x1={113 + i * 5} y1="78" x2={113 + i * 5} y2="96" stroke="#AAA" strokeWidth="0.8" />
+      ))}
+      <rect x="108" y="95" width="32" height="4" fill="#C8C0A8" />
+
+      {/* Trolley / bus icon */}
+      <rect x="156" y="148" width="24" height="14" rx="3" fill="#C0392B" />
+      <rect x="160" y="145" width="16" height="6" rx="1" fill="#E74C3C" />
+      <circle cx="160" cy="163" r="3" fill="#333" />
+      <circle cx="176" cy="163" r="3" fill="#333" />
+      <line x1="162" y1="148" x2="162" y2="162" stroke="white" strokeWidth="0.5" />
+      <line x1="168" y1="148" x2="168" y2="162" stroke="white" strokeWidth="0.5" />
+      <line x1="174" y1="148" x2="174" y2="162" stroke="white" strokeWidth="0.5" />
+
+      {/* Deer icon */}
+      <text x="78" y="198" fontSize="16" fill="#5A3A1A">🦌</text>
+
+      {/* Sailboat on water */}
+      <polygon points="195,240 200,215 205,240" fill="white" stroke="#888" strokeWidth="0.8" />
+      <line x1="200" y1="215" x2="200" y2="243" stroke="#555" strokeWidth="1" />
+
+      {/* Location PIN — 4824 */}
+      <line x1="205" y1="100" x2="205" y2="130" stroke="#8B3A3A" strokeWidth="2" />
+      <path
+        d="M205,70 m-14,0 a14,14 0 1,1 28,0 Q205,100 205,100 Q205,100 191,84 a14,14 0 0,1 14,-14 Z"
+        fill="#8B3A3A"
+      />
+      {/* Flag on pin */}
+      <rect x="205" y="58" width="18" height="12" fill="#4A2060" />
+      <text x="207" y="67" fontFamily="Arial" fontSize="7" fill="white" fontWeight="bold">4824</text>
+
+      {/* Address label near pin */}
+      <rect x="90" y="104" width="90" height="26" fill="#4A2060" opacity="0.88" />
+      <text x="135" y="115" fontFamily="'Bebas Neue', cursive" fontSize="7.5" fill="white" textAnchor="middle" letterSpacing="0.5">4824 MACARTHUR</text>
+      <text x="135" y="125" fontFamily="'Bebas Neue', cursive" fontSize="7.5" fill="white" textAnchor="middle" letterSpacing="0.5">BLVD NW</text>
+
+      {/* Decorative border */}
+      <rect x="2" y="2" width="516" height="296" fill="none" stroke="#B8A060" strokeWidth="3" />
+    </svg>
+  )
 }
 
-function Mumbai(){
+// ─── Location & Timings Section ───────────────────────────────────────────────
+function LocationTimings() {
+  const width = useWindowWidth()
+  const mob = width < 768
 
+  const hours = [
+    { day: 'MON:', time: '10 AM – 5 PM' },
+    { day: 'TUE:', time: '10 AM – 5 PM' },
+    { day: 'WED:', time: '10 AM – 5 PM' },
+    { day: 'THUR:', time: '10 AM – 5 PM' },
+    { day: 'FRI:', time: '10 AM – 5 PM' },
+    { day: 'SAT:', time: '8 AM – 7 PM' },
+    { day: 'SUN:', time: '8 AM – 7 PM' },
+  ]
+
+  return (
+    <section
+      style={{
+        width: '100%',
+        backgroundColor: '#D4BA5A',
+        backgroundImage: `
+          linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px)
+        `,
+        backgroundSize: '28px 28px',
+        position: 'relative',
+      }}
+    >
+      {/* TOP scallop border */}
+      <ScallopBorder position="top" bg="#D4BA5A" scallop="#8B3A3A" height={28} />
+
+      <div style={{ padding: mob ? '32px 20px 40px' : '48px 60px 56px' }}>
+        {/* Section heading */}
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: mob ? '28px' : '40px' }}>
+          <h2 style={{
+            fontFamily: 'Bebas Neue, cursive',
+            color: '#1B5C4F',
+            fontSize: mob ? '32px' : 'clamp(36px, 4.5vw, 56px)',
+            letterSpacing: '0.08em',
+            margin: 0,
+            textAlign: 'center',
+          }}>
+            LOCATION &amp; TIMING'S
+          </h2>
+        </div>
+
+        {/* Map + Info panel */}
+        <div style={{
+          display: 'flex',
+          flexDirection: mob ? 'column' : 'row',
+          alignItems: mob ? 'center' : 'stretch',
+          justifyContent: 'center',
+          gap: mob ? '20px' : '0',
+          maxWidth: '900px',
+          margin: '0 auto',
+        }}>
+
+          {/* LEFT — Illustrated map */}
+          <div style={{
+            flex: mob ? 'unset' : '0 0 52%',
+            width: mob ? '100%' : 'auto',
+            maxWidth: mob ? '480px' : 'unset',
+            border: '3px solid #B8A060',
+            overflow: 'hidden',
+            boxShadow: '4px 4px 16px rgba(0,0,0,0.18)',
+            backgroundColor: '#F2E8C4',
+            aspectRatio: mob ? '520/300' : 'unset',
+          }}>
+            <DCMapIllustration />
+          </div>
+
+          {/* RIGHT — Info panel */}
+          <div style={{
+            flex: mob ? 'unset' : '0 0 48%',
+            width: mob ? '100%' : 'auto',
+            maxWidth: mob ? '480px' : 'unset',
+            backgroundColor: '#1B5C4F',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: mob ? '28px 20px' : '36px 40px',
+          }}>
+            {/* Address */}
+            <p style={{
+              fontFamily: 'Bebas Neue, cursive',
+              color: '#F5EFE0',
+              fontSize: mob ? '15px' : 'clamp(14px, 1.5vw, 19px)',
+              letterSpacing: '0.06em',
+              lineHeight: 1.4,
+              textAlign: 'center',
+              margin: '0 0 28px 0',
+            }}>
+              4824 MACARTHUR BLVD NW LL<br />
+              WASHINGTON DC , 20007
+            </p>
+
+            {/* Hours list */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '6px',
+              width: '100%',
+              alignItems: 'center',
+            }}>
+              {hours.map(({ day, time }) => (
+                <p
+                  key={day}
+                  style={{
+                    fontFamily: 'Bebas Neue, cursive',
+                    color: '#F5EFE0',
+                    fontSize: mob ? '13px' : 'clamp(12px, 1.2vw, 16px)',
+                    letterSpacing: '0.07em',
+                    margin: 0,
+                    textAlign: 'center',
+                  }}
+                >
+                  {day} {time}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* BOTTOM scallop border */}
+      <ScallopBorder position="bottom" bg="#D4BA5A" scallop="#8B3A3A" height={36} />
+    </section>
+  )
+}
+
+// ─── Star / Moroccan lantern ornament ────────────────────────────────────────
+function StarOrnament({ size = 90, stroke = '#D4B84A', strokeWidth = 1.5 }) {
+  // Two overlapping squares rotated 45° → 8-pointed star outline
+  const s = size
+  const c = s / 2
+  const o = s * 0.28  // offset from center for inner corners
+  // Outer square points
+  const pts1 = [
+    [c, 0], [s, c], [c, s], [0, c],
+  ].map(p => p.join(',')).join(' ')
+  // Rotated square points (45°)
+  const r45 = s * 0.354
+  const pts2 = [
+    [c - r45, c - r45], [c + r45, c - r45],
+    [c + r45, c + r45], [c - r45, c + r45],
+  ].map(p => p.join(',')).join(' ')
+  return (
+    <svg width={s} height={s} viewBox={`0 0 ${s} ${s}`} style={{ display: 'block' }}>
+      <polygon points={pts1} fill="none" stroke={stroke} strokeWidth={strokeWidth} />
+      <polygon points={pts2} fill="none" stroke={stroke} strokeWidth={strokeWidth} />
+      {/* Inner smaller square outline */}
+      <polygon
+        points={`${c},${o} ${s-o},${c} ${c},${s-o} ${o},${c}`}
+        fill="none" stroke={stroke} strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+}
+
+// ─── Food Grid Section ────────────────────────────────────────────────────────
+const FOOD_GRID_IMAGES = [
+  'https://images.unsplash.com/photo-1574653853027-5382a3d23a15?w=700&q=85',  // dal makhani
+  'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=700&q=85',  // vada pav burger
+  'https://images.unsplash.com/photo-1631292784640-2b24be784d5d?w=700&q=85',  // dal/curry bowl
+  'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=700&q=85',  // seekh kebab skewers
+  'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=700&q=85',  // butter chicken
+  'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=700&q=85',  // pani puri
+]
+
+function FoodGridSection() {
+  const width = useWindowWidth()
+  const mob = width < 640
+  const tab = width < 1024 && width >= 640
+
+  return (
+    <section
+      style={{
+        position: 'relative',
+        width: '100%',
+        backgroundColor: '#1B5C4F',
+        backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)`,
+        backgroundSize: '18px 18px',
+        overflow: 'hidden',
+        paddingTop: '64px',
+        paddingBottom: '72px',
+      }}
+    >
+      {/* ── Watermark NH48 ── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 -20px',
+          pointerEvents: 'none',
+          zIndex: 0,
+          overflow: 'hidden',
+        }}
+      >
+        {/* N */}
+        <span style={{
+          fontFamily: 'Bebas Neue, cursive',
+          fontSize: 'clamp(180px, 25vw, 340px)',
+          color: 'rgba(139,58,58,0.18)',
+          lineHeight: 1,
+          userSelect: 'none',
+          marginLeft: '-20px',
+        }}>N</span>
+        {/* H */}
+        <span style={{
+          fontFamily: 'Bebas Neue, cursive',
+          fontSize: 'clamp(180px, 25vw, 340px)',
+          color: 'rgba(139,58,58,0.12)',
+          lineHeight: 1,
+          userSelect: 'none',
+        }}>H</span>
+        {/* 4 */}
+        <span style={{
+          fontFamily: 'Bebas Neue, cursive',
+          fontSize: 'clamp(180px, 25vw, 340px)',
+          color: 'rgba(139,58,58,0.14)',
+          lineHeight: 1,
+          userSelect: 'none',
+        }}>4</span>
+        {/* 8 */}
+        <span style={{
+          fontFamily: 'Bebas Neue, cursive',
+          fontSize: 'clamp(180px, 25vw, 340px)',
+          color: 'rgba(139,58,58,0.18)',
+          lineHeight: 1,
+          userSelect: 'none',
+          marginRight: '-20px',
+        }}>8</span>
+      </div>
+
+      {/* ── Star ornament — left side ── */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 'clamp(20px, 4vw, 60px)',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 2,
+          pointerEvents: 'none',
+          opacity: 0.85,
+        }}
+      >
+        <StarOrnament size={mob ? 55 : 90} stroke="#D4B84A" strokeWidth={1.5} />
+      </div>
+
+      {/* ── Red lotus — bottom right ── */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '20px',
+          right: 'clamp(20px, 4vw, 56px)',
+          zIndex: 2,
+          pointerEvents: 'none',
+        }}
+      >
+        <svg width={mob ? 32 : 46} height={mob ? 26 : 37} viewBox="0 0 72 57">
+          <path
+            d="M46.1462 21.1309C46.1462 21.1309 49.2654 9.97958 36.0086 0C22.7603 9.97958 25.871 21.1309 25.871 21.1309C12.6227 11.7412 0 22.3026 0 22.3026C0 22.3026 13.2483 19.3693 17.0359 29.3489C20.8236 39.3285 33.4378 43.4335 33.4378 43.4335L33.3006 54.4413V54.6326C33.2921 55.9399 34.4318 57 35.8372 57H35.8886C37.2854 57 38.4166 55.9478 38.4251 54.6486V54.6087L38.5622 43.4255C38.5622 43.4255 51.185 39.3205 54.9641 29.3409C58.7517 19.3613 72 22.2946 72 22.2946C72 22.2946 59.3944 11.7412 46.1462 21.1309Z"
+            fill="#A94545"
+          />
+        </svg>
+      </div>
+
+      {/* ── 3×2 Photo grid ── */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          display: 'grid',
+          gridTemplateColumns: mob ? '1fr 1fr' : 'repeat(3, 1fr)',
+          gap: mob ? '6px' : '8px',
+          width: mob ? 'calc(100% - 40px)' : tab ? 'calc(100% - 80px)' : 'calc(100% - 200px)',
+          maxWidth: '820px',
+          margin: '0 auto',
+        }}
+      >
+        {FOOD_GRID_IMAGES.map((src, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'relative',
+              aspectRatio: '1/1',
+              overflow: 'hidden',
+              outline: '2px solid #D4B84A',
+              outlineOffset: '-4px',
+            }}
+          >
+            <img
+              src={src}
+              alt={`NH48 dish ${i + 1}`}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// ─── Lotus SVG helper ────────────────────────────────────────────────────────
+const LotusPath = "M46.1462 21.1309C46.1462 21.1309 49.2654 9.97958 36.0086 0C22.7603 9.97958 25.871 21.1309 25.871 21.1309C12.6227 11.7412 0 22.3026 0 22.3026C0 22.3026 13.2483 19.3693 17.0359 29.3489C20.8236 39.3285 33.4378 43.4335 33.4378 43.4335L33.3006 54.4413V54.6326C33.2921 55.9399 34.4318 57 35.8372 57H35.8886C37.2854 57 38.4166 55.9478 38.4251 54.6486V54.6087L38.5622 43.4255C38.5622 43.4255 51.185 39.3205 54.9641 29.3409C58.7517 19.3613 72 22.2946 72 22.2946C72 22.2946 59.3944 11.7412 46.1462 21.1309Z"
+
+// ─── Shared text styles ───────────────────────────────────────────────────────
+const ftLabel = {
+  fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+  fontWeight: 700,
+  fontSize: '16px',
+  lineHeight: '20px',
+  textTransform: 'uppercase',
+  color: '#FFFFFF',
+  margin: 0,
+}
+const ftBody = {
+  fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+  fontWeight: 400,
+  fontSize: '16px',
+  lineHeight: '19px',
+  textTransform: 'uppercase',
+  color: '#FFD5D5',
+  margin: 0,
+}
+
+// ─── Site Footer ─────────────────────────────────────────────────────────────
+function SiteFooter() {
+  const width = useWindowWidth()
+  const mob = width < 640
+  const tab = width < 900 && width >= 640
+
+
+  return (
+    <footer
+      style={{
+        position: 'relative',
+        width: '100%',
+        backgroundColor: '#A94545',
+        minHeight: mob ? 'auto' : tab ? '420px' : '563px',
+        overflow: 'hidden',
+      }}
+    >
+      {/* ── DECORATIVE LOTUS — Figma: left:79.89%, top:282px from section, height:272px, color:#742D2D ── */}
+      {!mob && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            left: '79.89%',
+            top: tab ? '140px' : '282px',
+            height: tab ? '200px' : '272px',
+            zIndex: 0,
+            pointerEvents: 'none',
+          }}
+        >
+          <svg viewBox="0 0 72 57" style={{ height: '100%', width: 'auto', display: 'block' }}>
+            <path d={LotusPath} fill="#742D2D" />
+          </svg>
+        </div>
+      )}
+
+      {/* ── DESKTOP / TABLET LAYOUT ── */}
+      {!mob ? (
+        <div style={{ position: 'relative', zIndex: 1, minHeight: tab ? '420px' : '563px', width: '100%' }}>
+
+          {/* NH48 LOGO — Figma: left:45px, 10px from section top, 124px font */}
+          <div style={{ position: 'absolute', left: tab ? '30px' : '45px', top: '10px' }}>
+            <h2 style={{
+              fontFamily: 'Bebas Neue, cursive',
+              fontWeight: 400,
+              fontSize: tab ? '80px' : '124px',
+              lineHeight: '143px',
+              color: '#FFFFFF',
+              margin: 0,
+              textShadow: '0px 8.52px 8.52px rgba(0,0,0,0.25)',
+              letterSpacing: '0.01em',
+            }}>NH48</h2>
+          </div>
+
+          {/* LEFT COL — Figma: left:45px, top:173px (LOCATION & CONTACT label) */}
+          <div style={{ position: 'absolute', left: tab ? '30px' : '45px', top: tab ? '130px' : '173px', width: tab ? '260px' : '350px' }}>
+
+            <p style={{ ...ftLabel, marginBottom: '16px' }}>LOCATION &amp; CONTACT</p>
+
+            {/* Location text — Figma top:218px = label+45px */}
+            <p style={{ ...ftBody }}>
+              LOCATION — 4824 MACARTHUR BLVD NW LL,<br />
+              WASHINGTON D.C. 20007
+            </p>
+
+            {/* HOURS label — Figma top:314px = +141px from loc-label */}
+            <p style={{ ...ftLabel, marginTop: tab ? '24px' : '45px', marginBottom: '16px' }}>HOURS</p>
+
+            {/* Hours text — Figma top:359px */}
+            <p style={{ ...ftBody }}>
+              SUNDAY – WEDNESDAY: 5:00 PM – 10:30 PM<br />
+              (LAST SEATING 9:30 PM)<br />
+              THURSDAY – SATURDAY: 5:00 PM – 11:00 PM<br />
+              (LAST SEATING 10:00 PM)<br />
+              MONDAY: CLOSED
+            </p>
+          </div>
+
+          {/* CENTER COL — Figma: left:757px (50.07%), top:173px */}
+          <div style={{
+            position: 'absolute',
+            left: tab ? '46%' : '50.07%',
+            top: tab ? '130px' : '173px',
+            width: tab ? '220px' : '371px',
+          }}>
+            {/* Email block 1 — Figma top:173px (same as col header) */}
+            <p style={{ ...ftBody }}>
+              HAVE A QUESTION OR A SPECIAL REQUEST?{' '}
+              EMAIL US AT{' '}
+              <a href="mailto:prady.rana@outlook.com" style={{ color: '#FFD5D5', textDecoration: 'underline', textUnderlineOffset: '3px', fontFamily: 'inherit', fontSize: 'inherit', fontWeight: 'inherit' }}>
+                PRADY.RANA@OUTLOOK.COM
+              </a>
+              . DUE TO HIGH DEMAND, OUR TEAM WILL PROVIDE A RESPONSE WITHIN 48 BUSINESS HOURS (MON–SAT).
+            </p>
+
+            {/* Large parties — Figma top:308px = +135px */}
+            <p style={{ ...ftBody, marginTop: tab ? '20px' : '40px' }}>
+              TO PROVIDE THE BEST EXPERIENCE FOR LARGE PARTIES (8+),
+              WE KINDLY ASK FOR BOOKINGS TO BE MADE 40–45 DAYS IN ADVANCE.
+            </p>
+
+            {/* Email block 2 — Figma top:415px = +107px below large parties */}
+            <p style={{ ...ftBody, marginTop: tab ? '20px' : '32px' }}>
+              HAVE A QUESTION OR A SPECIAL REQUEST?{' '}
+              EMAIL US AT{' '}
+              <a href="mailto:prady.rana@outlook.com" style={{ color: '#FFD5D5', textDecoration: 'underline', textUnderlineOffset: '3px', fontFamily: 'inherit', fontSize: 'inherit', fontWeight: 'inherit' }}>
+                PRADY.RANA@OUTLOOK.COM
+              </a>
+              . DUE TO HIGH DEMAND, OUR TEAM WILL PROVIDE A RESPONSE WITHIN 48 BUSINESS HOURS (MON–SAT).
+            </p>
+          </div>
+
+          {/* RIGHT COL — Figma: left:1332px (88.1%), top:173px */}
+          <div style={{
+            position: 'absolute',
+            left: tab ? 'auto' : '88.1%',
+            right: tab ? '30px' : 'auto',
+            top: tab ? '130px' : '173px',
+          }}>
+            <p style={{ ...ftLabel, marginBottom: '20px' }}>FOLLOW US</p>
+
+            {/* Social icons — Figma: Insta@1314, FB@1366(+52px), TikTok@1413(+47px) */}
+            <div style={{ display: 'flex', gap: tab ? '12px' : '17px', alignItems: 'center' }}>
+              <a href="#" aria-label="Instagram" style={{ color: '#FFFFFF', display: 'flex', transition: 'opacity 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+                onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1.3" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+              <a href="#" aria-label="Facebook" style={{ color: '#FFFFFF', display: 'flex', transition: 'opacity 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+                onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
+              <a href="#" aria-label="TikTok" style={{ color: '#FFFFFF', display: 'flex', transition: 'opacity 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+                onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
+                <svg width="31" height="31" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      ) : (
+        /* ── MOBILE LAYOUT — stacked ── */
+        <div style={{ padding: '36px 24px 44px', display: 'flex', flexDirection: 'column', gap: '28px' }}>
+          <h2 style={{ fontFamily: 'Bebas Neue, cursive', fontSize: '80px', lineHeight: 1, color: '#FFFFFF', margin: 0, textShadow: '0px 6px 6px rgba(0,0,0,0.25)' }}>NH48</h2>
+          <div>
+            <p style={{ ...ftLabel, marginBottom: '10px' }}>LOCATION &amp; CONTACT</p>
+            <p style={ftBody}>LOCATION — 4824 MACARTHUR BLVD NW LL, WASHINGTON D.C. 20007</p>
+          </div>
+          <div>
+            <p style={{ ...ftLabel, marginBottom: '10px' }}>HOURS</p>
+            <p style={ftBody}>SUNDAY – WEDNESDAY: 5:00 PM – 10:30 PM (LAST SEATING 9:30 PM)<br />THURSDAY – SATURDAY: 5:00 PM – 11:00 PM (LAST SEATING 10:00 PM)<br />MONDAY: CLOSED</p>
+          </div>
+          <p style={ftBody}>HAVE A QUESTION? EMAIL <a href="mailto:prady.rana@outlook.com" style={{ color: '#FFD5D5', textDecoration: 'underline' }}>PRADY.RANA@OUTLOOK.COM</a>. RESPONSE WITHIN 48 BUSINESS HOURS (MON–SAT).</p>
+          <p style={ftBody}>LARGE PARTIES (8+): PLEASE BOOK 40–45 DAYS IN ADVANCE.</p>
+          <div>
+            <p style={{ ...ftLabel, marginBottom: '10px' }}>FOLLOW US</p>
+            <div style={{ display: 'flex', gap: '14px' }}>
+              {[
+                <svg key="ig" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>,
+                <svg key="fb" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
+                <svg key="tt" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>,
+              ].map((icon, i) => (
+                <a key={i} href="#" style={{ color: '#FFFFFF', display: 'flex' }}>{icon}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </footer>
+  )
 }
