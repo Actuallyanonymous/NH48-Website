@@ -6,6 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useWindowWidth } from "../hooks/useWindowWidth";
 gsap.registerPlugin(ScrollTrigger);
 import SiteFooter from "../components/SiteFooter";
+import JaipurModal from "./JaipurPage";
+import DelhiModal from "./DelhiPage";
+import MumbaiModal from "./MumbaiPage";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1600&q=80";
@@ -107,7 +110,7 @@ function HeroSection() {
           >
             <h1
               style={{
-                fontFamily: "Bebas Neue, cursive",
+                fontFamily: "BERNIER Distressed, cursive",
                 fontSize: "clamp(48px, 8vw, 96px)",
                 color: "#F5C42C",
                 letterSpacing: "0.04em",
@@ -178,13 +181,47 @@ function CityCardsSection() {
         fill="none"
       >
         {/* Outer square — straight */}
-        <rect x="22" y="22" width="130" height="130" stroke="#D4B84A" strokeWidth="3" fill="none" />
+        <rect
+          x="22"
+          y="22"
+          width="130"
+          height="130"
+          stroke="#D4B84A"
+          strokeWidth="3"
+          fill="none"
+        />
         {/* Outer square — rotated 45° */}
-        <rect x="22" y="22" width="130" height="130" stroke="#D4B84A" strokeWidth="3" fill="none" transform="rotate(45 87 87)" />
+        <rect
+          x="22"
+          y="22"
+          width="130"
+          height="130"
+          stroke="#D4B84A"
+          strokeWidth="3"
+          fill="none"
+          transform="rotate(45 87 87)"
+        />
         {/* Inner square — straight (inset ~28px) */}
-        <rect x="44" y="44" width="86" height="86" stroke="#D4B84A" strokeWidth="2" fill="none" />
+        <rect
+          x="44"
+          y="44"
+          width="86"
+          height="86"
+          stroke="#D4B84A"
+          strokeWidth="2"
+          fill="none"
+        />
         {/* Inner square — rotated 45° */}
-        <rect x="44" y="44" width="86" height="86" stroke="#D4B84A" strokeWidth="2" fill="none" transform="rotate(45 87 87)" />
+        <rect
+          x="44"
+          y="44"
+          width="86"
+          height="86"
+          stroke="#D4B84A"
+          strokeWidth="2"
+          fill="none"
+          transform="rotate(45 87 87)"
+        />
       </svg>
 
       {/* Red bird / flower decoration — right side */}
@@ -204,9 +241,15 @@ function CityCardsSection() {
         {/* Body */}
         <ellipse cx="70" cy="72" rx="28" ry="18" fill="#8B1A1A" />
         {/* Tail — sweeping left */}
-        <path d="M46,76 C20,90 8,110 18,118 C28,126 50,100 60,80" fill="#8B1A1A" />
+        <path
+          d="M46,76 C20,90 8,110 18,118 C28,126 50,100 60,80"
+          fill="#8B1A1A"
+        />
         {/* Wing */}
-        <path d="M58,62 C70,38 100,32 108,50 C90,46 75,58 70,72" fill="#A52020" />
+        <path
+          d="M58,62 C70,38 100,32 108,50 C90,46 75,58 70,72"
+          fill="#A52020"
+        />
         {/* Head */}
         <circle cx="94" cy="62" r="13" fill="#8B1A1A" />
         {/* Beak */}
@@ -294,7 +337,7 @@ function CityCardsSection() {
             >
               <p
                 style={{
-                  fontFamily: "Bebas Neue, cursive",
+                  fontFamily: "BERNIER Distressed, cursive",
                   color: "#F5C42C",
                   fontSize: "clamp(20px, 2vw, 28px)",
                   letterSpacing: "0.12em",
@@ -368,7 +411,7 @@ function CityCardsSection() {
             >
               <p
                 style={{
-                  fontFamily: "Bebas Neue, cursive",
+                  fontFamily: "BERNIER Distressed, cursive",
                   color: "#F5C42C",
                   fontSize: "clamp(20px, 2vw, 28px)",
                   letterSpacing: "0.12em",
@@ -393,7 +436,7 @@ function CityCardsSection() {
       >
         <p
           style={{
-            fontFamily: "'Bebas Neue', cursive",
+            fontFamily: "'BERNIER Distressed', cursive",
             color: "white",
             fontSize: mob ? "22px" : "clamp(28px, 2.8vw, 40px)",
             lineHeight: "1.05",
@@ -693,7 +736,7 @@ function StorySection() {
       >
         <h2
           style={{
-            fontFamily: "Bebas Neue, cursive",
+            fontFamily: "BERNIER Distressed, cursive",
             color: "#1B5C4F",
             fontSize: "clamp(32px, 5vw, 64px)",
             letterSpacing: "0.08em",
@@ -825,7 +868,7 @@ function StorySection() {
 
           <p
             style={{
-              fontFamily: "Bebas Neue, cursive",
+              fontFamily: "BERNIER Distressed, cursive",
               color: "#F5EFE0",
               fontSize: "clamp(13px, 1.6vw, 21px)",
               letterSpacing: "0.06em",
@@ -852,7 +895,7 @@ function StorySection() {
           >
             <button
               style={{
-                fontFamily: "Bebas Neue, cursive",
+                fontFamily: "BERNIER Distressed, cursive",
                 fontSize: "clamp(14px, 1.4vw, 18px)",
                 letterSpacing: "0.12em",
                 color: "#F5EFE0",
@@ -1036,7 +1079,7 @@ function Sayings() {
       >
         <h2
           style={{
-            fontFamily: "Bebas Neue, cursive",
+            fontFamily: "BERNIER Distressed, cursive",
             color: "#1B5C4F",
             fontSize: "clamp(28px, 4.5vw, 58px)",
             letterSpacing: "0.06em",
@@ -1094,7 +1137,7 @@ function Sayings() {
         >
           <p
             style={{
-              fontFamily: "Bebas Neue, cursive",
+              fontFamily: "BERNIER Distressed, cursive",
               color: "#F5EFE0",
               fontSize: "clamp(11px, 1.1vw, 15px)",
               letterSpacing: "0.07em",
@@ -1258,7 +1301,7 @@ function Plates() {
         </svg>
         <h2
           style={{
-            fontFamily: "Bebas Neue, cursive",
+            fontFamily: "BERNIER Distressed, cursive",
             color: "#F5EFE0",
             fontSize: "clamp(28px, 4vw, 52px)",
             letterSpacing: "0.08em",
@@ -1323,7 +1366,7 @@ function Plates() {
               >
                 <span
                   style={{
-                    fontFamily: "Bebas Neue, cursive",
+                    fontFamily: "BERNIER Distressed, cursive",
                     color: "#F5EFE0",
                     fontSize: "clamp(9px, 0.9vw, 13px)",
                     letterSpacing: "0.08em",
@@ -1363,7 +1406,7 @@ function Plates() {
               >
                 <span
                   style={{
-                    fontFamily: "Bebas Neue, cursive",
+                    fontFamily: "BERNIER Distressed, cursive",
                     color: "#F5EFE0",
                     fontSize: "clamp(9px, 0.9vw, 13px)",
                     letterSpacing: "0.08em",
@@ -1427,6 +1470,8 @@ const CITIES = [
 function Journey() {
   //const navigate = useNavigate(); // remove if not using React Router
 
+  const [openCity, setOpenCity] = useState(null); // 'delhi' | 'jaipur' | 'mumbai' | null
+
   return (
     <div style={styles.wrapper}>
       {/* Title */}
@@ -1438,7 +1483,7 @@ function Journey() {
           <CityCard
             key={city.key}
             city={city}
-            onClick={() => navigate(city.path)} // swap for your own navigation
+            onClick={() => setOpenCity(city.key)} // swap for your own navigation
           />
         ))}
       </div>
@@ -1514,6 +1559,13 @@ function Journey() {
           </filter>
         </defs>
       </svg>
+      {openCity === "delhi" && (<DelhiModal onClose={() => setOpenCity(null)} />)}
+      {openCity === "jaipur" && (
+        <JaipurModal onClose={() => setOpenCity(null)} />
+      )}
+      {openCity === "mumbai" && (
+        <MumbaiModal onClose={() => setOpenCity(null)} />
+      )}
     </div>
   );
 }
@@ -1567,7 +1619,7 @@ const styles = {
   },
 
   title: {
-    fontFamily: "'Bebas Neue', 'Impact', sans-serif",
+    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
     fontSize: "1.6rem",
     letterSpacing: "0.2em",
     color: "#1a5c48",
@@ -1609,7 +1661,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "'Bebas Neue', 'Impact', sans-serif",
+    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
     fontSize: "2.8rem",
     letterSpacing: "0.1em",
     color: "#ffffff",
@@ -1750,7 +1802,7 @@ function DCMapIllustration() {
         x="18"
         y="130"
         transform="rotate(-70, 18, 130)"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="9"
         fill="#2E7D8A"
         letterSpacing="2"
@@ -1831,7 +1883,7 @@ function DCMapIllustration() {
       <text
         x="290"
         y="205"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="18"
         fill="#5A3A1A"
         letterSpacing="2"
@@ -1844,7 +1896,7 @@ function DCMapIllustration() {
       <text
         x="195"
         y="253"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="6.5"
         fill="white"
         textAnchor="middle"
@@ -1854,7 +1906,7 @@ function DCMapIllustration() {
       <text
         x="195"
         y="261"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="6.5"
         fill="white"
         textAnchor="middle"
@@ -1864,7 +1916,7 @@ function DCMapIllustration() {
       <text
         x="195"
         y="269"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="6.5"
         fill="white"
         textAnchor="middle"
@@ -2006,7 +2058,7 @@ function DCMapIllustration() {
       <text
         x="135"
         y="115"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="7.5"
         fill="white"
         textAnchor="middle"
@@ -2017,7 +2069,7 @@ function DCMapIllustration() {
       <text
         x="135"
         y="125"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="7.5"
         fill="white"
         textAnchor="middle"
@@ -2088,7 +2140,7 @@ function LocationTimings() {
         >
           <h2
             style={{
-              fontFamily: "Bebas Neue, cursive",
+              fontFamily: "BERNIER Distressed, cursive",
               color: "#1B5C4F",
               fontSize: mob ? "32px" : "clamp(36px, 4.5vw, 56px)",
               letterSpacing: "0.08em",
@@ -2096,7 +2148,7 @@ function LocationTimings() {
               textAlign: "center",
             }}
           >
-            LOCATION &amp; TIMING'S
+            LOCATION &amp; TIMING
           </h2>
         </div>
 
@@ -2145,7 +2197,7 @@ function LocationTimings() {
             {/* Address */}
             <p
               style={{
-                fontFamily: "Bebas Neue, cursive",
+                fontFamily: "BERNIER Distressed, cursive",
                 color: "#F5EFE0",
                 fontSize: mob ? "15px" : "clamp(14px, 1.5vw, 19px)",
                 letterSpacing: "0.06em",
@@ -2173,7 +2225,7 @@ function LocationTimings() {
                 <p
                   key={day}
                   style={{
-                    fontFamily: "Bebas Neue, cursive",
+                    fontFamily: "BERNIER Distressed, cursive",
                     color: "#F5EFE0",
                     fontSize: mob ? "13px" : "clamp(12px, 1.2vw, 16px)",
                     letterSpacing: "0.07em",
@@ -2301,7 +2353,7 @@ function FoodGridSection() {
         {/* N */}
         <span
           style={{
-            fontFamily: "Bebas Neue, cursive",
+            fontFamily: "BERNIER Distressed, cursive",
             fontSize: "clamp(180px, 25vw, 340px)",
             color: "rgba(139,58,58,0.18)",
             lineHeight: 1,
@@ -2314,7 +2366,7 @@ function FoodGridSection() {
         {/* H */}
         <span
           style={{
-            fontFamily: "Bebas Neue, cursive",
+            fontFamily: "BERNIER Distressed, cursive",
             fontSize: "clamp(180px, 25vw, 340px)",
             color: "rgba(139,58,58,0.12)",
             lineHeight: 1,
@@ -2326,7 +2378,7 @@ function FoodGridSection() {
         {/* 4 */}
         <span
           style={{
-            fontFamily: "Bebas Neue, cursive",
+            fontFamily: "BERNIER Distressed, cursive",
             fontSize: "clamp(180px, 25vw, 340px)",
             color: "rgba(139,58,58,0.14)",
             lineHeight: 1,
@@ -2338,7 +2390,7 @@ function FoodGridSection() {
         {/* 8 */}
         <span
           style={{
-            fontFamily: "Bebas Neue, cursive",
+            fontFamily: "BERNIER Distressed, cursive",
             fontSize: "clamp(180px, 25vw, 340px)",
             color: "rgba(139,58,58,0.18)",
             lineHeight: 1,
@@ -2427,4 +2479,3 @@ function FoodGridSection() {
     </section>
   );
 }
-

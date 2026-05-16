@@ -138,7 +138,7 @@ function MenuBtn({ label, to }) {
         pointerEvents: 'none',
       }} />
       <span style={{
-        fontFamily: 'Bebas Neue, cursive',
+        fontFamily: 'BERNIER Distressed, cursive',
         fontSize: '17.76px',
         letterSpacing: '0.05em',
         color: '#FFFEFE',
@@ -202,7 +202,7 @@ function TealSection({ mob }) {
           textAlign: 'center',
         }}>
           <p style={{
-            fontFamily: 'Bebas Neue, cursive',
+            fontFamily: 'BERNIER Distressed, cursive',
             fontSize: mob ? '22px' : 'clamp(26px, 2.65vw, 40px)',
             lineHeight: '1.05',
             color: '#FFFFFF',
@@ -323,7 +323,7 @@ function SiteFooter({ mob, tab }) {
       {!mob ? (
         <div style={{ position: 'relative', zIndex: 1, minHeight: tab ? '420px' : '563px', width: '100%' }}>
           <div style={{ position: 'absolute', left: tab ? '30px' : '45px', top: '10px' }}>
-            <h2 style={{ fontFamily: 'Bebas Neue, cursive', fontWeight: 400, fontSize: tab ? '80px' : '124px', lineHeight: '143px', color: '#FFFFFF', margin: 0, textShadow: '0px 8.52px 8.52px rgba(0,0,0,0.25)' }}>NH48</h2>
+            <h2 style={{ fontFamily: 'BERNIER Distressed, cursive', fontWeight: 400, fontSize: tab ? '80px' : '124px', lineHeight: '143px', color: '#FFFFFF', margin: 0, textShadow: '0px 8.52px 8.52px rgba(0,0,0,0.25)' }}>NH48</h2>
           </div>
           <div style={{ position: 'absolute', left: tab ? '30px' : '45px', top: tab ? '130px' : '173px', width: tab ? '260px' : '350px' }}>
             <p style={{ ...ftLabel, marginBottom: '16px' }}>LOCATION &amp; CONTACT</p>
@@ -355,7 +355,7 @@ function SiteFooter({ mob, tab }) {
         </div>
       ) : (
         <div style={{ padding: '36px 24px 44px', display: 'flex', flexDirection: 'column', gap: '28px' }}>
-          <h2 style={{ fontFamily: 'Bebas Neue, cursive', fontSize: '80px', lineHeight: 1, color: '#FFFFFF', margin: 0, textShadow: '0px 6px 6px rgba(0,0,0,0.25)' }}>NH48</h2>
+          <h2 style={{ fontFamily: 'BERNIER Distressed, cursive', fontSize: '80px', lineHeight: 1, color: '#FFFFFF', margin: 0, textShadow: '0px 6px 6px rgba(0,0,0,0.25)' }}>NH48</h2>
           <div><p style={{ ...ftLabel, marginBottom: '10px' }}>LOCATION &amp; CONTACT</p><p style={ftBody}>LOCATION — 4824 MACARTHUR BLVD NW LL, WASHINGTON D.C. 20007</p></div>
           <div><p style={{ ...ftLabel, marginBottom: '10px' }}>HOURS</p><p style={ftBody}>SUNDAY – WEDNESDAY: 5:00 PM – 10:30 PM (LAST SEATING 9:30 PM)<br />THURSDAY – SATURDAY: 5:00 PM – 11:00 PM (LAST SEATING 10:00 PM)<br />MONDAY: CLOSED</p></div>
           <p style={ftBody}>HAVE A QUESTION? EMAIL <a href="mailto:prady.rana@outlook.com" style={{ color: '#FFD5D5', textDecoration: 'underline' }}>PRADY.RANA@OUTLOOK.COM</a>. RESPONSE WITHIN 48 BUSINESS HOURS (MON–SAT).</p>

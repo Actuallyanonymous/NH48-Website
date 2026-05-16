@@ -53,7 +53,7 @@ export default function Navbar() {
       }}>
         {/* Logo */}
         <Link to="/" style={{
-          fontFamily: "'Bebas Neue', cursive",
+          fontFamily: "'BERNIER Distressed', cursive",
           fontSize: 28,
           color: '#F5C42C',
           letterSpacing: '0.06em',
@@ -139,13 +139,13 @@ export default function Navbar() {
               {NAV_LINKS.map(({ label, to, external }) =>
                 external ? (
                   <a key={label} href={to} onClick={() => setDrawer(false)}
-                     style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 28, color: 'white', letterSpacing: '0.06em' }}>
+                     style={{ fontFamily: "'BERNIER Distressed', cursive", fontSize: 28, color: 'white', letterSpacing: '0.06em' }}>
                     {label}
                   </a>
                 ) : (
                   <NavLink key={label} to={to} end={to === '/'}
                     onClick={() => setDrawer(false)}
-                    style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 28, color: 'white', letterSpacing: '0.06em' }}>
+                    style={{ fontFamily: "'BERNIER Distressed', cursive", fontSize: 28, color: 'white', letterSpacing: '0.06em' }}>
                     {label}
                   </NavLink>
                 )

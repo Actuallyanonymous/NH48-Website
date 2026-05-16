@@ -75,7 +75,7 @@ function HeroSection() {
           >
             <h1
               style={{
-                fontFamily: "Bebas Neue, cursive",
+                fontFamily: "BERNIER Distressed, cursive",
                 fontSize: "clamp(48px, 8vw, 96px)",
                 color: "#F5C42C",
                 letterSpacing: "0.04em",
@@ -272,14 +272,14 @@ lotusRow: {
 },
 
   heading: {
-    fontFamily: "'Bebas Neue', 'Impact', sans-serif",
+    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
     fontSize: "2rem",
     letterSpacing: "0.12em",
     color: "#ffffff",
     margin: 0,
   },
   body: {
-    fontFamily: "'Bebas Neue', 'Impact', sans-serif",
+    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
     fontSize: "0.8rem",
     letterSpacing: "0.08em",
     lineHeight: 1.7,
@@ -293,7 +293,7 @@ lotusRow: {
     gap: 6,
   },
   label: {
-    fontFamily: "'Bebas Neue', 'Impact', sans-serif",
+    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
     fontSize: "1.1rem",
     letterSpacing: "0.12em",
     color: "#ffffff",
@@ -304,7 +304,7 @@ lotusRow: {
     color: "rgba(255,255,255,0.7)",
   },
   subLabel: {
-    fontFamily: "'Bebas Neue', 'Impact', sans-serif",
+    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
     fontSize: "0.72rem",
     letterSpacing: "0.1em",
     color: "rgba(255,255,255,0.75)",
@@ -363,7 +363,7 @@ lotusRow: {
     background: "transparent",
     border: "1.5px solid #ffffff",
     color: "#ffffff",
-    fontFamily: "'Bebas Neue', 'Impact', sans-serif",
+    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
     fontSize: "1rem",
     letterSpacing: "0.2em",
     padding: "8px 40px",

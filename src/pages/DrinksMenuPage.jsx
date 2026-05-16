@@ -56,7 +56,7 @@ function FoodMenuBtn() {
         pointerEvents: 'none',
       }} />
       <span style={{
-        fontFamily: "'Bebas Neue', cursive",
+        fontFamily: "'BERNIER Distressed', cursive",
         fontSize: '13.5px',
         letterSpacing: '0.06em',
         color: '#FFFEFE',
@@ -78,7 +78,7 @@ function MenuColumn({ section }) {
 
       {/* Category title — Figma: 36px Bernier, teal, tracking -0.04em */}
       <h2 style={{
-        fontFamily: "'Bebas Neue', cursive",
+        fontFamily: "'BERNIER Distressed', cursive",
         fontSize: 'clamp(22px, 2.4vw, 36px)',
         fontWeight: 400,
         lineHeight: 1.06,
@@ -119,7 +119,7 @@ function MenuColumn({ section }) {
             marginBottom: '3px',
           }}>
             <span style={{
-              fontFamily: "'Bebas Neue', cursive",
+              fontFamily: "'BERNIER Distressed', cursive",
               fontSize: 'clamp(14px, 1.05vw, 16px)',
               fontWeight: 400,
               letterSpacing: '0.03em',
@@ -129,7 +129,7 @@ function MenuColumn({ section }) {
               {item.name}
             </span>
             <span style={{
-              fontFamily: "'Bebas Neue', cursive",
+              fontFamily: "'BERNIER Distressed', cursive",
               fontSize: 'clamp(14px, 1.05vw, 16px)',
               color: TEAL,
               whiteSpace: 'nowrap',

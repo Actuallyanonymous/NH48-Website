@@ -115,7 +115,7 @@ function DCMapIllustration() {
         x="18"
         y="130"
         transform="rotate(-70, 18, 130)"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="9"
         fill="#2E7D8A"
         letterSpacing="2"
@@ -196,7 +196,7 @@ function DCMapIllustration() {
       <text
         x="290"
         y="205"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="18"
         fill="#5A3A1A"
         letterSpacing="2"
@@ -209,7 +209,7 @@ function DCMapIllustration() {
       <text
         x="195"
         y="253"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="6.5"
         fill="white"
         textAnchor="middle"
@@ -219,7 +219,7 @@ function DCMapIllustration() {
       <text
         x="195"
         y="261"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="6.5"
         fill="white"
         textAnchor="middle"
@@ -229,7 +229,7 @@ function DCMapIllustration() {
       <text
         x="195"
         y="269"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="6.5"
         fill="white"
         textAnchor="middle"
@@ -371,7 +371,7 @@ function DCMapIllustration() {
       <text
         x="135"
         y="115"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="7.5"
         fill="white"
         textAnchor="middle"
@@ -382,7 +382,7 @@ function DCMapIllustration() {
       <text
         x="135"
         y="125"
-        fontFamily="'Bebas Neue', cursive"
+        fontFamily="'BERNIER Distressed', cursive"
         fontSize="7.5"
         fill="white"
         textAnchor="middle"
@@ -453,7 +453,7 @@ export default function LocationTimings() {
         >
           <h2
             style={{
-              fontFamily: "Bebas Neue, cursive",
+              fontFamily: "BERNIER Distressed, cursive",
               color: "#1B5C4F",
               fontSize: mob ? "32px" : "clamp(36px, 4.5vw, 56px)",
               letterSpacing: "0.08em",
@@ -461,7 +461,7 @@ export default function LocationTimings() {
               textAlign: "center",
             }}
           >
-            LOCATION &amp; TIMING'S
+            LOCATION &amp; TIMINGS
           </h2>
         </div>
 
@@ -510,7 +510,7 @@ export default function LocationTimings() {
             {/* Address */}
             <p
               style={{
-                fontFamily: "Bebas Neue, cursive",
+                fontFamily: "BERNIER Distressed, cursive",
                 color: "#F5EFE0",
                 fontSize: mob ? "15px" : "clamp(14px, 1.5vw, 19px)",
                 letterSpacing: "0.06em",
@@ -538,7 +538,7 @@ export default function LocationTimings() {
                 <p
                   key={day}
                   style={{
-                    fontFamily: "Bebas Neue, cursive",
+                    fontFamily: "BERNIER Distressed, cursive",
                     color: "#F5EFE0",
                     fontSize: mob ? "13px" : "clamp(12px, 1.2vw, 16px)",
                     letterSpacing: "0.07em",

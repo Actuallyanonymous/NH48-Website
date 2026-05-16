@@ -89,7 +89,7 @@ export default function SiteFooter() {
           >
             <h2
               style={{
-                fontFamily: "Bebas Neue, cursive",
+                fontFamily: "BERNIER Distressed, cursive",
                 fontWeight: 400,
                 fontSize: tab ? "80px" : "124px",
                 lineHeight: "143px",
@@ -310,7 +310,7 @@ export default function SiteFooter() {
         >
           <h2
             style={{
-              fontFamily: "Bebas Neue, cursive",
+              fontFamily: "BERNIER Distressed, cursive",
               fontSize: "80px",
               lineHeight: 1,
               color: "#FFFFFF",
