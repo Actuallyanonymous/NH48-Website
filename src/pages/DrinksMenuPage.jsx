@@ -206,10 +206,11 @@ const LASSI = {
   ],
 }
 
-// ─── Photo images (using available local assets as placeholders) ──────────────
-// The user will replace these with the actual drink photos
-const TOP_PHOTOS    = ['/assets/menu/menu-drinks.png', '/assets/menu/menu-hero.png']
-const BOTTOM_PHOTOS = ['/assets/menu/menu-drinks.png', '/assets/menu/menu-hero.png']
+// ─── Photo images ─────────────────────────────────────────────────────────────
+// The provided images are composites (2 drinks per image), so we repeat the src
+// and use objectPosition left/right in PhotoRow to slice them visually.
+const TOP_PHOTOS    = ['/assets/drinks/drinks-1.png', '/assets/drinks/drinks-1.png']
+const BOTTOM_PHOTOS = ['/assets/drinks/drinks-2.png', '/assets/drinks/drinks-2.png']
 
 // ─── Two-column photo row (Figma: 652px each, 21px gap, 86px top) ─────────────
 function PhotoRow({ srcs, mob }) {
@@ -240,7 +241,7 @@ function PhotoRow({ srcs, mob }) {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              objectPosition: 'center',
+              objectPosition: i === 0 ? 'left center' : 'right center',
               display: 'block',
             }}
           />
