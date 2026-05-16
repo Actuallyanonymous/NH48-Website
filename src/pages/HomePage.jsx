@@ -954,22 +954,22 @@ function Sayings() {
     {
       quote:
         "NH48 CAPTURES THE SPIRIT OF THE OPEN ROAD, BLENDING VINTAGE-INSPIRED HIGHWAY DECOR WITH A SPRAWLING MENU THAT MASTERFULLY FUSES REGIONAL INDIAN SPECIALTIES AND GLOBAL FLAVORS INTO A HIGH-SPIRITED CULINARY JOURNEY.",
-      image: "public/assets/sayings/nh48-chronicle.png",
+      image: "/assets/sayings/nh48-chronicle.png",
     },
     {
       quote:
         "A FEAST FOR THE SENSES — THE FLAVORS TRANSPORT YOU FROM THE STREETS OF DELHI TO THE SHORES OF MUMBAI IN A SINGLE MEAL.",
-      image: "/public/assets/sayings/nh48-chronicle.png",
+      image: "/assets/sayings/nh48-chronicle.png",
     },
     {
       quote:
         "THE AMBIANCE IS UNMATCHED. EVERY CORNER TELLS A STORY OF THE ROAD, AND EVERY DISH DELIVERS ON THAT PROMISE.",
-      image: "/public/assets/sayings/nh48-chronicle.png",
+      image: "/assets/sayings/nh48-chronicle.png",
     },
     {
       quote:
         "BOLD, HONEST, UNFORGETTABLE. NH48 IS NOT JUST A RESTAURANT — IT IS A JOURNEY YOU KEEP COMING BACK TO.",
-      image: "/public/assets/sayings/nh48-chronicle.png",
+      image: "/assets/sayings/nh48-chronicle.png",
     },
   ];
 
