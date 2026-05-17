@@ -22,8 +22,8 @@ export default function HomePage() {
       <Sayings />
       <Plates />
       <Journey />
-      <FoodGridSection />
       <LocationTimings />
+      <FoodGridSection />
     </div>
   );
 }
