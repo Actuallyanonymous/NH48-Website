@@ -434,20 +434,58 @@ function StorySection() {
       style={{
         position: "relative",
         width: "100%",
-        backgroundColor: "#ffde7c",
+        backgroundColor: "#FFDE7D",
         height: "56.5vw",
         minHeight: "600px",
         maxHeight: "854px",
         overflow: "hidden",
       }}
     >
-      {/* Teal card — rendered first so collages sit on top naturally */}
-      <div style={{ position: "absolute", left: "24.1%", top: "21.5%", width: "51.1%", height: "58.8%", backgroundColor: "#14534D" }} />
+      {/* Noise/grain background — exact SVG from Figma */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1512 854"
+        preserveAspectRatio="xMidYMid slice"
+        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none" }}
+      >
+        <g filter="url(#story-bg-filter)">
+          <rect width="1512" height="854" fill="#FFDE7D" fillOpacity="0.84"/>
+        </g>
+        <defs>
+          <filter id="story-bg-filter" x="0" y="0" width="1512" height="854" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+            <feTurbulence type="fractalNoise" baseFrequency="2 2" stitchTiles="stitch" numOctaves="3" result="noise" seed="8678"/>
+            <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise"/>
+            <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+              <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
+            </feComponentTransfer>
+            <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped"/>
+            <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood"/>
+            <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1"/>
+            <feMerge result="effect1_noise_1_36">
+              <feMergeNode in="shape"/>
+              <feMergeNode in="color1"/>
+            </feMerge>
+          </filter>
+        </defs>
+      </svg>
 
-      {/* Red accent square — Figma: left=72.2%, top=16.9%, 5.8% × 9.3% */}
-      <div style={{ position: "absolute", left: "72.2%", top: "16.9%", width: "5.8%", height: "9.3%", backgroundColor: "#A94545", zIndex: 2 }} />
+      {/* Right collage — z=1, BEHIND teal card (peeks out from right side only) */}
+      <img
+        className="story-drift-down"
+        src="/assets/home-page/story-right-group.png"
+        alt="Story right collage"
+        style={{ position: "absolute", left: "63.5%", top: "44.7%", width: "26.6%", height: "auto", zIndex: 1 }}
+      />
 
-      {/* "Our story" heading — Figma: 64px BERNIER, #14534D, tracking -2.56px */}
+      {/* Teal card — z=2, covers right-collage overlap area */}
+      <div style={{ position: "absolute", left: "24.1%", top: "21.5%", width: "51.1%", height: "58.8%", backgroundColor: "#14534D", zIndex: 2 }} />
+
+      {/* Red accent square — z=3 */}
+      <div style={{ position: "absolute", left: "72.2%", top: "16.9%", width: "5.8%", height: "9.3%", backgroundColor: "#A94545", zIndex: 3 }} />
+
+      {/* "Our story" heading — z=4, above everything */}
       <h2 style={{
         position: "absolute",
         left: "43.9%",
@@ -463,7 +501,7 @@ function StorySection() {
         Our story
       </h2>
 
-      {/* Body text — Figma: 31.57px BERNIER, white, left=27.4%, top=41.6%, width=44.5% */}
+      {/* Body text — z=3, on top of teal card */}
       <p style={{
         position: "absolute",
         left: "27.4%",
@@ -480,7 +518,7 @@ function StorySection() {
         Tracing the spine of NH48, two friends navigate the distance from the capital's heat to the coast's heart. Their journey reclaims the honest, unedited recipes that live in the dust and light of the open roads of nh48.
       </p>
 
-      {/* "view story" button — Figma: left=43.8%, top=70.8%, 174×52px, #A94545, inner #14534D border */}
+      {/* "view story" button — z=3 */}
       <div style={{
         position: "absolute",
         left: "43.8%",
@@ -502,27 +540,19 @@ function StorySection() {
         </span>
       </div>
 
-      {/* Islamic motif — Figma: left=14.6%, top=64.6%, 267×281px */}
+      {/* Islamic motif — z=3 */}
       <img
         src="/assets/home-page/story-motif.png"
         alt=""
-        style={{ position: "absolute", left: "14.6%", top: "64.6%", width: "clamp(120px, 17.7vw, 267px)", height: "auto", zIndex: 4, pointerEvents: "none" }}
+        style={{ position: "absolute", left: "14.6%", top: "64.6%", width: "clamp(120px, 17.7vw, 267px)", height: "auto", zIndex: 3, pointerEvents: "none" }}
       />
 
-      {/* Left collage — Figma: left=11.9%, top=5.2%, width=27.8% */}
+      {/* Left collage — z=10, IN FRONT of teal card (overlaps left edge) */}
       <img
         className="story-drift-up"
         src="/assets/home-page/story-left-group.png"
         alt="Story left collage"
         style={{ position: "absolute", left: "11.9%", top: "5.2%", width: "27.8%", height: "auto", zIndex: 10 }}
-      />
-
-      {/* Right collage — Figma: left=63.5%, top=44.7%, width=26.6% */}
-      <img
-        className="story-drift-down"
-        src="/assets/home-page/story-right-group.png"
-        alt="Story right collage"
-        style={{ position: "absolute", left: "63.5%", top: "44.7%", width: "26.6%", height: "auto", zIndex: 10 }}
       />
     </section>
   );
