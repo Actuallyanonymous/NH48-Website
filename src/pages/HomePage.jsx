@@ -24,6 +24,7 @@ export default function HomePage() {
       <Journey />
       <LocationTimings />
       <FoodGridSection />
+      <SiteFooter />
     </div>
   );
 }
@@ -1461,101 +1462,106 @@ function LocationTimings() {
   const width = useWindowWidth();
   const mob = width < 768;
 
-  return (
-    <section style={{ width: "100%", backgroundColor: "#A94545", position: "relative" }}>
+  const hours = [
+    { day: "MON:", time: "10 AM – 5 PM" },
+    { day: "TUE:", time: "10 AM – 5 PM" },
+    { day: "WED:", time: "10 AM – 5 PM" },
+    { day: "THUR:", time: "10 AM – 5 PM" },
+    { day: "FRI:", time: "10 AM – 5 PM" },
+    { day: "SAT:", time: "8 AM – 7 PM" },
+    { day: "SUN:", time: "8 AM – 7 PM" },
+  ];
 
-      {/* Top border — 90×23px tile repeating */}
+  return (
+    <section style={{ width: "100%", backgroundColor: "#D4BA5A", position: "relative" }}>
+
+      {/* Top border — Location-section-border.png repeating */}
       <div style={BORDER_STYLE} />
 
-      {/* Content */}
-      <div style={{
-        padding: mob ? "24px 20px 32px" : "20px 44px 40px",
-        minHeight: mob ? "auto" : "517px",
-        display: "flex",
-        flexDirection: "column",
-      }}>
-
-        {/* "nh48" brand — Figma: BERNIER 124.57px white */}
-        <div style={{
-          fontFamily: "BERNIER Distressed, cursive",
-          fontSize: mob ? "64px" : "clamp(64px, 8.24vw, 124.57px)",
-          color: "white",
-          lineHeight: 1,
-          marginBottom: mob ? "24px" : "30px",
-          letterSpacing: "-0.02em",
-        }}>
-          nh48
+      <div style={{ padding: mob ? "32px 20px 40px" : "48px 60px 56px" }}>
+        {/* Heading */}
+        <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: mob ? "28px" : "40px" }}>
+          <h2 style={{
+            fontFamily: "BERNIER Distressed, cursive",
+            color: "#1B5C4F",
+            fontSize: mob ? "32px" : "clamp(36px, 4.23vw, 64px)",
+            letterSpacing: "-0.04em",
+            margin: 0,
+            textAlign: "center",
+          }}>
+            Location &amp; Timing's
+          </h2>
         </div>
 
-        {/* Three columns */}
+        {/* Map + Info panel */}
         <div style={{
           display: "flex",
           flexDirection: mob ? "column" : "row",
-          gap: mob ? "28px" : "0",
-          flex: 1,
+          alignItems: mob ? "center" : "stretch",
+          justifyContent: "center",
+          gap: mob ? "20px" : "0",
+          maxWidth: "1000px",
+          margin: "0 auto",
         }}>
-
-          {/* LEFT — Location & Hours — Figma: x=44, width~350px */}
-          <div style={{ flex: mob ? "unset" : "0 0 clamp(200px, 23.1vw, 350px)" }}>
-            <p style={LABEL_STYLE}>location & contact</p>
-            <p style={{ ...BODY_STYLE, marginBottom: "20px" }}>
-              Location - 4824 MacArthur Blvd NW LL,{"\n"}Washington D.C. 20007
-            </p>
-            <p style={LABEL_STYLE}>hours</p>
-            <p style={BODY_STYLE}>
-              Sunday - Wednesday: 5:00 PM - 10:30 PM (Last Seating 9:30 PM)<br />
-              Thursday - Saturday: 5:00 PM - 11:00 PM (Last Seating 10:00 PM)<br />
-              Monday: Closed
-            </p>
-          </div>
-
-          {/* CENTER — Contact & Reservations — Figma: x=756, centered */}
+          {/* LEFT — Map */}
           <div style={{
-            flex: mob ? "unset" : "1 1 0",
-            padding: mob ? "0" : "0 clamp(20px, 3vw, 60px)",
+            flex: mob ? "unset" : "0 0 52%",
+            width: mob ? "100%" : "auto",
+            maxWidth: mob ? "480px" : "unset",
+            border: "3px solid #B8A060",
+            overflow: "hidden",
+            boxShadow: "4px 4px 16px rgba(0,0,0,0.18)",
+            backgroundColor: "#F2E8C4",
+            aspectRatio: mob ? "520/300" : "unset",
+            minHeight: mob ? "auto" : "320px",
           }}>
-            <p style={{ ...BODY_STYLE, marginBottom: "16px" }}>
-              Have a question or a special request? Email us at [prady.rana@outlook.com].
-              Due to high demand, our team will provide a response within 48 business hours (Mon–Sat).
-            </p>
-            <p style={{ ...BODY_STYLE, marginBottom: "16px" }}>
-              To provide the best experience for large parties (8+), we kindly ask for
-              bookings to be made 40–45 days in advance.
-            </p>
-            <p style={BODY_STYLE}>
-              Have a question or a special request? Email us at [prady.rana@outlook.com].
-              Due to high demand, our team will provide a response within 48 business hours (Mon–Sat).
-            </p>
+            <DCMapIllustration />
           </div>
 
-          {/* RIGHT — Follow us — Figma: x=1331 */}
-          <div style={{ flex: mob ? "unset" : "0 0 clamp(100px, 12vw, 180px)" }}>
-            <p style={LABEL_STYLE}>follow us</p>
-            <div style={{ display: "flex", gap: "12px", alignItems: "center", marginTop: "8px" }}>
-              {/* Instagram */}
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="2" width="28" height="28" rx="7" stroke="white" strokeWidth="2"/>
-                <circle cx="16" cy="16" r="6" stroke="white" strokeWidth="2"/>
-                <circle cx="23" cy="9" r="1.5" fill="white"/>
-              </svg>
-              {/* Facebook */}
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="16" cy="16" r="14" stroke="white" strokeWidth="2"/>
-                <path d="M18 10h-2a3 3 0 0 0-3 3v2h-2v3h2v8h3v-8h2l1-3h-3v-2a1 1 0 0 1 1-1h2v-3z" fill="white"/>
-              </svg>
-              {/* TikTok */}
-              <svg width="28" height="32" viewBox="0 0 28 32" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 0h-4v22a4 4 0 1 1-4-4v-4a8 8 0 1 0 8 8V8a12 12 0 0 0 7 2V6a8 8 0 0 1-7-6z"/>
-              </svg>
+          {/* RIGHT — Info panel */}
+          <div style={{
+            flex: mob ? "unset" : "0 0 48%",
+            width: mob ? "100%" : "auto",
+            maxWidth: mob ? "480px" : "unset",
+            backgroundColor: "#1B5C4F",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: mob ? "28px 20px" : "36px 40px",
+          }}>
+            <p style={{
+              fontFamily: "BERNIER Distressed, cursive",
+              color: "#F5EFE0",
+              fontSize: mob ? "16px" : "clamp(14px, 1.5vw, 20px)",
+              letterSpacing: "0.06em",
+              lineHeight: 1.4,
+              textAlign: "center",
+              margin: "0 0 28px 0",
+            }}>
+              4824 MACARTHUR BLVD NW LL<br />
+              WASHINGTON DC, 20007
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "100%", alignItems: "center" }}>
+              {hours.map(({ day, time }) => (
+                <p key={day} style={{
+                  fontFamily: "BERNIER Distressed, cursive",
+                  color: "#F5EFE0",
+                  fontSize: mob ? "13px" : "clamp(13px, 1.3vw, 18px)",
+                  letterSpacing: "0.07em",
+                  margin: 0,
+                  textAlign: "center",
+                }}>
+                  {day} {time}
+                </p>
+              ))}
             </div>
           </div>
-
         </div>
       </div>
 
       {/* Bottom border */}
       <div style={BORDER_STYLE} />
-
     </section>
   );
 }
