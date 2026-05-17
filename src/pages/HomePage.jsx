@@ -11,11 +11,6 @@ import DelhiModal from "./DelhiPage";
 import MumbaiModal from "./MumbaiPage";
 
 
-const FOOD_PHOTOS = [
-  "https://images.unsplash.com/photo-1631292784640-2b24be784d5d?w=800&q=80",
-  "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&q=80",
-  "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&q=80",
-];
 
 export default function HomePage() {
   return (
@@ -244,41 +239,21 @@ function CityCardsSection() {
         </p>
       </div>
 
-      {/* Scallop divider — small tight downward bumps matching Figma */}
+      {/* Dot divider — cream circles (21px, 5px gap) matching Figma exactly */}
       <div
         style={{
           position: "absolute",
-          bottom: 0,
+          bottom: "-10px",
           left: 0,
           right: 0,
-          lineHeight: 0,
+          height: "21px",
+          backgroundImage:
+            "radial-gradient(circle 10.5px at center, #FCFAEB 100%, transparent 100%)",
+          backgroundSize: "26px 21px",
+          backgroundRepeat: "repeat-x",
           pointerEvents: "none",
         }}
-      >
-        <svg
-          viewBox="0 0 1200 20"
-          preserveAspectRatio="none"
-          style={{ width: "100%", height: "20px", display: "block" }}
-        >
-          {/* 75 small semicircle bumps pointing DOWN: cream fills from bump-bottom to SVG bottom */}
-          <path
-            d={(() => {
-              const step = 16;
-              const count = Math.ceil(1200 / step);
-              let d = `M0,0`;
-              for (let i = 0; i < count; i++) {
-                const x0 = i * step;
-                const x1 = x0 + step;
-                const mx = x0 + step / 2;
-                d += ` Q${mx},20 ${x1},0`;
-              }
-              d += ` L1200,20 L0,20 Z`;
-              return d;
-            })()}
-            fill="#F5EFE0"
-          />
-        </svg>
-      </div>
+      />
     </section>
   );
 }
@@ -287,99 +262,104 @@ function FoodShowcaseSection() {
   const width = useWindowWidth();
   const mob = width < 768;
 
-  const btnStyle = {
-    display: "inline-block",
-    padding: "12px 40px",
-    border: "2px solid #1B5C4F",
-    color: "#1B5C4F",
-    fontFamily: "Barlow Condensed, sans-serif",
-    fontSize: "14px",
-    fontWeight: 600,
-    letterSpacing: "0.15em",
-    textTransform: "uppercase",
-    textDecoration: "none",
-    transition: "background-color 0.2s, color 0.2s",
-    width: mob ? "100%" : "auto",
-    maxWidth: "320px",
-    textAlign: "center",
-  };
+  const photoNames = [
+    "section-3-image-1",
+    "section-3-image-2",
+    "section-3-image-3",
+  ];
 
   return (
     <section
       style={{
         width: "100%",
-        backgroundColor: "#F5EFE0",
-        padding: mob ? "48px 24px" : "80px 48px",
+        backgroundColor: "#FCFAEB",
+        paddingTop: mob ? "60px" : "133px",
+        paddingBottom: mob ? "60px" : "126px",
       }}
     >
-      {/* 3 photos grid — single column on mobile */}
+      {/* 3 square photos — Figma: 373×373px each, 21px gap, centered */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: mob ? "1fr" : "repeat(3, 1fr)",
-          gap: mob ? "12px" : "16px",
+          gridTemplateColumns: mob
+            ? "1fr"
+            : "repeat(3, clamp(240px, 24.7vw, 373px))",
+          gap: mob ? "12px" : "clamp(12px, 1.4vw, 21px)",
+          justifyContent: "center",
           width: "100%",
-          marginBottom: "48px",
+          maxWidth: "1161px",
+          margin: "0 auto",
+          marginBottom: mob ? "40px" : "68px",
+          padding: mob ? "0 24px" : "0",
         }}
       >
-        {FOOD_PHOTOS.map((src, i) => (
+        {photoNames.map((name, i) => (
           <div
             key={i}
-            style={{
-              aspectRatio: "4/3",
-              overflow: "hidden",
-              border: "2px solid #D4B84A",
-              borderRadius: "6px",
-            }}
+            style={{ width: "100%", aspectRatio: "1/1", overflow: "hidden" }}
           >
             <img
-              src={src}
-              alt="NH48 dish"
+              src={`/assets/home-page/${name}.png`}
+              alt={`NH48 dish ${i + 1}`}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
         ))}
       </div>
 
-      {/* Buttons — stacked on mobile, row on desktop */}
+      {/* Buttons — Figma: teal fill, inner white border, BERNIER Distressed 25px */}
       <div
         style={{
           display: "flex",
           flexDirection: mob ? "column" : "row",
           alignItems: "center",
           justifyContent: "center",
-          gap: "20px",
+          gap: "16px",
         }}
       >
-        <Link
-          to="/menu/food"
-          style={btnStyle}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#1B5C4F";
-            e.currentTarget.style.color = "white";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "transparent";
-            e.currentTarget.style.color = "#1B5C4F";
-          }}
-        >
-          VIEW FULL MENU
-        </Link>
-
-        <Link
-          to="#"
-          style={btnStyle}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#1B5C4F";
-            e.currentTarget.style.color = "white";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "transparent";
-            e.currentTarget.style.color = "#1B5C4F";
-          }}
-        >
-          ORDER ONLINE
-        </Link>
+        {[
+          { label: "view full menu", to: "/menu/food" },
+          { label: "order online", to: "#" },
+        ].map(({ label, to }) => (
+          <Link key={label} to={to} style={{ textDecoration: "none" }}>
+            <div
+              style={{
+                position: "relative",
+                width: mob ? "260px" : "292px",
+                height: "60px",
+                backgroundColor: "#14534D",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+              }}
+            >
+              {/* Inner white border frame — Figma: inset 12px × 8px, 1.5px stroke */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "8px",
+                  left: "12px",
+                  right: "12px",
+                  bottom: "8px",
+                  border: "1.5px solid white",
+                  pointerEvents: "none",
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: "BERNIER Distressed, cursive",
+                  fontSize: mob ? "20px" : "25px",
+                  color: "white",
+                  letterSpacing: "0.04em",
+                  position: "relative",
+                }}
+              >
+                {label}
+              </span>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );
