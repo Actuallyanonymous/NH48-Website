@@ -1475,8 +1475,8 @@ function LocationTimings() {
   return (
     <section style={{ width: "100%", backgroundColor: "#D4BA5A", position: "relative" }}>
 
-      {/* Top border — Location-section-border.png repeating */}
-      <div style={BORDER_STYLE} />
+      {/* Top border — centered on section boundary (11px above, 12px inside) */}
+      <div style={{ ...BORDER_STYLE, marginTop: "-11px", position: "relative", zIndex: 2 }} />
 
       <div style={{ padding: mob ? "32px 20px 40px" : "48px 60px 56px" }}>
         {/* Heading */}
@@ -1560,8 +1560,8 @@ function LocationTimings() {
         </div>
       </div>
 
-      {/* Bottom border */}
-      <div style={BORDER_STYLE} />
+      {/* Bottom border — centered on section boundary */}
+      <div style={{ ...BORDER_STYLE, marginBottom: "-11px", position: "relative", zIndex: 2 }} />
     </section>
   );
 }
