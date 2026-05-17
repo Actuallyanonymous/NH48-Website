@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -560,146 +560,116 @@ function StorySection() {
 
 function Sayings() {
   const [active, setActive] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   const slides = [
-    {
-      quote:
-        "NH48 CAPTURES THE SPIRIT OF THE OPEN ROAD, BLENDING VINTAGE-INSPIRED HIGHWAY DECOR WITH A SPRAWLING MENU THAT MASTERFULLY FUSES REGIONAL INDIAN SPECIALTIES AND GLOBAL FLAVORS INTO A HIGH-SPIRITED CULINARY JOURNEY.",
-      image: "/assets/sayings/nh48-chronicle.png",
-    },
-    {
-      quote:
-        "A FEAST FOR THE SENSES — THE FLAVORS TRANSPORT YOU FROM THE STREETS OF DELHI TO THE SHORES OF MUMBAI IN A SINGLE MEAL.",
-      image: "/assets/sayings/nh48-chronicle.png",
-    },
-    {
-      quote:
-        "THE AMBIANCE IS UNMATCHED. EVERY CORNER TELLS A STORY OF THE ROAD, AND EVERY DISH DELIVERS ON THAT PROMISE.",
-      image: "/assets/sayings/nh48-chronicle.png",
-    },
-    {
-      quote:
-        "BOLD, HONEST, UNFORGETTABLE. NH48 IS NOT JUST A RESTAURANT — IT IS A JOURNEY YOU KEEP COMING BACK TO.",
-      image: "/assets/sayings/nh48-chronicle.png",
-    },
+    "NH48 captures the spirit of the open road, blending vintage-inspired highway decor with a sprawling menu that masterfully fuses regional Indian specialties and global flavors into a high-spirited culinary journey.",
+    "A feast for the senses — the flavors transport you from the streets of Delhi to the shores of Mumbai in a single meal.",
+    "The ambiance is unmatched. Every corner tells a story of the road, and every dish delivers on that promise.",
+    "Bold, honest, unforgettable. NH48 is not just a restaurant — it is a journey you keep coming back to.",
   ];
+
+  const timerRef = useRef(null);
+
+  const goTo = (i) => {
+    setVisible(false);
+    setTimeout(() => {
+      setActive(i);
+      setVisible(true);
+    }, 300);
+  };
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setActive((prev) => (prev + 1) % slides.length);
+        setVisible(true);
+      }, 300);
+    }, 4000);
+    return () => clearInterval(timerRef.current);
+  }, []);
 
   return (
     <section
       style={{
         width: "100%",
         backgroundColor: "#F5EFE0",
-        borderTop: "3px solid #D4B84A",
         paddingTop: "52px",
-        paddingBottom: "64px",
+        paddingBottom: "52px",
       }}
     >
-      {/* Heading */}
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "36px",
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: "BERNIER Distressed, cursive",
-            color: "#1B5C4F",
-            fontSize: "clamp(28px, 4.5vw, 58px)",
-            letterSpacing: "0.06em",
-            margin: 0,
-          }}
-        >
-          WHAT THEY SAY ABOUT US
+      {/* Heading — Figma: BERNIER Distressed 64px, #14534D, tracking -0.04em */}
+      <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: "40px" }}>
+        <h2 style={{
+          fontFamily: "BERNIER Distressed, cursive",
+          color: "#14534D",
+          fontSize: "clamp(28px, 4.23vw, 64px)",
+          letterSpacing: "-0.04em",
+          lineHeight: 0.921,
+          margin: 0,
+        }}>
+          what they say about us
         </h2>
       </div>
 
-      {/* Slide card */}
-      <div
-        style={{
-          display: "flex",
-          margin: "0 auto",
-          width: "clamp(320px, 72vw, 920px)",
-          height: "clamp(200px, 24vw, 300px)",
-          overflow: "hidden",
-        }}
-      >
-        {/* Left: newspaper image */}
-        <div
-          style={{
-            width: "50%",
-            flexShrink: 0,
-            overflow: "hidden",
-            position: "relative",
-          }}
-        >
+      {/* Card — Figma: 1040×293px centered, #14534D */}
+      <div style={{
+        display: "flex",
+        margin: "0 auto",
+        width: "clamp(320px, 68.8vw, 1040px)",
+        height: "clamp(180px, 19.4vw, 293px)",
+        overflow: "hidden",
+      }}>
+        {/* Left: section-5 image — Figma: 50.6% of card width */}
+        <div style={{ width: "50.6%", flexShrink: 0, overflow: "hidden" }}>
           <img
-            src={slides[active].image}
-            alt="NH48 Chronicle"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              display: "block",
-              transition: "opacity 0.4s ease",
-            }}
+            src="/assets/home-page/section-5.png"
+            alt="NH48 press"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         </div>
 
-        {/* Right: teal quote panel */}
-        <div
-          style={{
-            width: "50%",
-            flexShrink: 0,
-            backgroundColor: "#4A8C82",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "clamp(20px, 3vw, 40px)",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "BERNIER Distressed, cursive",
-              color: "#F5EFE0",
-              fontSize: "clamp(11px, 1.1vw, 15px)",
-              letterSpacing: "0.07em",
-              lineHeight: 1.65,
-              textAlign: "center",
-              margin: 0,
-              transition: "opacity 0.4s ease",
-            }}
-          >
-            {slides[active].quote}
+        {/* Right: quote text — Figma: #14534D bg, BERNIER Distressed 16px, white, lh=92% */}
+        <div style={{
+          flex: 1,
+          backgroundColor: "#14534D",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "clamp(16px, 2.5vw, 36px) clamp(16px, 3.8vw, 57px)",
+        }}>
+          <p style={{
+            fontFamily: "BERNIER Distressed, cursive",
+            color: "white",
+            fontSize: "clamp(11px, 1.06vw, 16px)",
+            lineHeight: 0.921,
+            textAlign: "center",
+            margin: 0,
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.3s ease",
+          }}>
+            {slides[active]}
           </p>
         </div>
       </div>
 
-      {/* Dot indicators */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "10px",
-          marginTop: "24px",
-        }}
-      >
+      {/* Dot indicators — Figma: 11px, 15px spacing, #14534D */}
+      <div style={{ display: "flex", justifyContent: "center", gap: "4px", marginTop: "25px" }}>
         {slides.map((_, i) => (
           <button
             key={i}
-            onClick={() => setActive(i)}
+            onClick={() => goTo(i)}
             style={{
-              width: "12px",
-              height: "12px",
+              width: "11px",
+              height: "11px",
               borderRadius: "50%",
               border: "none",
               cursor: "pointer",
               padding: 0,
-              backgroundColor: i === active ? "#1B5C4F" : "#A0B8B4",
-              transition: "background-color 0.2s",
+              backgroundColor: "#14534D",
+              opacity: i === active ? 1 : 0.35,
+              transition: "opacity 0.2s",
             }}
           />
         ))}
