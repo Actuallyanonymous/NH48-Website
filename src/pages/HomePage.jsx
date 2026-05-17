@@ -441,8 +441,8 @@ function StorySection() {
         overflow: "hidden",
       }}
     >
-      {/* Teal card — Figma: left=24.1%, top=21.5%, 51.1% wide, 58.8% tall */}
-      <div style={{ position: "absolute", left: "24.1%", top: "21.5%", width: "51.1%", height: "58.8%", backgroundColor: "#14534D", zIndex: 1 }} />
+      {/* Teal card — rendered first so collages sit on top naturally */}
+      <div style={{ position: "absolute", left: "24.1%", top: "21.5%", width: "51.1%", height: "58.8%", backgroundColor: "#14534D" }} />
 
       {/* Red accent square — Figma: left=72.2%, top=16.9%, 5.8% × 9.3% */}
       <div style={{ position: "absolute", left: "72.2%", top: "16.9%", width: "5.8%", height: "9.3%", backgroundColor: "#A94545", zIndex: 2 }} />
@@ -456,7 +456,7 @@ function StorySection() {
         fontFamily: "BERNIER Distressed, cursive",
         fontSize: "clamp(32px, 4.23vw, 64px)",
         color: "#14534D",
-        letterSpacing: "-0.17em",
+        letterSpacing: "-0.04em",
         whiteSpace: "nowrap",
         zIndex: 4,
       }}>
@@ -474,7 +474,7 @@ function StorySection() {
         fontSize: "clamp(13px, 2.09vw, 32px)",
         color: "white",
         textAlign: "center",
-        lineHeight: 1.45,
+        lineHeight: 1.7,
         zIndex: 3,
       }}>
         Tracing the spine of NH48, two friends navigate the distance from the capital's heat to the coast's heart. Their journey reclaims the honest, unedited recipes that live in the dust and light of the open roads of nh48.
@@ -514,7 +514,7 @@ function StorySection() {
         className="story-drift-up"
         src="/assets/home-page/story-left-group.png"
         alt="Story left collage"
-        style={{ position: "absolute", left: "11.9%", top: "5.2%", width: "27.8%", height: "auto", zIndex: 5 }}
+        style={{ position: "absolute", left: "11.9%", top: "5.2%", width: "27.8%", height: "auto", zIndex: 10 }}
       />
 
       {/* Right collage — Figma: left=63.5%, top=44.7%, width=26.6% */}
@@ -522,7 +522,7 @@ function StorySection() {
         className="story-drift-down"
         src="/assets/home-page/story-right-group.png"
         alt="Story right collage"
-        style={{ position: "absolute", left: "63.5%", top: "44.7%", width: "26.6%", height: "auto", zIndex: 5 }}
+        style={{ position: "absolute", left: "63.5%", top: "44.7%", width: "26.6%", height: "auto", zIndex: 10 }}
       />
     </section>
   );
