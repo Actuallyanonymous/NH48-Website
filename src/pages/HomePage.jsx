@@ -1473,10 +1473,10 @@ function LocationTimings() {
   ];
 
   return (
-    <section style={{ width: "100%", backgroundColor: "#D4BA5A", position: "relative" }}>
+    <section style={{ width: "100%", backgroundColor: "#D4BA5A", position: "relative", overflow: "visible" }}>
 
-      {/* Top border — centered on section boundary (11px above, 12px inside) */}
-      <div style={{ ...BORDER_STYLE, marginTop: "-11px", position: "relative", zIndex: 2 }} />
+      {/* Top border — Figma: 11px above frame, 11.5px inside */}
+      <div style={{ ...BORDER_STYLE, position: "absolute", top: "-11px", left: 0, right: 0, zIndex: 10 }} />
 
       <div style={{ padding: mob ? "32px 20px 40px" : "48px 60px 56px" }}>
         {/* Heading */}
@@ -1560,8 +1560,8 @@ function LocationTimings() {
         </div>
       </div>
 
-      {/* Bottom border — centered on section boundary */}
-      <div style={{ ...BORDER_STYLE, marginBottom: "-11px", position: "relative", zIndex: 2 }} />
+      {/* Bottom border — Figma: 11px inside frame, 11.5px below */}
+      <div style={{ ...BORDER_STYLE, position: "absolute", bottom: "-11px", left: 0, right: 0, zIndex: 10 }} />
     </section>
   );
 }
