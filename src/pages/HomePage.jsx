@@ -52,8 +52,9 @@ function CityCardsSection() {
 
   // No horizontal drift on cards — gap stays constant
 
-  const cardW = "clamp(200px, 21vw, 280px)";
   const mob = width < 768;
+  const ovalW = mob ? "clamp(130px, 42vw, 180px)" : "clamp(160px, 17.3vw, 261px)";
+  const archW = mob ? "clamp(110px, 36vw, 155px)" : "clamp(140px, 14.6vw, 221px)";
 
   return (
     <section
@@ -66,35 +67,36 @@ function CityCardsSection() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        paddingTop: "72px",
-        paddingBottom: "120px",
+        justifyContent: "flex-start",
+        paddingTop: mob ? "60px" : "108px",
+        paddingBottom: mob ? "80px" : "55px",
         overflow: "hidden",
       }}
     >
-      {/* Gold geometric motif — left edge */}
+      {/* Gold geometric motif — exact Figma: left=43px, top=340px, 174×213px */}
       <img
         src="/assets/home-page/motif-left.png"
         alt=""
         style={{
           position: "absolute",
-          left: 0,
-          top: "50%",
-          transform: "translateY(-60%)",
-          width: "clamp(100px, 13vw, 200px)",
+          left: mob ? 0 : "43px",
+          top: mob ? "auto" : "340px",
+          bottom: mob ? "60px" : "auto",
+          width: mob ? "clamp(70px, 10vw, 120px)" : "174px",
           pointerEvents: "none",
         }}
       />
 
-      {/* Red bird/flower motif — right edge */}
+      {/* Red bird/flower motif — exact Figma: right=28px, top=404px, 127×102px */}
       <img
         src="/assets/home-page/motif-right.png"
         alt=""
         style={{
           position: "absolute",
-          right: 0,
-          top: "55%",
-          width: "clamp(60px, 8vw, 120px)",
+          right: mob ? 0 : "28px",
+          top: mob ? "auto" : "404px",
+          bottom: mob ? "40px" : "auto",
+          width: mob ? "clamp(50px, 8vw, 80px)" : "127px",
           pointerEvents: "none",
         }}
       />
@@ -107,18 +109,18 @@ function CityCardsSection() {
           alignItems: "center",
           width: "100%",
           maxWidth: "1397px",
-          padding: mob ? "0 24px" : "0 48px",
-          gap: mob ? "20px" : "clamp(20px, 2.5vw, 40px)",
+          padding: mob ? "0 24px" : "0 87px",
+          gap: mob ? "16px" : "clamp(60px, 8.3vw, 125px)",
           overflowX: mob ? "auto" : "visible",
           scrollSnapType: mob ? "x mandatory" : "none",
           paddingBottom: mob ? "24px" : "0",
           flexShrink: 0,
         }}
       >
-        {/* Card 1 — Oval food (Delhi food) */}
+        {/* Card 1 — Oval food */}
         <div
           style={{
-            width: mob ? "clamp(140px, 48vw, 190px)" : cardW,
+            width: ovalW,
             flexShrink: 0,
             scrollSnapAlign: mob ? "start" : "none",
           }}
@@ -126,7 +128,7 @@ function CityCardsSection() {
           <div
             style={{
               width: "100%",
-              aspectRatio: "3/4",
+              aspectRatio: "261/355",
               borderRadius: "50%",
               overflow: "hidden",
               border: "3px solid #D4B84A",
@@ -143,7 +145,7 @@ function CityCardsSection() {
         {/* Card 2 — Arch Delhi */}
         <div
           style={{
-            width: mob ? "clamp(140px, 48vw, 190px)" : cardW,
+            width: archW,
             flexShrink: 0,
             scrollSnapAlign: mob ? "start" : "none",
           }}
@@ -151,7 +153,7 @@ function CityCardsSection() {
           <div
             style={{
               width: "100%",
-              aspectRatio: "3/4",
+              aspectRatio: "221/344",
               overflow: "hidden",
               border: "3px solid #D4B84A",
               clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
@@ -168,7 +170,7 @@ function CityCardsSection() {
         {/* Card 3 — Oval food (Mumbai food) */}
         <div
           style={{
-            width: mob ? "clamp(140px, 48vw, 190px)" : cardW,
+            width: ovalW,
             flexShrink: 0,
             scrollSnapAlign: mob ? "start" : "none",
           }}
@@ -176,7 +178,7 @@ function CityCardsSection() {
           <div
             style={{
               width: "100%",
-              aspectRatio: "3/4",
+              aspectRatio: "261/355",
               borderRadius: "50%",
               overflow: "hidden",
               border: "3px solid #D4B84A",
@@ -193,7 +195,7 @@ function CityCardsSection() {
         {/* Card 4 — Arch Mumbai */}
         <div
           style={{
-            width: mob ? "clamp(140px, 48vw, 190px)" : cardW,
+            width: archW,
             flexShrink: 0,
             scrollSnapAlign: mob ? "start" : "none",
           }}
@@ -201,7 +203,7 @@ function CityCardsSection() {
           <div
             style={{
               width: "100%",
-              aspectRatio: "3/4",
+              aspectRatio: "221/344",
               overflow: "hidden",
               border: "3px solid #D4B84A",
               clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
@@ -216,13 +218,13 @@ function CityCardsSection() {
         </div>
       </div>
 
-      {/* Tagline — centered below cards */}
+      {/* Tagline — Figma: centered, top=578px in 754px section → marginTop ~70px from cards bottom */}
       <div
         style={{
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          marginTop: "52px",
+          marginTop: mob ? "40px" : "72px",
           padding: "0 32px",
         }}
       >
@@ -234,7 +236,7 @@ function CityCardsSection() {
             lineHeight: "1.05",
             textAlign: "center",
             letterSpacing: "0.04em",
-            maxWidth: "560px",
+            maxWidth: "569px",
           }}
         >
           FOURTEEN HUNDRED KILOMETERS OF FLAVOR, DISTILLED INTO A SINGLE SEAT AT
