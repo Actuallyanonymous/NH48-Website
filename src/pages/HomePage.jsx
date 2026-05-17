@@ -678,265 +678,105 @@ function Sayings() {
   );
 }
 
+// Exact Figma positions (% of 1512w × 938h reference frame)
+const DISHES = [
+  { name: "Butter chicken",    file: "butter-chicken",   imgX: 14.4, imgY: 39.4, lX: 14.9, lY: 37.5, drift: "down" },
+  { name: "Sarso ka saag",     file: "sarso-ka-saag",    imgX: 29.0, imgY: 24.7, lX: 29.5, lY: 21.7, drift: "up"   },
+  { name: "Dal bhati churma",  file: "dal-bhati-churma", imgX: 29.0, imgY: 56.5, lX: 29.5, lY: 83.8, drift: "down" },
+  { name: "Dhokla",            file: "dhokla",           imgX: 43.5, imgY: 39.4, lX: 44.0, lY: 66.7, drift: "up"   },
+  { name: "Pav bhaji",         file: "pav-bhaji",        imgX: 58.0, imgY: 24.7, lX: 58.6, lY: 22.3, drift: "up"   },
+  { name: "Ragi poddi",        file: "ragi-poddi",       imgX: 58.0, imgY: 56.5, lX: 58.6, lY: 84.3, drift: "down" },
+  { name: "Dosa",              file: "dosa",             imgX: 72.6, imgY: 39.4, lX: 73.1, lY: 36.5, drift: "up"   },
+];
+
+const FLOWER_PATH = "M46.1462 21.1309C46.1462 21.1309 49.2654 9.97958 36.0086 0C22.7603 9.97958 25.871 21.1309 25.871 21.1309C12.6227 11.7412 0 22.3026 0 22.3026C0 22.3026 13.2483 19.3693 17.0359 29.3489C20.8236 39.3285 33.4378 43.4335 33.4378 43.4335L33.3006 54.4413V54.6326C33.2921 55.9399 34.4318 57 35.8372 57H35.8886C37.2854 57 38.4166 55.9478 38.4251 54.6486V54.6087L38.5622 43.4255C38.5622 43.4255 51.185 39.3205 54.9641 29.3409C58.7517 19.3613 72 22.2946 72 22.2946C72 22.2946 59.3944 11.7412 46.1462 21.1309Z";
+
 function Plates() {
   const sectionRef = useRef(null);
+  const width = useWindowWidth();
+  const mob = width < 768;
 
   useGSAP(
     () => {
-      const tl = {
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.5,
-      };
-      gsap.to(sectionRef.current.querySelectorAll(".plate-drift-up"), {
-        y: -30,
-        ease: "none",
-        scrollTrigger: tl,
-      });
-      gsap.to(sectionRef.current.querySelectorAll(".plate-drift-down"), {
-        y: 30,
-        ease: "none",
-        scrollTrigger: tl,
-      });
+      const tl = { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1.5 };
+      gsap.to(sectionRef.current.querySelectorAll(".plate-drift-up"),   { y: -30, ease: "none", scrollTrigger: tl });
+      gsap.to(sectionRef.current.querySelectorAll(".plate-drift-down"), { y:  30, ease: "none", scrollTrigger: tl });
     },
     { scope: sectionRef },
   );
 
-  const plates = [
-    {
-      name: "BUTTER CHICKEN",
-      file: "butter-chicken",
-      labelPos: "bottom",
-      drift: "down",
-      marginTop: "180px",
-    },
-    {
-      name: "SARSO KA SAAG",
-      file: "sarso-ka-saag",
-      labelPos: "top",
-      drift: "up",
-      marginTop: "100px",
-    },
-    {
-      name: "DAL BHATI CHURMA",
-      file: "dal-bhati-churma",
-      labelPos: "bottom",
-      drift: "down",
-      marginTop: "280px",
-    },
-    {
-      name: "DHOKLA",
-      file: "dhokla",
-      labelPos: "bottom",
-      drift: "up",
-      marginTop: "140px",
-    },
-    {
-      name: "PAV BHAJI",
-      file: "pav-bhaji",
-      labelPos: "top",
-      drift: "up",
-      marginTop: "100px",
-    },
-    {
-      name: "RAGI PODDI",
-      file: "ragi-poddi",
-      labelPos: "bottom",
-      drift: "down",
-      marginTop: "300px",
-    },
-    {
-      name: "DOSA",
-      file: "dosa",
-      labelPos: "top",
-      drift: "up",
-      marginTop: "100px",
-    },
-  ];
+  if (mob) {
+    return (
+      <section ref={sectionRef} style={{ backgroundColor: "#1B5C4F", padding: "48px 16px 80px" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
+          <svg width="48" height="38" viewBox="0 0 72 57" fill="none"><path d={FLOWER_PATH} fill="#A94545"/></svg>
+          <h2 style={{ fontFamily: "BERNIER Distressed, cursive", color: "white", fontSize: "32px", margin: 0 }}>Plates of the NH48</h2>
+          <svg width="48" height="38" viewBox="0 0 72 57" fill="none" style={{ transform: "scaleX(-1)" }}><path d={FLOWER_PATH} fill="#A94545"/></svg>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
+          {DISHES.map(d => (
+            <div key={d.file} style={{ position: "relative" }}>
+              <img src={`/assets/dishes/${d.file}.png`} alt={d.name} style={{ width: "100%", aspectRatio: "197/274", objectFit: "cover", display: "block" }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, backgroundColor: "#A94545", padding: "3px 8px" }}>
+                <span style={{ fontFamily: "BERNIER Distressed, cursive", color: "white", fontSize: "11px", whiteSpace: "nowrap" }}>{d.name}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
       ref={sectionRef}
-      style={{
-        position: "relative",
-        width: "100%",
-        backgroundColor: "#1B5C4F",
-        backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
-        `,
-        backgroundSize: "48px 48px",
-        paddingTop: "64px",
-        paddingBottom: "120px",
-        overflow: "hidden",
-      }}
+      style={{ position: "relative", width: "100%", backgroundColor: "#1B5C4F", height: "62vw", minHeight: "600px", maxHeight: "938px", overflow: "hidden" }}
     >
-      {/* Heading */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "16px",
-          marginBottom: "48px",
-          width: "100%",
-        }}
-      >
-        <svg
-          width="72"
-          height="57"
-          viewBox="0 0 72 57"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M46.1462 21.1309C46.1462 21.1309 49.2654 9.97958 36.0086 0C22.7603 9.97958 25.871 21.1309 25.871 21.1309C12.6227 11.7412 0 22.3026 0 22.3026C0 22.3026 13.2483 19.3693 17.0359 29.3489C20.8236 39.3285 33.4378 43.4335 33.4378 43.4335L33.3006 54.4413V54.6326C33.2921 55.9399 34.4318 57 35.8372 57H35.8886C37.2854 57 38.4166 55.9478 38.4251 54.6486V54.6087L38.5622 43.4255C38.5622 43.4255 51.185 39.3205 54.9641 29.3409C58.7517 19.3613 72 22.2946 72 22.2946C72 22.2946 59.3944 11.7412 46.1462 21.1309Z"
-            fill="#A94545"
-          />
-        </svg>
-        <h2
-          style={{
-            fontFamily: "BERNIER Distressed, cursive",
-            color: "#F5EFE0",
-            fontSize: "clamp(28px, 4vw, 52px)",
-            letterSpacing: "0.08em",
-            margin: 0,
-            textShadow: "2px 2px 0px rgba(0,0,0,0.3)",
-          }}
-        >
-          PLATES OF THE NH48
+      {/* Heading — Figma: centered, top=8.8%, BERNIER Distressed 64px white */}
+      <div style={{ position: "absolute", left: 0, right: 0, top: "8.8%", display: "flex", justifyContent: "center", alignItems: "center", gap: "23px" }}>
+        <svg width="72" height="57" viewBox="0 0 72 57" fill="none"><path d={FLOWER_PATH} fill="#A94545"/></svg>
+        <h2 style={{ fontFamily: "BERNIER Distressed, cursive", color: "white", fontSize: "clamp(28px, 4.23vw, 64px)", margin: 0, letterSpacing: "-0.04em" }}>
+          Plates of the NH48
         </h2>
-        <svg
-          width="72"
-          height="57"
-          viewBox="0 0 72 57"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ transform: "scaleX(-1)" }}
-        >
-          <path
-            d="M46.1462 21.1309C46.1462 21.1309 49.2654 9.97958 36.0086 0C22.7603 9.97958 25.871 21.1309 25.871 21.1309C12.6227 11.7412 0 22.3026 0 22.3026C0 22.3026 13.2483 19.3693 17.0359 29.3489C20.8236 39.3285 33.4378 43.4335 33.4378 43.4335L33.3006 54.4413V54.6326C33.2921 55.9399 34.4318 57 35.8372 57H35.8886C37.2854 57 38.4166 55.9478 38.4251 54.6486V54.6087L38.5622 43.4255C38.5622 43.4255 51.185 39.3205 54.9641 29.3409C58.7517 19.3613 72 22.2946 72 22.2946C72 22.2946 59.3944 11.7412 46.1462 21.1309Z"
-            fill="#A94545"
-          />
-        </svg>
+        <svg width="72" height="57" viewBox="0 0 72 57" fill="none" style={{ transform: "scaleX(-1)" }}><path d={FLOWER_PATH} fill="#A94545"/></svg>
       </div>
 
-      {/* Cards row */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          gap: "clamp(12px, 2vw, 28px)",
-          padding: "0 clamp(16px, 4vw, 60px)",
-          width: "100%",
-        }}
-      >
-        {plates.map((plate) => (
-          <div
-            key={plate.file}
-            className={
-              plate.drift === "up" ? "plate-drift-up" : "plate-drift-down"
-            }
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start", // ← align to left so label tab can hang out
-              marginTop: plate.marginTop,
-              flexShrink: 0,
-              width: "clamp(110px, 12vw, 175px)",
-              position: "relative",
-            }}
-          >
-            {/* Label top — overhangs left */}
-            {plate.labelPos === "top" && (
-              <div
-                style={{
-                  backgroundColor: "#8B3A3A",
-                  padding: "5px 10px",
-                  // Overhang: pull it left of the card
-                  marginLeft: "-18px",
-                  marginBottom: "0px",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "BERNIER Distressed, cursive",
-                    color: "#F5EFE0",
-                    fontSize: "clamp(9px, 0.9vw, 13px)",
-                    letterSpacing: "0.08em",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {plate.name}
-                </span>
-              </div>
-            )}
+      {/* Dish images — exact Figma positions */}
+      {DISHES.map(d => (
+        <img
+          key={`img-${d.file}`}
+          className={d.drift === "up" ? "plate-drift-up" : "plate-drift-down"}
+          src={`/assets/dishes/${d.file}.png`}
+          alt={d.name}
+          style={{ position: "absolute", left: `${d.imgX}%`, top: `${d.imgY}%`, width: "13%", height: "29.2%", objectFit: "cover", display: "block" }}
+        />
+      ))}
 
-            {/* Image */}
-            <div
-              style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden" }}
-            >
-              <img
-                src={`/assets/dishes/${plate.file}.png`}
-                alt={plate.name}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                }}
-              />
-            </div>
-
-            {/* Label bottom — overhangs left */}
-            {plate.labelPos === "bottom" && (
-              <div
-                style={{
-                  backgroundColor: "#8B3A3A",
-                  padding: "5px 10px",
-                  marginLeft: "-18px",
-                  marginTop: "0px",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "BERNIER Distressed, cursive",
-                    color: "#F5EFE0",
-                    fontSize: "clamp(9px, 0.9vw, 13px)",
-                    letterSpacing: "0.08em",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {plate.name}
-                </span>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Skyline — full width, bottom */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          lineHeight: 0,
-          pointerEvents: "none",
-        }}
-      >
-        <svg
-          viewBox="0 0 1512 72"
-          preserveAspectRatio="xMidYMax slice" // ← "slice" stretches to fill full width
-          style={{ width: "100%", height: "72px", display: "block" }}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+      {/* Labels — exact Figma positions: 179×37px, #A94545, inner white border */}
+      {DISHES.map(d => (
+        <div
+          key={`lbl-${d.file}`}
+          style={{ position: "absolute", left: `${d.lX}%`, top: `${d.lY}%`, width: "clamp(100px, 11.8vw, 179px)", height: "clamp(26px, 2.45vw, 37px)", backgroundColor: "#A94545", display: "flex", alignItems: "center", justifyContent: "center" }}
         >
-          {/* ...keep exact same SVG path content as original... */}
-        </svg>
+          <div style={{ position: "absolute", top: "5px", left: "8px", right: "7px", bottom: "5px", border: "1px solid rgba(255,255,255,0.55)" }} />
+          <span style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "clamp(9px, 1.02vw, 15.36px)", color: "white", position: "relative", whiteSpace: "nowrap" }}>
+            {d.name}
+          </span>
+        </div>
+      ))}
+
+      {/* Border — Figma: tall(112×72) + short(112×45) alternating, color rgb(9,44,40) */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        height: "72px", backgroundColor: "rgb(9,44,40)",
+        display: "flex", alignItems: "flex-end", overflow: "hidden",
+      }}>
+        {Array.from({ length: 9 }, (_, i) => [
+          <img key={`t${i}`} src="/assets/home-page/border-motif-tall.png"
+            style={{ width: "112px", height: "72px", flexShrink: 0, alignSelf: "flex-start", display: "block" }} />,
+          <img key={`s${i}`} src="/assets/home-page/border-motif-short.png"
+            style={{ width: "112px", height: "45px", flexShrink: 0, display: "block" }} />,
+        ]).flat()}
       </div>
     </section>
   );
