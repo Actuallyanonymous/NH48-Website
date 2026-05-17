@@ -376,88 +376,11 @@ function FoodShowcaseSection() {
 // import mumbaiFood  from './assets/story/mumbai-food.png'
 
 // Replace with your actual imports
-const STORY_IMAGES = {
-  // Delhi (5)
-  delhiSign: "/assets/story/delhi.png",
-  delhiTomb: "/assets/story/tomb.png",
-  delhiPoori: "/assets/story/poori.png",
-  delhiMomos: "/assets/story/momos.png",
-  indiaGate: "/assets/story/igate.png",
-  // Mumbai (7)
-  vadaPav: "/assets/story/pav.png",
-  mumbaiBus: "/assets/story/bus.png",
-  mumbaiTaxi: "/assets/story/taxi.png",
-  tajHotel: "/assets/story/taj.png",
-  vadaPavHand: "/assets/story/pavhand.png",
-  mumbaiSign: "/assets/story/mumbai.png",
-  gatewayIndia: "/assets/story/gateoi.png",
-};
-
-function StarBurst({ size = 120, stroke = "#8B3A3A", strokeWidth = 2 }) {
-  const pts = Array.from({ length: 16 }, (_, i) => {
-    const angle = (i * Math.PI) / 8 - Math.PI / 2;
-    const r = i % 2 === 0 ? size / 2 : size / 4;
-    return `${size / 2 + r * Math.cos(angle)},${size / 2 + r * Math.sin(angle)}`;
-  }).join(" ");
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox={`0 0 ${size} ${size}`}
-      style={{ display: "block" }}
-    >
-      <polygon
-        points={pts}
-        fill="transparent"
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-      />
-    </svg>
-  );
-}
-
-// Reusable: plain image tile (monuments, signs, etc.)
-function Tile({ src, alt, style }) {
-  return (
-    <div style={{ position: "absolute", ...style }}>
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: "100%",
-          height: "auto",
-          display: "block",
-          filter: "drop-shadow(2px 4px 8px rgba(0,0,0,0.4))",
-        }}
-      />
-    </div>
-  );
-}
-
-// Reusable: circular food image
-function CircleImg({ src, alt, style }) {
-  return (
-    <div style={{ position: "absolute", ...style }}>
-      <div
-        style={{
-          borderRadius: "50%",
-          overflow: "hidden",
-          border: "3px solid #D4B84A",
-          aspectRatio: "1/1",
-        }}
-      >
-        <img
-          src={src}
-          alt={alt}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
-      </div>
-    </div>
-  );
-}
 
 function StorySection() {
   const sectionRef = useRef(null);
+  const width = useWindowWidth();
+  const mob = width < 768;
 
   useGSAP(
     () => {
@@ -481,327 +404,126 @@ function StorySection() {
     { scope: sectionRef },
   );
 
+  if (mob) {
+    return (
+      <section ref={sectionRef} style={{ backgroundColor: "#ffde7c", padding: "48px 24px" }}>
+        <h2 style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "48px", color: "#14534D", letterSpacing: "-0.04em", textAlign: "center", margin: "0 0 32px" }}>
+          Our story
+        </h2>
+        <img className="story-drift-up" src="/assets/home-page/story-left-group.png" alt="Story collage left" style={{ width: "100%", marginBottom: "24px", display: "block" }} />
+        <div style={{ position: "relative", backgroundColor: "#14534D", padding: "32px 24px 32px", marginBottom: "24px" }}>
+          <div style={{ position: "absolute", top: "-8px", right: "-8px", width: "48px", height: "48px", backgroundColor: "#A94545" }} />
+          <p style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "18px", color: "white", textAlign: "center", lineHeight: 1.5, margin: "0 0 24px" }}>
+            Tracing the spine of NH48, two friends navigate the distance from the capital's heat to the coast's heart. Their journey reclaims the honest, unedited recipes that live in the dust and light of the open roads of nh48.
+          </p>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ position: "relative", width: "174px", height: "52px", backgroundColor: "#A94545", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+              <div style={{ position: "absolute", top: "4px", left: "5px", right: "5px", bottom: "6px", border: "1px solid #14534D" }} />
+              <span style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "20px", color: "white", position: "relative" }}>view story</span>
+            </div>
+          </div>
+        </div>
+        <img className="story-drift-down" src="/assets/home-page/story-right-group.png" alt="Story collage right" style={{ width: "100%", display: "block" }} />
+      </section>
+    );
+  }
+
   return (
     <section
       ref={sectionRef}
       style={{
         position: "relative",
         width: "100%",
-        backgroundColor: "#C9A84C",
-        backgroundImage: `
-          linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px)
-        `,
-        backgroundSize: "28px 28px",
-        paddingTop: "60px",
-        paddingBottom: "80px",
-        overflow: "hidden",
+        backgroundColor: "#ffde7c",
+        height: "56.5vw",
         minHeight: "600px",
+        maxHeight: "854px",
+        overflow: "hidden",
       }}
     >
-      {/* OUR STORY heading */}
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "24px",
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: "BERNIER Distressed, cursive",
-            color: "#1B5C4F",
-            fontSize: "clamp(32px, 5vw, 64px)",
-            letterSpacing: "0.08em",
-            margin: 0,
-          }}
-        >
-          OUR STORY
-        </h2>
+      {/* Teal card — Figma: left=24.1%, top=21.5%, 51.1% wide, 58.8% tall */}
+      <div style={{ position: "absolute", left: "24.1%", top: "21.5%", width: "51.1%", height: "58.8%", backgroundColor: "#14534D", zIndex: 1 }} />
+
+      {/* Red accent square — Figma: left=72.2%, top=16.9%, 5.8% × 9.3% */}
+      <div style={{ position: "absolute", left: "72.2%", top: "16.9%", width: "5.8%", height: "9.3%", backgroundColor: "#A94545", zIndex: 2 }} />
+
+      {/* "Our story" heading — Figma: 64px BERNIER, #14534D, tracking -2.56px */}
+      <h2 style={{
+        position: "absolute",
+        left: "43.9%",
+        top: "8.2%",
+        margin: 0,
+        fontFamily: "BERNIER Distressed, cursive",
+        fontSize: "clamp(32px, 4.23vw, 64px)",
+        color: "#14534D",
+        letterSpacing: "-0.17em",
+        whiteSpace: "nowrap",
+        zIndex: 4,
+      }}>
+        Our story
+      </h2>
+
+      {/* Body text — Figma: 31.57px BERNIER, white, left=27.4%, top=41.6%, width=44.5% */}
+      <p style={{
+        position: "absolute",
+        left: "27.4%",
+        top: "41.6%",
+        width: "44.5%",
+        margin: 0,
+        fontFamily: "BERNIER Distressed, cursive",
+        fontSize: "clamp(13px, 2.09vw, 32px)",
+        color: "white",
+        textAlign: "center",
+        lineHeight: 1.45,
+        zIndex: 3,
+      }}>
+        Tracing the spine of NH48, two friends navigate the distance from the capital's heat to the coast's heart. Their journey reclaims the honest, unedited recipes that live in the dust and light of the open roads of nh48.
+      </p>
+
+      {/* "view story" button — Figma: left=43.8%, top=70.8%, 174×52px, #A94545, inner #14534D border */}
+      <div style={{
+        position: "absolute",
+        left: "43.8%",
+        top: "70.8%",
+        width: "11.5%",
+        height: "6.1%",
+        minWidth: "120px",
+        minHeight: "44px",
+        backgroundColor: "#A94545",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        zIndex: 3,
+      }}>
+        <div style={{ position: "absolute", top: "4px", left: "5px", right: "5px", bottom: "6px", border: "1px solid #14534D" }} />
+        <span style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "clamp(13px, 2.09vw, 32px)", color: "white", position: "relative" }}>
+          view story
+        </span>
       </div>
 
-      {/* Three-column layout */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          padding: "0 2vw",
-        }}
-      >
-        {/* ── DELHI COLLAGE (left) ── */}
-        <div
-          className="story-drift-up"
-          style={{
-            position: "relative",
-            width: "clamp(180px, 24vw, 320px)",
-            height: "clamp(380px, 52vw, 600px)",
-            flexShrink: 0,
-            marginRight: "-48px",
-            zIndex: 2,
-          }}
-        >
-          {/* India Gate — top right, large, slight tilt */}
-          <Tile
-            src={STORY_IMAGES.indiaGate}
-            alt="India Gate"
-            style={{
-              top: "0%",
-              right: "-5%",
-              width: "58%",
-              transform: "rotate(5deg)",
-              zIndex: 2,
-            }}
-          />
+      {/* Islamic motif — Figma: left=14.6%, top=64.6%, 267×281px */}
+      <img
+        src="/assets/home-page/story-motif.png"
+        alt=""
+        style={{ position: "absolute", left: "14.6%", top: "64.6%", width: "clamp(120px, 17.7vw, 267px)", height: "auto", zIndex: 4, pointerEvents: "none" }}
+      />
 
-          {/* Delhi sign — top left, overlapping gate, rotated */}
-          <Tile
-            src={STORY_IMAGES.delhiSign}
-            alt="New Delhi sign"
-            style={{
-              top: "4%",
-              left: "0%",
-              width: "68%",
-              transform: "rotate(-10deg)",
-              zIndex: 3,
-            }}
-          />
+      {/* Left collage — Figma: left=11.9%, top=5.2%, width=27.8% */}
+      <img
+        className="story-drift-up"
+        src="/assets/home-page/story-left-group.png"
+        alt="Story left collage"
+        style={{ position: "absolute", left: "11.9%", top: "5.2%", width: "27.8%", height: "auto", zIndex: 5 }}
+      />
 
-          {/* Humayun's Tomb — mid, behind sign */}
-          <Tile
-            src={STORY_IMAGES.delhiTomb}
-            alt="Delhi monument"
-            style={{
-              top: "30%",
-              left: "5%",
-              width: "72%",
-              transform: "rotate(3deg)",
-              zIndex: 2,
-            }}
-          />
-
-          {/* Poori — circular, mid-left */}
-          <CircleImg
-            src={STORY_IMAGES.delhiPoori}
-            alt="Delhi poori"
-            style={{ top: "28%", left: "-8%", width: "48%", zIndex: 4 }}
-          />
-
-          {/* Momos — circular, bottom */}
-          <CircleImg
-            src={STORY_IMAGES.delhiMomos}
-            alt="Delhi momos"
-            style={{
-              bottom: "4%",
-              left: "8%",
-              width: "50%",
-              transform: "rotate(4deg)",
-              zIndex: 3,
-            }}
-          />
-        </div>
-
-        {/* ── TEAL CARD ── */}
-        <div
-          style={{
-            position: "relative",
-            zIndex: 1,
-            backgroundColor: "#1B5C4F",
-            width: "clamp(320px, 48vw, 700px)",
-            padding: "clamp(48px, 6vw, 80px) clamp(32px, 5vw, 64px)",
-            flexShrink: 0,
-          }}
-        >
-          {/* Accent square — top right */}
-          <div
-            style={{
-              position: "absolute",
-              top: "-8px",
-              right: "-8px",
-              width: "clamp(48px, 5vw, 72px)",
-              height: "clamp(48px, 5vw, 72px)",
-              backgroundColor: "#8B3A3A",
-              zIndex: 0,
-            }}
-          />
-
-          {/* Dashed divider */}
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              top: "50%",
-              borderTop: "2px dashed rgba(100,180,200,0.45)",
-              pointerEvents: "none",
-              zIndex: 2,
-            }}
-          />
-
-          <p
-            style={{
-              fontFamily: "BERNIER Distressed, cursive",
-              color: "#F5EFE0",
-              fontSize: "clamp(13px, 1.6vw, 21px)",
-              letterSpacing: "0.06em",
-              lineHeight: 1.55,
-              textAlign: "center",
-              margin: "0 0 clamp(32px, 4vw, 56px) 0",
-              position: "relative",
-              zIndex: 3,
-            }}
-          >
-            TRACING THE SPINE OF NH48, TWO FRIENDS NAVIGATE THE DISTANCE FROM
-            THE CAPITAL'S HEAT TO THE COAST'S HEART. THEIR JOURNEY RECLAIMS THE
-            HONEST, UNEDITED RECIPES THAT LIVE IN THE DUST AND LIGHT OF THE OPEN
-            ROADS OF NH48.
-          </p>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              position: "relative",
-              zIndex: 3,
-            }}
-          >
-            <button
-              style={{
-                fontFamily: "BERNIER Distressed, cursive",
-                fontSize: "clamp(14px, 1.4vw, 18px)",
-                letterSpacing: "0.12em",
-                color: "#F5EFE0",
-                backgroundColor: "#8B3A3A",
-                border: "2px solid #8B3A3A",
-                padding: "12px 40px",
-                cursor: "pointer",
-                transition: "background-color 0.2s, color 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#8B3A3A";
-              }}
-            >
-              VIEW STORY
-            </button>
-          </div>
-        </div>
-
-        {/* ── MUMBAI COLLAGE (right) ── */}
-        <div
-          className="story-drift-down"
-          style={{
-            position: "relative",
-            width: "clamp(180px, 24vw, 320px)",
-            height: "clamp(380px, 52vw, 600px)",
-            flexShrink: 0,
-            marginLeft: "-48px",
-            zIndex: 2,
-          }}
-        >
-          {/* Mumbai sign — top right, rotated */}
-          <Tile
-            src={STORY_IMAGES.mumbaiSign}
-            alt="Mumbai sign"
-            style={{
-              top: "0%",
-              right: "0%",
-              width: "55%",
-              transform: "rotate(12deg)",
-              zIndex: 3,
-            }}
-          />
-
-          {/* Gateway of India — top left */}
-          <Tile
-            src={STORY_IMAGES.gatewayIndia}
-            alt="Gateway of India"
-            style={{
-              top: "2%",
-              left: "5%",
-              width: "52%",
-              transform: "rotate(-5deg)",
-              zIndex: 2,
-            }}
-          />
-
-          {/* Taj Hotel — mid, behind taxi */}
-          <Tile
-            src={STORY_IMAGES.tajHotel}
-            alt="Taj Hotel"
-            style={{
-              top: "28%",
-              left: "0%",
-              width: "65%",
-              transform: "rotate(3deg)",
-              zIndex: 2,
-            }}
-          />
-
-          {/* Taxi — mid-right, overlapping */}
-          <Tile
-            src={STORY_IMAGES.mumbaiTaxi}
-            alt="Mumbai taxi"
-            style={{
-              top: "34%",
-              right: "-5%",
-              width: "62%",
-              transform: "rotate(-4deg)",
-              zIndex: 3,
-            }}
-          />
-
-          {/* Bus — lower mid */}
-          <Tile
-            src={STORY_IMAGES.mumbaiBus}
-            alt="Mumbai bus"
-            style={{
-              top: "52%",
-              left: "5%",
-              width: "60%",
-              transform: "rotate(2deg)",
-              zIndex: 4,
-            }}
-          />
-
-          {/* Vada pav in hand — circular, mid-left */}
-          <CircleImg
-            src={STORY_IMAGES.vadaPavHand}
-            alt="Vada pav in hand"
-            style={{ top: "38%", left: "-8%", width: "46%", zIndex: 5 }}
-          />
-
-          {/* Vada pav plate — circular, bottom */}
-          <CircleImg
-            src={STORY_IMAGES.vadaPav}
-            alt="Vada pav"
-            style={{
-              bottom: "2%",
-              left: "5%",
-              width: "50%",
-              transform: "rotate(-3deg)",
-              zIndex: 4,
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Starburst — bottom left */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "6%",
-          left: "3%",
-          opacity: 0.85,
-          pointerEvents: "none",
-        }}
-      >
-        <StarBurst size={110} stroke="#8B3A3A" strokeWidth={2} />
-      </div>
+      {/* Right collage — Figma: left=63.5%, top=44.7%, width=26.6% */}
+      <img
+        className="story-drift-down"
+        src="/assets/home-page/story-right-group.png"
+        alt="Story right collage"
+        style={{ position: "absolute", left: "63.5%", top: "44.7%", width: "26.6%", height: "auto", zIndex: 5 }}
+      />
     </section>
   );
 }
