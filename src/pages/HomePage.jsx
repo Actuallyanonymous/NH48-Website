@@ -10,16 +10,6 @@ import JaipurModal from "./JaipurPage";
 import DelhiModal from "./DelhiPage";
 import MumbaiModal from "./MumbaiPage";
 
-const CARD_IMAGES = {
-  food1:
-    "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600&q=80",
-  delhi:
-    "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80",
-  food2:
-    "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&q=80",
-  mumbai:
-    "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&q=80",
-};
 
 const FOOD_PHOTOS = [
   "https://images.unsplash.com/photo-1631292784640-2b24be784d5d?w=800&q=80",
@@ -62,7 +52,7 @@ function CityCardsSection() {
 
   // No horizontal drift on cards — gap stays constant
 
-  const cardW = "clamp(180px, 20vw, 260px)";
+  const cardW = "clamp(200px, 21vw, 280px)";
   const mob = width < 768;
 
   return (
@@ -82,99 +72,32 @@ function CityCardsSection() {
         overflow: "hidden",
       }}
     >
-      {/* Islamic 8-pointed star motif — left, vertically centred in upper half */}
-      {/* Two overlapping squares, one rotated 45°, matching Figma asset */}
-      <svg
-        viewBox="0 0 174 174"
+      {/* Gold geometric motif — left edge */}
+      <img
+        src="/assets/home-page/motif-left.png"
+        alt=""
         style={{
           position: "absolute",
-          left: "43px",
-          top: "calc(50% - 87px)",
-          width: "clamp(90px, 11.5vw, 174px)",
-          height: "auto",
-          opacity: 0.9,
+          left: 0,
+          top: "50%",
+          transform: "translateY(-60%)",
+          width: "clamp(100px, 13vw, 200px)",
           pointerEvents: "none",
         }}
-        fill="none"
-      >
-        {/* Outer square — straight */}
-        <rect
-          x="22"
-          y="22"
-          width="130"
-          height="130"
-          stroke="#D4B84A"
-          strokeWidth="3"
-          fill="none"
-        />
-        {/* Outer square — rotated 45° */}
-        <rect
-          x="22"
-          y="22"
-          width="130"
-          height="130"
-          stroke="#D4B84A"
-          strokeWidth="3"
-          fill="none"
-          transform="rotate(45 87 87)"
-        />
-        {/* Inner square — straight (inset ~28px) */}
-        <rect
-          x="44"
-          y="44"
-          width="86"
-          height="86"
-          stroke="#D4B84A"
-          strokeWidth="2"
-          fill="none"
-        />
-        {/* Inner square — rotated 45° */}
-        <rect
-          x="44"
-          y="44"
-          width="86"
-          height="86"
-          stroke="#D4B84A"
-          strokeWidth="2"
-          fill="none"
-          transform="rotate(45 87 87)"
-        />
-      </svg>
+      />
 
-      {/* Red bird / flower decoration — right side */}
-      <svg
-        viewBox="0 0 120 120"
+      {/* Red bird/flower motif — right edge */}
+      <img
+        src="/assets/home-page/motif-right.png"
+        alt=""
         style={{
           position: "absolute",
-          right: "20px",
-          top: "calc(50% + 60px)",
-          width: "clamp(60px, 7vw, 90px)",
-          height: "auto",
+          right: 0,
+          top: "55%",
+          width: "clamp(60px, 8vw, 120px)",
           pointerEvents: "none",
-          opacity: 0.95,
         }}
-        fill="none"
-      >
-        {/* Body */}
-        <ellipse cx="70" cy="72" rx="28" ry="18" fill="#8B1A1A" />
-        {/* Tail — sweeping left */}
-        <path
-          d="M46,76 C20,90 8,110 18,118 C28,126 50,100 60,80"
-          fill="#8B1A1A"
-        />
-        {/* Wing */}
-        <path
-          d="M58,62 C70,38 100,32 108,50 C90,46 75,58 70,72"
-          fill="#A52020"
-        />
-        {/* Head */}
-        <circle cx="94" cy="62" r="13" fill="#8B1A1A" />
-        {/* Beak */}
-        <path d="M105,58 L118,54 L108,62 Z" fill="#C8A010" />
-        {/* Eye */}
-        <circle cx="98" cy="59" r="2.5" fill="white" />
-        <circle cx="98.8" cy="59" r="1.2" fill="#1a1a1a" />
-      </svg>
+      />
 
       {/* Cards row */}
       <div
@@ -185,7 +108,7 @@ function CityCardsSection() {
           width: "100%",
           maxWidth: "1397px",
           padding: mob ? "0 24px" : "0 48px",
-          gap: mob ? "20px" : "clamp(24px, 3vw, 48px)",
+          gap: mob ? "20px" : "clamp(20px, 2.5vw, 40px)",
           overflowX: mob ? "auto" : "visible",
           scrollSnapType: mob ? "x mandatory" : "none",
           paddingBottom: mob ? "24px" : "0",
@@ -210,7 +133,7 @@ function CityCardsSection() {
             }}
           >
             <img
-              src={CARD_IMAGES.food1}
+              src="/assets/home-page/section-2-image-1.jpeg"
               alt="Delhi food"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
@@ -232,37 +155,13 @@ function CityCardsSection() {
               overflow: "hidden",
               border: "3px solid #D4B84A",
               clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
-              position: "relative",
             }}
           >
             <img
-              src="/assets/journey/delhi.jpg"
+              src="/assets/home-page/section-2-image-2.jpeg"
               alt="Delhi"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to top, rgba(0,0,0,0.72) 28%, transparent)",
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "center",
-                paddingBottom: "18px",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "BERNIER Distressed, cursive",
-                  color: "#F5C42C",
-                  fontSize: "clamp(20px, 2vw, 28px)",
-                  letterSpacing: "0.12em",
-                }}
-              >
-                DELHI
-              </p>
-            </div>
           </div>
         </div>
 
@@ -284,7 +183,7 @@ function CityCardsSection() {
             }}
           >
             <img
-              src={CARD_IMAGES.food2}
+              src="/assets/home-page/section-2-image-3.jpeg"
               alt="Mumbai food"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
@@ -306,37 +205,13 @@ function CityCardsSection() {
               overflow: "hidden",
               border: "3px solid #D4B84A",
               clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
-              position: "relative",
             }}
           >
             <img
-              src="/assets/journey/mumbai.jpg"
+              src="/assets/home-page/section-2-image-4.jpeg"
               alt="Mumbai"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to top, rgba(0,0,0,0.72) 28%, transparent)",
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "center",
-                paddingBottom: "18px",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "BERNIER Distressed, cursive",
-                  color: "#F5C42C",
-                  fontSize: "clamp(20px, 2vw, 28px)",
-                  letterSpacing: "0.12em",
-                }}
-              >
-                MUMBAI
-              </p>
-            </div>
           </div>
         </div>
       </div>
