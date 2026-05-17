@@ -811,7 +811,7 @@ function Journey() {
   return (
     <div style={styles.wrapper}>
       {/* Title */}
-      <h2 style={styles.title}>A JOURNEY THROUGH CITY SIGNATURES</h2>
+      <h2 style={styles.title}>A Journey Through City Signatures</h2>
 
       {/* Cards row */}
       <div style={styles.cardsRow}>
@@ -948,24 +948,29 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "32px 40px 28px",
-    gap: 24,
+    paddingTop: "97px",
+    paddingBottom: "60px",
+    paddingLeft: "40px",
+    paddingRight: "40px",
+    gap: "37px",
     width: "100%",
     boxSizing: "border-box",
+    minHeight: "797px",
   },
 
   title: {
-    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
-    fontSize: "1.6rem",
-    letterSpacing: "0.2em",
-    color: "#1a5c48",
+    fontFamily: "'BERNIER Distressed', cursive",
+    fontSize: "clamp(28px, 4.23vw, 64px)",
+    letterSpacing: "-0.04em",
+    color: "#14534D",
     margin: 0,
     textAlign: "center",
+    lineHeight: 0.921,
   },
 
   cardsRow: {
     display: "flex",
-    gap: 12,
+    gap: "clamp(12px, 1.8vw, 27px)",
     justifyContent: "center",
     width: "100%",
   },
@@ -973,8 +978,8 @@ const styles = {
   card: {
     position: "relative",
     flex: "1 1 0",
-    maxWidth: 340,
-    height: 220,
+    maxWidth: "clamp(200px, 26.1vw, 395px)",
+    height: "clamp(200px, 26.5vw, 400px)",
     overflow: "hidden",
     cursor: "pointer",
     transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -997,9 +1002,9 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
-    fontSize: "2.8rem",
-    letterSpacing: "0.1em",
+    fontFamily: "'BERNIER Distressed', cursive",
+    fontSize: "clamp(32px, 5.22vw, 79px)",
+    letterSpacing: "-0.04em",
     color: "#ffffff",
     textShadow: "0 2px 16px rgba(0,0,0,0.6)",
   },
