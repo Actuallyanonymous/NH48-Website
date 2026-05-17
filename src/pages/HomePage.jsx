@@ -1434,161 +1434,129 @@ function DCMapIllustration() {
 }
 
 // ─── Location & Timings Section ───────────────────────────────────────────────
+const BORDER_STYLE = {
+  height: "23px",
+  backgroundImage: "url('/assets/home-page/Location-section-border.png')",
+  backgroundRepeat: "repeat-x",
+  backgroundSize: "90px 23px",
+  width: "100%",
+};
+
+const LABEL_STYLE = {
+  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+  fontSize: "16px",
+  color: "white",
+  margin: "0 0 8px 0",
+  fontWeight: 400,
+};
+
+const BODY_STYLE = {
+  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+  fontSize: "16px",
+  color: "rgb(255,212,212)",
+  margin: 0,
+  lineHeight: 1.6,
+};
+
 function LocationTimings() {
   const width = useWindowWidth();
   const mob = width < 768;
 
-  const hours = [
-    { day: "MON:", time: "10 AM – 5 PM" },
-    { day: "TUE:", time: "10 AM – 5 PM" },
-    { day: "WED:", time: "10 AM – 5 PM" },
-    { day: "THUR:", time: "10 AM – 5 PM" },
-    { day: "FRI:", time: "10 AM – 5 PM" },
-    { day: "SAT:", time: "8 AM – 7 PM" },
-    { day: "SUN:", time: "8 AM – 7 PM" },
-  ];
-
   return (
-    <section
-      style={{
-        width: "100%",
-        backgroundColor: "#D4BA5A",
-        backgroundImage: `
-          linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px)
-        `,
-        backgroundSize: "28px 28px",
-        position: "relative",
-      }}
-    >
-      {/* TOP scallop border */}
-      <ScallopBorder
-        position="top"
-        bg="#D4BA5A"
-        scallop="#8B3A3A"
-        height={28}
-      />
+    <section style={{ width: "100%", backgroundColor: "#A94545", position: "relative" }}>
 
-      <div style={{ padding: mob ? "32px 20px 40px" : "48px 60px 56px" }}>
-        {/* Section heading */}
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: mob ? "28px" : "40px",
-          }}
-        >
-          <h2
-            style={{
-              fontFamily: "BERNIER Distressed, cursive",
-              color: "#1B5C4F",
-              fontSize: mob ? "32px" : "clamp(36px, 4.5vw, 56px)",
-              letterSpacing: "0.08em",
-              margin: 0,
-              textAlign: "center",
-            }}
-          >
-            LOCATION &amp; TIMING
-          </h2>
+      {/* Top border — 90×23px tile repeating */}
+      <div style={BORDER_STYLE} />
+
+      {/* Content */}
+      <div style={{
+        padding: mob ? "24px 20px 32px" : "20px 44px 40px",
+        minHeight: mob ? "auto" : "517px",
+        display: "flex",
+        flexDirection: "column",
+      }}>
+
+        {/* "nh48" brand — Figma: BERNIER 124.57px white */}
+        <div style={{
+          fontFamily: "BERNIER Distressed, cursive",
+          fontSize: mob ? "64px" : "clamp(64px, 8.24vw, 124.57px)",
+          color: "white",
+          lineHeight: 1,
+          marginBottom: mob ? "24px" : "30px",
+          letterSpacing: "-0.02em",
+        }}>
+          nh48
         </div>
 
-        {/* Map + Info panel */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: mob ? "column" : "row",
-            alignItems: mob ? "center" : "stretch",
-            justifyContent: "center",
-            gap: mob ? "20px" : "0",
-            maxWidth: "900px",
-            margin: "0 auto",
-          }}
-        >
-          {/* LEFT — Illustrated map */}
-          <div
-            style={{
-              flex: mob ? "unset" : "0 0 52%",
-              width: mob ? "100%" : "auto",
-              maxWidth: mob ? "480px" : "unset",
-              border: "3px solid #B8A060",
-              overflow: "hidden",
-              boxShadow: "4px 4px 16px rgba(0,0,0,0.18)",
-              backgroundColor: "#F2E8C4",
-              aspectRatio: mob ? "520/300" : "unset",
-            }}
-          >
-            <DCMapIllustration />
+        {/* Three columns */}
+        <div style={{
+          display: "flex",
+          flexDirection: mob ? "column" : "row",
+          gap: mob ? "28px" : "0",
+          flex: 1,
+        }}>
+
+          {/* LEFT — Location & Hours — Figma: x=44, width~350px */}
+          <div style={{ flex: mob ? "unset" : "0 0 clamp(200px, 23.1vw, 350px)" }}>
+            <p style={LABEL_STYLE}>location & contact</p>
+            <p style={{ ...BODY_STYLE, marginBottom: "20px" }}>
+              Location - 4824 MacArthur Blvd NW LL,{"\n"}Washington D.C. 20007
+            </p>
+            <p style={LABEL_STYLE}>hours</p>
+            <p style={BODY_STYLE}>
+              Sunday - Wednesday: 5:00 PM - 10:30 PM (Last Seating 9:30 PM)<br />
+              Thursday - Saturday: 5:00 PM - 11:00 PM (Last Seating 10:00 PM)<br />
+              Monday: Closed
+            </p>
           </div>
 
-          {/* RIGHT — Info panel */}
-          <div
-            style={{
-              flex: mob ? "unset" : "0 0 48%",
-              width: mob ? "100%" : "auto",
-              maxWidth: mob ? "480px" : "unset",
-              backgroundColor: "#1B5C4F",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: mob ? "28px 20px" : "36px 40px",
-            }}
-          >
-            {/* Address */}
-            <p
-              style={{
-                fontFamily: "BERNIER Distressed, cursive",
-                color: "#F5EFE0",
-                fontSize: mob ? "15px" : "clamp(14px, 1.5vw, 19px)",
-                letterSpacing: "0.06em",
-                lineHeight: 1.4,
-                textAlign: "center",
-                margin: "0 0 28px 0",
-              }}
-            >
-              4824 MACARTHUR BLVD NW LL
-              <br />
-              WASHINGTON DC , 20007
+          {/* CENTER — Contact & Reservations — Figma: x=756, centered */}
+          <div style={{
+            flex: mob ? "unset" : "1 1 0",
+            padding: mob ? "0" : "0 clamp(20px, 3vw, 60px)",
+          }}>
+            <p style={{ ...BODY_STYLE, marginBottom: "16px" }}>
+              Have a question or a special request? Email us at [prady.rana@outlook.com].
+              Due to high demand, our team will provide a response within 48 business hours (Mon–Sat).
             </p>
+            <p style={{ ...BODY_STYLE, marginBottom: "16px" }}>
+              To provide the best experience for large parties (8+), we kindly ask for
+              bookings to be made 40–45 days in advance.
+            </p>
+            <p style={BODY_STYLE}>
+              Have a question or a special request? Email us at [prady.rana@outlook.com].
+              Due to high demand, our team will provide a response within 48 business hours (Mon–Sat).
+            </p>
+          </div>
 
-            {/* Hours list */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
-                width: "100%",
-                alignItems: "center",
-              }}
-            >
-              {hours.map(({ day, time }) => (
-                <p
-                  key={day}
-                  style={{
-                    fontFamily: "BERNIER Distressed, cursive",
-                    color: "#F5EFE0",
-                    fontSize: mob ? "13px" : "clamp(12px, 1.2vw, 16px)",
-                    letterSpacing: "0.07em",
-                    margin: 0,
-                    textAlign: "center",
-                  }}
-                >
-                  {day} {time}
-                </p>
-              ))}
+          {/* RIGHT — Follow us — Figma: x=1331 */}
+          <div style={{ flex: mob ? "unset" : "0 0 clamp(100px, 12vw, 180px)" }}>
+            <p style={LABEL_STYLE}>follow us</p>
+            <div style={{ display: "flex", gap: "12px", alignItems: "center", marginTop: "8px" }}>
+              {/* Instagram */}
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="28" height="28" rx="7" stroke="white" strokeWidth="2"/>
+                <circle cx="16" cy="16" r="6" stroke="white" strokeWidth="2"/>
+                <circle cx="23" cy="9" r="1.5" fill="white"/>
+              </svg>
+              {/* Facebook */}
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="14" stroke="white" strokeWidth="2"/>
+                <path d="M18 10h-2a3 3 0 0 0-3 3v2h-2v3h2v8h3v-8h2l1-3h-3v-2a1 1 0 0 1 1-1h2v-3z" fill="white"/>
+              </svg>
+              {/* TikTok */}
+              <svg width="28" height="32" viewBox="0 0 28 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 0h-4v22a4 4 0 1 1-4-4v-4a8 8 0 1 0 8 8V8a12 12 0 0 0 7 2V6a8 8 0 0 1-7-6z"/>
+              </svg>
             </div>
           </div>
+
         </div>
       </div>
 
-      {/* BOTTOM scallop border */}
-      <ScallopBorder
-        position="bottom"
-        bg="#D4BA5A"
-        scallop="#8B3A3A"
-        height={36}
-      />
+      {/* Bottom border */}
+      <div style={BORDER_STYLE} />
+
     </section>
   );
 }
