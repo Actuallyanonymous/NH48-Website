@@ -1633,163 +1633,100 @@ const FOOD_GRID_IMAGES = [
 
 function FoodGridSection() {
   const width = useWindowWidth();
-  const mob = width < 640;
-  const tab = width < 1024 && width >= 640;
+  const mob = width < 768;
 
   return (
-    <section
-      style={{
-        position: "relative",
-        width: "100%",
-        backgroundColor: "#1B5C4F",
-        backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)`,
-        backgroundSize: "18px 18px",
-        overflow: "hidden",
-        paddingTop: "64px",
-        paddingBottom: "72px",
-      }}
-    >
-      {/* ── Watermark NH48 ── */}
-      <div
+    <section style={{
+      position: "relative",
+      width: "100%",
+      backgroundColor: "#14534D",
+      minHeight: mob ? "auto" : "clamp(600px, 60.8vw, 920px)",
+      overflow: "hidden",
+    }}>
+
+      {/* NH48 watermark background — PNG already transparent at 82% max opacity */}
+      <img
+        src="/assets/home-page/section-9-background.png"
+        alt=""
         aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0 -20px",
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
           pointerEvents: "none",
           zIndex: 0,
-          overflow: "hidden",
         }}
-      >
-        {/* N */}
-        <span
-          style={{
-            fontFamily: "BERNIER Distressed, cursive",
-            fontSize: "clamp(180px, 25vw, 340px)",
-            color: "rgba(139,58,58,0.18)",
-            lineHeight: 1,
-            userSelect: "none",
-            marginLeft: "-20px",
-          }}
-        >
-          N
-        </span>
-        {/* H */}
-        <span
-          style={{
-            fontFamily: "BERNIER Distressed, cursive",
-            fontSize: "clamp(180px, 25vw, 340px)",
-            color: "rgba(139,58,58,0.12)",
-            lineHeight: 1,
-            userSelect: "none",
-          }}
-        >
-          H
-        </span>
-        {/* 4 */}
-        <span
-          style={{
-            fontFamily: "BERNIER Distressed, cursive",
-            fontSize: "clamp(180px, 25vw, 340px)",
-            color: "rgba(139,58,58,0.14)",
-            lineHeight: 1,
-            userSelect: "none",
-          }}
-        >
-          4
-        </span>
-        {/* 8 */}
-        <span
-          style={{
-            fontFamily: "BERNIER Distressed, cursive",
-            fontSize: "clamp(180px, 25vw, 340px)",
-            color: "rgba(139,58,58,0.18)",
-            lineHeight: 1,
-            userSelect: "none",
-            marginRight: "-20px",
-          }}
-        >
-          8
-        </span>
-      </div>
+      />
 
-      {/* ── Star ornament — left side ── */}
-      <div
+      {/* Left motif — Figma: left=14.2%, top=32.3%, 174×213px */}
+      <img
+        src="/assets/home-page/section-9-motif-left.png"
+        alt=""
         style={{
           position: "absolute",
-          left: "clamp(20px, 4vw, 60px)",
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 2,
-          pointerEvents: "none",
-          opacity: 0.85,
-        }}
-      >
-        <StarOrnament size={mob ? 55 : 90} stroke="#D4B84A" strokeWidth={1.5} />
-      </div>
-
-      {/* ── Red lotus — bottom right ── */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "20px",
-          right: "clamp(20px, 4vw, 56px)",
+          left: "14.2%",
+          top: "32.3%",
+          width: "clamp(100px, 11.5vw, 174px)",
+          height: "auto",
           zIndex: 2,
           pointerEvents: "none",
         }}
-      >
-        <svg width={mob ? 32 : 46} height={mob ? 26 : 37} viewBox="0 0 72 57">
-          <path
-            d="M46.1462 21.1309C46.1462 21.1309 49.2654 9.97958 36.0086 0C22.7603 9.97958 25.871 21.1309 25.871 21.1309C12.6227 11.7412 0 22.3026 0 22.3026C0 22.3026 13.2483 19.3693 17.0359 29.3489C20.8236 39.3285 33.4378 43.4335 33.4378 43.4335L33.3006 54.4413V54.6326C33.2921 55.9399 34.4318 57 35.8372 57H35.8886C37.2854 57 38.4166 55.9478 38.4251 54.6486V54.6087L38.5622 43.4255C38.5622 43.4255 51.185 39.3205 54.9641 29.3409C58.7517 19.3613 72 22.2946 72 22.2946C72 22.2946 59.3944 11.7412 46.1462 21.1309Z"
-            fill="#A94545"
-          />
-        </svg>
-      </div>
+      />
 
-      {/* ── 3×2 Photo grid ── */}
-      <div
+      {/* Right motif — Figma: left=74%, top=75%, 181×143px */}
+      <img
+        src="/assets/home-page/section-9-motif-right.png"
+        alt=""
         style={{
-          position: "relative",
-          zIndex: 1,
-          display: "grid",
-          gridTemplateColumns: mob ? "1fr 1fr" : "repeat(3, 1fr)",
-          gap: mob ? "6px" : "8px",
-          width: mob
-            ? "calc(100% - 40px)"
-            : tab
-              ? "calc(100% - 80px)"
-              : "calc(100% - 200px)",
-          maxWidth: "820px",
-          margin: "0 auto",
+          position: "absolute",
+          left: "74%",
+          top: "75%",
+          width: "clamp(80px, 12vw, 181px)",
+          height: "auto",
+          zIndex: 2,
+          pointerEvents: "none",
         }}
-      >
-        {FOOD_GRID_IMAGES.map((src, i) => (
-          <div
-            key={i}
-            style={{
-              position: "relative",
-              aspectRatio: "1/1",
-              overflow: "hidden",
-              outline: "2px solid #D4B84A",
-              outlineOffset: "-4px",
-            }}
-          >
+      />
+
+      {/* 3×2 image grid — Figma: 296×352px each, 9px col-gap, 12px row-gap, top=46px */}
+      <div style={{
+        position: "relative",
+        zIndex: 1,
+        display: "grid",
+        gridTemplateColumns: mob
+          ? "repeat(2, 1fr)"
+          : "repeat(3, clamp(180px, 19.6vw, 296px))",
+        gridTemplateRows: mob
+          ? "auto"
+          : "repeat(2, clamp(215px, 23.3vw, 352px))",
+        columnGap: mob ? "6px" : "clamp(6px, 0.6vw, 9px)",
+        rowGap: mob ? "6px" : "clamp(8px, 0.8vw, 12px)",
+        paddingTop: mob ? "32px" : "clamp(30px, 3vw, 46px)",
+        paddingBottom: mob ? "32px" : "clamp(30px, 3vw, 46px)",
+        justifyContent: "center",
+        padding: mob ? "32px 16px" : `clamp(30px,3vw,46px) 0`,
+      }}>
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div key={i} style={{ position: "relative", overflow: "hidden", aspectRatio: mob ? "1/1" : "296/352" }}>
             <img
-              src={src}
-              alt={`NH48 dish ${i + 1}`}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
+              src={`/assets/home-page/section-9-image-${i}.png`}
+              alt={`NH48 food ${i}`}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
+            {/* Inner gold border — Figma: inset 9-10px */}
+            <div style={{
+              position: "absolute",
+              top: "9px", left: "10px", right: "10px", bottom: "9px",
+              border: "1.5px solid #D4B84A",
+              pointerEvents: "none",
+            }} />
           </div>
         ))}
       </div>
+
     </section>
   );
 }
