@@ -509,10 +509,10 @@ function StorySection() {
         width: "44.5%",
         margin: 0,
         fontFamily: "BERNIER Distressed, cursive",
-        fontSize: "clamp(13px, 2.09vw, 32px)",
+        fontSize: "clamp(14px, 2.09vw, 31.568px)",
         color: "white",
         textAlign: "center",
-        lineHeight: 1.7,
+        lineHeight: 0.921,
         zIndex: 3,
       }}>
         Tracing the spine of NH48, two friends navigate the distance from the capital's heat to the coast's heart. Their journey reclaims the honest, unedited recipes that live in the dust and light of the open roads of nh48.
@@ -547,12 +547,12 @@ function StorySection() {
         style={{ position: "absolute", left: "14.6%", top: "64.6%", width: "clamp(120px, 17.7vw, 267px)", height: "auto", zIndex: 3, pointerEvents: "none" }}
       />
 
-      {/* Left collage — z=10, IN FRONT of teal card (overlaps left edge) */}
+      {/* Left collage — z=1, BEHIND teal card (peeks out from left side only) */}
       <img
         className="story-drift-up"
         src="/assets/home-page/story-left-group.png"
         alt="Story left collage"
-        style={{ position: "absolute", left: "11.9%", top: "5.2%", width: "27.8%", height: "auto", zIndex: 10 }}
+        style={{ position: "absolute", left: "11.9%", top: "5.2%", width: "27.8%", height: "auto", zIndex: 1 }}
       />
     </section>
   );
