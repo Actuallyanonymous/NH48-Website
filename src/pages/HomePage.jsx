@@ -768,14 +768,14 @@ function Plates() {
       {/* Border — Figma: tall(112×72) + short(112×45) alternating, color rgb(9,44,40) */}
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
-        height: "72px", backgroundColor: "rgb(9,44,40)",
+        height: "72px",
         display: "flex", alignItems: "flex-end", overflow: "hidden",
       }}>
         {Array.from({ length: 9 }, (_, i) => [
           <img key={`t${i}`} src="/assets/home-page/border-motif-tall.png"
-            style={{ width: "112px", height: "72px", flexShrink: 0, alignSelf: "flex-start", display: "block" }} />,
+            style={{ width: "113px", height: "72px", flexShrink: 0, alignSelf: "flex-start", display: "block" }} />,
           <img key={`s${i}`} src="/assets/home-page/border-motif-short.png"
-            style={{ width: "112px", height: "45px", flexShrink: 0, display: "block" }} />,
+            style={{ width: "113px", height: "45px", flexShrink: 0, display: "block" }} />,
         ]).flat()}
       </div>
     </section>
