@@ -27,278 +27,142 @@ function HeroSection() {
 }
 
 function GetInTouch() {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", message: "" });
+  const handleChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const width = useWindowWidth();
+  const mob = width < 768;
 
-  const handleChange = (e) =>
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const B = { fontFamily: "BERNIER Distressed, cursive", margin: 0 };
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", form);
-    // add your submit logic here
-
+  // Shared input style — border rgb(229,236,235) 1px, transparent bg
+  const inp = {
+    background: "transparent",
+    border: "1px solid rgb(229,236,235)",
+    color: "white",
+    outline: "none",
+    padding: "0 10px",
+    fontFamily: "BERNIER Distressed, cursive",
+    fontSize: "clamp(10px, 1.06vw, 16px)",
+    boxSizing: "border-box",
+    display: "block",
   };
 
-  return (
-  <section style={styles.section}>
-
-    {/* ── Top: heading + form side by side ── */}
-    <div style={styles.topRow}>
-      {/* Left column */}
-      <div style={styles.left}>
-        <h2 style={styles.heading}>GET IN TOUCH</h2>
-        <p style={styles.body}>
-          IF YOU NEED TO GET IN TOUCH WITH US, PLEASE FILL THE FORM ON THE
-          RIGHT AND OUR TEAM WILL GET BACK TO YOU AS SOON AS POSSIBLE.
+  if (mob) {
+    return (
+      <section style={{ backgroundColor: "#14534D", padding: "40px 24px 48px" }}>
+        <p style={{ ...B, fontSize: "28px", color: "white", lineHeight: 0.921, whiteSpace: "pre-line", marginBottom: "24px" }}>
+          {"Get in touch\n\nIf you need to get in touch with us, please fill in the form below and our team will get back to you as soon as possible."}
         </p>
-      </div>
-      
-
-      {/* ── Right column — form ── */}
-      <div style={styles.right}>
-        {/* Name row */}
-        <div style={styles.fieldGroup}>
-          <label style={styles.label}>NAME</label>
-          <div style={styles.nameRow}>
-            <div style={styles.nameField}>
-              <subLabel style = {styles.subLabel}>
-                <span style={styles.required}>FIRST NAME [REQUIRED]</span>
-              </subLabel>
-              <input
-                name="firstName"
-                value={form.firstName}
-                onChange={handleChange}
-                style={styles.input}
-              />
+        <div style={{ display: "flex", justifyContent: "space-around", margin: "20px 0 28px" }}>
+          {[0,1,2].map(i => <img key={i} src="/assets/visitus/section-3-vector.png" alt="" style={{ width: "60px", height: "auto" }} />)}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          <p style={{ ...B, fontSize: "20px", color: "white", lineHeight: 0.921 }}>name</p>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <div style={{ flex: 1 }}>
+              <p style={{ ...B, fontSize: "14px", color: "white", lineHeight: 0.921, marginBottom: "6px" }}>first name</p>
+              <input name="firstName" value={form.firstName} onChange={handleChange} style={{ ...inp, width: "100%", height: "38px" }} />
             </div>
-            <div style={styles.nameField}>
-              <span style={styles.subLabel}>LAST NAME</span>
-              <input
-                name="lastName"
-                value={form.lastName}
-                onChange={handleChange}
-                style={styles.input}
-              />
+            <div style={{ flex: 1 }}>
+              <p style={{ ...B, fontSize: "14px", color: "white", lineHeight: 0.921, marginBottom: "6px" }}>last name</p>
+              <input name="lastName" value={form.lastName} onChange={handleChange} style={{ ...inp, width: "100%", height: "38px" }} />
             </div>
           </div>
+          <p style={{ ...B, fontSize: "14px", color: "white", lineHeight: 0.921, marginTop: "4px" }}>email [required]</p>
+          <input name="email" type="email" value={form.email} onChange={handleChange} style={{ ...inp, width: "100%", height: "38px" }} />
+          <p style={{ ...B, fontSize: "14px", color: "white", lineHeight: 0.921, marginTop: "4px" }}>message [required]</p>
+          <textarea name="message" value={form.message} onChange={handleChange} style={{ ...inp, width: "100%", height: "80px", padding: "8px 10px", resize: "none" }} />
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "8px" }}>
+            <button onClick={() => console.log(form)} style={{ ...B, width: "120px", height: "40px", background: "transparent", border: "5px solid rgb(229,236,235)", color: "white", cursor: "pointer", fontSize: "18px" }}>send</button>
+          </div>
         </div>
+      </section>
+    );
+  }
 
-        {/* Email */}
-        <div style={styles.fieldGroup}>
-          <label style={styles.label}>
-            EMAIL <span style={styles.required}>[REQUIRED]</span>
-          </label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            style={styles.inputFull}
-          />
-        </div>
+  // Desktop — every element absolutely positioned using exact Figma % coords
+  // Section: 1512×678px ref. All x as % of 1512, y as % of 678.
+  // Figma uses px inputs — we scale with vw for responsiveness.
+  const iH  = "clamp(28px, 2.98vw, 45px)";   // input height  45px → 2.98vw
+  const taH = "clamp(56px, 5.95vw, 90px)";   // textarea h    90px → 5.95vw
+  const iW1 = "clamp(100px, 12.57vw, 190px)"; // name input w 190px → 12.57vw
+  const iW2 = "clamp(200px, 26.52vw, 401px)"; // wide input w 401px → 26.52vw
+  const lbl = { ...B, fontSize: "clamp(10px, 1.32vw, 20px)", color: "white", lineHeight: 0.921, margin: 0 };
 
-        {/* Message */}
-        <div style={styles.fieldGroup}>
-          <label style={styles.label}>
-            MESSAGE <span style={styles.required}>[REQUIRED]</span>
-          </label>
-          <textarea
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            rows={5}
-            style={styles.textarea}
-          />
-        </div>
+  return (
+    <section style={{
+      position: "relative",
+      width: "100%",
+      backgroundColor: "#14534D",
+      minHeight: "678px",
+      height: "44.8vw",
+      maxHeight: "678px",
+      overflow: "hidden",
+    }}>
 
-        {/* Send button */}
-        <div style={styles.buttonRow}>
-          <button onClick={handleSubmit} style={styles.sendBtn}
-            onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
-          >
-            SEND
-          </button>
-        </div>
-      </div>
-      </div>
-        {/* ── Bottom: 3 lotuses full width ── */}
-    <div style={styles.lotusRow}>
-      <LotusPlaceholder />
-      <LotusPlaceholder />
-      <LotusPlaceholder />
-    </div>
+      {/* ── 3 Vectors ─────────────────────────────────────────────────────────
+          Figma: left=22/611/1289px, top=303px (44.7% of 678), w=201 h=161 */}
+      {[1.46, 40.41, 85.28].map((lp, i) => (
+        <img key={i} src="/assets/visitus/section-3-vector.png" alt=""
+          style={{ position: "absolute", left: `${lp}%`, top: "44.7%", width: "clamp(100px, 13.3vw, 201px)", height: "auto", pointerEvents: "none" }} />
+      ))}
+
+      {/* ── Left text block ───────────────────────────────────────────────────
+          Figma: x=263 (17.4%), y=175 (25.8%), w=390 (25.8%), 40px BERNIER */}
+      <p style={{
+        position: "absolute", left: "17.4%", top: "25.8%", width: "25.8%",
+        ...B, fontSize: "clamp(18px, 2.65vw, 40px)", lineHeight: 0.921,
+        color: "white", whiteSpace: "pre-line",
+      }}>
+        {"Get in touch\n\nIf you need to get in touch with us, please fill in the form on the right and our team will get back to you as soon as possible."}
+      </p>
+
+      {/* ── Form elements ─────────────────────────────────────────────────────
+          All x/y from Figma as % of 1512/678 */}
+
+      {/* "name" — x=848(56.1%), y=174(25.7%), 40px */}
+      <p style={{ position: "absolute", left: "56.1%", top: "25.7%", ...B, fontSize: "clamp(18px, 2.65vw, 40px)", color: "white", lineHeight: 0.921 }}>name</p>
+
+      {/* "first name" — x=848(56.1%), y=233(34.4%), 20px */}
+      <p style={{ position: "absolute", left: "56.1%", top: "34.4%", ...lbl }}>first name</p>
+      {/* first name input — x=848(56.1%), y=265(39.1%), w=190(12.57%), h=45px */}
+      <input name="firstName" value={form.firstName} onChange={handleChange}
+        style={{ ...inp, position: "absolute", left: "56.1%", top: "39.1%", width: iW1, height: iH }} />
+
+      {/* "last name" — x=1059(70.0%), y=233(34.4%), 20px */}
+      <p style={{ position: "absolute", left: "70.0%", top: "34.4%", ...lbl }}>last name</p>
+      {/* last name input — x=1059(70.0%), y=265(39.1%), w=190(12.57%), h=45px */}
+      <input name="lastName" value={form.lastName} onChange={handleChange}
+        style={{ ...inp, position: "absolute", left: "70.0%", top: "39.1%", width: iW1, height: iH }} />
+
+      {/* "email [required]" — x=848(56.1%), y=321(47.3%), 20px */}
+      <p style={{ position: "absolute", left: "56.1%", top: "47.3%", ...lbl }}>email [required]</p>
+      {/* email input — x=848(56.1%), y=374(55.2%), w=401(26.52%), h=45px */}
+      <input name="email" type="email" value={form.email} onChange={handleChange}
+        style={{ ...inp, position: "absolute", left: "56.1%", top: "55.2%", width: iW2, height: iH }} />
+
+      {/* "message [required]" — x=848(56.1%), y=430(63.4%), 20px */}
+      <p style={{ position: "absolute", left: "56.1%", top: "63.4%", ...lbl }}>message [required]</p>
+      {/* message textarea — x=848(56.1%), y=483(71.2%), w=401(26.52%), h=90px */}
+      <textarea name="message" value={form.message} onChange={handleChange}
+        style={{ ...inp, position: "absolute", left: "56.1%", top: "71.2%", width: iW2, height: taH, padding: "8px 10px", resize: "none" }} />
+
+      {/* send button — x=988(65.3%), y=598(88.2%), w=123(8.13%), h=45px, 7px stroke */}
+      <button onClick={() => console.log(form)}
+        style={{
+          position: "absolute", left: "65.3%", top: "88.2%",
+          width: "clamp(80px, 8.13vw, 123px)", height: iH,
+          background: "transparent", border: "clamp(4px, 0.46vw, 7px) solid rgb(229,236,235)",
+          color: "white", cursor: "pointer", ...B, fontSize: "clamp(12px, 1.59vw, 24px)",
+        }}
+        onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
+        onMouseLeave={e => (e.currentTarget.style.background = "transparent")}>
+        send
+      </button>
 
     </section>
   );
 }
-
-// Swap the div below with <img src={lotusImg} ... /> once you have the asset
-function LotusPlaceholder() {
-  return (
-    <div style={styles.lotus}>
-      {/* Replace with: <img src={lotusImg} alt="lotus" style={{ width: "100%", opacity: 0.35 }} /> */}
-<svg width="201" height="162" viewBox="0 0 201 162" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M128.762 59.8169C128.762 59.8169 137.466 28.25 100.475 0C63.5082 28.25 72.1879 59.8169 72.1879 59.8169C35.2212 33.2366 0 63.1338 0 63.1338C0 63.1338 36.9667 54.8302 47.5355 83.0802C58.1042 111.33 93.3015 122.951 93.3015 122.951L92.9189 154.111V154.653C92.895 158.353 96.0752 161.354 99.9967 161.354H100.14C104.038 161.354 107.194 158.376 107.218 154.698V154.585L107.6 122.928C107.6 122.928 142.822 111.308 153.366 83.0577C163.935 54.8077 200.902 63.1112 200.902 63.1112C200.902 63.1112 165.729 33.2366 128.762 59.8169Z" fill="#234D48"/>
-</svg>
-
-    </div>
-  );
-}
-
-// ── Styles ────────────────────────────────────────────────────
-const styles = {
-section: {
-  backgroundColor: "#2a6b60",
-  display: "flex",
-  flexDirection: "column",   // ← column now, not row
-  padding: "56px 64px 0px",
-  width: "100%",
-  boxSizing: "border-box",
-  overflow: "hidden",
-},
-
-left: {
-  flex: "0 0 320px",        // ← fixed width, doesn't grow
-  display: "flex",
-  flexDirection: "column",
-  gap: 20,
-},
-
-right: {
-  flex: 1,                  // ← takes remaining space
-  display: "flex",
-  flexDirection: "column",
-  gap: 20,
-},
-
-topRow: {
-  display: "flex",
-  flexDirection: "row",
-  gap: 80,
-  alignItems: "flex-start",
-  width: "100%",
-},
-
-lotusRow: {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-around",  // ← evenly spaced
-  alignItems: "flex-end",
-  width: "100%",
-  marginTop: 24,
-},
-
-  heading: {
-    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
-    fontSize: "2rem",
-    letterSpacing: "0.12em",
-    color: "#ffffff",
-    margin: 0,
-  },
-  body: {
-    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
-    fontSize: "0.8rem",
-    letterSpacing: "0.08em",
-    lineHeight: 1.7,
-    color: "rgba(255,255,255,0.85)",
-    margin: 0,
-  },
-
-  fieldGroup: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 6,
-  },
-  label: {
-    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
-    fontSize: "1.1rem",
-    letterSpacing: "0.12em",
-    color: "#ffffff",
-  },
-  required: {
-    fontSize: "0.75rem",
-    letterSpacing: "0.08em",
-    color: "rgba(255,255,255,0.7)",
-  },
-  subLabel: {
-    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
-    fontSize: "0.72rem",
-    letterSpacing: "0.1em",
-    color: "rgba(255,255,255,0.75)",
-    marginBottom: 4,
-    display: "block",
-  },
-  nameRow: {
-    display: "flex",
-    gap: 16,
-  },
-  nameField: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-  },
-  input: {
-    background: "transparent",
-    border: "1.5px solid rgba(255,255,255,0.6)",
-    borderRadius: 0,
-    padding: "8px 10px",
-    color: "#fff",
-    fontSize: "0.9rem",
-    outline: "none",
-    width: "100%",
-    boxSizing: "border-box",
-  },
-  inputFull: {
-    background: "transparent",
-    border: "1.5px solid rgba(255,255,255,0.6)",
-    borderRadius: 0,
-    padding: "8px 10px",
-    color: "#fff",
-    fontSize: "0.9rem",
-    outline: "none",
-    width: "100%",
-    boxSizing: "border-box",
-  },
-  textarea: {
-    background: "transparent",
-    border: "1.5px solid rgba(255,255,255,0.6)",
-    borderRadius: 0,
-    padding: "8px 10px",
-    color: "#fff",
-    fontSize: "0.9rem",
-    outline: "none",
-    resize: "vertical",
-    width: "100%",
-    boxSizing: "border-box",
-    fontFamily: "inherit",
-  },
-  buttonRow: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  sendBtn: {
-    background: "transparent",
-    border: "1.5px solid #ffffff",
-    color: "#ffffff",
-    fontFamily: "'BERNIER Distressed', 'Impact', sans-serif",
-    fontSize: "1rem",
-    letterSpacing: "0.2em",
-    padding: "8px 40px",
-    cursor: "pointer",
-    transition: "background 0.2s ease",
-  },
-
-
-  lotus: {
-    display: "flex",
-    alignItems: "flex-end",
-  },
-};
 
 
 export default function VisitUsPage() {
