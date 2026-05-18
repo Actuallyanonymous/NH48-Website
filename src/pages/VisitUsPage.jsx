@@ -104,7 +104,7 @@ function GetInTouch() {
           Apply opacity so they blend correctly on the teal background */}
       {[1.46, 40.41, 85.28].map((lp, i) => (
         <img key={i} src="/assets/visitus/section-3-vector.png" alt=""
-          style={{ position: "absolute", left: `${lp}%`, top: "44.7%", width: "clamp(100px, 13.3vw, 201px)", height: "auto", pointerEvents: "none", opacity: 0.45 }} />
+          style={{ position: "absolute", left: `${lp}%`, top: "44.7%", width: "clamp(100px, 13.3vw, 201px)", height: "auto", pointerEvents: "none" }} />
       ))}
 
       {/* ── Left text block ───────────────────────────────────────────────────
