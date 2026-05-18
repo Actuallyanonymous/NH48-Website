@@ -281,9 +281,9 @@ function CreamSection({ mob }) {
       }}>
         {Array.from({ length: 8 }, (_, i) => [
           <img key={`t${i}`} src="/assets/menu/section-3-motif-2.png"
-            style={{ width: '113px', height: '72px', flexShrink: 0, alignSelf: 'flex-start', display: 'block', opacity: 0.54 }} />,
+            style={{ width: '113px', height: '72px', flexShrink: 0, alignSelf: 'flex-start', display: 'block' }} />,
           <img key={`s${i}`} src="/assets/menu/section-3-motif-1.png"
-            style={{ width: '101px', height: '46px', flexShrink: 0, display: 'block', opacity: 0.54 }} />,
+            style={{ width: '101px', height: '46px', flexShrink: 0, display: 'block' }} />,
         ]).flat()}
       </div>
     </section>
