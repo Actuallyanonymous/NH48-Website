@@ -5,15 +5,14 @@ import SiteFooter from '../components/SiteFooter'
 // ─── Colour tokens (Figma) ────────────────────────────────────────────────────
 const CREAM   = '#FCF9EB'
 const TEAL    = '#14534D'
+const RED     = 'rgb(169,69,69)'   // item name colour from Figma styleOverrideTable
 const RED_BTN = '#A94545'
 
 // ─── Figma layout constants (1512px canvas) ────────────────────────────────────
-// Content area: 1325px wide, centred (left: 93px, right: 93px → gap between cols: 21px)
-const COL_W   = 652   // each column width (px in Figma)
-const COL_GAP = 21    // gap between the two columns
+const COL_W   = 652
+const COL_GAP = 21
 
 // ─── City skyline border ───────────────────────────────────────────────────────
-// Alternating tall (71.58) + short (45.41) rectangular arches, maroon, repeating
 function CitySkylineBorder() {
   return (
     <div
@@ -31,7 +30,7 @@ function CitySkylineBorder() {
   )
 }
 
-// ─── Drinks-menu CTA button (Figma: Rectangle 309, #A94545, inset white border) ─
+// ─── Drinks-menu CTA button ───────────────────────────────────────────────────
 function DrinksMenuBtn() {
   return (
     <Link
@@ -48,7 +47,6 @@ function DrinksMenuBtn() {
         flexShrink: 0,
       }}
     >
-      {/* Inset white border — Figma Rectangle 269 */}
       <div style={{
         position: 'absolute',
         top: '4px', left: '7px', right: '7px', bottom: '4px',
@@ -71,18 +69,22 @@ function DrinksMenuBtn() {
 }
 
 // ─── Menu section text block ───────────────────────────────────────────────────
-// Renders: large category title, italic intro line, then item rows (name + price + desc)
+// Figma styles (from styleOverrideTable):
+//   title:  BERNIER 36px  teal #14534D
+//   intro:  Helvetica Neue 14px w500 italic  (no explicit color override → inherits dark)
+//   name:   BERNIER 20px  red rgb(169,69,69)
+//   price:  BERNIER 20px  red rgb(169,69,69)
+//   desc:   Helvetica Neue 13px w400
 function MenuColumn({ section }) {
   return (
     <div style={{ width: '100%' }}>
 
-      {/* Category title — Figma: 36px Bernier, teal, tracking -0.04em */}
+      {/* Category title — BERNIER 36px teal */}
       <h2 style={{
         fontFamily: "'BERNIER Distressed', cursive",
-        fontSize: 'clamp(22px, 2.4vw, 36px)',
+        fontSize: 'clamp(22px, 2.38vw, 36px)',
         fontWeight: 400,
         lineHeight: 1.06,
-        letterSpacing: '-0.04em',
         color: TEAL,
         margin: '0 0 6px 0',
         textTransform: 'uppercase',
@@ -90,27 +92,26 @@ function MenuColumn({ section }) {
         {section.title}
       </h2>
 
-      {/* Intro / tagline */}
+      {/* Intro paragraph — Helvetica Neue 14px w500 italic */}
       <p style={{
-        fontFamily: "'Barlow Condensed', sans-serif",
-        fontSize: 'clamp(10px, 0.85vw, 13px)',
-        fontWeight: 400,
+        fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+        fontSize: 'clamp(9px, 0.93vw, 14px)',
+        fontWeight: 500,
+        fontStyle: 'italic',
         color: '#3a3a3a',
         lineHeight: 1.4,
-        margin: '0 0 18px 0',
-        textTransform: 'uppercase',
-        letterSpacing: '0.04em',
+        margin: '0 0 14px 0',
       }}>
         {section.intro}
       </p>
 
       {/* Divider */}
-      <div style={{ width: '100%', height: '1px', backgroundColor: 'rgba(20,83,77,0.2)', marginBottom: '16px' }} />
+      <div style={{ width: '100%', height: '1px', backgroundColor: 'rgba(20,83,77,0.2)', marginBottom: '14px' }} />
 
       {/* Menu items */}
       {section.items.map((item, i) => (
-        <div key={i} style={{ marginBottom: '16px' }}>
-          {/* Name + price row */}
+        <div key={i} style={{ marginBottom: '14px' }}>
+          {/* Name + price — BERNIER 20px red */}
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -120,27 +121,27 @@ function MenuColumn({ section }) {
           }}>
             <span style={{
               fontFamily: "'BERNIER Distressed', cursive",
-              fontSize: 'clamp(14px, 1.05vw, 16px)',
+              fontSize: 'clamp(12px, 1.32vw, 20px)',
               fontWeight: 400,
-              letterSpacing: '0.03em',
-              color: TEAL,
+              color: RED,
               textTransform: 'uppercase',
             }}>
               {item.name}
             </span>
             <span style={{
               fontFamily: "'BERNIER Distressed', cursive",
-              fontSize: 'clamp(14px, 1.05vw, 16px)',
-              color: TEAL,
+              fontSize: 'clamp(12px, 1.32vw, 20px)',
+              color: RED,
               whiteSpace: 'nowrap',
             }}>
               $ {item.price}
             </span>
           </div>
-          {/* Description */}
+          {/* Description — Helvetica Neue 13px w400 */}
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontSize: 'clamp(9px, 0.75vw, 11.5px)',
+            fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            fontSize: 'clamp(8px, 0.86vw, 13px)',
+            fontWeight: 400,
             color: '#555',
             lineHeight: 1.45,
             margin: 0,
@@ -206,12 +207,11 @@ const SMALL_PLATES = {
   ],
 }
 
-// ─── Photo images (using available local assets) ──────────────────────────────
-// Figma: top row 2 wide landscape photos, bottom row 2 wide landscape photos
-const TOP_PHOTOS    = ['/assets/dishes/butter-chicken.png', '/assets/dishes/dal-bhati-churma.png']
-const BOTTOM_PHOTOS = ['/assets/dishes/dosa.png',           '/assets/dishes/pav-bhaji.png']
+// ─── Photos (exact Figma images) ─────────────────────────────────────────────
+const TOP_PHOTOS    = ['/assets/menu/food-menu-image-1.png', '/assets/menu/food-menu-image-2.png']
+const BOTTOM_PHOTOS = ['/assets/menu/food-menu-image-3.png', '/assets/menu/food-menu-image-4.png']
 
-// ─── Two-column photo row (Figma: 652px each, 21px gap, 86px top) ─────────────
+// ─── Two-column photo row ─────────────────────────────────────────────────────
 function PhotoRow({ srcs, mob }) {
   return (
     <div style={{
@@ -250,7 +250,7 @@ function PhotoRow({ srcs, mob }) {
   )
 }
 
-// ─── Two-column text row (Figma: 665px / 658px, 472px top) ───────────────────
+// ─── Two-column menu text row ─────────────────────────────────────────────────
 function MenuRow({ left, right, mob }) {
   return (
     <div style={{
@@ -277,58 +277,35 @@ export default function FoodMenuPage() {
   const width = useWindowWidth()
   const mob   = width < 768
 
-  // Horizontal outer padding scales exactly like Figma:
-  // 93px on 1512px → 6.15%, but never less than 16px on mobile
   const px = mob ? '16px' : 'clamp(16px, 6.15%, 93px)'
 
   return (
-    <div
-      style={{
-        width: '100%',
-        backgroundColor: CREAM,
-        overflowX: 'hidden',
-      }}
-    >
-      {/* ── Main content wrapper — Figma outer padding ── */}
+    <div style={{ width: '100%', backgroundColor: CREAM, overflowX: 'hidden' }}>
       <div style={{ paddingLeft: px, paddingRight: px }}>
 
-        {/* ══════════════════════════════════════════════════
-            ROW 1 — TOP PHOTOS  (Figma: top 86px)
-        ════════════════════════════════════════════════════ */}
+        {/* ROW 1 — TOP PHOTOS  (Figma: top 86px) */}
         <div style={{ paddingTop: mob ? '32px' : '86px' }}>
           <PhotoRow srcs={TOP_PHOTOS} mob={mob} />
         </div>
 
-        {/* ══════════════════════════════════════════════════
-            ROW 2 — MENU TEXT: Tandoori / Main Road Curries
-            (Figma: top 472px → gap from row1 bottom: 472 - (86+293) = 93px)
-        ════════════════════════════════════════════════════ */}
+        {/* ROW 2 — MENU TEXT: Tandoori / Main Road Curries (gap from row1 bottom: 93px) */}
         <div style={{ paddingTop: mob ? '28px' : '93px' }}>
           <MenuRow left={TANDOORI} right={CURRIES} mob={mob} />
         </div>
 
-        {/* ══════════════════════════════════════════════════
-            ROW 3 — BOTTOM PHOTOS (Figma: top 1091px)
-            Gap from row2 bottom: 1091 - (472+526) = 93px
-        ════════════════════════════════════════════════════ */}
+        {/* ROW 3 — BOTTOM PHOTOS (gap: 93px) */}
         <div style={{ paddingTop: mob ? '32px' : '93px' }}>
           <PhotoRow srcs={BOTTOM_PHOTOS} mob={mob} />
         </div>
 
-        {/* ══════════════════════════════════════════════════
-            ROW 4 — MENU TEXT: Hand-Tossed Breads / Small Plates
-            (Figma: top 1477px → gap from row3 bottom: 1477 - (1091+293) = 93px)
-        ════════════════════════════════════════════════════ */}
+        {/* ROW 4 — MENU TEXT: Hand-Tossed Breads / Small Plates (gap: 93px) */}
         <div style={{ paddingTop: mob ? '28px' : '93px' }}>
           <MenuRow left={BREADS} right={SMALL_PLATES} mob={mob} />
         </div>
 
-      </div>{/* end main content wrapper */}
+      </div>
 
-      {/* ══════════════════════════════════════════════════
-          DRINKS MENU CTA button
-          (Figma: top 2052px → gap from row4 bottom: 2052 - (1477+526) = 49px, centered)
-      ════════════════════════════════════════════════════ */}
+      {/* DRINKS MENU CTA (Figma: 49px gap below last text, centered) */}
       <div style={{
         display: 'flex',
         justifyContent: 'center',
@@ -338,12 +315,9 @@ export default function FoodMenuPage() {
         <DrinksMenuBtn />
       </div>
 
-      {/* ══════════════════════════════════════════════════
-          CITY SKYLINE BORDER (Figma: top 2123px, repeating arches)
-      ════════════════════════════════════════════════════ */}
+      {/* CITY SKYLINE BORDER */}
       <CitySkylineBorder />
 
-      {/* ── Footer ── */}
       <SiteFooter />
     </div>
   )

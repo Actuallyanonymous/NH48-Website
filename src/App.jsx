@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
@@ -8,6 +9,12 @@ import FoodMenuPage from './pages/FoodMenuPage'
 import DrinksMenuPage from './pages/DrinksMenuPage'
 import VisitUsPage from './pages/VisitUsPage'
 import './index.css'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 
 function PageWrapper({ children }) {
   return (
@@ -41,6 +48,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <div style={{ width: '100%' }}>
+      <ScrollToTop />
       <Navbar />
       <AnimatedRoutes />
     </div>
