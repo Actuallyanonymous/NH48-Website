@@ -1639,9 +1639,9 @@ function FoodGridSection() {
     <section style={{
       position: "relative",
       width: "100%",
-      // Figma: Rectangle 331 bg=rgb(20,83,77) solid fill covers y=6199–7271
+      // Figma: Rectangle 331 bg=rgb(20,83,77), h=1072px at 1512px viewport
       backgroundColor: "rgb(20,83,77)",
-      height: mob ? "auto" : "clamp(600px, 60.8vw, 920px)",
+      height: mob ? "auto" : "clamp(700px, 70.9vw, 1072px)",
       overflow: "hidden",
     }}>
 
@@ -1712,7 +1712,7 @@ function FoodGridSection() {
           Each image 296×352px, col-gap 9px, row-gap 12px */}
       <div style={{
         position: mob ? "relative" : "absolute",
-        top: mob ? "auto" : "clamp(30px, 3.05vw, 46px)",
+        top: mob ? "auto" : "clamp(130px, 12.2vw, 184px)",
         left: mob ? "auto" : "50%",
         transform: mob ? "none" : "translateX(-50%)",
         zIndex: 1,
