@@ -1,5 +1,31 @@
+import { useEffect, useRef } from 'react'
 import { useWindowWidth } from '../hooks/useWindowWidth'
 import { Link } from 'react-router-dom'
+
+function SectionWrapper({ children, style }) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.remove('transparent')
+          el.classList.add('animated')
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.08 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+  return (
+    <div ref={ref} className="sectionWrapper transparent" style={style}>
+      {children}
+    </div>
+  )
+}
 
 // ─── Colour tokens (Figma) ────────────────────────────────────────────────────
 const CREAM   = '#FCF9EB'
@@ -281,37 +307,37 @@ export default function DrinksMenuPage() {
     <div style={{ width: '100%', backgroundColor: CREAM, overflowX: 'hidden' }}>
       <div style={{ paddingLeft: px, paddingRight: px }}>
 
-        {/* ROW 1 — TOP PHOTOS (Figma: top 86px) */}
-        <div style={{ paddingTop: mob ? '32px' : '86px' }}>
+        {/* ROW 1 — TOP PHOTOS (first child → subtle animation) */}
+        <SectionWrapper style={{ paddingTop: mob ? '32px' : '86px' }}>
           <PhotoRow srcs={TOP_PHOTOS} mob={mob} />
-        </div>
+        </SectionWrapper>
 
-        {/* ROW 2 — MENU TEXT: Indian Mocktails / Spirited Cocktails (gap: 93px) */}
-        <div style={{ paddingTop: mob ? '28px' : '93px' }}>
+        {/* ROW 2 — MENU TEXT: Indian Mocktails / Spirited Cocktails */}
+        <SectionWrapper style={{ paddingTop: mob ? '28px' : '93px' }}>
           <MenuRow left={MOCKTAILS} right={COCKTAILS} mob={mob} />
-        </div>
+        </SectionWrapper>
 
-        {/* ROW 3 — BOTTOM PHOTOS (gap: 93px) */}
-        <div style={{ paddingTop: mob ? '32px' : '93px' }}>
+        {/* ROW 3 — BOTTOM PHOTOS */}
+        <SectionWrapper style={{ paddingTop: mob ? '32px' : '93px' }}>
           <PhotoRow srcs={BOTTOM_PHOTOS} mob={mob} />
-        </div>
+        </SectionWrapper>
 
-        {/* ROW 4 — MENU TEXT: Indian Thandai / Fruits Lassi (gap: 93px) */}
-        <div style={{ paddingTop: mob ? '28px' : '93px' }}>
+        {/* ROW 4 — MENU TEXT: Indian Thandai / Fruits Lassi */}
+        <SectionWrapper style={{ paddingTop: mob ? '28px' : '93px' }}>
           <MenuRow left={THANDAI} right={LASSI} mob={mob} />
-        </div>
+        </SectionWrapper>
 
       </div>
 
-      {/* FOOD MENU CTA (49px gap, centered) */}
-      <div style={{
+      {/* FOOD MENU CTA */}
+      <SectionWrapper style={{
         display: 'flex',
         justifyContent: 'center',
         paddingTop: mob ? '36px' : '49px',
         paddingBottom: mob ? '28px' : '32px',
       }}>
         <FoodMenuBtn />
-      </div>
+      </SectionWrapper>
 
       {/* BOTTOM MOTIF BORDER */}
       <MotifBorder />
