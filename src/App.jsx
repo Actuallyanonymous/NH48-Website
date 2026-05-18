@@ -16,6 +16,7 @@ function ScrollToTop() {
   return null
 }
 
+// Standard fade for most pages
 function PageWrapper({ children }) {
   return (
     <motion.div
@@ -23,6 +24,21 @@ function PageWrapper({ children }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+// Slide-up from below + fade for menu detail pages
+// Content starts 80px below resting position, rises into place with smooth ease-out
+function SlideUpWrapper({ children }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 80 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 80 }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
@@ -37,8 +53,8 @@ function AnimatedRoutes() {
         <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
         <Route path="/menu" element={<PageWrapper><MenuLandingPage /></PageWrapper>} />
-        <Route path="/menu/food" element={<PageWrapper><FoodMenuPage /></PageWrapper>} />
-        <Route path="/menu/drinks" element={<PageWrapper><DrinksMenuPage /></PageWrapper>} />
+        <Route path="/menu/food" element={<SlideUpWrapper><FoodMenuPage /></SlideUpWrapper>} />
+        <Route path="/menu/drinks" element={<SlideUpWrapper><DrinksMenuPage /></SlideUpWrapper>} />
         <Route path="/visit" element={<PageWrapper><VisitUsPage /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
