@@ -99,7 +99,7 @@ export default function SiteFooter() {
                 letterSpacing: "0.01em",
               }}
             >
-              NH48
+              nh48
             </h2>
           </div>
 
@@ -215,85 +215,26 @@ export default function SiteFooter() {
           >
             <p style={{ ...ftLabel, marginBottom: "20px" }}>FOLLOW US</p>
 
-            {/* Social icons — Figma: Insta@1314, FB@1366(+52px), TikTok@1413(+47px) */}
-            <div
-              style={{
-                display: "flex",
-                gap: tab ? "12px" : "17px",
-                alignItems: "center",
-              }}
-            >
-              <a
-                href="#"
-                aria-label="Instagram"
-                style={{
-                  color: "#FFFFFF",
-                  display: "flex",
-                  transition: "opacity 0.2s",
-                }}
+            {/* Social icons — exact Figma PNGs */}
+            <div style={{ display: "flex", gap: tab ? "12px" : "16px", alignItems: "center" }}>
+              {/* Instagram — two layers: outer (32×32) + inner circle (13×13) */}
+              <a href="#" aria-label="Instagram" style={{ display: "block", position: "relative", width: "36px", height: "36px", transition: "opacity 0.2s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-              >
-                <svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <circle cx="12" cy="12" r="4" />
-                  <circle
-                    cx="17.5"
-                    cy="6.5"
-                    r="1.3"
-                    fill="currentColor"
-                    stroke="none"
-                  />
-                </svg>
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}>
+                <img src="/assets/home-page/footer-insta-1.png" alt="" style={{ position: "absolute", width: "36px", height: "36px", top: 0, left: 0 }} />
+                <img src="/assets/home-page/footer-insta-2.png" alt="" style={{ position: "absolute", width: "13px", height: "13px", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }} />
               </a>
-              <a
-                href="#"
-                aria-label="Facebook"
-                style={{
-                  color: "#FFFFFF",
-                  display: "flex",
-                  transition: "opacity 0.2s",
-                }}
+              {/* Facebook */}
+              <a href="#" aria-label="Facebook" style={{ display: "block", transition: "opacity 0.2s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-              >
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}>
+                <img src="/assets/home-page/footer-facebook.png" alt="" style={{ width: "32px", height: "32px", display: "block" }} />
               </a>
-              <a
-                href="#"
-                aria-label="TikTok"
-                style={{
-                  color: "#FFFFFF",
-                  display: "flex",
-                  transition: "opacity 0.2s",
-                }}
+              {/* TikTok */}
+              <a href="#" aria-label="TikTok" style={{ display: "block", transition: "opacity 0.2s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-              >
-                <svg
-                  width="31"
-                  height="31"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
-                </svg>
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}>
+                <img src="/assets/home-page/footer-tiktok.png" alt="" style={{ width: "31px", height: "31px", display: "block" }} />
               </a>
             </div>
           </div>
@@ -318,7 +259,7 @@ export default function SiteFooter() {
               textShadow: "0px 6px 6px rgba(0,0,0,0.25)",
             }}
           >
-            NH48
+            nh48
           </h2>
           <div>
             <p style={{ ...ftLabel, marginBottom: "10px" }}>
@@ -353,56 +294,17 @@ export default function SiteFooter() {
           </p>
           <div>
             <p style={{ ...ftLabel, marginBottom: "10px" }}>FOLLOW US</p>
-            <div style={{ display: "flex", gap: "14px" }}>
-              {[
-                <svg
-                  key="ig"
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="2" y="2" width="20" height="20" rx="5" />
-                  <circle cx="12" cy="12" r="4" />
-                  <circle
-                    cx="17.5"
-                    cy="6.5"
-                    r="1.2"
-                    fill="currentColor"
-                    stroke="none"
-                  />
-                </svg>,
-                <svg
-                  key="fb"
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>,
-                <svg
-                  key="tt"
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
-                </svg>,
-              ].map((icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  style={{ color: "#FFFFFF", display: "flex" }}
-                >
-                  {icon}
-                </a>
-              ))}
+            <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
+              <a href="#" aria-label="Instagram" style={{ display: "block", position: "relative", width: "28px", height: "28px" }}>
+                <img src="/assets/home-page/footer-insta-1.png" alt="" style={{ position: "absolute", width: "28px", height: "28px", top: 0, left: 0 }} />
+                <img src="/assets/home-page/footer-insta-2.png" alt="" style={{ position: "absolute", width: "10px", height: "10px", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }} />
+              </a>
+              <a href="#" aria-label="Facebook" style={{ display: "block" }}>
+                <img src="/assets/home-page/footer-facebook.png" alt="" style={{ width: "28px", height: "28px", display: "block" }} />
+              </a>
+              <a href="#" aria-label="TikTok" style={{ display: "block" }}>
+                <img src="/assets/home-page/footer-tiktok.png" alt="" style={{ width: "28px", height: "28px", display: "block" }} />
+              </a>
             </div>
           </div>
         </div>
