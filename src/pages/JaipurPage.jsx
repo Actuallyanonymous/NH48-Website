@@ -75,7 +75,7 @@ export default function JaipurModal({ onClose }) {
         <img src="/assets/journey/jaipur/jaipur-flower-left.png" alt=""
           style={{
             position: "absolute",
-            left: "-20%", top: "75.7%",
+            left: "-14%", top: "75.7%",
             width: "43.4%", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}

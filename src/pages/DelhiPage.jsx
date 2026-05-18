@@ -76,7 +76,7 @@ export default function DelhiModal({ onClose }) {
         <img src="/assets/journey/delhi/delhi-left-group.png" alt=""
           style={{
             position: "absolute",
-            left: "-18%", top: "58.3%",
+            left: "-11%", top: "58.3%",
             width: "58.2%", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
