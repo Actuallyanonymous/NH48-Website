@@ -49,7 +49,7 @@ function GetInTouch() {
 
   if (mob) {
     return (
-      <section style={{ backgroundColor: "#14534D", padding: "40px 24px 48px" }}>
+      <section style={{ backgroundColor: "rgb(50, 104, 98)", padding: "40px 24px 48px" }}>
         <p style={{ ...B, fontSize: "28px", color: "white", lineHeight: 0.921, whiteSpace: "pre-line", marginBottom: "24px" }}>
           {"Get in touch\n\nIf you need to get in touch with us, please fill in the form below and our team will get back to you as soon as possible."}
         </p>
@@ -93,7 +93,7 @@ function GetInTouch() {
     <section style={{
       position: "relative",
       width: "100%",
-      backgroundColor: "#14534D",
+      backgroundColor: "rgb(50, 104, 98)",
       minHeight: "678px",
       height: "44.8vw",
       maxHeight: "678px",
