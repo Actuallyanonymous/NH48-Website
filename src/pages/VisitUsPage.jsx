@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useWindowWidth } from "../hooks/useWindowWidth";
 gsap.registerPlugin(ScrollTrigger);
 import SiteFooter from "../components/SiteFooter";
-import LocationTimings from "../components/LocationAndTimings";
 
 const HERO_IMAGE =
   "/assets/visitus/visitus.png";
@@ -306,7 +305,9 @@ export default function VisitUsPage() {
   return (
     <div>
       <HeroSection />
-      <LocationTimings/>
+      <section style={{ width: "100%", lineHeight: 0 }}>
+        <img src="/assets/visitus/location-timing.png" alt="Location and timings" style={{ width: "100%", display: "block" }} />
+      </section>
       <GetInTouch/>
       <SiteFooter />
     </div>
