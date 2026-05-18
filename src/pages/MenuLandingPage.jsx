@@ -204,73 +204,88 @@ function TealSection({ mob }) {
 function CreamSection({ mob }) {
   return (
     <section style={{
+      position: 'relative',
       width: '100%',
       backgroundColor: '#FCF9EB',
+      height: mob ? 'auto' : 'clamp(500px, 47.2vw, 714px)',
       overflow: 'hidden',
     }}>
-      {/* Content wrapper — centered, matches Figma max-width */}
+
+      {/* Images group — Figma: left=405px(26.8%), top=122px(17.1%), 701×343px */}
+      <img
+        src="/assets/menu/section-3-group.png"
+        alt="Food and drinks menu"
+        style={{
+          position: mob ? 'relative' : 'absolute',
+          left: mob ? 'auto' : '26.8%',
+          top: mob ? 'auto' : '17.1%',
+          width: mob ? '90%' : '46.4%',
+          height: 'auto',
+          display: 'block',
+          margin: mob ? '40px auto 0' : '0',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Buttons — Figma: food menu left=31.3%, drinks menu left=54.7%, top=71.1%, 207×43px each */}
+      <Link
+        to="/menu/food"
+        style={{
+          position: mob ? 'relative' : 'absolute',
+          left: mob ? 'auto' : '31.3%',
+          top: mob ? 'auto' : '71.1%',
+          display: mob ? 'inline-flex' : 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '207px',
+          height: '43px',
+          backgroundColor: '#A94545',
+          textDecoration: 'none',
+          margin: mob ? '24px auto 0 24px' : '0',
+          zIndex: 1,
+        }}
+      >
+        <div style={{ position: 'absolute', top: '6px', left: '8px', right: '8px', bottom: '5px', border: '1.11px solid rgba(255,255,255,0.85)', pointerEvents: 'none' }} />
+        <span style={{ fontFamily: 'BERNIER Distressed, cursive', fontSize: '17.76px', color: '#FFFEFE', position: 'relative', zIndex: 1 }}>food menu</span>
+      </Link>
+
+      <Link
+        to="/menu/drinks"
+        style={{
+          position: mob ? 'relative' : 'absolute',
+          left: mob ? 'auto' : '54.7%',
+          top: mob ? 'auto' : '71.1%',
+          display: mob ? 'inline-flex' : 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '207px',
+          height: '43px',
+          backgroundColor: '#A94545',
+          textDecoration: 'none',
+          margin: mob ? '24px 0 40px 12px' : '0',
+          zIndex: 1,
+        }}
+      >
+        <div style={{ position: 'absolute', top: '6px', left: '8px', right: '8px', bottom: '5px', border: '1.11px solid rgba(255,255,255,0.85)', pointerEvents: 'none' }} />
+        <span style={{ fontFamily: 'BERNIER Distressed, cursive', fontSize: '17.76px', color: '#FFFEFE', position: 'relative', zIndex: 1 }}>drinks menu</span>
+      </Link>
+
+      {/* Border — Figma: tall(113×72) + short(101×46) alternating, rgba(107,31,31,0.54), bottom=0 */}
       <div style={{
-        maxWidth: '760px',
-        margin: '0 auto',
-        padding: mob ? '36px 20px 40px' : '60px 24px 48px',
+        position: 'absolute',
+        bottom: 0, left: 0, right: 0,
+        height: '72px',
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: mob ? '20px' : '32px',
+        alignItems: 'flex-end',
+        overflow: 'hidden',
       }}>
-
-        {/* ── Two square food images — Figma: 342×342px each ── */}
-        <div style={{
-          display: 'flex',
-          gap: mob ? '10px' : '18px',
-          justifyContent: 'center',
-          width: '100%',
-        }}>
-          {[
-            { src: '/assets/dishes/butter-chicken.png', alt: 'Food menu — butter chicken' },
-            { src: '/assets/menu/menu-drinks.png',            alt: 'Drinks menu — cocktails' },
-          ].map(({ src, alt }, i) => (
-            <div key={i} style={{
-              position: 'relative',
-              width: mob ? '46%' : '342px',
-              aspectRatio: '1 / 1',
-              flexShrink: 0,
-            }}>
-              {/* Image */}
-              <img
-                src={src}
-                alt={alt}
-                style={{
-                  width: '100%', height: '100%',
-                  objectFit: 'cover', display: 'block',
-                }}
-              />
-              {/* Inset border frame — Figma: Rectangle 346/347 (border box inset ~10px) */}
-              <div style={{
-                position: 'absolute',
-                top: '10px', left: '10px',
-                right: '10px', bottom: '10px',
-                border: mob ? '1.5px solid rgba(20,83,77,0.5)' : '2px solid rgba(20,83,77,0.45)',
-                pointerEvents: 'none',
-              }} />
-            </div>
-          ))}
-        </div>
-
-        {/* ── Two menu buttons — Figma: 207×43, #A94545, white border ── */}
-        <div style={{
-          display: 'flex',
-          gap: mob ? '10px' : '18px',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-        }}>
-          <MenuBtn label="FOOD MENU"   to="/menu/food"   />
-          <MenuBtn label="DRINKS MENU" to="/menu/drinks" />
-        </div>
+        {Array.from({ length: 8 }, (_, i) => [
+          <img key={`t${i}`} src="/assets/menu/section-3-motif-2.png"
+            style={{ width: '113px', height: '72px', flexShrink: 0, alignSelf: 'flex-start', display: 'block', opacity: 0.54 }} />,
+          <img key={`s${i}`} src="/assets/menu/section-3-motif-1.png"
+            style={{ width: '101px', height: '46px', flexShrink: 0, display: 'block', opacity: 0.54 }} />,
+        ]).flat()}
       </div>
-
-      {/* ── Indian City Skyline border — Figma: city silhouette at bottom ── */}
-      <CitySkylineBorder mob={mob} />
     </section>
   )
 }
