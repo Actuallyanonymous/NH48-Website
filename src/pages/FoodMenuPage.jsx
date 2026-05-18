@@ -1,6 +1,5 @@
 import { useWindowWidth } from '../hooks/useWindowWidth'
 import { Link } from 'react-router-dom'
-import SiteFooter from '../components/SiteFooter'
 
 // ─── Colour tokens (Figma) ────────────────────────────────────────────────────
 const CREAM   = '#FCF9EB'
@@ -12,21 +11,27 @@ const RED_BTN = '#A94545'
 const COL_W   = 652
 const COL_GAP = 21
 
-// ─── City skyline border ───────────────────────────────────────────────────────
-function CitySkylineBorder() {
+// ─── Bottom motif border — Figma: tall(112×72) + short(112×45) alternating ────
+// motif-1 = tall arch (112×72), motif-2 = short arch (112×45)
+function MotifBorder() {
   return (
     <div
       aria-hidden="true"
       style={{
         width: '100%',
-        height: '80px',
+        height: '72px',
+        display: 'flex',
+        alignItems: 'flex-end',
         overflow: 'hidden',
-        backgroundImage: 'url(/assets/menu/indian-city-skyline.png)',
-        backgroundRepeat: 'repeat-x',
-        backgroundSize: 'auto 480px',
-        backgroundPosition: 'top left',
       }}
-    />
+    >
+      {Array.from({ length: 12 }, (_, i) => [
+        <img key={`t${i}`} src="/assets/menu/food-menu-motif-1.png"
+          style={{ width: '112px', height: '72px', flexShrink: 0, alignSelf: 'flex-start', display: 'block' }} />,
+        <img key={`s${i}`} src="/assets/menu/food-menu-motif-2.png"
+          style={{ width: '112px', height: '45px', flexShrink: 0, display: 'block' }} />,
+      ]).flat()}
+    </div>
   )
 }
 
@@ -315,10 +320,8 @@ export default function FoodMenuPage() {
         <DrinksMenuBtn />
       </div>
 
-      {/* CITY SKYLINE BORDER */}
-      <CitySkylineBorder />
-
-      <SiteFooter />
+      {/* BOTTOM MOTIF BORDER */}
+      <MotifBorder />
     </div>
   )
 }
