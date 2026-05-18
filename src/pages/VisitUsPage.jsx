@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -14,92 +13,16 @@ const HERO_IMAGE =
 
 function HeroSection() {
   return (
-    <section
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "100vh",
-        minHeight: "500px",
-        overflow: "hidden",
-      }}
-    >
-      {/* Background image */}
+    <section style={{
+      width: "100%",
+      height: "clamp(240px, 26.5vw, 400px)",
+      overflow: "hidden",
+    }}>
       <img
         src={HERO_IMAGE}
-        alt="NH48 hero"
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
+        alt="Visit NH48"
+        style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
       />
-
-      {/* Dark overlay */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundColor: "rgba(0,0,0,0.42)",
-        }}
-      />
-
-      {/* Centered text */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          padding: "0 24px",
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Yellow rectangle behind heading */}
-          {/* <div
-            style={{
-              backgroundColor: "rgba(245,196,44,0.18)",
-              padding: "8px 24px 4px",
-              marginBottom: "12px",
-              display: "inline-block",
-            }}
-          >
-            <h1
-              style={{
-                fontFamily: "BERNIER Distressed, cursive",
-                fontSize: "clamp(48px, 8vw, 96px)",
-                color: "#F5C42C",
-                letterSpacing: "0.04em",
-                lineHeight: 1,
-              }}
-            >
-              WELCOME TO NH48
-            </h1>
-          </div> */}
-
-          {/* <p
-            style={{
-              fontFamily: "Barlow Condensed, sans-serif",
-              fontSize: "clamp(13px, 1.8vw, 18px)",
-              color: "white",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              marginTop: "8px",
-            }}
-          >
-            FROM CAPITAL TO COAST
-          </p> */}
-        </motion.div>
-      </div>
     </section>
   );
 }
