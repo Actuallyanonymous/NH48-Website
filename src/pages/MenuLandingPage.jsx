@@ -83,33 +83,6 @@ function CitySkylineBorder({ mob }) {
 
 // ─── Food Label Card ──────────────────────────────────────────────────────────
 // Uses actual vintage Indian food label photos from generated images
-function FoodCard({ src, alt, shape }) {
-  const isOval = shape === 'oval'
-  return (
-    <div style={{
-      position: 'relative',
-      flexShrink: 0,
-      width: isOval ? '210px' : '185px',
-      height: isOval ? '290px' : '285px',
-      borderRadius: isOval ? '50%' : '4px',
-      overflow: 'hidden',
-      boxShadow: '0 12px 40px rgba(0,0,0,0.4)',
-    }}>
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          objectPosition: 'center center',
-          display: 'block',
-        }}
-      />
-    </div>
-  )
-}
-
 // ─── Menu CTA Button (Figma: 207×43, #A94545, white inset border) ─────────────
 function MenuBtn({ label, to }) {
   return (
@@ -152,72 +125,77 @@ function MenuBtn({ label, to }) {
   )
 }
 
-// ─── Section 1: Teal (Figma: bg #14534D, h 754px) ────────────────────────────
+// ─── Section 2: Teal (Figma: bg #14534D, h=754px, left=0, top=780) ──────────
 function TealSection({ mob }) {
-  // 4 cards: Samosa (oval), Kachori (rect), Chai (oval), Vada Pav (rect)
-  const cards = [
-    { src: '/assets/menu/label-samosa.png',  alt: 'Samosa',    shape: 'oval' },
-    { src: '/assets/menu/label-kachori.png', alt: 'Kachori',   shape: 'rect' },
-    { src: '/assets/menu/label-chai.png',    alt: 'Chai',      shape: 'oval' },
-    { src: '/assets/menu/label-vadapav.png', alt: 'Vada Pav',  shape: 'rect' },
-  ]
-
   return (
     <section style={{
       position: 'relative',
       width: '100%',
       backgroundColor: '#14534D',
-      overflow: 'hidden',
+      height: mob ? 'auto' : 'clamp(500px, 49.9vw, 754px)',
+      overflow: 'visible',
     }}>
-      {/* ── Subtle dot-pattern texture ── */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px)',
-        backgroundSize: '22px 22px',
-        pointerEvents: 'none', zIndex: 0,
+
+      {/* Cards group — Figma: left=87px, top=108px (108/754=14.3%), 1397×398px */}
+      <img
+        src="/assets/menu/section-2-group.png"
+        alt="Menu highlight dishes"
+        style={{
+          position: mob ? 'relative' : 'absolute',
+          left: mob ? 'auto' : '5.75%',
+          top: mob ? 'auto' : '14.3%',
+          width: mob ? '100%' : '92.4%',
+          height: 'auto',
+          display: 'block',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Left motif — Figma: left=43px, top=340px (45.1% of 754px), 174×213px */}
+      <img
+        src="/assets/menu/section-2-motif.png"
+        alt=""
+        style={{
+          position: 'absolute',
+          left: '43px',
+          top: '45.1%',
+          width: 'clamp(100px, 11.5vw, 174px)',
+          height: 'auto',
+          zIndex: 2,
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Tagline — Figma: left=344px (22.8%), top=578px (76.7%), w=823px (54.5%)
+          BERNIER Distressed 40px, lh=92.075%, center */}
+      <p style={{
+        position: mob ? 'relative' : 'absolute',
+        left: mob ? 'auto' : '22.8%',
+        top: mob ? 'auto' : '76.7%',
+        width: mob ? 'auto' : '54.5%',
+        margin: mob ? '24px 24px 40px' : '0',
+        fontFamily: 'BERNIER Distressed, cursive',
+        fontSize: mob ? '22px' : 'clamp(24px, 2.65vw, 40px)',
+        lineHeight: 0.921,
+        color: '#FFFFFF',
+        textAlign: 'center',
+        zIndex: 1,
+      }}>
+        From the heart of Delhi to the shores of Mumbai, we've mapped the boldest flavors of the highway onto every plate, ready for you to explore.
+      </p>
+
+      {/* Dot divider — Figma: cream circles 21px, 26px pitch, centered on bottom edge */}
+      <div style={{
+        position: 'absolute',
+        bottom: '-10px',
+        left: 0, right: 0,
+        height: '21px',
+        backgroundImage: 'radial-gradient(circle 10.5px at center, #FCFAEB 100%, transparent 100%)',
+        backgroundSize: '26px 21px',
+        backgroundRepeat: 'repeat-x',
+        pointerEvents: 'none',
+        zIndex: 10,
       }} />
-
-      {/* ── Main content ── */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
-
-        {/* Cards row — Figma: 4 illustrated food stickers */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'flex-end',
-          gap: mob ? '12px' : 'clamp(20px, 3.2vw, 52px)',
-          padding: mob ? '40px 16px 28px' : '68px 60px 48px',
-          flexWrap: mob ? 'wrap' : 'nowrap',
-        }}>
-          {cards.map((c, i) => (
-            <FoodCard key={i} src={c.src} alt={c.alt} shape={mob ? 'rect' : c.shape} />
-          ))}
-        </div>
-
-        {/* Quote — Figma: 823px, 40px Bernier, white, centered */}
-        <div style={{
-          maxWidth: '823px',
-          margin: '0 auto',
-          padding: mob ? '0 24px 44px' : '0 32px 60px',
-          textAlign: 'center',
-        }}>
-          <p style={{
-            fontFamily: 'BERNIER Distressed, cursive',
-            fontSize: mob ? '22px' : 'clamp(26px, 2.65vw, 40px)',
-            lineHeight: '1.05',
-            color: '#FFFFFF',
-            margin: 0,
-            letterSpacing: '0.01em',
-          }}>
-            FROM THE HEART OF DELHI TO THE SHORES OF MUMBAI,{' '}
-            WE'VE MAPPED THE BOLDEST FLAVORS OF THE HIGHWAY{' '}
-            ONTO EVERY PLATE, READY FOR YOU TO EXPLORE.
-          </p>
-        </div>
-      </div>
-
-      {/* ── Scallop border — Figma: cream arcs at teal→cream boundary ── */}
-      <ScallopDivider />
     </section>
   )
 }
