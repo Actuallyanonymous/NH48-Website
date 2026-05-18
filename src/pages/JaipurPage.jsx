@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-// Figma frame: 775×1002  →  modal: 620×780
-// Positions match frame 1:612 — same layout as Delhi, Jaipur-specific colors
+// All pixel values derived directly from Figma frame 1:612 (775×1002)
+// scaled to our modal (620×780): scale_x=0.800, scale_y=0.778
 
 const MENU_ITEMS = [
   { name: "dal bati churma", price: "15" },
@@ -19,14 +19,12 @@ export default function JaipurModal({ onClose }) {
 
   return (
     <>
-      {/* Dim overlay */}
       <div onClick={onClose} style={{
         position: "fixed", inset: 0,
         backgroundColor: "rgba(0,0,0,0.55)",
         zIndex: 100,
       }} />
 
-      {/* Modal — 620×780, matching Figma 775×1002 proportions */}
       <div style={{
         position: "fixed",
         top: "50%", left: "50%",
@@ -39,7 +37,7 @@ export default function JaipurModal({ onClose }) {
         overflow: "hidden",
       }}>
 
-        {/* ── Background image ── */}
+        {/* Background */}
         <img src="/assets/journey/jaipur/jaipurbackground.jpg" alt="" style={{
           position: "absolute", inset: 0,
           width: "100%", height: "100%",
@@ -47,60 +45,56 @@ export default function JaipurModal({ onClose }) {
           zIndex: 0,
         }} />
 
-        {/* ── Dark overlay (Figma: black 0.44 opacity) ── */}
+        {/* Dark overlay — Figma: black 0.44 */}
         <div style={{
           position: "absolute", inset: 0,
           backgroundColor: "rgba(0,0,0,0.44)",
           zIndex: 1,
         }} />
 
-        {/* ── Close button ── */}
+        {/* Close */}
         <button onClick={onClose} style={{
           position: "absolute", top: 14, left: 16,
           zIndex: 10, background: "none", border: "none",
           color: "#fff", fontSize: "1.2rem", cursor: "pointer", lineHeight: 1,
         }}>✕</button>
 
-        {/* ── Right flower group — anchored to right edge, pushed off-corner ── */}
+        {/* Right flower — Figma: x=541,y=-83 w=341 → modal: left=433,top=-65 w=273 */}
         <img src="/assets/journey/jaipur/jaipur-flower-right.png" alt=""
           style={{
             position: "absolute",
-            right: "-8%", top: "-8.3%",
-            width: "44%", height: "auto",
+            left: "433px", top: "-65px",
+            width: "273px", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
         />
 
-        {/* ── Left flower group — anchored to left edge, pushed off-corner ── */}
+        {/* Left flower — Figma: x=-104,y=759 w=336 → modal: left=-83,top=591 w=269 */}
         <img src="/assets/journey/jaipur/jaipur-flower-left.png" alt=""
           style={{
             position: "absolute",
-            left: "-14%", top: "75.7%",
-            width: "43.4%", height: "auto",
+            left: "-83px", top: "591px",
+            width: "269px", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
         />
 
-        {/* ── Motif
-            Figma: x=241(31.1%), y=68(6.8%), w=137(17.7%)
-        ── */}
+        {/* Motif — Figma: x=241,y=68 w=137 → modal: left=193,top=53 w=110 */}
         <img src="/assets/journey/jaipur/jaipur-motif.png" alt=""
           style={{
             position: "absolute",
-            left: "31.1%", top: "6.8%",
-            width: "17.7%", height: "auto",
+            left: "193px", top: "53px",
+            width: "110px", height: "auto",
             zIndex: 4, pointerEvents: "none",
           }}
         />
 
-        {/* ── "jaipur" title
-            Figma: x=295(38.1%), y=126(12.6%), font=93.6px, color=rgb(255,136,199)
-        ── */}
+        {/* "jaipur" title — Figma: x=295,y=126 sz=93.6 → modal: left=236,top=98 sz=75 */}
         <h1 style={{
           position: "absolute",
-          left: "38.1%", top: "12.6%",
+          left: "236px", top: "98px",
           fontFamily: "'BERNIER Distressed', cursive",
-          fontSize: "clamp(48px, 12.1vw, 74px)",
+          fontSize: "75px",
           fontWeight: 400,
           lineHeight: 1,
           color: "rgb(255,136,199)",
@@ -111,13 +105,11 @@ export default function JaipurModal({ onClose }) {
           jaipur
         </h1>
 
-        {/* ── Menu card
-            Figma: x=171(22.1%), y=225(22.5%), w=433(55.9%), h=552(55.1%)
-        ── */}
+        {/* Menu card — Figma: x=171,y=225 w=433 h=552 → modal: left=137,top=175 w=346 h=430 */}
         <div style={{
           position: "absolute",
-          left: "22.1%", top: "22.5%",
-          width: "55.9%", height: "55.1%",
+          left: "137px", top: "175px",
+          width: "346px", height: "430px",
           backgroundImage: "url('/assets/journey/jaipur/menubg.png')",
           backgroundSize: "100% 100%",
           zIndex: 4,
@@ -125,9 +117,10 @@ export default function JaipurModal({ onClose }) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          gap: "clamp(6px, 1.2vh, 10px)",
-          padding: "0 8%",
+          gap: "8px",
+          padding: "0 24px",
         }}>
+          {/* Items — Figma: BERNIER 34px → modal: 27px, color rgb(107,40,75) */}
           {MENU_ITEMS.map((item) => (
             <div key={item.name} style={{
               display: "flex",
@@ -137,7 +130,7 @@ export default function JaipurModal({ onClose }) {
             }}>
               <span style={{
                 fontFamily: "'BERNIER Distressed', cursive",
-                fontSize: "clamp(16px, 2.8vw, 27px)",
+                fontSize: "27px",
                 color: "rgb(107,40,75)",
                 whiteSpace: "nowrap",
               }}>
@@ -145,7 +138,7 @@ export default function JaipurModal({ onClose }) {
               </span>
               <span style={{
                 fontFamily: "'BERNIER Distressed', cursive",
-                fontSize: "clamp(16px, 2.8vw, 27px)",
+                fontSize: "27px",
                 color: "rgb(107,40,75)",
               }}>
                 / {item.price}

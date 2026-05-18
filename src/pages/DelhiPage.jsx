@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-// Figma frame: 775×1002  →  modal: 620×780
-// All positions derived as % of Figma frame and applied to modal
+// All pixel values derived directly from Figma frame 1:655 (775×1002)
+// scaled to our modal (620×780): scale_x=0.800, scale_y=0.778
 
 const MENU_ITEMS = [
   { name: "dal bati churma", price: "15" },
@@ -19,14 +19,12 @@ export default function DelhiModal({ onClose }) {
 
   return (
     <>
-      {/* Dim overlay */}
       <div onClick={onClose} style={{
         position: "fixed", inset: 0,
         backgroundColor: "rgba(0,0,0,0.55)",
         zIndex: 100,
       }} />
 
-      {/* Modal — 620×780, matching Figma 775×1002 proportions */}
       <div style={{
         position: "fixed",
         top: "50%", left: "50%",
@@ -37,10 +35,9 @@ export default function DelhiModal({ onClose }) {
         maxHeight: "92vh",
         zIndex: 101,
         overflow: "hidden",
-        // use position:relative so all absolute children are relative to this
       }}>
 
-        {/* ── Background image ── */}
+        {/* Background */}
         <img src="/assets/journey/delhi/delhibg.png" alt="" style={{
           position: "absolute", inset: 0,
           width: "100%", height: "100%",
@@ -48,60 +45,56 @@ export default function DelhiModal({ onClose }) {
           zIndex: 0,
         }} />
 
-        {/* ── Dark overlay (Figma: black 0.44 opacity) ── */}
+        {/* Dark overlay — Figma: black 0.44 */}
         <div style={{
           position: "absolute", inset: 0,
           backgroundColor: "rgba(0,0,0,0.44)",
           zIndex: 1,
         }} />
 
-        {/* ── Close button ── */}
+        {/* Close */}
         <button onClick={onClose} style={{
           position: "absolute", top: 14, left: 16,
           zIndex: 10, background: "none", border: "none",
           color: "#fff", fontSize: "1.2rem", cursor: "pointer", lineHeight: 1,
         }}>✕</button>
 
-        {/* ── Right flower group — anchored to right edge, pushed off-corner ── */}
+        {/* Right flower group — Figma: x=408,y=-65 w=451 → modal: left=326,top=-51 w=361 */}
         <img src="/assets/journey/delhi/delhi-right-group.png" alt=""
           style={{
             position: "absolute",
-            right: "-8%", top: "-6.5%",
-            width: "58.2%", height: "auto",
+            left: "326px", top: "-51px",
+            width: "361px", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
         />
 
-        {/* ── Left flower group — anchored to left edge, pushed off-corner ── */}
+        {/* Left flower group — Figma: x=-77,y=584 w=451 → modal: left=-62,top=454 w=361 */}
         <img src="/assets/journey/delhi/delhi-left-group.png" alt=""
           style={{
             position: "absolute",
-            left: "-11%", top: "58.3%",
-            width: "58.2%", height: "auto",
+            left: "-62px", top: "454px",
+            width: "361px", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
         />
 
-        {/* ── Motif
-            Figma: x=245(31.6%), y=59(5.9%), w=137(17.7%), h=137
-        ── */}
+        {/* Motif — Figma inner vector: x=245,y=59 w=137 → modal: left=196,top=46 w=110 */}
         <img src="/assets/journey/delhi/delhi-motif.png" alt=""
           style={{
             position: "absolute",
-            left: "31.6%", top: "5.9%",
-            width: "17.7%", height: "auto",
+            left: "196px", top: "46px",
+            width: "110px", height: "auto",
             zIndex: 4, pointerEvents: "none",
           }}
         />
 
-        {/* ── "delhi" title
-            Figma: x=314(40.5%), y=126(12.6%), font=93.6px, color=rgb(255,232,0)
-        ── */}
+        {/* "delhi" title — Figma: x=314,y=126 sz=93.6 → modal: left=251,top=98 sz=75 */}
         <h1 style={{
           position: "absolute",
-          left: "40.5%", top: "12.6%",
+          left: "251px", top: "98px",
           fontFamily: "'BERNIER Distressed', cursive",
-          fontSize: "clamp(48px, 12.1vw, 74px)",
+          fontSize: "75px",
           fontWeight: 400,
           lineHeight: 1,
           color: "rgb(255,232,0)",
@@ -112,13 +105,11 @@ export default function DelhiModal({ onClose }) {
           delhi
         </h1>
 
-        {/* ── Menu card
-            Figma: x=171(22.1%), y=225(22.5%), w=433(55.9%), h=552(55.1%)
-        ── */}
+        {/* Menu card — Figma: x=171,y=225 w=433 h=552 → modal: left=137,top=175 w=346 h=430 */}
         <div style={{
           position: "absolute",
-          left: "22.1%", top: "22.5%",
-          width: "55.9%", height: "55.1%",
+          left: "137px", top: "175px",
+          width: "346px", height: "430px",
           backgroundImage: "url('/assets/journey/delhi/menubg.png')",
           backgroundSize: "100% 100%",
           zIndex: 4,
@@ -126,9 +117,10 @@ export default function DelhiModal({ onClose }) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          gap: "clamp(6px, 1.2vh, 10px)",
-          padding: "0 8%",
+          gap: "8px",
+          padding: "0 24px",
         }}>
+          {/* Items — Figma: BERNIER 34px → modal: 27px, color rgb(232,36,96) */}
           {MENU_ITEMS.map((item) => (
             <div key={item.name} style={{
               display: "flex",
@@ -138,7 +130,7 @@ export default function DelhiModal({ onClose }) {
             }}>
               <span style={{
                 fontFamily: "'BERNIER Distressed', cursive",
-                fontSize: "clamp(16px, 2.8vw, 27px)",
+                fontSize: "27px",
                 color: "rgb(232,36,96)",
                 whiteSpace: "nowrap",
               }}>
@@ -146,7 +138,7 @@ export default function DelhiModal({ onClose }) {
               </span>
               <span style={{
                 fontFamily: "'BERNIER Distressed', cursive",
-                fontSize: "clamp(16px, 2.8vw, 27px)",
+                fontSize: "27px",
                 color: "rgb(232,36,96)",
               }}>
                 / {item.price}
