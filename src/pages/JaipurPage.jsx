@@ -61,25 +61,21 @@ export default function JaipurModal({ onClose }) {
           color: "#fff", fontSize: "1.2rem", cursor: "pointer", lineHeight: 1,
         }}>✕</button>
 
-        {/* ── Right flower group
-            Figma: x=541(69.8%), y=-83(-8.3%), w=341(44%)
-        ── */}
+        {/* ── Right flower group — anchored to right edge, pushed off-corner ── */}
         <img src="/assets/journey/jaipur/jaipur-flower-right.png" alt=""
           style={{
             position: "absolute",
-            left: "69.8%", top: "-8.3%",
+            right: "-8%", top: "-8.3%",
             width: "44%", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
         />
 
-        {/* ── Left flower group
-            Figma: x=-104(-13.4%), y=759(75.7%), w=336(43.4%)
-        ── */}
+        {/* ── Left flower group — anchored to left edge, pushed off-corner ── */}
         <img src="/assets/journey/jaipur/jaipur-flower-left.png" alt=""
           style={{
             position: "absolute",
-            left: "-13.4%", top: "75.7%",
+            left: "-20%", top: "75.7%",
             width: "43.4%", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
