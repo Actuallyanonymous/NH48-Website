@@ -1644,7 +1644,7 @@ function FoodGridSection() {
       overflow: "hidden",
     }}>
 
-      {/* NH48 watermark background — PNG already transparent at 82% max opacity */}
+      {/* NH48 watermark — teal on teal, use screen blend to make lighter teal visible */}
       <img
         src="/assets/home-page/section-9-background.png"
         alt=""
@@ -1658,6 +1658,8 @@ function FoodGridSection() {
           objectPosition: "center",
           pointerEvents: "none",
           zIndex: 0,
+          mixBlendMode: "screen",
+          opacity: 1,
         }}
       />
 
