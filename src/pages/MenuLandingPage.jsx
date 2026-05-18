@@ -383,30 +383,13 @@ export default function MenuLandingPage() {
   return (
     <div style={{ width: '100%', overflowX: 'hidden' }}>
 
-      {/* ── HERO — Figma: top:72, height:708px, full-bleed food image ── */}
-      <section style={{
-        position: 'relative',
-        width: '100%',
-        height: mob ? '55vw' : '708px',
-        minHeight: mob ? '220px' : '480px',
-        overflow: 'hidden',
-      }}>
+      {/* ── HERO — exact 1512×708px image from Figma ── */}
+      <section style={{ width: '100%', lineHeight: 0 }}>
         <img
-          src="/assets/menu/menu-hero.png"
-          alt="NH48 signature dishes"
-          style={{
-            width: '100%', height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center 25%',
-            display: 'block',
-          }}
+          src="/assets/menu/menu-page-hero.png"
+          alt="NH48 menu"
+          style={{ width: '100%', display: 'block' }}
         />
-        {/* Bottom gradient into teal */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to bottom, transparent 55%, rgba(20,83,77,0.5) 100%)',
-          pointerEvents: 'none',
-        }} />
       </section>
 
       {/* ── SECTION 1: Teal — Figma: bg:#14534D, h:754px ── */}
