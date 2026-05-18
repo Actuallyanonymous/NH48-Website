@@ -1639,25 +1639,25 @@ function FoodGridSection() {
     <section style={{
       position: "relative",
       width: "100%",
-      // Figma frame background is cream; the teal NH48 text at 82% opacity over cream creates the dark teal look
-      backgroundColor: "rgb(252,248,235)",
+      // Figma: Rectangle 331 bg=rgb(20,83,77) solid fill covers y=6199–7271
+      backgroundColor: "rgb(20,83,77)",
       height: mob ? "auto" : "clamp(600px, 60.8vw, 920px)",
       overflow: "hidden",
     }}>
 
-      {/* NH48 background — two CSS text layers exactly matching Figma:
-          Red (169,69,69) at 45% opacity, left=-30px from section
-          Teal (20,83,77) at 82% opacity, left=-32px from section
-          Both at font-size = section height (~920px), filling the full section */}
+      {/* NH48 watermark — Figma exact values:
+          Red layer:  rgb(169,69,69) fill_opacity=0.45, left=2px,   top=0, font=868px
+          Teal layer: rgb(20,83,77)  fill_opacity=0.82, left=-32px, top=0, font=868px
+          (teal = same as bg → nearly invisible, creates subtle shading)
+          (red = maroon tint visible at 45% over dark teal) */}
       <span aria-hidden="true" style={{
         position: "absolute",
         left: "2px",
         top: 0,
         fontFamily: "BERNIER Distressed, cursive",
-        fontSize: "clamp(400px, 60.8vw, 920px)",
-        color: "rgb(169,69,69)",
-        opacity: 0.45,
-        lineHeight: 1,
+        fontSize: "clamp(350px, 57.4vw, 868px)",
+        color: "rgba(169,69,69,0.45)",
+        lineHeight: "0.921",
         whiteSpace: "nowrap",
         userSelect: "none",
         pointerEvents: "none",
@@ -1669,10 +1669,9 @@ function FoodGridSection() {
         left: "-32px",
         top: 0,
         fontFamily: "BERNIER Distressed, cursive",
-        fontSize: "clamp(400px, 60.8vw, 920px)",
-        color: "rgb(20,83,77)",
-        opacity: 0.82,
-        lineHeight: 1,
+        fontSize: "clamp(350px, 57.4vw, 868px)",
+        color: "rgba(20,83,77,0.82)",
+        lineHeight: "0.921",
         whiteSpace: "nowrap",
         userSelect: "none",
         pointerEvents: "none",
