@@ -1639,29 +1639,45 @@ function FoodGridSection() {
     <section style={{
       position: "relative",
       width: "100%",
-      backgroundColor: "#14534D",
-      minHeight: mob ? "auto" : "clamp(600px, 60.8vw, 920px)",
+      // Figma frame background is cream; the teal NH48 text at 82% opacity over cream creates the dark teal look
+      backgroundColor: "rgb(252,248,235)",
+      height: mob ? "auto" : "clamp(600px, 60.8vw, 920px)",
       overflow: "hidden",
     }}>
 
-      {/* NH48 watermark — teal on teal, use screen blend to make lighter teal visible */}
-      <img
-        src="/assets/home-page/section-9-background.png"
-        alt=""
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "center",
-          pointerEvents: "none",
-          zIndex: 0,
-          mixBlendMode: "screen",
-          opacity: 1,
-        }}
-      />
+      {/* NH48 background — two CSS text layers exactly matching Figma:
+          Red (169,69,69) at 45% opacity, left=-30px from section
+          Teal (20,83,77) at 82% opacity, left=-32px from section
+          Both at font-size = section height (~920px), filling the full section */}
+      <span aria-hidden="true" style={{
+        position: "absolute",
+        left: "2px",
+        top: 0,
+        fontFamily: "BERNIER Distressed, cursive",
+        fontSize: "clamp(400px, 60.8vw, 920px)",
+        color: "rgb(169,69,69)",
+        opacity: 0.45,
+        lineHeight: 1,
+        whiteSpace: "nowrap",
+        userSelect: "none",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}>NH48</span>
+
+      <span aria-hidden="true" style={{
+        position: "absolute",
+        left: "-32px",
+        top: 0,
+        fontFamily: "BERNIER Distressed, cursive",
+        fontSize: "clamp(400px, 60.8vw, 920px)",
+        color: "rgb(20,83,77)",
+        opacity: 0.82,
+        lineHeight: 1,
+        whiteSpace: "nowrap",
+        userSelect: "none",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}>NH48</span>
 
       {/* Left motif — Figma: left=14.2%, top=32.3%, 174×213px */}
       <img
@@ -1693,9 +1709,13 @@ function FoodGridSection() {
         }}
       />
 
-      {/* 3×2 image grid — Figma: 296×352px each, 9px col-gap, 12px row-gap, top=46px */}
+      {/* 3×2 grid — Figma: absolutely positioned at top=46px, centered horizontally
+          Each image 296×352px, col-gap 9px, row-gap 12px */}
       <div style={{
-        position: "relative",
+        position: mob ? "relative" : "absolute",
+        top: mob ? "auto" : "clamp(30px, 3.05vw, 46px)",
+        left: mob ? "auto" : "50%",
+        transform: mob ? "none" : "translateX(-50%)",
         zIndex: 1,
         display: "grid",
         gridTemplateColumns: mob
@@ -1706,19 +1726,20 @@ function FoodGridSection() {
           : "repeat(2, clamp(215px, 23.3vw, 352px))",
         columnGap: mob ? "6px" : "clamp(6px, 0.6vw, 9px)",
         rowGap: mob ? "6px" : "clamp(8px, 0.8vw, 12px)",
-        paddingTop: mob ? "32px" : "clamp(30px, 3vw, 46px)",
-        paddingBottom: mob ? "32px" : "clamp(30px, 3vw, 46px)",
-        justifyContent: "center",
-        padding: mob ? "32px 16px" : `clamp(30px,3vw,46px) 0`,
+        padding: mob ? "32px 16px" : 0,
       }}>
         {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div key={i} style={{ position: "relative", overflow: "hidden", aspectRatio: mob ? "1/1" : "296/352" }}>
+          <div key={i} style={{
+            position: "relative",
+            overflow: "hidden",
+            aspectRatio: mob ? "1/1" : "296/352",
+          }}>
             <img
               src={`/assets/home-page/section-9-image-${i}.png`}
               alt={`NH48 food ${i}`}
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
-            {/* Inner gold border — Figma: inset 9-10px */}
+            {/* Inner gold border — Figma: inset 9-10px, 1.5px stroke */}
             <div style={{
               position: "absolute",
               top: "9px", left: "10px", right: "10px", bottom: "9px",
