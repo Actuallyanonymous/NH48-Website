@@ -59,21 +59,21 @@ export default function JaipurModal({ onClose }) {
           color: "#fff", fontSize: "1.2rem", cursor: "pointer", lineHeight: 1,
         }}>✕</button>
 
-        {/* Right flower — Figma: x=541,y=-83 w=341 → modal: left=433,top=-65 w=273 */}
+        {/* Right flower — shifted left so petals are more visible */}
         <img src="/assets/journey/jaipur/jaipur-flower-right.png" alt=""
           style={{
             position: "absolute",
-            left: "433px", top: "-65px",
+            left: "350px", top: "-65px",
             width: "273px", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
         />
 
-        {/* Left flower — Figma: x=-104,y=759 w=336 → modal: left=-83,top=591 w=269 */}
+        {/* Left flower — shifted right so petals are more visible */}
         <img src="/assets/journey/jaipur/jaipur-flower-left.png" alt=""
           style={{
             position: "absolute",
-            left: "-83px", top: "591px",
+            left: "-25px", top: "591px",
             width: "269px", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}

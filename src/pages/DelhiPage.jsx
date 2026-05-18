@@ -59,21 +59,21 @@ export default function DelhiModal({ onClose }) {
           color: "#fff", fontSize: "1.2rem", cursor: "pointer", lineHeight: 1,
         }}>✕</button>
 
-        {/* Right flower group — Figma: x=408,y=-65 w=451 → modal: left=326,top=-51 w=361 */}
+        {/* Right flower group — shifted left so petals are more visible */}
         <img src="/assets/journey/delhi/delhi-right-group.png" alt=""
           style={{
             position: "absolute",
-            left: "326px", top: "-51px",
+            left: "245px", top: "-51px",
             width: "361px", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
         />
 
-        {/* Left flower group — Figma: x=-77,y=584 w=451 → modal: left=-62,top=454 w=361 */}
+        {/* Left flower group — shifted right so petals are more visible */}
         <img src="/assets/journey/delhi/delhi-left-group.png" alt=""
           style={{
             position: "absolute",
-            left: "-62px", top: "454px",
+            left: "-20px", top: "454px",
             width: "361px", height: "auto",
             zIndex: 3, pointerEvents: "none",
           }}
