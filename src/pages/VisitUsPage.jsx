@@ -100,22 +100,31 @@ function GetInTouch() {
       overflow: "hidden",
     }}>
 
-      {/* ── 3 Vectors ─────────────────────────────────────────────────────────
-          Figma: left=22/611/1289px, top=303px (44.7% of 678), w=201 h=161 */}
+      {/* ── 3 Vectors — Figma: rgb(34,77,71) at op=1.00, subtle against bg
+          Apply opacity so they blend correctly on the teal background */}
       {[1.46, 40.41, 85.28].map((lp, i) => (
         <img key={i} src="/assets/visitus/section-3-vector.png" alt=""
-          style={{ position: "absolute", left: `${lp}%`, top: "44.7%", width: "clamp(100px, 13.3vw, 201px)", height: "auto", pointerEvents: "none" }} />
+          style={{ position: "absolute", left: `${lp}%`, top: "44.7%", width: "clamp(100px, 13.3vw, 201px)", height: "auto", pointerEvents: "none", opacity: 0.45 }} />
       ))}
 
       {/* ── Left text block ───────────────────────────────────────────────────
-          Figma: x=263 (17.4%), y=175 (25.8%), w=390 (25.8%), 40px BERNIER */}
-      <p style={{
-        position: "absolute", left: "17.4%", top: "25.8%", width: "25.8%",
-        ...B, fontSize: "clamp(18px, 2.65vw, 40px)", lineHeight: 0.921,
-        color: "white", whiteSpace: "pre-line",
-      }}>
-        {"Get in touch\n\nIf you need to get in touch with us, please fill in the form on the right and our team will get back to you as soon as possible."}
-      </p>
+          Figma: "Get in touch" = BERNIER 40px
+                 Body paragraph = Helvetica Neue 20px (style override) */}
+      <div style={{ position: "absolute", left: "17.4%", top: "25.8%", width: "25.8%" }}>
+        <p style={{ ...B, fontSize: "clamp(18px, 2.65vw, 40px)", lineHeight: 0.921, color: "white", margin: 0 }}>
+          Get in touch
+        </p>
+        <p style={{
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontSize: "clamp(11px, 1.32vw, 20px)",
+          lineHeight: 0.989,
+          color: "white",
+          margin: "clamp(10px, 1.3vw, 20px) 0 0",
+          fontWeight: 400,
+        }}>
+          If you need to get in touch with us, please fill in the form on the right and our team will get back to you as soon as possible.
+        </p>
+      </div>
 
       {/* ── Form elements ─────────────────────────────────────────────────────
           All x/y from Figma as % of 1512/678 */}
@@ -135,14 +144,20 @@ function GetInTouch() {
       <input name="lastName" value={form.lastName} onChange={handleChange}
         style={{ ...inp, position: "absolute", left: "70.0%", top: "39.1%", width: iW1, height: iH }} />
 
-      {/* "email [required]" — x=848(56.1%), y=321(47.3%), 20px */}
-      <p style={{ position: "absolute", left: "56.1%", top: "47.3%", ...lbl }}>email [required]</p>
+      {/* "email [required]" — "email"=BERNIER 40px, "[required]"=BERNIER 20px */}
+      <p style={{ position: "absolute", left: "56.1%", top: "47.3%", margin: 0, lineHeight: 0.921 }}>
+        <span style={{ ...B, fontSize: "clamp(18px, 2.65vw, 40px)", color: "white" }}>email </span>
+        <span style={{ ...B, fontSize: "clamp(10px, 1.32vw, 20px)", color: "white" }}>[required]</span>
+      </p>
       {/* email input — x=848(56.1%), y=374(55.2%), w=401(26.52%), h=45px */}
       <input name="email" type="email" value={form.email} onChange={handleChange}
         style={{ ...inp, position: "absolute", left: "56.1%", top: "55.2%", width: iW2, height: iH }} />
 
-      {/* "message [required]" — x=848(56.1%), y=430(63.4%), 20px */}
-      <p style={{ position: "absolute", left: "56.1%", top: "63.4%", ...lbl }}>message [required]</p>
+      {/* "message [required]" — "message"=BERNIER 40px, "[required]"=BERNIER 20px */}
+      <p style={{ position: "absolute", left: "56.1%", top: "63.4%", margin: 0, lineHeight: 0.921 }}>
+        <span style={{ ...B, fontSize: "clamp(18px, 2.65vw, 40px)", color: "white" }}>message </span>
+        <span style={{ ...B, fontSize: "clamp(10px, 1.32vw, 20px)", color: "white" }}>[required]</span>
+      </p>
       {/* message textarea — x=848(56.1%), y=483(71.2%), w=401(26.52%), h=90px */}
       <textarea name="message" value={form.message} onChange={handleChange}
         style={{ ...inp, position: "absolute", left: "56.1%", top: "71.2%", width: iW2, height: taH, padding: "8px 10px", resize: "none" }} />
