@@ -1653,7 +1653,7 @@ function FoodGridSection() {
       <span aria-hidden="true" style={{
         position: "absolute",
         left: "2px",
-        top: 0,
+        top: "clamp(90px, 9.1vw, 138px)",
         fontFamily: "BERNIER Distressed, cursive",
         fontSize: "clamp(350px, 57.4vw, 868px)",
         color: "rgba(169,69,69,0.45)",
@@ -1667,7 +1667,7 @@ function FoodGridSection() {
       <span aria-hidden="true" style={{
         position: "absolute",
         left: "-32px",
-        top: 0,
+        top: "clamp(90px, 9.1vw, 138px)",
         fontFamily: "BERNIER Distressed, cursive",
         fontSize: "clamp(350px, 57.4vw, 868px)",
         color: "rgba(20,83,77,0.82)",
