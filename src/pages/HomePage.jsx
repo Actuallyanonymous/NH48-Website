@@ -721,18 +721,18 @@ function Plates() {
           className={d.drift === "up" ? "plate-drift-up" : "plate-drift-down"}
           src={`/assets/dishes/${d.file}.png`}
           alt={d.name}
-          style={{ position: "absolute", left: `${d.imgX}%`, top: `${d.imgY}%`, width: "13%", height: "29.2%", objectFit: "cover", display: "block" }}
+          style={{ position: "absolute", left: `${d.imgX}%`, top: `${d.imgY}%`, width: "13.03%", height: "29.21%", objectFit: "cover", display: "block" }}
         />
       ))}
 
-      {/* Labels — exact Figma positions: 179×37px, #A94545, inner white border */}
+      {/* Labels — exact Figma: 179×37px → 11.84% × 3.95% of section, pure % so they scale with images */}
       {DISHES.map(d => (
         <div
           key={`lbl-${d.file}`}
-          style={{ position: "absolute", left: `${d.lX}%`, top: `${d.lY}%`, width: "clamp(100px, 11.8vw, 179px)", height: "clamp(26px, 2.45vw, 37px)", backgroundColor: "#A94545", display: "flex", alignItems: "center", justifyContent: "center" }}
+          style={{ position: "absolute", left: `${d.lX}%`, top: `${d.lY}%`, width: "11.84%", height: "3.95%", backgroundColor: "#A94545", display: "flex", alignItems: "center", justifyContent: "center" }}
         >
-          <div style={{ position: "absolute", top: "5px", left: "8px", right: "7px", bottom: "5px", border: "1px solid rgba(255,255,255,0.55)" }} />
-          <span style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "clamp(9px, 1.02vw, 15.36px)", color: "white", position: "relative", whiteSpace: "nowrap" }}>
+          <div style={{ position: "absolute", top: "13.5%", left: "4.5%", right: "3.9%", bottom: "13.5%", border: "1px solid rgba(255,255,255,0.55)" }} />
+          <span style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "1.016vw", color: "white", position: "relative", whiteSpace: "nowrap" }}>
             {d.name}
           </span>
         </div>
