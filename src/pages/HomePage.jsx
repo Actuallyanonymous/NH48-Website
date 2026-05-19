@@ -373,7 +373,7 @@ function StorySection() {
     return (
       <section ref={sectionRef} style={{ backgroundColor: "#ffde7c", padding: "48px 24px", position: "relative", overflow: "hidden" }}>
         <img src="/assets/home-page/12px-flip-grid.png" alt="" aria-hidden="true"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none", zIndex: 0 }} />
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.05, pointerEvents: "none", zIndex: 0 }} />
         <h2 style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "48px", color: "#14534D", letterSpacing: "-0.04em", textAlign: "center", margin: "0 0 32px", position: "relative", zIndex: 1 }}>
           Our story
         </h2>
@@ -438,7 +438,7 @@ function StorySection() {
         </defs>
       </svg>
 
-      {/* 12px Flip Grid — Figma: full-cover, op=1.00 baked in PNG, z=0 above noise SVG */}
+      {/* 12px Flip Grid — Figma: full-cover, op=0.05 */}
       <img
         src="/assets/home-page/12px-flip-grid.png"
         alt=""
@@ -450,6 +450,7 @@ function StorySection() {
           height: "100%",
           objectFit: "cover",
           objectPosition: "center",
+          opacity: 0.05,
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -724,7 +725,7 @@ function Plates() {
       ref={sectionRef}
       style={{ position: "relative", width: "100%", backgroundColor: "#1B5C4F", height: "62vw", minHeight: "600px", maxHeight: "938px", overflow: "hidden" }}
     >
-      {/* 12px Flip Grid — Figma: full-cover overlay, op=0.05, sits above bg below all content */}
+      {/* 12px Flip Grid — Figma: full-cover overlay, op=0.05 */}
       <img
         src="/assets/home-page/12px-flip-grid.png"
         alt=""
@@ -736,6 +737,7 @@ function Plates() {
           height: "100%",
           objectFit: "cover",
           objectPosition: "center",
+          opacity: 0.05,
           pointerEvents: "none",
           zIndex: 0,
         }}
