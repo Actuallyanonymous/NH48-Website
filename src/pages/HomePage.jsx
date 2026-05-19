@@ -70,13 +70,13 @@ function CityCardsSection() {
         position: "relative",
         width: "100%",
         backgroundColor: "#14534D",
-        minHeight: "754px",
+        minHeight: mob ? "auto" : "754px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
-        paddingTop: mob ? "60px" : "108px",
-        paddingBottom: mob ? "80px" : "55px",
+        paddingTop: mob ? "48px" : "108px",
+        paddingBottom: mob ? "48px" : "55px",
         overflow: "hidden",
       }}
     >
@@ -247,7 +247,7 @@ function FoodShowcaseSection() {
         style={{
           display: "grid",
           gridTemplateColumns: mob
-            ? "1fr"
+            ? "repeat(2, 1fr)"
             : "repeat(3, clamp(240px, 24.7vw, 373px))",
           gap: mob ? "12px" : "clamp(12px, 1.4vw, 21px)",
           justifyContent: "center",
@@ -526,6 +526,8 @@ function StorySection() {
 function Sayings() {
   const [active, setActive] = useState(0);
   const [visible, setVisible] = useState(true);
+  const width = useWindowWidth();
+  const mob = width < 768;
 
   const slides = [
     "NH48 captures the spirit of the open road, blending vintage-inspired highway decor with a sprawling menu that masterfully fuses regional Indian specialties and global flavors into a high-spirited culinary journey.",
@@ -565,29 +567,35 @@ function Sayings() {
       }}
     >
       {/* Heading — Figma: BERNIER Distressed 64px, #14534D, tracking -0.04em */}
-      <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: "40px" }}>
+      <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: mob ? "24px" : "40px", padding: "0 24px" }}>
         <h2 style={{
           fontFamily: "BERNIER Distressed, cursive",
           color: "#14534D",
-          fontSize: "clamp(28px, 4.23vw, 64px)",
+          fontSize: mob ? "clamp(24px, 7vw, 36px)" : "clamp(28px, 4.23vw, 64px)",
           letterSpacing: "-0.04em",
-          lineHeight: 0.921,
+          lineHeight: 1.1,
           margin: 0,
+          textAlign: "center",
         }}>
           what they say about us
         </h2>
       </div>
 
-      {/* Card — Figma: 1040×293px centered, #14534D */}
+      {/* Card — stacks on mobile */}
       <div style={{
         display: "flex",
+        flexDirection: mob ? "column" : "row",
         margin: "0 auto",
-        width: "clamp(320px, 68.8vw, 1040px)",
-        height: "clamp(180px, 19.4vw, 293px)",
+        width: mob ? "calc(100% - 48px)" : "clamp(320px, 68.8vw, 1040px)",
+        height: mob ? "auto" : "clamp(180px, 19.4vw, 293px)",
         overflow: "hidden",
       }}>
-        {/* Left: section-5 image — Figma: 50.6% of card width */}
-        <div style={{ width: "50.6%", flexShrink: 0, overflow: "hidden" }}>
+        {/* Image */}
+        <div style={{
+          width: mob ? "100%" : "50.6%",
+          height: mob ? "200px" : "auto",
+          flexShrink: 0, overflow: "hidden",
+        }}>
           <img
             src="/assets/home-page/section-5.png"
             alt="NH48 press"
@@ -595,20 +603,20 @@ function Sayings() {
           />
         </div>
 
-        {/* Right: quote text — Figma: #14534D bg, BERNIER Distressed 16px, white, lh=92% */}
+        {/* Quote text */}
         <div style={{
           flex: 1,
           backgroundColor: "#14534D",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "clamp(16px, 2.5vw, 36px) clamp(16px, 3.8vw, 57px)",
+          padding: mob ? "24px 20px" : "clamp(16px, 2.5vw, 36px) clamp(16px, 3.8vw, 57px)",
         }}>
           <p style={{
             fontFamily: "BERNIER Distressed, cursive",
             color: "white",
-            fontSize: "clamp(11px, 1.06vw, 16px)",
-            lineHeight: 0.921,
+            fontSize: mob ? "15px" : "clamp(11px, 1.06vw, 16px)",
+            lineHeight: 1.4,
             textAlign: "center",
             margin: 0,
             opacity: visible ? 1 : 0,
@@ -769,22 +777,35 @@ const CITIES = [
 ];
 
 function Journey() {
-  //const navigate = useNavigate(); // remove if not using React Router
-
-  const [openCity, setOpenCity] = useState(null); // 'delhi' | 'jaipur' | 'mumbai' | null
+  const [openCity, setOpenCity] = useState(null);
+  const width = useWindowWidth();
+  const mob = width < 768;
 
   return (
-    <div style={styles.wrapper}>
+    <div style={{
+      ...styles.wrapper,
+      paddingTop: mob ? "48px" : "97px",
+      paddingBottom: mob ? "48px" : "60px",
+      paddingLeft: mob ? "16px" : "40px",
+      paddingRight: mob ? "16px" : "40px",
+      minHeight: mob ? "auto" : "797px",
+    }}>
       {/* Title */}
       <h2 style={styles.title}>A Journey Through City Signatures</h2>
 
       {/* Cards row */}
-      <div style={styles.cardsRow}>
+      <div style={{
+        ...styles.cardsRow,
+        flexDirection: mob ? "column" : "row",
+        alignItems: mob ? "center" : "stretch",
+        width: "100%",
+      }}>
         {CITIES.map((city) => (
           <CityCard
             key={city.key}
             city={city}
-            onClick={() => setOpenCity(city.key)} // swap for your own navigation
+            mob={mob}
+            onClick={() => setOpenCity(city.key)}
           />
         ))}
       </div>
@@ -871,7 +892,7 @@ function Journey() {
   );
 }
 
-function CityCard({ city, onClick }) {
+function CityCard({ city, onClick, mob }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -881,6 +902,9 @@ function CityCard({ city, onClick }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         ...styles.card,
+        width: mob ? "100%" : undefined,
+        maxWidth: mob ? "420px" : "clamp(200px, 26.1vw, 395px)",
+        height: mob ? "200px" : "clamp(200px, 26.5vw, 400px)",
         transform: hovered ? "scale(1.03)" : "scale(1)",
         boxShadow: hovered
           ? "0 12px 32px rgba(0,0,0,0.35)"
@@ -1615,33 +1639,34 @@ function FoodGridSection() {
           Teal layer: rgb(20,83,77)  fill_opacity=0.82, left=-32px, top=0, font=868px
           (teal = same as bg → nearly invisible, creates subtle shading)
           (red = maroon tint visible at 45% over dark teal) */}
-      <span aria-hidden="true" style={{
-        position: "absolute",
-        left: "2px",
-        top: "clamp(90px, 9.1vw, 138px)",
-        fontFamily: "BERNIER Distressed, cursive",
-        fontSize: "clamp(350px, 57.4vw, 868px)",
-        color: "rgba(169,69,69,0.45)",
-        lineHeight: "0.921",
-        whiteSpace: "nowrap",
-        userSelect: "none",
-        pointerEvents: "none",
-        zIndex: 0,
-      }}>NH48</span>
-
-      <span aria-hidden="true" style={{
-        position: "absolute",
-        left: "-32px",
-        top: "clamp(90px, 9.1vw, 138px)",
-        fontFamily: "BERNIER Distressed, cursive",
-        fontSize: "clamp(350px, 57.4vw, 868px)",
-        color: "rgba(20,83,77,0.82)",
-        lineHeight: "0.921",
-        whiteSpace: "nowrap",
-        userSelect: "none",
-        pointerEvents: "none",
-        zIndex: 0,
-      }}>NH48</span>
+      {!mob && <>
+        <span aria-hidden="true" style={{
+          position: "absolute",
+          left: "2px",
+          top: "clamp(90px, 9.1vw, 138px)",
+          fontFamily: "BERNIER Distressed, cursive",
+          fontSize: "clamp(350px, 57.4vw, 868px)",
+          color: "rgba(169,69,69,0.45)",
+          lineHeight: "0.921",
+          whiteSpace: "nowrap",
+          userSelect: "none",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}>NH48</span>
+        <span aria-hidden="true" style={{
+          position: "absolute",
+          left: "-32px",
+          top: "clamp(90px, 9.1vw, 138px)",
+          fontFamily: "BERNIER Distressed, cursive",
+          fontSize: "clamp(350px, 57.4vw, 868px)",
+          color: "rgba(20,83,77,0.82)",
+          lineHeight: "0.921",
+          whiteSpace: "nowrap",
+          userSelect: "none",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}>NH48</span>
+      </>}
 
       {/* Left motif — Figma: left=14.2%, top=32.3%, 174×213px */}
       <img
