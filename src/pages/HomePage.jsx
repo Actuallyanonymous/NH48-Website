@@ -33,8 +33,8 @@ function HeroSection() {
   return (
     <section style={{
       width: "100%",
-      height: "100vh",
-      marginTop: "60px",         // push below fixed navbar
+      height: "calc(100dvh - 60px)",   // exact visible area below fixed navbar
+      marginTop: "60px",
       overflow: "hidden",
       lineHeight: 0,
     }}>
@@ -238,23 +238,23 @@ function FoodShowcaseSection() {
       style={{
         width: "100%",
         backgroundColor: "#FCFAEB",
-        paddingTop: mob ? "60px" : "133px",
-        paddingBottom: mob ? "60px" : "126px",
+        paddingTop: mob ? "48px" : "133px",
+        paddingBottom: mob ? "48px" : "126px",
       }}
     >
-      {/* 3 square photos — Figma: 373×373px each, 21px gap, centered */}
+      {/* 3 photos — 1 column on mobile, 3 columns desktop */}
       <div
         style={{
           display: "grid",
           gridTemplateColumns: mob
-            ? "repeat(2, 1fr)"
+            ? "1fr"
             : "repeat(3, clamp(240px, 24.7vw, 373px))",
-          gap: mob ? "12px" : "clamp(12px, 1.4vw, 21px)",
+          gap: mob ? "16px" : "clamp(12px, 1.4vw, 21px)",
           justifyContent: "center",
           width: "100%",
-          maxWidth: "1161px",
+          maxWidth: mob ? "480px" : "1161px",
           margin: "0 auto",
-          marginBottom: mob ? "40px" : "68px",
+          marginBottom: mob ? "36px" : "68px",
           padding: mob ? "0 24px" : "0",
         }}
       >
@@ -272,25 +272,26 @@ function FoodShowcaseSection() {
         ))}
       </div>
 
-      {/* Buttons — Figma: teal fill, inner white border, BERNIER Distressed 25px */}
+      {/* Buttons */}
       <div
         style={{
           display: "flex",
-          flexDirection: mob ? "column" : "row",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          gap: "16px",
+          gap: "14px",
+          padding: mob ? "0 24px" : "0",
         }}
       >
         {[
           { label: "view full menu", to: "/menu/food" },
           { label: "order online", to: "#" },
         ].map(({ label, to }) => (
-          <Link key={label} to={to} style={{ textDecoration: "none" }}>
+          <Link key={label} to={to} style={{ textDecoration: "none", width: mob ? "100%" : "auto", maxWidth: mob ? "480px" : "none" }}>
             <div
               style={{
                 position: "relative",
-                width: mob ? "260px" : "292px",
+                width: mob ? "100%" : "292px",
                 height: "60px",
                 backgroundColor: "#14534D",
                 display: "flex",
@@ -299,14 +300,10 @@ function FoodShowcaseSection() {
                 cursor: "pointer",
               }}
             >
-              {/* Inner white border frame — Figma: inset 12px × 8px, 1.5px stroke */}
               <div
                 style={{
                   position: "absolute",
-                  top: "8px",
-                  left: "12px",
-                  right: "12px",
-                  bottom: "8px",
+                  top: "8px", left: "12px", right: "12px", bottom: "8px",
                   border: "1.5px solid white",
                   pointerEvents: "none",
                 }}
@@ -314,7 +311,7 @@ function FoodShowcaseSection() {
               <span
                 style={{
                   fontFamily: "BERNIER Distressed, cursive",
-                  fontSize: mob ? "20px" : "25px",
+                  fontSize: mob ? "22px" : "25px",
                   color: "white",
                   letterSpacing: "0.04em",
                   position: "relative",

@@ -282,7 +282,7 @@ export default function MenuLandingPage() {
       {/* ── HERO — fills viewport below fixed navbar ── */}
       <section style={{
         width: '100%',
-        height: '100vh',
+        height: 'calc(100dvh - 60px)',
         marginTop: '60px',
         overflow: 'hidden',
         lineHeight: 0,
