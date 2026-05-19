@@ -1,13 +1,13 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Barlow Condensed', sans-serif; background: #F5EFE0; overflow-x: hidden; }
-h1,h2,h3,h4,h5,h6 { font-family: 'BERNIER Distressed', cursive; letter-spacing: 0.05em; text-transform: uppercase; }
+h1,h2,h3,h4,h5,h6 { font-family: 'BERNIER Distressed', cursive; letter-spacing: 0.05em; }
 img { display: block; max-width: 100%; }
 #root { width: 100%; }
 a { text-decoration: none; }
 @font-face {
   font-family: 'BERNIER Distressed';
-  src: url('/fonts/BERNIERDistressed-Regular.woff2') format('woff2'),
-       url('/fonts/BERNIERDistressed-Regular.ttf')   format('truetype'),
+  src: url('/fonts/BERNIERRegular-Regular.ttf')      format('truetype'),
+       url('/fonts/BERNIERDistressed-Regular.woff2') format('woff2'),
        url('/fonts/BERNIERDistressedRegular.otf')    format('opentype');
   font-weight: 400;
   font-style: normal;
