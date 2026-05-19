@@ -16,8 +16,8 @@ a { text-decoration: none; }
 
 @font-face {
   font-family: 'Arcane Nine';
-  src: url('/fonts/ArcaneNine.otf') format('opentype'),
-       url('/fonts/ArcaneNine.ttf') format('truetype');
+  src: url('/fonts/ArcaneNine.woff2') format('woff2'),
+       url('/fonts/ArcaneNine.ttf')   format('truetype');
   font-weight: 400;
   font-style: normal;
 }

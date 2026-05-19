@@ -283,7 +283,7 @@ export default function MenuLandingPage() {
       <section style={{
         width: '100%',
         height: '100vh',
-        marginTop: '72px',
+        marginTop: '60px',
         overflow: 'hidden',
         lineHeight: 0,
       }}>

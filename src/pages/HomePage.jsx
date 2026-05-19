@@ -34,7 +34,7 @@ function HeroSection() {
     <section style={{
       width: "100%",
       height: "100vh",
-      marginTop: "72px",         // push below fixed navbar
+      marginTop: "60px",         // push below fixed navbar
       overflow: "hidden",
       lineHeight: 0,
     }}>
@@ -1473,6 +1473,9 @@ function DCMapIllustration() {
 }
 
 // ─── Location & Timings Section ───────────────────────────────────────────────
+// Figma: 1512×678px, bg=rgb(239,212,133), image(247,191 573×369), teal panel(821,191 444×369)
+// Texts: BERNIER Distressed 28.27px (1.87vw), white rgb(255,255,255)
+
 const BORDER_STYLE = {
   height: "23px",
   backgroundImage: "url('/assets/home-page/Location-section-border.png')",
@@ -1481,125 +1484,114 @@ const BORDER_STYLE = {
   width: "100%",
 };
 
-const LABEL_STYLE = {
-  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-  fontSize: "16px",
-  color: "white",
-  margin: "0 0 8px 0",
-  fontWeight: 400,
-};
-
-const BODY_STYLE = {
-  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-  fontSize: "16px",
-  color: "rgb(255,212,212)",
-  margin: 0,
-  lineHeight: 1.6,
-};
-
 function LocationTimings() {
   const width = useWindowWidth();
   const mob = width < 768;
 
-  const hours = [
-    { day: "MON:", time: "10 AM – 5 PM" },
-    { day: "TUE:", time: "10 AM – 5 PM" },
-    { day: "WED:", time: "10 AM – 5 PM" },
-    { day: "THUR:", time: "10 AM – 5 PM" },
-    { day: "FRI:", time: "10 AM – 5 PM" },
-    { day: "SAT:", time: "8 AM – 7 PM" },
-    { day: "SUN:", time: "8 AM – 7 PM" },
-  ];
+  // Figma text: sz=28.27px at 1512px → 1.87vw
+  const textStyle = {
+    fontFamily: "'BERNIER Distressed', cursive",
+    color: "rgb(255,255,255)",
+    fontSize: mob ? "clamp(14px, 4.5vw, 20px)" : "clamp(16px, 1.87vw, 28px)",
+    lineHeight: 1.5,
+    textAlign: "center",
+    margin: 0,
+    letterSpacing: "0.04em",
+  };
 
   return (
-    <section style={{ width: "100%", backgroundColor: "#D4BA5A", position: "relative", overflow: "visible" }}>
+    <section style={{
+      width: "100%",
+      backgroundColor: "rgb(239,212,133)",
+      position: "relative",
+      overflow: "hidden",
+    }}>
 
-      {/* Top border — Figma: 11px above frame, 11.5px inside */}
+      {/* 12px Flip Grid — op=0.05 */}
+      <img src="/assets/home-page/12px-flip-grid.png" alt="" aria-hidden="true"
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.05, pointerEvents: "none", zIndex: 0 }} />
+
+      {/* Top border */}
       <div style={{ ...BORDER_STYLE, position: "absolute", top: "-11px", left: 0, right: 0, zIndex: 10 }} />
 
-      <div style={{ padding: mob ? "32px 20px 40px" : "48px 60px 56px" }}>
-        {/* Heading */}
-        <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: mob ? "28px" : "40px" }}>
+      <div style={{ position: "relative", zIndex: 1, padding: mob ? "32px 20px 40px" : "48px 0 56px" }}>
+
+        {/* Heading — Figma: BERNIER 64px, teal rgb(20,83,77) */}
+        <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: mob ? "24px" : "40px" }}>
           <h2 style={{
-            fontFamily: "BERNIER Distressed, cursive",
-            color: "#1B5C4F",
-            fontSize: mob ? "32px" : "clamp(36px, 4.23vw, 64px)",
+            fontFamily: "'BERNIER Distressed', cursive",
+            color: "rgb(20,83,77)",
+            fontSize: mob ? "clamp(28px, 8vw, 40px)" : "clamp(36px, 4.23vw, 64px)",
             letterSpacing: "-0.04em",
             margin: 0,
             textAlign: "center",
           }}>
-            Location &amp; Timing's
+            location &amp; timing's
           </h2>
         </div>
 
-        {/* Map + Info panel */}
+        {/* Image + Info panel — Figma: image 573px, panel 444px in 1017px total → 56.3% / 43.7% */}
         <div style={{
           display: "flex",
           flexDirection: mob ? "column" : "row",
           alignItems: mob ? "center" : "stretch",
           justifyContent: "center",
-          gap: mob ? "20px" : "0",
-          maxWidth: "1000px",
+          gap: mob ? "0" : "0",
+          maxWidth: mob ? "480px" : "1017px",
           margin: "0 auto",
+          width: mob ? "100%" : "67.3%",  // 1017/1512
         }}>
-          {/* LEFT — Map */}
+
+          {/* LEFT — location image (Figma: 573×369px = 56.3% of content) */}
           <div style={{
-            flex: mob ? "unset" : "0 0 52%",
+            flex: mob ? "unset" : "573",
             width: mob ? "100%" : "auto",
-            maxWidth: mob ? "480px" : "unset",
-            border: "3px solid #B8A060",
+            aspectRatio: "573/369",
             overflow: "hidden",
-            boxShadow: "4px 4px 16px rgba(0,0,0,0.18)",
-            backgroundColor: "#F2E8C4",
-            aspectRatio: mob ? "520/300" : "unset",
-            minHeight: mob ? "auto" : "320px",
           }}>
-            <DCMapIllustration />
+            <img
+              src="/assets/home-page/location-timing-image.png"
+              alt="NH48 location"
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
           </div>
 
-          {/* RIGHT — Info panel */}
+          {/* RIGHT — Teal info panel (Figma: 444×369px = 43.7% of content) */}
           <div style={{
-            flex: mob ? "unset" : "0 0 48%",
+            flex: mob ? "unset" : "444",
             width: mob ? "100%" : "auto",
-            maxWidth: mob ? "480px" : "unset",
-            backgroundColor: "#1B5C4F",
+            backgroundColor: "rgb(20,83,77)",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
             justifyContent: "center",
-            padding: mob ? "28px 20px" : "36px 40px",
+            alignItems: "center",
+            padding: mob ? "28px 20px" : "clamp(20px, 2.4vw, 36px) clamp(12px, 2.6vw, 40px)",
+            gap: mob ? "16px" : "clamp(12px, 1.85vw, 28px)",
           }}>
-            <p style={{
-              fontFamily: "BERNIER Distressed, cursive",
-              color: "#F5EFE0",
-              fontSize: mob ? "16px" : "clamp(14px, 1.5vw, 20px)",
-              letterSpacing: "0.06em",
-              lineHeight: 1.4,
-              textAlign: "center",
-              margin: "0 0 28px 0",
-            }}>
+            {/* Address — Figma: "4824 macarthur blvd nw ll washington dc , 20007" */}
+            <p style={textStyle}>
               4824 MACARTHUR BLVD NW LL<br />
               WASHINGTON DC, 20007
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "100%", alignItems: "center" }}>
-              {hours.map(({ day, time }) => (
-                <p key={day} style={{
-                  fontFamily: "BERNIER Distressed, cursive",
-                  color: "#F5EFE0",
-                  fontSize: mob ? "13px" : "clamp(13px, 1.3vw, 18px)",
-                  letterSpacing: "0.07em",
-                  margin: 0,
-                  textAlign: "center",
-                }}>
-                  {day} {time}
-                </p>
+            {/* Hours — Figma: all days listed */}
+            <div style={{ display: "flex", flexDirection: "column", gap: mob ? "4px" : "clamp(3px, 0.4vw, 6px)", alignItems: "center", width: "100%" }}>
+              {[
+                ["MON:", "10 AM – 5 PM"],
+                ["TUE:", "10 AM – 5 PM"],
+                ["WED:", "10 AM – 5 PM"],
+                ["THUR:", "10 AM – 5 PM"],
+                ["FRI:", "10 AM – 5 PM"],
+                ["SAT:", "8 AM – 7 PM"],
+                ["SUN:", "8 AM – 7 PM"],
+              ].map(([day, time]) => (
+                <p key={day} style={textStyle}>{day} {time}</p>
               ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom border — Figma: 11px inside frame, 11.5px below */}
+      {/* Bottom border */}
       <div style={{ ...BORDER_STYLE, position: "absolute", bottom: "-11px", left: 0, right: 0, zIndex: 10 }} />
     </section>
   );

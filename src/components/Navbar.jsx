@@ -11,19 +11,20 @@ const NAV_LINKS = [
   { label: 'PRESS',        to: '#',       external: true  },
 ]
 
-// Figma: bg=rgb(252,248,235) cream, logo+links=rgb(1,57,113) navy, font="Arcane Nine" 20px
+// Figma: bg=rgb(252,248,235) cream
+// Logo: BERNIER Distressed, gradient #150E51 (rgb(21,14,81)) — dark navy-indigo
+// Links: Arcane Nine 20.34px, color #013971 (rgb(1,57,113))
 export default function Navbar() {
   const [drawerOpen, setDrawer] = useState(false)
 
-  // Figma: exact nav link style — Arcane Nine 20px navy
   const linkStyle = (isActive) => ({
-    fontFamily: "'Arcane Nine', 'Barlow Condensed', sans-serif",
+    fontFamily: "'Arcane Nine', sans-serif",
     fontSize: '20px',
     fontWeight: 400,
     letterSpacing: '0.04em',
     textTransform: 'uppercase',
-    color: 'rgb(1,57,113)',
-    borderBottom: isActive ? '2px solid rgb(1,57,113)' : '2px solid transparent',
+    color: '#013971',
+    borderBottom: isActive ? '2px solid #013971' : '2px solid transparent',
     paddingBottom: 2,
     cursor: 'pointer',
     background: 'none',
@@ -33,20 +34,23 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Fixed navbar — Figma: cream bg, 72px tall ── */}
+      {/* ── Fixed navbar — cream bg, 60px tall ── */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-        height: '72px',
+        height: '60px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 32px',
         backgroundColor: 'rgb(252,248,235)',
         boxShadow: '0 1px 6px rgba(0,0,0,0.07)',
       }}>
-        {/* Logo — Figma: BERNIER Distressed, color rgb(1,57,113) navy */}
+        {/* Logo — Figma: BERNIER Distressed, gradient fill #150E51 dark navy-indigo */}
         <Link to="/" style={{
           fontFamily: "'BERNIER Distressed', cursive",
-          fontSize: '42px',
-          color: 'rgb(1,57,113)',
+          fontSize: '34px',
+          background: 'linear-gradient(160deg, #150E51 0%, #140F52 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
           letterSpacing: '0.04em',
           lineHeight: 1,
           textDecoration: 'none',
@@ -132,13 +136,13 @@ export default function Navbar() {
               {NAV_LINKS.map(({ label, to, external }) =>
                 external ? (
                   <a key={label} href={to} onClick={() => setDrawer(false)}
-                     style={{ fontFamily: "'Arcane Nine','Barlow Condensed',sans-serif", fontSize: 20, color: 'rgb(1,57,113)', letterSpacing: '0.04em', textDecoration: 'none' }}>
+                     style={{ fontFamily: "'Arcane Nine', sans-serif", fontSize: 20, color: '#013971', letterSpacing: '0.04em', textDecoration: 'none' }}>
                     {label}
                   </a>
                 ) : (
                   <NavLink key={label} to={to} end={to === '/'}
                     onClick={() => setDrawer(false)}
-                    style={{ fontFamily: "'Arcane Nine','Barlow Condensed',sans-serif", fontSize: 20, color: 'rgb(1,57,113)', letterSpacing: '0.04em', textDecoration: 'none' }}>
+                    style={{ fontFamily: "'Arcane Nine', sans-serif", fontSize: 20, color: '#013971', letterSpacing: '0.04em', textDecoration: 'none' }}>
                     {label}
                   </NavLink>
                 )
