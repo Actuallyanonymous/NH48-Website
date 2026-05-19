@@ -6,7 +6,7 @@ img { display: block; max-width: 100%; }
 a { text-decoration: none; }
 @font-face {
   font-family: 'BERNIER Distressed';
-  src: url('/fonts/BERNIERDistressed-Regular.ttf')  format('truetype'),
+  src: url('/fonts/BERNIERRegular-Regular.ttf')      format('truetype'),
        url('/fonts/BERNIERDistressed-Regular.woff2') format('woff2'),
        url('/fonts/BERNIERDistressedRegular.otf')    format('opentype');
   font-weight: 400;
