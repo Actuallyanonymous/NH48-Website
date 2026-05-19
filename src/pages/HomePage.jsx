@@ -1504,7 +1504,7 @@ function LocationTimings() {
       width: "100%",
       backgroundColor: "rgb(239,212,133)",
       position: "relative",
-      overflow: "hidden",
+      overflow: "visible",
     }}>
 
       {/* 12px Flip Grid — op=0.05 */}
