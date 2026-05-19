@@ -705,8 +705,26 @@ function Plates() {
       ref={sectionRef}
       style={{ position: "relative", width: "100%", backgroundColor: "#1B5C4F", height: "62vw", minHeight: "600px", maxHeight: "938px", overflow: "hidden" }}
     >
+      {/* 12px Flip Grid — Figma: full-cover overlay, op=0.05, sits above bg below all content */}
+      <img
+        src="/assets/home-page/12px-flip-grid.png"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+          opacity: 0.05,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
       {/* Heading — Figma: centered, top=8.8%, BERNIER Distressed 64px white */}
-      <div style={{ position: "absolute", left: 0, right: 0, top: "8.8%", display: "flex", justifyContent: "center", alignItems: "center", gap: "23px" }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: "8.8%", display: "flex", justifyContent: "center", alignItems: "center", gap: "23px", zIndex: 1 }}>
         <svg width="72" height="57" viewBox="0 0 72 57" fill="none"><path d={FLOWER_PATH} fill="#A94545"/></svg>
         <h2 style={{ fontFamily: "BERNIER Distressed, cursive", color: "white", fontSize: "clamp(28px, 4.23vw, 64px)", margin: 0, letterSpacing: "-0.04em" }}>
           Plates of the NH48
