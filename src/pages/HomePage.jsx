@@ -96,120 +96,72 @@ function CityCardsSection() {
         }}
       />
 
-      {/* Cards row */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          maxWidth: "1397px",
-          padding: mob ? "0 24px" : "0 87px",
-          gap: mob ? "16px" : "clamp(60px, 8.3vw, 125px)",
-          overflowX: mob ? "auto" : "visible",
-          scrollSnapType: mob ? "x mandatory" : "none",
-          paddingBottom: mob ? "24px" : "0",
-          flexShrink: 0,
-        }}
-      >
-        {/* Card 1 — Oval food */}
+      {/* Cards — infinite right-to-left marquee */}
+      <div style={{ width: "100%", overflow: "hidden" }}>
         <div
-          style={{
-            width: ovalW,
-            flexShrink: 0,
-            scrollSnapAlign: mob ? "start" : "none",
-          }}
+          className="marquee-track"
+          style={{ gap: mob ? "40px" : "clamp(60px, 8.3vw, 125px)" }}
         >
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "261/355",
-              borderRadius: "50%",
-              overflow: "hidden",
-              border: "3px solid #D4B84A",
-            }}
-          >
-            <img
-              src="/assets/home-page/section-2-image-1.jpeg"
-              alt="Delhi food"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </div>
-        </div>
+          {[0, 1].map((set) => (
+            <div
+              key={set}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: mob ? "40px" : "clamp(60px, 8.3vw, 125px)",
+                flexShrink: 0,
+                paddingLeft: set === 0 ? (mob ? "40px" : "clamp(60px, 8.3vw, 125px)") : "0",
+              }}
+            >
+              {/* Card 1 — Oval food */}
+              <div style={{ width: ovalW, flexShrink: 0 }}>
+                <div style={{
+                  width: "100%", aspectRatio: "261/355",
+                  borderRadius: "50%", overflow: "hidden",
+                  border: "3px solid #D4B84A",
+                }}>
+                  <img src="/assets/home-page/section-2-image-1.jpeg" alt="Delhi food"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+              </div>
 
-        {/* Card 2 — Arch Delhi */}
-        <div
-          style={{
-            width: archW,
-            flexShrink: 0,
-            scrollSnapAlign: mob ? "start" : "none",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "221/344",
-              overflow: "hidden",
-              border: "3px solid #D4B84A",
-              clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
-            }}
-          >
-            <img
-              src="/assets/home-page/section-2-image-2.jpeg"
-              alt="Delhi"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </div>
-        </div>
+              {/* Card 2 — Arch Delhi */}
+              <div style={{ width: archW, flexShrink: 0 }}>
+                <div style={{
+                  width: "100%", aspectRatio: "221/344",
+                  overflow: "hidden", border: "3px solid #D4B84A",
+                  clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
+                }}>
+                  <img src="/assets/home-page/section-2-image-2.jpeg" alt="Delhi"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+              </div>
 
-        {/* Card 3 — Oval food (Mumbai food) */}
-        <div
-          style={{
-            width: ovalW,
-            flexShrink: 0,
-            scrollSnapAlign: mob ? "start" : "none",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "261/355",
-              borderRadius: "50%",
-              overflow: "hidden",
-              border: "3px solid #D4B84A",
-            }}
-          >
-            <img
-              src="/assets/home-page/section-2-image-3.jpeg"
-              alt="Mumbai food"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </div>
-        </div>
+              {/* Card 3 — Oval food */}
+              <div style={{ width: ovalW, flexShrink: 0 }}>
+                <div style={{
+                  width: "100%", aspectRatio: "261/355",
+                  borderRadius: "50%", overflow: "hidden",
+                  border: "3px solid #D4B84A",
+                }}>
+                  <img src="/assets/home-page/section-2-image-3.jpeg" alt="Mumbai food"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+              </div>
 
-        {/* Card 4 — Arch Mumbai */}
-        <div
-          style={{
-            width: archW,
-            flexShrink: 0,
-            scrollSnapAlign: mob ? "start" : "none",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "221/344",
-              overflow: "hidden",
-              border: "3px solid #D4B84A",
-              clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
-            }}
-          >
-            <img
-              src="/assets/home-page/section-2-image-4.jpeg"
-              alt="Mumbai"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </div>
+              {/* Card 4 — Arch Mumbai */}
+              <div style={{ width: archW, flexShrink: 0 }}>
+                <div style={{
+                  width: "100%", aspectRatio: "221/344",
+                  overflow: "hidden", border: "3px solid #D4B84A",
+                  clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
+                }}>
+                  <img src="/assets/home-page/section-2-image-4.jpeg" alt="Mumbai"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
