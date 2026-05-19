@@ -70,7 +70,7 @@ function WelcomePopup() {
               overflow: 'hidden',
             }}
           >
-            {/* Close button — top-right corner, red circle */}
+            {/* Close button — vector cross from Figma */}
             <button
               onClick={close}
               style={{
@@ -78,21 +78,18 @@ function WelcomePopup() {
                 top: '10px',
                 right: '10px',
                 zIndex: 10,
-                width: '32px',
-                height: '32px',
-                borderRadius: '50%',
-                background: 'rgb(169,69,69)',
+                background: 'none',
                 border: 'none',
-                color: '#fff',
-                fontSize: '14px',
+                padding: 0,
                 cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                lineHeight: 1,
+                lineHeight: 0,
               }}
             >
-              ✕
+              <img
+                src="/assets/coming-soon-cross.png"
+                alt="Close"
+                style={{ width: '32px', height: '32px', display: 'block' }}
+              />
             </button>
 
             {/* Left half — image (381/752 = 50.7% of popup width) */}
