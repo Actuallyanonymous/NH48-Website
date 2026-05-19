@@ -6,9 +6,12 @@ img { display: block; max-width: 100%; }
 a { text-decoration: none; }
 @font-face {
   font-family: 'BERNIER Distressed';
-  src: url('/fonts/BERNIERDistressedRegular.otf') format('opentype');
+  src: url('/fonts/BERNIERDistressed-Regular.woff2') format('woff2'),
+       url('/fonts/BERNIERDistressed-Regular.ttf')   format('truetype'),
+       url('/fonts/BERNIERDistressedRegular.otf')    format('opentype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
