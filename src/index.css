@@ -11,6 +11,14 @@ a { text-decoration: none; }
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Arcane Nine';
+  src: url('/fonts/ArcaneNine.otf') format('opentype'),
+       url('/fonts/ArcaneNine.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
   font-family: 'BERNIER Distressed', sans-serif;
 }
