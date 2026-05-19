@@ -31,11 +31,23 @@ export default function HomePage() {
 
 function HeroSection() {
   return (
-    <section style={{ width: "100%", lineHeight: 0 }}>
+    <section style={{
+      width: "100%",
+      height: "100vh",
+      marginTop: "72px",         // push below fixed navbar
+      overflow: "hidden",
+      lineHeight: 0,
+    }}>
       <img
         src="/assets/hero.png"
         alt="Welcome to NH48"
-        style={{ width: "100%", display: "block" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center top",
+          display: "block",
+        }}
       />
     </section>
   );
