@@ -79,6 +79,7 @@ function CityCardsSection() {
           bottom: mob ? "60px" : "auto",
           width: mob ? "clamp(70px, 10vw, 120px)" : "174px",
           pointerEvents: "none",
+          zIndex: 2,
         }}
       />
 
