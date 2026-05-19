@@ -279,12 +279,24 @@ export default function MenuLandingPage() {
   return (
     <div style={{ width: '100%', overflowX: 'hidden' }}>
 
-      {/* ── HERO — exact 1512×708px image from Figma ── */}
-      <section style={{ width: '100%', lineHeight: 0 }}>
+      {/* ── HERO — fills viewport below fixed navbar ── */}
+      <section style={{
+        width: '100%',
+        height: '100vh',
+        marginTop: '72px',
+        overflow: 'hidden',
+        lineHeight: 0,
+      }}>
         <img
           src="/assets/menu/menu-page-hero.png"
           alt="NH48 menu"
-          style={{ width: '100%', display: 'block' }}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+            display: 'block',
+          }}
         />
       </section>
 
