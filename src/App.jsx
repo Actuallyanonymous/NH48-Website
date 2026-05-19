@@ -107,16 +107,46 @@ function WelcomePopup() {
               />
             </div>
 
-            {/* Right half — red panel (371/752 = 49.3%) */}
+            {/* Right half — red panel with Figma noise effect (371/752 = 49.3%) */}
             <div style={{
               flex: '371 0 0px',
+              position: 'relative',
               backgroundColor: 'rgb(169,69,69)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               padding: 'clamp(20px, 4vw, 48px)',
+              overflow: 'hidden',
             }}>
-              {/* Text — Figma: BERNIER 40px white, centered in right panel */}
+              {/* Figma NOISE effect: MONOTONE, noiseSize=0.5, black 25% opacity, density=1.0 */}
+              <svg
+                aria-hidden="true"
+                style={{
+                  position: 'absolute', inset: 0,
+                  width: '100%', height: '100%',
+                  pointerEvents: 'none', zIndex: 0,
+                }}
+              >
+                <filter id="popup-noise">
+                  <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.65 0.65"
+                    numOctaves="3"
+                    stitchTiles="stitch"
+                    result="noise"
+                  />
+                  <feColorMatrix type="saturate" values="0" in="noise" result="monoNoise" />
+                  <feBlend in="SourceGraphic" in2="monoNoise" mode="normal" result="blended" />
+                  <feComposite in="blended" in2="SourceGraphic" operator="in" />
+                </filter>
+                <rect
+                  width="100%" height="100%"
+                  fill="rgba(0,0,0,0.25)"
+                  filter="url(#popup-noise)"
+                />
+              </svg>
+
+              {/* Text */}
               <p style={{
                 fontFamily: "'BERNIER Distressed', cursive",
                 fontSize: 'clamp(16px, 3.2vw, 40px)',
@@ -125,6 +155,8 @@ function WelcomePopup() {
                 textAlign: 'center',
                 margin: 0,
                 textTransform: 'uppercase',
+                position: 'relative',
+                zIndex: 1,
               }}>
                 book today and get 30% off the next time you vist us.
               </p>

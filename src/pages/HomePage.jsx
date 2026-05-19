@@ -714,29 +714,41 @@ function Plates() {
         <svg width="72" height="57" viewBox="0 0 72 57" fill="none" style={{ transform: "scaleX(-1)" }}><path d={FLOWER_PATH} fill="#A94545"/></svg>
       </div>
 
-      {/* Dish images — exact Figma positions */}
-      {DISHES.map(d => (
-        <img
-          key={`img-${d.file}`}
-          className={d.drift === "up" ? "plate-drift-up" : "plate-drift-down"}
-          src={`/assets/dishes/${d.file}.png`}
-          alt={d.name}
-          style={{ position: "absolute", left: `${d.imgX}%`, top: `${d.imgY}%`, width: "13.03%", height: "29.21%", objectFit: "cover", display: "block" }}
-        />
-      ))}
-
-      {/* Labels — exact Figma: 179×37px → 11.84% × 3.95% of section, pure % so they scale with images */}
-      {DISHES.map(d => (
-        <div
-          key={`lbl-${d.file}`}
-          style={{ position: "absolute", left: `${d.lX}%`, top: `${d.lY}%`, width: "11.84%", height: "3.95%", backgroundColor: "#A94545", display: "flex", alignItems: "center", justifyContent: "center" }}
-        >
-          <div style={{ position: "absolute", top: "13.5%", left: "4.5%", right: "3.9%", bottom: "13.5%", border: "1px solid rgba(255,255,255,0.55)" }} />
-          <span style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "1.016vw", color: "white", position: "relative", whiteSpace: "nowrap" }}>
-            {d.name}
-          </span>
-        </div>
-      ))}
+      {/* Dish image + label grouped — both drift together so label stays aligned during scroll */}
+      {DISHES.map(d => {
+        // Label offset from image top-left (in % of section dimensions)
+        const lOffX = d.lX - d.imgX; // label x offset relative to image x
+        const lOffY = d.lY - d.imgY; // label y offset relative to image y
+        return (
+          <div
+            key={d.file}
+            className={d.drift === "up" ? "plate-drift-up" : "plate-drift-down"}
+            style={{ position: "absolute", left: `${d.imgX}%`, top: `${d.imgY}%`, width: "13.03%", height: "29.21%" }}
+          >
+            {/* Dish image */}
+            <img
+              src={`/assets/dishes/${d.file}.png`}
+              alt={d.name}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+            {/* Label — positioned relative to the image wrapper */}
+            <div style={{
+              position: "absolute",
+              left: `${(lOffX / 13.03) * 100}%`,
+              top: `${(lOffY / 29.21) * 100}%`,
+              width: `${(11.84 / 13.03) * 100}%`,
+              height: `${(3.95 / 29.21) * 100}%`,
+              backgroundColor: "#A94545",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <div style={{ position: "absolute", top: "13.5%", left: "4.5%", right: "3.9%", bottom: "13.5%", border: "1px solid rgba(255,255,255,0.55)" }} />
+              <span style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "1.016vw", color: "white", position: "relative", whiteSpace: "nowrap" }}>
+                {d.name}
+              </span>
+            </div>
+          </div>
+        );
+      })}
 
       {/* Border — Figma: tall(112×72) + short(112×45) alternating, color rgb(9,44,40) */}
       <div style={{
