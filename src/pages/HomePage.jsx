@@ -371,8 +371,10 @@ function StorySection() {
 
   if (mob) {
     return (
-      <section ref={sectionRef} style={{ backgroundColor: "#ffde7c", padding: "48px 24px" }}>
-        <h2 style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "48px", color: "#14534D", letterSpacing: "-0.04em", textAlign: "center", margin: "0 0 32px" }}>
+      <section ref={sectionRef} style={{ backgroundColor: "#ffde7c", padding: "48px 24px", position: "relative", overflow: "hidden" }}>
+        <img src="/assets/home-page/12px-flip-grid.png" alt="" aria-hidden="true"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none", zIndex: 0 }} />
+        <h2 style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "48px", color: "#14534D", letterSpacing: "-0.04em", textAlign: "center", margin: "0 0 32px", position: "relative", zIndex: 1 }}>
           Our story
         </h2>
         <img className="story-drift-up" src="/assets/home-page/story-left-group.png" alt="Story collage left" style={{ width: "100%", marginBottom: "24px", display: "block" }} />
@@ -435,6 +437,23 @@ function StorySection() {
           </filter>
         </defs>
       </svg>
+
+      {/* 12px Flip Grid — Figma: full-cover, op=1.00 baked in PNG, z=0 above noise SVG */}
+      <img
+        src="/assets/home-page/12px-flip-grid.png"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
 
       {/* Right collage — z=1, BEHIND teal card (peeks out from right side only) */}
       <img
@@ -717,7 +736,6 @@ function Plates() {
           height: "100%",
           objectFit: "cover",
           objectPosition: "center",
-          opacity: 0.05,
           pointerEvents: "none",
           zIndex: 0,
         }}
