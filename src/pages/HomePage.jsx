@@ -1592,7 +1592,7 @@ function LocationTimings() {
       </div>
 
       {/* Bottom border */}
-      <div style={{ ...BORDER_STYLE, position: "absolute", bottom: "-11px", left: 0, right: 0, zIndex: 10 }} />
+      <div style={{ ...BORDER_STYLE, position: "absolute", bottom: "-14px", left: 0, right: 0, zIndex: 10 }} />
     </section>
   );
 }
