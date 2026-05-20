@@ -382,7 +382,7 @@ function TwoColumnSection() {
             color: 'rgba(255,255,255,0.91)',
             lineHeight: 1.22,
             letterSpacing: '-0.32px',
-            textTransform: 'capitalize',
+            textTransform: 'none',
             margin: 0,
           }}>{bodyText}</p>
         </div>
@@ -398,10 +398,10 @@ function TwoColumnSection() {
       backgroundColor: 'rgb(252,248,235)',
       overflow: 'hidden',
     }}>
-      {/* Left — terra cotta bg: (76,0) 604×640 → left=5%, w=39.9% */}
+      {/* Left — terra cotta bg: flush to left edge, w=39.9% */}
       <div style={{
         position: 'absolute',
-        left: '5%', top: 0,
+        left: 0, top: 0,
         width: '39.9%', height: '100%',
         backgroundColor: 'rgb(184,98,54)',
         overflow: 'hidden',
@@ -429,7 +429,7 @@ function TwoColumnSection() {
           color: 'rgba(255,255,255,0.91)',
           lineHeight: 1.22,
           letterSpacing: '-0.32px',
-          textTransform: 'capitalize',
+          textTransform: 'none',
           margin: 0,
         }}>{bodyText}</p>
 
