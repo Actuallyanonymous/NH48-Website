@@ -12,6 +12,8 @@ export default function AboutPage() {
       {/* Figma: 78px cream gap between TealSection (ends y=2962) and TwoColumnSection group (starts y=3040) */}
       <div style={{ width: '100%', height: 'clamp(50px, 5.16vw, 78px)', backgroundColor: 'rgb(252,248,235)' }} />
       <TwoColumnSection />
+      {/* Figma: 78px cream gap between TwoColumnSection (ends y=3680) and QuoteSection (starts y=3758) */}
+      <div style={{ width: '100%', height: 'clamp(50px, 5.16vw, 78px)', backgroundColor: 'rgb(252,248,235)' }} />
       <QuoteSection />
       <ValuesSection />
       <SiteFooter />
