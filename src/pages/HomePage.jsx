@@ -276,10 +276,10 @@ function FoodShowcaseSection() {
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: mob ? "column" : "row",
           alignItems: "center",
           justifyContent: "center",
-          gap: "14px",
+          gap: mob ? "14px" : "16px",
           padding: mob ? "0 24px" : "0",
         }}
       >
@@ -287,7 +287,7 @@ function FoodShowcaseSection() {
           { label: "view full menu", to: "/menu/food" },
           { label: "order online", to: "#" },
         ].map(({ label, to }) => (
-          <Link key={label} to={to} style={{ textDecoration: "none", width: mob ? "100%" : "auto", maxWidth: mob ? "480px" : "none" }}>
+          <Link key={label} to={to} style={{ textDecoration: "none", width: mob ? "100%" : "292px" }}>
             <div
               style={{
                 position: "relative",
