@@ -1485,12 +1485,12 @@ function LocationTimings() {
   const width = useWindowWidth();
   const mob = width < 768;
 
-  // Figma text: sz=28.27px at 1512px → 1.87vw
+  // Figma: sz=28.27px at 1512px=1.87vw, lineHeight=1.06 (210px / 7 lines / 28.27px)
   const textStyle = {
     fontFamily: "'BERNIER Distressed', cursive",
     color: "rgb(255,255,255)",
-    fontSize: mob ? "clamp(14px, 4.5vw, 20px)" : "clamp(16px, 1.87vw, 28px)",
-    lineHeight: 1.5,
+    fontSize: mob ? "clamp(13px, 3.8vw, 18px)" : "clamp(14px, 1.87vw, 28px)",
+    lineHeight: 1.06,
     textAlign: "center",
     margin: 0,
     letterSpacing: "0.04em",
@@ -1563,15 +1563,15 @@ function LocationTimings() {
             justifyContent: "center",
             alignItems: "center",
             padding: mob ? "28px 20px" : "clamp(20px, 2.4vw, 36px) clamp(12px, 2.6vw, 40px)",
-            gap: mob ? "16px" : "clamp(12px, 1.85vw, 28px)",
+            gap: mob ? "12px" : "clamp(10px, 1.85vw, 28px)",
           }}>
             {/* Address — Figma: "4824 macarthur blvd nw ll washington dc , 20007" */}
             <p style={textStyle}>
               4824 MACARTHUR BLVD NW LL<br />
               WASHINGTON DC, 20007
             </p>
-            {/* Hours — Figma: all days listed */}
-            <div style={{ display: "flex", flexDirection: "column", gap: mob ? "4px" : "clamp(3px, 0.4vw, 6px)", alignItems: "center", width: "100%" }}>
+            {/* Hours — Figma: tight continuous block, no gap between lines */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 0, alignItems: "center", width: "100%" }}>
               {[
                 ["MON:", "10 AM – 5 PM"],
                 ["TUE:", "10 AM – 5 PM"],
