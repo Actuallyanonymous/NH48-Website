@@ -14,6 +14,17 @@ a { text-decoration: none; }
   font-display: swap;
 }
 
+/* Separate face for the NH48 watermark — must stay Distressed to keep original letter widths/positions */
+@font-face {
+  font-family: 'BERNIER Watermark';
+  src: url('/fonts/BERNIERDistressed-Regular.woff2') format('woff2'),
+       url('/fonts/BERNIERDistressed-Regular.ttf')   format('truetype'),
+       url('/fonts/BERNIERDistressedRegular.otf')    format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Arcane Nine';
   src: url('/fonts/ArcaneNine.woff2') format('woff2'),
