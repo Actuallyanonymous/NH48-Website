@@ -168,7 +168,6 @@ function TealSection({ mob }) {
                     height: imgH,
                     width: 'auto',
                     overflow: 'hidden',
-                    border: '2px solid rgba(212,184,74,0.6)',
                   }}
                 >
                   <img
