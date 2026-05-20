@@ -9,6 +9,8 @@ export default function AboutPage() {
     <div style={{ width: '100%' }}>
       <HeroSection />
       <TealSection />
+      {/* Figma: 78px cream gap between TealSection (ends y=2962) and TwoColumnSection group (starts y=3040) */}
+      <div style={{ width: '100%', height: 'clamp(50px, 5.16vw, 78px)', backgroundColor: 'rgb(252,248,235)' }} />
       <TwoColumnSection />
       <QuoteSection />
       <ValuesSection />
@@ -398,10 +400,10 @@ function TwoColumnSection() {
       backgroundColor: 'rgb(252,248,235)',
       overflow: 'hidden',
     }}>
-      {/* Left — terra cotta bg: flush to left edge, w=39.9% */}
+      {/* Left — terra cotta bg: Figma x=40 → left=76px=5% from frame, w=39.9% */}
       <div style={{
         position: 'absolute',
-        left: 0, top: 0,
+        left: '5%', top: 0,
         width: '39.9%', height: '100%',
         backgroundColor: 'rgb(184,98,54)',
         overflow: 'hidden',
@@ -429,7 +431,7 @@ function TwoColumnSection() {
           color: 'rgba(255,255,255,0.91)',
           lineHeight: 1.22,
           letterSpacing: '-0.32px',
-          textTransform: 'none',
+          textTransform: 'capitalize',
           margin: 0,
         }}>{bodyText}</p>
 
