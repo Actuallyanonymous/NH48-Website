@@ -50,8 +50,11 @@ function GetInTouch() {
   if (mob) {
     return (
       <section style={{ backgroundColor: "rgb(50, 104, 98)", padding: "40px 24px 48px" }}>
-        <p style={{ ...B, fontSize: "28px", color: "white", lineHeight: 0.921, whiteSpace: "pre-line", marginBottom: "24px" }}>
-          {"Get in touch\n\nIf you need to get in touch with us, please fill in the form below and our team will get back to you as soon as possible."}
+        <p style={{ ...B, fontSize: "28px", color: "white", lineHeight: 0.921, marginBottom: "12px" }}>
+          Get in touch
+        </p>
+        <p style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "15px", color: "white", lineHeight: 1.45, fontWeight: 400, marginBottom: "24px" }}>
+          If you need to get in touch with us, please fill in the form below and our team will get back to you as soon as possible.
         </p>
         <div style={{ display: "flex", justifyContent: "space-around", margin: "20px 0 28px" }}>
           {[0,1,2].map(i => <img key={i} src="/assets/visitus/section-3-vector.png" alt="" style={{ width: "60px", height: "auto" }} />)}
@@ -115,9 +118,9 @@ function GetInTouch() {
           Get in touch
         </p>
         <p style={{
-          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
           fontSize: "clamp(11px, 1.32vw, 20px)",
-          lineHeight: 0.989,
+          lineHeight: 1.45,
           color: "white",
           margin: "clamp(10px, 1.3vw, 20px) 0 0",
           fontWeight: 400,
