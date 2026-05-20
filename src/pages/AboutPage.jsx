@@ -576,9 +576,10 @@ function ValuesSection() {
       style={{
         width: "100%",
         backgroundColor: "rgb(252,248,235)",
-        paddingTop: "clamp(32px, 4.3vw, 65px)",
-        paddingBottom: "clamp(24px, 3.8vw, 58px)",
+        paddingTop: "clamp(60px, 8.07vw, 122px)",
+        paddingBottom: "clamp(80px, 9.92vw, 150px)",
         position: "relative",
+        overflow: "hidden",
       }}
     >
       {/* Three equal boxes — Figma: 450×258px each, ~13px gap, 68px side padding */}
@@ -608,7 +609,7 @@ function ValuesSection() {
                 fontFamily: "'BERNIER Distressed', cursive",
                 fontSize: "clamp(18px, 2.65vw, 40px)",
                 color: "rgb(255,212,0)",
-                lineHeight: 1.05,
+                lineHeight: 1.15,
                 margin: "0 0 clamp(6px, 0.8vw, 12px)",
                 textAlign: "center",
               }}
@@ -624,7 +625,7 @@ function ValuesSection() {
                 lineHeight: 1.5,
                 margin: 0,
                 textAlign: "center",
-                textTransform: "none",
+                textTransform: "capitalize",
               }}
             >
               {v.body}
@@ -632,22 +633,26 @@ function ValuesSection() {
           </div>
         ))}
       </div>
-      {/* Tagline — Figma: BERNIER 28px rgb(137,71,37) */}
+      {/* Tagline — Figma: y=4711, 96px below boxes, BERNIER 28px rgb(137,71,37) */}
       <p
         style={{
           fontFamily: "'BERNIER Distressed', cursive",
           fontSize: "clamp(14px, 1.85vw, 28px)",
           color: "rgb(137,71,37)",
           textAlign: "center",
-          margin: "clamp(130px, 50px, 50px) 50px 130px",
+          margin: "clamp(50px, 6.35vw, 96px) auto 0",
           textTransform: "none",
         }}
       >
         Come hungry. Leave with a story.
       </p>
-    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
-      <MotifBorder right="/assets/about/long.png" left="/assets/about/sh.png" />
-    </div>
+      {/* Bottom motif — Figma: Group 513075 at y=4821, rgba(107,31,31,0.54) arches */}
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
+        <MotifBorder
+          right="/assets/about/section-2-motif-long.png"
+          left="/assets/about/section-2-motif-short.png"
+        />
+      </div>
     </section>
   );
 }
