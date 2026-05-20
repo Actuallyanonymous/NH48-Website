@@ -103,66 +103,104 @@ function MenuBtn({ label, to }) {
   )
 }
 
-// ─── Section 2: Teal (Figma: bg #14534D, h=754px, left=0, top=780) ──────────
+// ─── Section 2: Teal with marquee scrolling images ───────────────────────────
+// Images: section-2-image-1..4.png (export individually from Figma group)
+// Same marquee technique as homepage CityCardsSection
+const MENU_MARQUEE_IMAGES = [
+  '/assets/menu/section-2-image-1.png',
+  '/assets/menu/section-2-image-2.png',
+  '/assets/menu/section-2-image-3.png',
+  '/assets/menu/section-2-image-4.png',
+]
+
 function TealSection({ mob }) {
+  const imgH = mob ? '220px' : 'clamp(260px, 26.3vw, 398px)'
+  const gap   = mob ? '24px' : 'clamp(40px, 5.5vw, 84px)'
+
   return (
     <section style={{
       position: 'relative',
       width: '100%',
       backgroundColor: '#14534D',
-      height: mob ? 'auto' : 'clamp(500px, 49.9vw, 754px)',
-      overflow: 'visible',
+      paddingTop: mob ? '48px' : 'clamp(60px, 7.2vw, 108px)',
+      paddingBottom: mob ? '48px' : '0',
+      overflow: 'hidden',
     }}>
 
-      {/* Cards group — Figma: left=87px, top=108px (108/754=14.3%), 1397×398px */}
-      <img
-        src="/assets/menu/section-2-group.png"
-        alt="Menu highlight dishes"
-        style={{
-          position: mob ? 'relative' : 'absolute',
-          left: mob ? 'auto' : '5.75%',
-          top: mob ? 'auto' : '14.3%',
-          width: mob ? '100%' : '92.4%',
-          height: 'auto',
-          display: 'block',
-          zIndex: 1,
-        }}
-      />
-
-      {/* Left motif — Figma: left=43px, top=340px (45.1% of 754px), 174×213px */}
+      {/* Left motif — kept in place, z above marquee */}
       <img
         src="/assets/menu/section-2-motif.png"
         alt=""
         style={{
           position: 'absolute',
           left: '43px',
-          top: '45.1%',
-          width: 'clamp(100px, 11.5vw, 174px)',
+          bottom: mob ? 'auto' : '22%',
+          top: mob ? 'auto' : 'auto',
+          width: 'clamp(80px, 11.5vw, 174px)',
           height: 'auto',
           zIndex: 2,
           pointerEvents: 'none',
         }}
       />
 
-      {/* Tagline — Figma: left=344px (22.8%), top=578px (76.7%), w=823px (54.5%)
-          BERNIER Distressed 40px, lh=92.075%, center */}
+      {/* Infinite right-to-left marquee — same CSS class as homepage */}
+      <div style={{ width: '100%', overflow: 'hidden' }}>
+        <div
+          className="marquee-track"
+          style={{ gap, alignItems: 'center' }}
+        >
+          {[0, 1].map(set => (
+            <div
+              key={set}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap,
+                flexShrink: 0,
+                paddingLeft: set === 0 ? gap : '0',
+              }}
+            >
+              {MENU_MARQUEE_IMAGES.map((src, i) => (
+                <div
+                  key={i}
+                  style={{
+                    flexShrink: 0,
+                    height: imgH,
+                    width: 'auto',
+                    overflow: 'hidden',
+                    border: '2px solid rgba(212,184,74,0.6)',
+                  }}
+                >
+                  <img
+                    src={src}
+                    alt={`Menu dish ${i + 1}`}
+                    style={{ height: '100%', width: 'auto', display: 'block', objectFit: 'cover' }}
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Tagline */}
       <p style={{
-        position: mob ? 'relative' : 'absolute',
-        left: mob ? 'auto' : '22.8%',
-        top: mob ? 'auto' : '76.7%',
-        width: mob ? 'auto' : '54.5%',
-        margin: mob ? '24px 24px 40px' : '0',
+        margin: mob ? '32px 24px 40px' : 'clamp(32px, 3.8vw, 72px) auto 0',
+        maxWidth: '54.5%',
         fontFamily: 'BERNIER Distressed, cursive',
         fontSize: mob ? '22px' : 'clamp(24px, 2.65vw, 40px)',
         lineHeight: 0.921,
         color: '#FFFFFF',
         textAlign: 'center',
+        paddingBottom: mob ? '0' : 'clamp(32px, 3.6vw, 55px)',
+        display: 'block',
         zIndex: 1,
+        position: 'relative',
       }}>
         From the heart of Delhi to the shores of Mumbai, we've mapped the boldest flavors of the highway onto every plate, ready for you to explore.
       </p>
 
-      {/* Dot divider — Figma: cream circles 21px, 26px pitch, centered on bottom edge */}
+      {/* Dot divider */}
       <div style={{
         position: 'absolute',
         bottom: '-10px',
