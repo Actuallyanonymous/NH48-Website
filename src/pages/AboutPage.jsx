@@ -107,7 +107,7 @@ function TealSection() {
         left: '18.5%', top: '10%',
         width: '63.2%',
         fontFamily: "'BERNIER Distressed', cursive",
-        fontSize: 'clamp(32px, 4.23vw, 64px)',
+        fontSize: 'clamp(28px, 3.44vw, 52px)',
         color: 'rgb(242,212,62)',
         lineHeight: 1.15,
         margin: 0,
@@ -119,7 +119,7 @@ function TealSection() {
       <p style={{
         ...bodyStyle,
         position: 'absolute',
-        left: '23.5%', top: '49%',
+        left: '23.5%', top: '40%',
         width: '53.1%',
         fontSize: 'clamp(16px, 2.12vw, 32px)',
       }}>
@@ -379,8 +379,9 @@ function TwoColumnSection() {
             fontSize: '15px',
             fontWeight: 500,
             color: 'rgba(255,255,255,0.91)',
-            lineHeight: 1.6,
-            textTransform: 'none',
+            lineHeight: 1.22,
+            letterSpacing: '-0.32px',
+            textTransform: 'capitalize',
             margin: 0,
           }}>{bodyText}</p>
         </div>
@@ -411,7 +412,7 @@ function TwoColumnSection() {
           fontFamily: "'BERNIER Distressed', cursive",
           fontSize: 'clamp(24px, 3.17vw, 48px)',
           color: 'rgb(255,212,0)',
-          lineHeight: 1.05,
+          lineHeight: 1.15,
           margin: 0,
           width: '85%',
         }}>welcome to nh48.</h3>
@@ -425,8 +426,9 @@ function TwoColumnSection() {
           fontSize: 'clamp(11px, 1.06vw, 16px)',
           fontWeight: 500,
           color: 'rgba(255,255,255,0.91)',
-          lineHeight: 1.6,
-          textTransform: 'none',
+          lineHeight: 1.22,
+          letterSpacing: '-0.32px',
+          textTransform: 'capitalize',
           margin: 0,
         }}>{bodyText}</p>
 
