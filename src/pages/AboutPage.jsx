@@ -370,8 +370,8 @@ function QuoteSection() {
         />
       </svg>
       </div>
-      {/* Right oval — bleeds past right edge */}
-      <div style={{ ...ovalBase, right: "-4.2%" }}>
+      {/* Right oval — Figma: right bleed=83px=5.49% (more than left's 63px=4.17%) */}
+      <div style={{ ...ovalBase, right: "-5.49%" }}>
         <img
           src="/assets/about/section-3-oval-right.png"
           alt=""
