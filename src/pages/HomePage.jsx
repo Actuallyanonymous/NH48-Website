@@ -370,7 +370,7 @@ function StorySection() {
     return (
       <section ref={sectionRef} style={{ backgroundColor: "#ffde7c", padding: "48px 24px", position: "relative", overflow: "hidden" }}>
         <img src="/assets/home-page/12px-flip-grid.png" alt="" aria-hidden="true"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.05, pointerEvents: "none", zIndex: 0 }} />
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.1, pointerEvents: "none", zIndex: 0 }} />
         <h2 style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "48px", color: "#14534D", letterSpacing: "-0.04em", textAlign: "center", margin: "0 0 32px", position: "relative", zIndex: 1 }}>
           Our story
         </h2>
@@ -447,7 +447,7 @@ function StorySection() {
           height: "100%",
           objectFit: "cover",
           objectPosition: "center",
-          opacity: 0.05,
+          opacity: 0.1,
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -734,7 +734,7 @@ function Plates() {
           height: "100%",
           objectFit: "cover",
           objectPosition: "center",
-          opacity: 0.05,
+          opacity: 0.1,
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -1506,7 +1506,7 @@ function LocationTimings() {
 
       {/* 12px Flip Grid — op=0.05 */}
       <img src="/assets/home-page/12px-flip-grid.png" alt="" aria-hidden="true"
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.05, pointerEvents: "none", zIndex: 0 }} />
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.1, pointerEvents: "none", zIndex: 0 }} />
 
       {/* Top border */}
       <div style={{ ...BORDER_STYLE, position: "absolute", top: "-11px", left: 0, right: 0, zIndex: 10 }} />
