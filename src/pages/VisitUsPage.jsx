@@ -183,13 +183,175 @@ function GetInTouch() {
 }
 
 
+// ─── Location & Timing Border ─────────────────────────────────────────────────
+// Figma: Group 513055 at bottom of section, fill=rgb(110,45,45), 112×72+112×45 alternating
+function LocationBorder() {
+  return (
+    <div aria-hidden="true" style={{
+      width: '100%', height: '72px',
+      display: 'flex', alignItems: 'flex-end', overflow: 'hidden',
+    }}>
+      {Array.from({ length: 14 }, (_, i) => [
+        <img key={`l${i}`} src="/assets/visitus/boundary-vector-long.png"
+          style={{ width: '112px', height: '72px', flexShrink: 0, alignSelf: 'flex-start', display: 'block' }} />,
+        <img key={`s${i}`} src="/assets/visitus/boundary-vector-short.png"
+          style={{ width: '112px', height: '45px', flexShrink: 0, display: 'block' }} />,
+      ]).flat()}
+    </div>
+  )
+}
+
+// ─── Location & Timing Section ────────────────────────────────────────────────
+// Figma: Group 513042 at y=459, 1512×772, bg=rgb(239,212,133)
+// Title: BERNIER 64px rgb(20,83,77) centered ls=-2.56 at top=11%
+// Image: left=16.3% top=24.7% w=37.9% h=47.8%
+// Teal panel: left=54.3% top=24.7% w=29.4% h=47.8% rgb(20,83,77)
+//   Address: BERNIER 28.27px white centered at top=9.8%
+//   Hours:   BERNIER 28.27px white centered at top=33.6%, lhpx=29.94
+// Border: rgb(110,45,45) arches at absolute bottom
+function LocationTimingSection() {
+  const w = useWindowWidth()
+  const mob = w < 768
+
+  const titleStyle = {
+    fontFamily: "'BERNIER Distressed', cursive",
+    fontSize: 'clamp(28px, 4.23vw, 64px)',
+    color: 'rgb(20,83,77)',
+    lineHeight: 1.059,
+    letterSpacing: '-2.56px',
+    textAlign: 'center',
+    margin: 0,
+  }
+
+  const panelTextStyle = {
+    fontFamily: "'BERNIER Distressed', cursive",
+    fontSize: 'clamp(12px, 1.87vw, 28.27px)',
+    color: 'rgb(255,255,255)',
+    lineHeight: 1.059,
+    textAlign: 'center',
+    margin: 0,
+  }
+
+  const hours = `mon: 10 am - 5 pm
+tue: 10 am - 5 pm
+wed: 10 am - 5 pm
+thur: 10 am - 5 pm
+fri: 10 am - 5 pm
+sat: 8 am - 7 pm
+sun: 8 am - 7 pm`
+
+  if (mob) {
+    return (
+      <section style={{ width: '100%', backgroundColor: 'rgb(239,212,133)' }}>
+        <h2 style={{ ...titleStyle, padding: '40px 24px 28px', display: 'block', textAlign: 'center' }}>
+          location &timing's
+        </h2>
+        <div style={{ width: '100%', aspectRatio: '573/369', overflow: 'hidden' }}>
+          <img src="/assets/home-page/location-timing-image.png" alt="NH48 location"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        </div>
+        <div style={{ backgroundColor: 'rgb(20,83,77)', padding: '28px 24px 32px', textAlign: 'center' }}>
+          <p style={{ ...panelTextStyle, marginBottom: '20px' }}>
+            4824 macarthur blvd nw ll washington dc , 20007
+          </p>
+          <p style={{ ...panelTextStyle, whiteSpace: 'pre-line' }}>{hours}</p>
+        </div>
+        <LocationBorder />
+      </section>
+    )
+  }
+
+  return (
+    <section style={{
+      position: 'relative',
+      width: '100%',
+      height: 'clamp(520px, 51.1vw, 772px)',
+      backgroundColor: 'rgb(239,212,133)',
+      overflow: 'hidden',
+    }}>
+      {/* 12px Flip Grid — Figma: [IMAGE] 1512×773 covering full section at low opacity */}
+      <img
+        src="/assets/home-page/12px-flip-grid.png"
+        aria-hidden="true"
+        style={{
+          position: 'absolute', inset: 0,
+          width: '100%', height: '100%',
+          objectFit: 'cover',
+          opacity: 0.05,
+          pointerEvents: 'none',
+          display: 'block',
+        }}
+      />
+
+      {/* Title — Figma: centered, top=11% of section */}
+      <h2 style={{
+        position: 'absolute',
+        left: '50%',
+        top: '11%',
+        transform: 'translateX(-50%)',
+        width: 'clamp(200px, 26.4vw, 399px)',
+        ...titleStyle,
+      }}>
+        location &timing's
+      </h2>
+
+      {/* Image — Figma: left=16.3%, top=24.7%, 37.9%×47.8% */}
+      <div style={{
+        position: 'absolute',
+        left: '16.3%', top: '24.7%',
+        width: '37.9%', height: '47.8%',
+        overflow: 'hidden',
+      }}>
+        <img
+          src="/assets/home-page/location-timing-image.png"
+          alt="NH48 location"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      </div>
+
+      {/* Teal panel — Figma: left=54.3%, top=24.7%, 29.4%×47.8% */}
+      <div style={{
+        position: 'absolute',
+        left: '54.3%', top: '24.7%',
+        width: '29.4%', height: '47.8%',
+        backgroundColor: 'rgb(20,83,77)',
+        overflow: 'hidden',
+      }}>
+        {/* Address — Figma: left=2.7%, top=9.8% of teal panel, BERNIER 28.27px */}
+        <p style={{
+          position: 'absolute',
+          left: '2.7%', top: '9.8%',
+          width: '94.6%',
+          ...panelTextStyle,
+        }}>
+          4824 macarthur blvd nw ll washington dc , 20007
+        </p>
+
+        {/* Hours — Figma: left=2.7%, top=33.6% of teal panel, lhpx=29.94 */}
+        <p style={{
+          position: 'absolute',
+          left: '2.7%', top: '33.6%',
+          width: '94.6%',
+          ...panelTextStyle,
+          whiteSpace: 'pre-line',
+        }}>
+          {hours}
+        </p>
+      </div>
+
+      {/* Border — Figma: Group 513055 at absolute bottom, rgb(110,45,45) */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
+        <LocationBorder />
+      </div>
+    </section>
+  )
+}
+
 export default function VisitUsPage() {
   return (
     <div>
       <HeroSection />
-      <section style={{ width: "100%", lineHeight: 0 }}>
-        <img src="/assets/visitus/location-timing.png" alt="Location and timings" style={{ width: "100%", display: "block" }} />
-      </section>
+      <LocationTimingSection />
       <GetInTouch/>
       <SiteFooter />
     </div>

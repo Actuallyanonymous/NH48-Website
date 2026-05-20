@@ -646,8 +646,12 @@ function ValuesSection() {
       >
         Come hungry. Leave with a story.
       </p>
-      {/* Bottom motif — Figma: Group 513075 at y=4821, rgba(107,31,31,0.54) arches */}
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
+      {/* Bottom motif — Figma: rgba(107,31,31,0.54) brownish arches */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        filter: 'sepia(1) hue-rotate(320deg) saturate(2) brightness(1.5)',
+        opacity: 0.54,
+      }}>
         <MotifBorder
           right="/assets/about/section-2-motif-long.png"
           left="/assets/about/section-2-motif-short.png"
