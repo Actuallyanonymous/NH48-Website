@@ -101,25 +101,26 @@ function TealSection() {
       height: 'clamp(360px, 31.7vw, 479px)',
       overflow: 'hidden',
     }}>
-      {/* Heading — Figma: (279,48) BERNIER 64px yellow */}
+      {/* Heading — centered horizontally, pushed down from top */}
       <h2 style={{
         position: 'absolute',
-        left: '18.5%', top: '10%',
-        width: '63.2%',
+        left: '10%', top: '22%',
+        width: '80%',
         fontFamily: "'BERNIER Distressed', cursive",
         fontSize: 'clamp(28px, 3.44vw, 52px)',
         color: 'rgb(242,212,62)',
         lineHeight: 1.15,
+        textAlign: 'center',
         margin: 0,
       }}>
         Where two cities meet on a single plate
       </h2>
 
-      {/* Body — Figma: (355,235) Helvetica Neue 32px w500 white 63% */}
+      {/* Body — centered, proportionally below heading */}
       <p style={{
         ...bodyStyle,
         position: 'absolute',
-        left: '23.5%', top: '40%',
+        left: '23.5%', top: '50%',
         width: '53.1%',
         fontSize: 'clamp(16px, 2.12vw, 32px)',
       }}>
