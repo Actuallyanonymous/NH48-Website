@@ -6,8 +6,7 @@ img { display: block; max-width: 100%; }
 a { text-decoration: none; }
 @font-face {
   font-family: 'BERNIER Distressed';
-  src: url('/fonts/BERNIERRegular-Regular.ttf')      format('truetype'),
-       url('/fonts/BERNIERDistressed-Regular.woff2') format('woff2'),
+  src: url('/fonts/BERNIERDistressed-Regular.ttf')   format('truetype'),
        url('/fonts/BERNIERDistressedRegular.otf')    format('opentype');
   font-weight: 400;
   font-style: normal;
@@ -17,8 +16,7 @@ a { text-decoration: none; }
 /* Separate face for the NH48 watermark — must stay Distressed to keep original letter widths/positions */
 @font-face {
   font-family: 'BERNIER Watermark';
-  src: url('/fonts/BERNIERDistressed-Regular.woff2') format('woff2'),
-       url('/fonts/BERNIERDistressed-Regular.ttf')   format('truetype'),
+  src: url('/fonts/BERNIERDistressed-Regular.ttf')   format('truetype'),
        url('/fonts/BERNIERDistressedRegular.otf')    format('opentype');
   font-weight: 400;
   font-style: normal;
