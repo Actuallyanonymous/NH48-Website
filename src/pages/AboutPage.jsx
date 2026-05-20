@@ -66,8 +66,10 @@ function TealSection() {
     fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
     fontWeight: 500,
     color: 'rgba(255,255,255,0.63)',
-    lineHeight: 1.5,
-    textTransform: 'none',
+    lineHeight: 1.22,
+    textTransform: 'uppercase',
+    letterSpacing: '-1.92px',
+    textAlign: 'center',
     margin: 0,
   }
 
@@ -78,7 +80,7 @@ function TealSection() {
           fontFamily: "'BERNIER Distressed', cursive",
           fontSize: 'clamp(28px, 7vw, 48px)',
           color: 'rgb(242,212,62)',
-          lineHeight: 1.05,
+          lineHeight: 1.15,
           margin: '0 0 24px',
         }}>
           Where two cities meet on a single plate
@@ -107,7 +109,7 @@ function TealSection() {
         fontFamily: "'BERNIER Distressed', cursive",
         fontSize: 'clamp(32px, 4.23vw, 64px)',
         color: 'rgb(242,212,62)',
-        lineHeight: 1.05,
+        lineHeight: 1.15,
         margin: 0,
       }}>
         Where two cities meet on a single plate
