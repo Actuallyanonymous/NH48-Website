@@ -184,8 +184,8 @@ function TealSection({ mob }) {
 
       {/* Tagline */}
       <p style={{
-        margin: mob ? '32px 24px 40px' : 'clamp(32px, 3.8vw, 72px) auto 0',
-        maxWidth: '54.5%',
+        margin: mob ? '32px auto 40px' : 'clamp(32px, 3.8vw, 72px) auto 0',
+        maxWidth: mob ? '88%' : '54.5%',
         fontFamily: 'BERNIER Distressed, cursive',
         fontSize: mob ? '22px' : 'clamp(24px, 2.65vw, 40px)',
         lineHeight: 0.921,
@@ -223,10 +223,11 @@ function CreamSection({ mob }) {
       width: '100%',
       backgroundColor: '#FCF9EB',
       height: mob ? 'auto' : 'clamp(500px, 47.2vw, 714px)',
+      paddingBottom: mob ? '88px' : '0',
       overflow: 'hidden',
     }}>
 
-      {/* Images group — Figma: left=405px(26.8%), top=122px(17.1%), 701×343px */}
+      {/* Images group */}
       <img
         src="/assets/menu/section-3-group.png"
         alt="Food and drinks menu"
@@ -242,50 +243,32 @@ function CreamSection({ mob }) {
         }}
       />
 
-      {/* Buttons — Figma: food menu left=31.3%, drinks menu left=54.7%, top=71.1%, 207×43px each */}
-      <Link
-        to="/menu/food"
-        style={{
-          position: mob ? 'relative' : 'absolute',
-          left: mob ? 'auto' : '31.3%',
-          top: mob ? 'auto' : '71.1%',
-          display: mob ? 'inline-flex' : 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '207px',
-          height: '43px',
-          backgroundColor: '#A94545',
-          textDecoration: 'none',
-          margin: mob ? '24px auto 0 24px' : '0',
-          zIndex: 1,
-        }}
-      >
-        <div style={{ position: 'absolute', top: '6px', left: '8px', right: '8px', bottom: '5px', border: '1.11px solid rgba(255,255,255,0.85)', pointerEvents: 'none' }} />
-        <span style={{ fontFamily: 'BERNIER Distressed, cursive', fontSize: '17.76px', color: '#FFFEFE', position: 'relative', zIndex: 1 }}>food menu</span>
-      </Link>
+      {/* Buttons — side-by-side centered on mobile */}
+      {mob ? (
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', margin: '28px 24px 0', zIndex: 1, position: 'relative' }}>
+          <Link to="/menu/food" style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '207px', height: '43px', backgroundColor: '#A94545', textDecoration: 'none', flexShrink: 0 }}>
+            <div style={{ position: 'absolute', top: '6px', left: '8px', right: '8px', bottom: '5px', border: '1.11px solid rgba(255,255,255,0.85)', pointerEvents: 'none' }} />
+            <span style={{ fontFamily: 'BERNIER Distressed, cursive', fontSize: '17.76px', color: '#FFFEFE', position: 'relative', zIndex: 1 }}>food menu</span>
+          </Link>
+          <Link to="/menu/drinks" style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '207px', height: '43px', backgroundColor: '#A94545', textDecoration: 'none', flexShrink: 0 }}>
+            <div style={{ position: 'absolute', top: '6px', left: '8px', right: '8px', bottom: '5px', border: '1.11px solid rgba(255,255,255,0.85)', pointerEvents: 'none' }} />
+            <span style={{ fontFamily: 'BERNIER Distressed, cursive', fontSize: '17.76px', color: '#FFFEFE', position: 'relative', zIndex: 1 }}>drinks menu</span>
+          </Link>
+        </div>
+      ) : (
+        <>
+          <Link to="/menu/food" style={{ position: 'absolute', left: '31.3%', top: '71.1%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '207px', height: '43px', backgroundColor: '#A94545', textDecoration: 'none', zIndex: 1 }}>
+            <div style={{ position: 'absolute', top: '6px', left: '8px', right: '8px', bottom: '5px', border: '1.11px solid rgba(255,255,255,0.85)', pointerEvents: 'none' }} />
+            <span style={{ fontFamily: 'BERNIER Distressed, cursive', fontSize: '17.76px', color: '#FFFEFE', position: 'relative', zIndex: 1 }}>food menu</span>
+          </Link>
+          <Link to="/menu/drinks" style={{ position: 'absolute', left: '54.7%', top: '71.1%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '207px', height: '43px', backgroundColor: '#A94545', textDecoration: 'none', zIndex: 1 }}>
+            <div style={{ position: 'absolute', top: '6px', left: '8px', right: '8px', bottom: '5px', border: '1.11px solid rgba(255,255,255,0.85)', pointerEvents: 'none' }} />
+            <span style={{ fontFamily: 'BERNIER Distressed, cursive', fontSize: '17.76px', color: '#FFFEFE', position: 'relative', zIndex: 1 }}>drinks menu</span>
+          </Link>
+        </>
+      )}
 
-      <Link
-        to="/menu/drinks"
-        style={{
-          position: mob ? 'relative' : 'absolute',
-          left: mob ? 'auto' : '54.7%',
-          top: mob ? 'auto' : '71.1%',
-          display: mob ? 'inline-flex' : 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '207px',
-          height: '43px',
-          backgroundColor: '#A94545',
-          textDecoration: 'none',
-          margin: mob ? '24px 0 40px 12px' : '0',
-          zIndex: 1,
-        }}
-      >
-        <div style={{ position: 'absolute', top: '6px', left: '8px', right: '8px', bottom: '5px', border: '1.11px solid rgba(255,255,255,0.85)', pointerEvents: 'none' }} />
-        <span style={{ fontFamily: 'BERNIER Distressed, cursive', fontSize: '17.76px', color: '#FFFEFE', position: 'relative', zIndex: 1 }}>drinks menu</span>
-      </Link>
-
-      {/* Border — Figma: tall(113×72) + short(101×46) alternating, rgba(107,31,31,0.54), bottom=0 */}
+      {/* Border — bottom */}
       <div style={{
         position: 'absolute',
         bottom: 0, left: 0, right: 0,
@@ -319,7 +302,7 @@ export default function MenuLandingPage() {
       {/* ── HERO — fills viewport below fixed navbar ── */}
       <section style={{
         width: '100%',
-        height: 'calc(100dvh - 60px)',
+        height: mob ? 'clamp(260px, 56vw, 380px)' : 'calc(100dvh - 60px)',
         marginTop: '60px',
         overflow: 'hidden',
         lineHeight: 0,

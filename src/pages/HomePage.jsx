@@ -30,10 +30,13 @@ export default function HomePage() {
 }
 
 function HeroSection() {
+  const width = useWindowWidth();
+  const mob = width < 768;
+
   return (
     <section style={{
       width: "100%",
-      height: "calc(100dvh - 60px)",   // exact visible area below fixed navbar
+      height: mob ? "clamp(260px, 56vw, 380px)" : "calc(100dvh - 60px)",
       marginTop: "60px",
       overflow: "hidden",
       lineHeight: 0,
@@ -45,7 +48,7 @@ function HeroSection() {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          objectPosition: "center top",
+          objectPosition: mob ? "center center" : "center top",
           display: "block",
         }}
       />
@@ -369,13 +372,14 @@ function StorySection() {
   if (mob) {
     return (
       <section ref={sectionRef} style={{ backgroundColor: "#ffde7c", padding: "48px 24px", position: "relative", overflow: "hidden" }}>
-        <img src="/assets/home-page/12px-flip-grid.png" alt="" aria-hidden="true"
+        <img src="/assets/home-page/12px-flip-grid.png" aria-hidden="true"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.1, pointerEvents: "none", zIndex: 0 }} />
-        <h2 style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "48px", color: "#14534D", letterSpacing: "-0.04em", textAlign: "center", margin: "0 0 32px", position: "relative", zIndex: 1 }}>
+
+        <h2 style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "48px", color: "#14534D", letterSpacing: "-0.04em", textAlign: "center", margin: "0 0 28px", position: "relative", zIndex: 1 }}>
           Our story
         </h2>
-        <img className="story-drift-up" src="/assets/home-page/story-left-group.png" alt="Story collage left" style={{ width: "100%", marginBottom: "24px", display: "block" }} />
-        <div style={{ position: "relative", backgroundColor: "#14534D", padding: "32px 24px 32px", marginBottom: "24px" }}>
+
+        <div style={{ position: "relative", backgroundColor: "#14534D", padding: "32px 24px", zIndex: 1 }}>
           <div style={{ position: "absolute", top: "-8px", right: "-8px", width: "48px", height: "48px", backgroundColor: "#A94545" }} />
           <p style={{ fontFamily: "BERNIER Distressed, cursive", fontSize: "18px", color: "white", textAlign: "center", lineHeight: 1.5, margin: "0 0 24px" }}>
             Tracing the spine of NH48, two friends navigate the distance from the capital's heat to the coast's heart. Their journey reclaims the honest, unedited recipes that live in the dust and light of the open roads of nh48.
@@ -387,7 +391,6 @@ function StorySection() {
             </div>
           </div>
         </div>
-        <img className="story-drift-down" src="/assets/home-page/story-right-group.png" alt="Story collage right" style={{ width: "100%", display: "block" }} />
       </section>
     );
   }
@@ -704,14 +707,23 @@ function Plates() {
           <svg width="48" height="38" viewBox="0 0 72 57" fill="none" style={{ transform: "scaleX(-1)" }}><path d={FLOWER_PATH} fill="#A94545"/></svg>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
-          {DISHES.map(d => (
-            <div key={d.file} style={{ position: "relative" }}>
-              <img src={`/assets/dishes/${d.file}.png`} alt={d.name} style={{ width: "100%", aspectRatio: "197/274", objectFit: "cover", display: "block" }} />
-              <div style={{ position: "absolute", bottom: 0, left: 0, backgroundColor: "#A94545", padding: "3px 8px" }}>
-                <span style={{ fontFamily: "BERNIER Distressed, cursive", color: "white", fontSize: "11px", whiteSpace: "nowrap" }}>{d.name}</span>
+          {DISHES.map((d, i) => {
+            const isLastOdd = DISHES.length % 2 !== 0 && i === DISHES.length - 1;
+            return (
+              <div key={d.file} style={{
+                gridColumn: isLastOdd ? "1 / -1" : undefined,
+                display: isLastOdd ? "flex" : undefined,
+                justifyContent: isLastOdd ? "center" : undefined,
+              }}>
+                <div style={{ position: "relative", width: isLastOdd ? "calc(50% - 4px)" : "100%" }}>
+                  <img src={`/assets/dishes/${d.file}.png`} alt={d.name} style={{ width: "100%", aspectRatio: "197/274", objectFit: "cover", display: "block" }} />
+                  <div style={{ position: "absolute", bottom: 0, left: 0, backgroundColor: "#A94545", padding: "3px 8px" }}>
+                    <span style={{ fontFamily: "BERNIER Distressed, cursive", color: "white", fontSize: "11px", whiteSpace: "nowrap" }}>{d.name}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
     );

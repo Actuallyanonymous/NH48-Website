@@ -13,7 +13,7 @@ export default function AboutPage() {
       <div
         style={{
           width: "100%",
-          height: "clamp(50px, 5.16vw, 78px)",
+          height: "clamp(20px, 5.16vw, 78px)",
           backgroundColor: "rgb(252,248,235)",
         }}
       />
@@ -22,7 +22,7 @@ export default function AboutPage() {
       <div
         style={{
           width: "100%",
-          height: "clamp(50px, 5.16vw, 78px)",
+          height: "clamp(20px, 5.16vw, 78px)",
           backgroundColor: "rgb(252,248,235)",
         }}
       />
@@ -35,11 +35,13 @@ export default function AboutPage() {
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function HeroSection() {
+  const w = useWindowWidth();
+  const mob = w < 768;
   return (
     <section
       style={{
         width: "100%",
-        height: "calc(100dvh - 60px)",
+        height: mob ? "clamp(260px, 56vw, 380px)" : "calc(100dvh - 60px)",
         marginTop: "60px",
         overflow: "hidden",
         lineHeight: 0,
@@ -126,16 +128,17 @@ function TealSection() {
         style={{
           width: "100%",
           backgroundColor: "rgb(20,83,77)",
-          padding: "48px 24px 0",
+          padding: "36px 20px 0",
         }}
       >
         <h2
           style={{
             fontFamily: "'BERNIER Distressed', cursive",
-            fontSize: "clamp(28px, 7vw, 48px)",
+            fontSize: "clamp(26px, 6.5vw, 44px)",
             color: "rgb(242,212,62)",
             lineHeight: 1.15,
-            margin: "0 0 24px",
+            margin: "0 0 20px",
+            textAlign: "center",
           }}
         >
           Where two cities meet on a single plate
@@ -143,14 +146,14 @@ function TealSection() {
         <p
           style={{
             ...bodyStyle,
-            fontSize: "clamp(16px, 4vw, 22px)",
-            marginBottom: "40px",
+            fontSize: "clamp(14px, 3.8vw, 20px)",
+            marginBottom: "32px",
           }}
         >
           A road, a reunion, and a shared dream — NH48 is where the flavors of
           Delhi and Mumbai find each other.
         </p>
-        <MotifBorder right = "/assets/about/section-2-motif-long.png" left = "/assets/about/section-2-motif-short.png" />
+        <MotifBorder right="/assets/about/section-2-motif-long.png" left="/assets/about/section-2-motif-short.png" />
       </section>
     );
   }
@@ -698,7 +701,7 @@ function TwoColumnSection() {
           style={{
             width: "100%",
             backgroundColor: "rgb(184,98,54)",
-            padding: "40px 24px 48px",
+            padding: "28px 20px 32px",
             position: "relative",
           }}
         >
