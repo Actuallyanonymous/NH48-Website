@@ -3,11 +3,8 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
-import AboutPage from './pages/AboutPage'
-import MenuLandingPage from './pages/MenuLandingPage'
-import FoodMenuPage from './pages/FoodMenuPage'
-import DrinksMenuPage from './pages/DrinksMenuPage'
-import VisitUsPage from './pages/VisitUsPage'
+import PrivateEventsPage from './pages/PrivateEventsPage'
+import PrivateEventsInquiryPage from './pages/PrivateEventsInquiryPage'
 import './index.css'
 
 function ScrollToTop() {
@@ -188,11 +185,8 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
-        <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
-        <Route path="/menu" element={<PageWrapper><MenuLandingPage /></PageWrapper>} />
-        <Route path="/menu/food" element={<PageWrapper><FoodMenuPage /></PageWrapper>} />
-        <Route path="/menu/drinks" element={<PageWrapper><DrinksMenuPage /></PageWrapper>} />
-        <Route path="/visit" element={<PageWrapper><VisitUsPage /></PageWrapper>} />
+        <Route path="/private-events" element={<PageWrapper><PrivateEventsPage /></PageWrapper>} />
+        <Route path="/private-events/inquire" element={<PageWrapper><PrivateEventsInquiryPage /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   )

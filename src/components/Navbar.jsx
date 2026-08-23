@@ -3,28 +3,29 @@ import { Link, NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
-  { label: 'HOME',         to: '/',       external: false },
-  { label: 'ABOUT',        to: '/about',  external: false },
-  { label: 'MENU',         to: '/menu',   external: false },
-  { label: 'ORDER ONLINE', to: '#',       external: true  },
-  { label: 'VISIT US',     to: '/visit',  external: false },
-  { label: 'PRESS',        to: '#',       external: true  },
+  { label: 'HOME',           to: '/',               external: false },
+  { label: 'PRIVATE EVENTS', to: '/private-events',  external: false },
+  { label: 'ORDER ONLINE',   to: '#',               external: true  }, // TODO: client will provide real ordering link
 ]
 
-// Figma: bg=rgb(252,248,235) cream
-// Logo: BERNIER Distressed, gradient #150E51 (rgb(21,14,81)) — dark navy-indigo
-// Links: Arcane Nine 20.34px, color #013971 (rgb(1,57,113))
+const SOCIALS = [
+  { label: 'Instagram', href: '#' },
+  { label: 'Facebook',  href: '#' },
+  { label: 'TikTok',    href: '#' },
+]
+
+// Figma: bg=#A94545 red, 72px tall
+// Links: Helvetica Neue 20px, white, uppercase
 export default function Navbar() {
   const [drawerOpen, setDrawer] = useState(false)
 
   const linkStyle = (isActive) => ({
-    fontFamily: "'Arcane Nine', sans-serif",
+    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
     fontSize: '20px',
     fontWeight: 400,
-    letterSpacing: '0.04em',
     textTransform: 'uppercase',
-    color: '#013971',
-    borderBottom: isActive ? '2px solid #013971' : '2px solid transparent',
+    color: 'white',
+    borderBottom: isActive ? '2px solid white' : '2px solid transparent',
     paddingBottom: 2,
     cursor: 'pointer',
     background: 'none',
@@ -34,28 +35,14 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Fixed navbar — cream bg, 60px tall ── */}
+      {/* ── Fixed navbar — red bg, 72px tall ── */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-        height: '60px',
+        height: '72px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 32px',
-        backgroundColor: 'rgb(252,248,235)',
-        boxShadow: '0 1px 6px rgba(0,0,0,0.07)',
+        backgroundColor: '#A94545',
       }}>
-        {/* Logo — Figma: BERNIER Distressed, gradient fill #150E51 dark navy-indigo */}
-        <Link to="/" style={{
-          fontFamily: "'BERNIER Distressed', cursive",
-          fontSize: '34px',
-          background: 'linear-gradient(160deg, #150E51 0%, #140F52 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          letterSpacing: '0.04em',
-          lineHeight: 1,
-          textDecoration: 'none',
-        }}>nh48</Link>
-
         {/* Desktop links */}
         <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}
              className="nav-desktop">
@@ -73,6 +60,20 @@ export default function Navbar() {
           )}
         </div>
 
+        {/* Social icons */}
+        <div style={{ display: 'flex', gap: 20, alignItems: 'center' }} className="nav-desktop">
+          <a href={SOCIALS[0].href} aria-label={SOCIALS[0].label} style={{ display: 'block', position: 'relative', width: 22, height: 22 }}>
+            <img src="/assets/home-page/new/icon-instagram-1.svg" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+            <img src="/assets/home-page/new/icon-instagram-2.svg" alt="" style={{ position: 'absolute', width: '38%', height: '38%', top: '31%', left: '31%' }} />
+          </a>
+          <a href={SOCIALS[1].href} aria-label={SOCIALS[1].label} style={{ display: 'block', width: 22, height: 22 }}>
+            <img src="/assets/home-page/new/icon-facebook.svg" alt="" style={{ width: '100%', height: '100%', display: 'block' }} />
+          </a>
+          <a href={SOCIALS[2].href} aria-label={SOCIALS[2].label} style={{ display: 'block', width: 19, height: 19 }}>
+            <img src="/assets/home-page/new/icon-tiktok.svg" alt="" style={{ width: '100%', height: '100%', display: 'block' }} />
+          </a>
+        </div>
+
         {/* Hamburger (mobile) */}
         <button
           onClick={() => setDrawer(true)}
@@ -81,9 +82,9 @@ export default function Navbar() {
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <rect y="4"  width="24" height="2.5" rx="1" fill="rgb(1,57,113)" />
-            <rect y="11" width="24" height="2.5" rx="1" fill="rgb(1,57,113)" />
-            <rect y="18" width="24" height="2.5" rx="1" fill="rgb(1,57,113)" />
+            <rect y="4"  width="24" height="2.5" rx="1" fill="white" />
+            <rect y="11" width="24" height="2.5" rx="1" fill="white" />
+            <rect y="18" width="24" height="2.5" rx="1" fill="white" />
           </svg>
         </button>
       </nav>
@@ -115,7 +116,7 @@ export default function Navbar() {
               style={{
                 position: 'fixed', top: 0, right: 0,
                 width: 280, height: '100vh',
-                backgroundColor: 'rgb(252,248,235)',
+                backgroundColor: '#A94545',
                 zIndex: 100,
                 padding: '80px 40px',
                 display: 'flex', flexDirection: 'column', gap: 24,
@@ -128,7 +129,7 @@ export default function Navbar() {
                 style={{
                   position: 'absolute', top: 20, right: 20,
                   background: 'none', border: 'none', cursor: 'pointer',
-                  color: 'rgb(1,57,113)', fontSize: 24, lineHeight: 1,
+                  color: 'white', fontSize: 24, lineHeight: 1,
                 }}
               >✕</button>
 
@@ -136,17 +137,31 @@ export default function Navbar() {
               {NAV_LINKS.map(({ label, to, external }) =>
                 external ? (
                   <a key={label} href={to} onClick={() => setDrawer(false)}
-                     style={{ fontFamily: "'Arcane Nine', sans-serif", fontSize: 20, color: '#013971', letterSpacing: '0.04em', textDecoration: 'none' }}>
+                     style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: 20, color: 'white', textTransform: 'uppercase', textDecoration: 'none' }}>
                     {label}
                   </a>
                 ) : (
                   <NavLink key={label} to={to} end={to === '/'}
                     onClick={() => setDrawer(false)}
-                    style={{ fontFamily: "'Arcane Nine', sans-serif", fontSize: 20, color: '#013971', letterSpacing: '0.04em', textDecoration: 'none' }}>
+                    style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: 20, color: 'white', textTransform: 'uppercase', textDecoration: 'none' }}>
                     {label}
                   </NavLink>
                 )
               )}
+
+              {/* Drawer social icons */}
+              <div style={{ display: 'flex', gap: 20, alignItems: 'center', marginTop: 12 }}>
+                <a href={SOCIALS[0].href} aria-label={SOCIALS[0].label} style={{ display: 'block', position: 'relative', width: 22, height: 22 }}>
+                  <img src="/assets/home-page/new/icon-instagram-1.svg" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+                  <img src="/assets/home-page/new/icon-instagram-2.svg" alt="" style={{ position: 'absolute', width: '38%', height: '38%', top: '31%', left: '31%' }} />
+                </a>
+                <a href={SOCIALS[1].href} aria-label={SOCIALS[1].label} style={{ display: 'block', width: 22, height: 22 }}>
+                  <img src="/assets/home-page/new/icon-facebook.svg" alt="" style={{ width: '100%', height: '100%', display: 'block' }} />
+                </a>
+                <a href={SOCIALS[2].href} aria-label={SOCIALS[2].label} style={{ display: 'block', width: 19, height: 19 }}>
+                  <img src="/assets/home-page/new/icon-tiktok.svg" alt="" style={{ width: '100%', height: '100%', display: 'block' }} />
+                </a>
+              </div>
             </motion.div>
           </>
         )}
