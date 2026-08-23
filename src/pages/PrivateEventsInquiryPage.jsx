@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useWindowWidth } from "../hooks/useWindowWidth";
 import SiteFooter from "../components/SiteFooter";
 
+const TEAL = "#14534D";
 const RED = "#A94545";
 const GOLD = "#CBAF79";
 const CARD_BG = "#211D19";
@@ -61,12 +62,24 @@ export default function PrivateEventsInquiryPage() {
 
   return (
     <div>
+      {/* Teal page background — the red/black card sits inset within it, Figma node 1:2 */}
+      <div style={{
+        width: "100%",
+        backgroundColor: TEAL,
+        marginTop: "72px",
+        padding: mob ? "24px 16px" : "clamp(40px, 9vw, 136px) clamp(24px, 19.8vw, 299px)",
+      }}>
+      <div style={{
+        maxWidth: "914px",
+        margin: "0 auto",
+        borderRadius: "21px",
+        overflow: "hidden",
+      }}>
       {/* Header */}
       <section style={{
         position: "relative",
         width: "100%",
         backgroundColor: RED,
-        marginTop: "72px",
         padding: mob ? "32px 24px 40px" : "52px clamp(24px, 6vw, 90px) 64px",
         overflow: "hidden",
       }}>
@@ -77,7 +90,7 @@ export default function PrivateEventsInquiryPage() {
             backgroundColor: "rgba(255,255,255,0.12)",
           }} />
         )}
-        <div style={{ maxWidth: "1180px", margin: "0 auto", position: "relative" }}>
+        <div style={{ position: "relative" }}>
           <p style={{
             fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
             fontSize: "13px",
@@ -110,7 +123,7 @@ export default function PrivateEventsInquiryPage() {
 
       {/* Form body */}
       <section style={{ width: "100%", backgroundColor: "black", padding: mob ? "32px 24px 56px" : "48px clamp(24px, 6vw, 90px) 80px" }}>
-        <div style={{ maxWidth: "854px", margin: "0 auto" }}>
+        <div>
 
           {/* Service type */}
           <p style={{ ...labelStyle, color: GOLD, textTransform: "uppercase", letterSpacing: "0.08em", fontSize: "14px" }}>service type</p>
@@ -235,6 +248,8 @@ export default function PrivateEventsInquiryPage() {
           </div>
         </div>
       </section>
+      </div>
+      </div>
 
       <SiteFooter />
     </div>

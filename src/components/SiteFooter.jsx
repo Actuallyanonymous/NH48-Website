@@ -79,28 +79,19 @@ export default function SiteFooter() {
             width: "100%",
           }}
         >
-          {/* NH48 LOGO — Figma: left:45px, 10px from section top, 124px font */}
+          {/* NH48 LOGO — Figma: left:45px, top:45px, 231×90.3 */}
           <div
             style={{
               position: "absolute",
               left: tab ? "30px" : "45px",
-              top: "10px",
+              top: tab ? "30px" : "45px",
             }}
           >
-            <h2
-              style={{
-                fontFamily: "BERNIER Distressed, cursive",
-                fontWeight: 400,
-                fontSize: tab ? "80px" : "124px",
-                lineHeight: "143px",
-                color: "#FFFFFF",
-                margin: 0,
-                textShadow: "0px 8.52px 8.52px rgba(0,0,0,0.25)",
-                letterSpacing: "0.01em",
-              }}
-            >
-              nh48
-            </h2>
+            <img
+              src="/assets/home-page/new/footer-logo.png"
+              alt="NH48 Indian Kitchen"
+              style={{ width: tab ? "160px" : "231px", height: "auto", display: "block" }}
+            />
           </div>
 
           {/* LEFT COL — Figma: left:45px, top:173px (LOCATION & CONTACT label) */}
@@ -249,18 +240,11 @@ export default function SiteFooter() {
             gap: "28px",
           }}
         >
-          <h2
-            style={{
-              fontFamily: "BERNIER Distressed, cursive",
-              fontSize: "80px",
-              lineHeight: 1,
-              color: "#FFFFFF",
-              margin: 0,
-              textShadow: "0px 6px 6px rgba(0,0,0,0.25)",
-            }}
-          >
-            nh48
-          </h2>
+          <img
+            src="/assets/home-page/new/footer-logo.png"
+            alt="NH48 Indian Kitchen"
+            style={{ width: "175px", height: "auto", display: "block" }}
+          />
           <div>
             <p style={{ ...ftLabel, marginBottom: "10px" }}>
               LOCATION &amp; CONTACT
