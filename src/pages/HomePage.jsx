@@ -126,50 +126,26 @@ function CityCardsSection() {
             >
               {/* Card 1 — Oval food */}
               <div style={{ width: ovalW, flexShrink: 0 }}>
-                <div style={{
-                  width: "100%", aspectRatio: "261/355",
-                  borderRadius: "50%", overflow: "hidden",
-                  border: "3px solid #D4B84A",
-                }}>
-                  <img src="/assets/home-page/section-2-image-1.jpeg" alt="Delhi food"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
+                <img src="/assets/home-page/new/city-card-oval-1.png" alt="NH48 dish"
+                  style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
 
               {/* Card 2 — Arch Delhi */}
               <div style={{ width: archW, flexShrink: 0 }}>
-                <div style={{
-                  width: "100%", aspectRatio: "221/344",
-                  overflow: "hidden", border: "3px solid #D4B84A",
-                  clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
-                }}>
-                  <img src="/assets/home-page/section-2-image-2.jpeg" alt="Delhi"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
+                <img src="/assets/home-page/new/city-card-delhi.png" alt="Delhi"
+                  style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
 
               {/* Card 3 — Oval food */}
               <div style={{ width: ovalW, flexShrink: 0 }}>
-                <div style={{
-                  width: "100%", aspectRatio: "261/355",
-                  borderRadius: "50%", overflow: "hidden",
-                  border: "3px solid #D4B84A",
-                }}>
-                  <img src="/assets/home-page/section-2-image-3.jpeg" alt="Mumbai food"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
+                <img src="/assets/home-page/new/city-card-oval-2.png" alt="NH48 dish"
+                  style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
 
               {/* Card 4 — Arch Mumbai */}
               <div style={{ width: archW, flexShrink: 0 }}>
-                <div style={{
-                  width: "100%", aspectRatio: "221/344",
-                  overflow: "hidden", border: "3px solid #D4B84A",
-                  clipPath: "polygon(0% 100%, 0% 30%, 50% 0%, 100% 30%, 100% 100%)",
-                }}>
-                  <img src="/assets/home-page/section-2-image-4.jpeg" alt="Mumbai"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
+                <img src="/assets/home-page/new/city-card-mumbai.png" alt="Mumbai"
+                  style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
             </div>
           ))}
