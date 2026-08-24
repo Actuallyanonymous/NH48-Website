@@ -101,17 +101,14 @@ export default function PrivateEventsInquiryPage() {
           }}>
             private event/ catering inquiry
           </p>
-          <h1 style={{
-            fontFamily: "'BERNIER Distressed', cursive",
-            color: "white",
-            fontSize: mob ? "clamp(28px, 9vw, 36px)" : "clamp(32px, 3.5vw, 48px)",
-            margin: "0 0 16px",
-          }}>
-            let's plan your event
-          </h1>
+          <img
+            src="/assets/home-page/new/lets-plan-your-event-heading.png"
+            alt="Let's plan your event"
+            style={{ display: "block", width: mob ? "min(346px, 78vw)" : "clamp(260px, 22.9vw, 346px)", height: "auto", margin: "0 0 16px" }}
+          />
           <p style={{
             fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-            fontWeight: 300,
+            fontWeight: 400,
             color: "white",
             fontSize: mob ? "15px" : "18px",
             margin: 0,
