@@ -5,6 +5,8 @@ import SiteFooter from "../components/SiteFooter";
 // ─── Colour tokens ─────────────────────────────────────────────────────────────
 const TEAL   = "#14534D";
 const RED    = "rgb(169,69,69)";
+const RED_2  = "#AE5150";
+const RED_3  = "#B35C5A";
 const GOLD   = "#F8B519";
 const PINK   = "#E62F80";
 
@@ -241,44 +243,50 @@ function QuotePlaceholderSection() {
 }
 
 // ─── Food menu — Figma node 1:1130 ─────────────────────────────────────────────
+const ITEM_COLORS = [RED, RED_2, RED_3];
+
 function MenuColumn({ section }) {
   return (
-    <div style={{ width: "100%", marginBottom: "36px" }}>
+    <div style={{ width: "100%", marginBottom: "clamp(28px, 3.5vw, 53px)", textAlign: "center" }}>
       <h3 style={{
         fontFamily: "'BERNIER Distressed', cursive",
-        fontSize: "clamp(24px, 2.7vw, 40px)", fontWeight: 400,
-        lineHeight: 1.06, color: TEAL, margin: "0 0 14px 0", textTransform: "uppercase",
+        fontSize: "clamp(28px, 3.42vw, 52px)", fontWeight: 400,
+        lineHeight: 1.06, color: TEAL, margin: "0 0 clamp(14px, 1.41vw, 21px) 0", textTransform: "uppercase",
       }}>
         {section.title}
       </h3>
-      <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(20,83,77,0.25)", marginBottom: "16px" }} />
-      {section.items.map((item, i) => (
-        <div key={i} style={{ marginBottom: "14px" }}>
-          <div style={{
-            display: "flex", justifyContent: "space-between",
-            alignItems: "baseline", gap: "8px", marginBottom: "2px",
-          }}>
-            <span style={{
-              fontFamily: "'BERNIER Distressed', cursive",
-              fontSize: "clamp(13px, 1.4vw, 22px)", fontWeight: 400,
-              color: RED, textTransform: "uppercase",
-            }}>{item.name}</span>
-            <span style={{
-              fontFamily: "'BERNIER Distressed', cursive",
-              fontSize: "clamp(13px, 1.4vw, 22px)",
-              color: RED, whiteSpace: "nowrap",
-            }}>$ {item.price}</span>
+      <div style={{ width: "80px", height: "1px", backgroundColor: "rgba(20,83,77,0.35)", margin: "0 auto 18px" }} />
+      {section.items.map((item, i) => {
+        const color = ITEM_COLORS[i % ITEM_COLORS.length];
+        return (
+          <div key={i} style={{ marginBottom: "clamp(16px, 2.01vw, 30px)" }}>
+            <div style={{
+              display: "inline-flex",
+              alignItems: "baseline", gap: "10px", marginBottom: "clamp(6px, 1.1vw, 16px)",
+            }}>
+              <span style={{
+                fontFamily: "'BERNIER Distressed', cursive",
+                fontSize: "clamp(16px, 1.9vw, 29px)", fontWeight: 400,
+                color, textTransform: "uppercase",
+              }}>{item.name}</span>
+              <span style={{
+                fontFamily: "'BERNIER Distressed', cursive",
+                fontSize: "clamp(16px, 1.9vw, 29px)",
+                color, whiteSpace: "nowrap",
+              }}>$ {item.price}</span>
+            </div>
+            {item.desc && (
+              <p style={{
+                fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+                fontSize: "clamp(11px, 1.24vw, 19px)", fontWeight: 400,
+                color: "#3a3a3a", lineHeight: 1.45, margin: "0 auto",
+                textTransform: "uppercase", letterSpacing: "0.02em",
+                maxWidth: "90%",
+              }}>{item.desc}</p>
+            )}
           </div>
-          {item.desc && (
-            <p style={{
-              fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-              fontSize: "clamp(9px, 0.93vw, 14px)", fontWeight: 400,
-              color: "#3a3a3a", lineHeight: 1.45, margin: 0,
-              textTransform: "uppercase", letterSpacing: "0.02em",
-            }}>{item.desc}</p>
-          )}
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -299,6 +307,10 @@ const MENU_LEFT = [
       { name: "Samosa (2pc)", price: "7", desc: "mint chutney | tamarind chutney" },
       { name: "Vada Pav", price: "14", desc: "Bombay quintessential spicy, deep-fried potato fritter tucked inside a soft bread bun (pav)" },
       { name: "Dahi Ke Kebab", price: "14", desc: "hung yogurt | herbs | kataifi pastry" },
+      { name: "Lasooni Gobhi", price: "12", desc: "cauliflower | garlic glaze | green chili" },
+      { name: "Pani Puri", price: "8", desc: "spiced potato | white vatana | mint water | tamarind water" },
+      { name: "Patra Ni Machhi", price: "16", desc: "banana leaf | green chutney" },
+      { name: "Chicken Lollipop", price: "14", desc: "sweet & spicy sauce" },
     ],
   },
   {
@@ -323,10 +335,6 @@ const MENU_RIGHT = [
       { name: "Paneer Dil Khush Kebab", price: "16", desc: "stuffed paneer | cheese | cashews" },
       { name: "Lamb Seekh Kebab", price: "18", desc: "minced lamb | ginger | green chili" },
       { name: "Malai Broccoli", price: "16", desc: "cream | cheese | clay oven roasted" },
-      { name: "Lasooni Gobhi", price: "12", desc: "cauliflower | garlic glaze | green chili" },
-      { name: "Pani Puri", price: "8", desc: "spiced potato | white vatana | mint water | tamarind water" },
-      { name: "Patra Ni Machhi", price: "16", desc: "banana leaf | green chutney" },
-      { name: "Chicken Lollipop", price: "14", desc: "sweet & spicy sauce" },
     ],
   },
   {
@@ -415,8 +423,8 @@ function FoodMenuSection() {
         <div style={{
           display: "flex",
           flexDirection: mob ? "column" : "row",
-          gap: mob ? "8px" : "clamp(100px, 10vw, 170px)",
-          maxWidth: "1180px",
+          gap: mob ? "8px" : "clamp(70px, 7.5vw, 120px)",
+          maxWidth: "980px",
           margin: "0 auto",
         }}>
           <div style={{ flex: 1, minWidth: 0 }}>
