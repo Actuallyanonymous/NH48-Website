@@ -179,7 +179,7 @@ export default function PrivateEventsInquiryPage() {
             <div>
               <label style={labelStyle}>Number of guests</label>
               <input type="number" placeholder="e.g. 50" min="1" value={form.guests} onChange={set("guests")} style={inputStyle} />
-              <p style={{ ...labelStyle, marginTop: "6px", marginBottom: 0, fontSize: "11px" }}>No minimum or maximum — all party sizes welcome.</p>
+              <p style={{ ...labelStyle, marginTop: "6px", marginBottom: 0, fontSize: "11px" }}>25-30 people on site. We are open for outdoor Catering as well.</p>
             </div>
           </div>
 

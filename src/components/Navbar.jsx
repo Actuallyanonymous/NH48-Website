@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const NAV_LINKS = [
   { label: 'HOME',           to: '/',               external: false },
   { label: 'PRIVATE EVENTS', to: '/private-events',  external: false },
-  { label: 'ORDER ONLINE',   to: '#',               external: true  }, // TODO: client will provide real ordering link
+  { label: 'ORDER ONLINE',   to: 'https://order.toasttab.com/online/nh48-bombay-to-delhi-4828-macarthur-boulevard-northwest-ll', external: true  },
 ]
 
 const SOCIALS = [

@@ -527,68 +527,91 @@ function FoodMenuSection() {
   );
 }
 
-// ─── Quote banner — "Where two cities meet on a single plate" — Figma node 1:1171 ─
+// ─── Quote banner — Updated Figma design: "Welcome to the Journey" ────────────
+// Figma: Rectangle 367, y=5438, h=479, bg=#14534D (teal)
+// Text group at x=355 w=803 centered; Left flower x=170 w=132; Right flower x=1211 w=132 (mirrored)
+// fs=32px, fw=500, white, letterSpacing=-1.92px, CENTER
 function QuoteBanner() {
   const width = useWindowWidth();
   const mob = width < 768;
+
+  // Figma: section h=479px on 1512px wide frame
+  // Flower: 132×127px at x=170 (left) and x=1211 (right, mirrored)
+  // Text block: x=355, w=803 — so left+right flowers = (170 to 302) and (1211 to 1343)
+  // Total content width = 1343 - 170 = 1173px centred in 1512
 
   return (
     <section style={{
       position: "relative",
       width: "100%",
       backgroundColor: TEAL,
-      minHeight: mob ? "auto" : "clamp(320px, 31.7vw, 479px)",
+      minHeight: mob ? "auto" : "clamp(260px, 31.7vw, 479px)",
       display: "flex",
-      flexDirection: "column",
+      alignItems: "center",
       justifyContent: "center",
-      padding: mob ? "48px 24px 40px" : "48px 24px 0",
-      textAlign: "center",
       overflow: "hidden",
+      padding: mob ? "48px 24px" : "0",
     }}>
-      <h2 style={{
-        fontFamily: "'BERNIER Distressed', cursive",
-        color: "#F2D43E",
-        fontSize: mob ? "clamp(26px, 8vw, 36px)" : "clamp(32px, 4.2vw, 64px)",
-        margin: "0 0 20px",
-        letterSpacing: "-0.02em",
-      }}>
-        Where two cities meet on a single plate
-      </h2>
-      <p style={{
-        fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-        fontWeight: 500,
-        color: "rgba(255,255,255,0.63)",
-        fontSize: mob ? "14px" : "clamp(16px, 2.12vw, 32px)",
-        textTransform: "uppercase",
-        letterSpacing: "-0.02em",
-        maxWidth: mob ? "100%" : "803px",
-        margin: "0 auto",
-        lineHeight: 1.5,
-      }}>
-        A road, a reunion, and a shared dream — NH48 is where the flavors of Delhi and Mumbai find each other.
-      </p>
-
-      {/* Bottom boundary strip — Figma decorative border */}
+      {/* Content row: flower | text | flower */}
       <div style={{
-        position: mob ? "relative" : "absolute",
-        bottom: 0, left: 0, right: 0,
-        width: "100%",
-        height: mob ? "24px" : "clamp(30px, 4.8vw, 72px)",
-        marginTop: mob ? "32px" : "0",
         display: "flex",
-        alignItems: "flex-end",
-        overflow: "hidden",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: mob ? "16px" : "clamp(16px, 2.5vw, 40px)",
+        width: mob ? "100%" : "clamp(640px, 77.6vw, 1173px)",
+        padding: mob ? "0" : "0 0",
       }}>
-        {Array.from({ length: 16 }, (_, i) => [
-          <img key={`a${i}`} src="/assets/home-page/new/two-city-meet-section-boundary-vector-1.png" alt=""
-            style={{ height: "100%", width: "auto", flexShrink: 0, alignSelf: "flex-start", display: "block" }} />,
-          <img key={`b${i}`} src="/assets/home-page/new/two-city-meet-section-boundary-vector-2.png" alt=""
-            style={{ height: "64%", width: "auto", flexShrink: 0, display: "block" }} />,
-        ]).flat()}
+        {/* Left flower */}
+        <img
+          src="/assets/home-page/new/Flower left and right .png"
+          alt=""
+          aria-hidden="true"
+          style={{
+            width: mob ? "clamp(52px, 14vw, 80px)" : "clamp(80px, 8.7vw, 132px)",
+            height: "auto",
+            flexShrink: 0,
+            display: "block",
+          }}
+        />
+
+        {/* Text — Figma: fs=32px, fw=500, white, ls=-1.92px, CENTER */}
+        <div style={{ flex: 1, textAlign: "center" }}>
+          <p style={{
+            fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            fontWeight: 500,
+            fontSize: mob ? "clamp(18px, 5vw, 24px)" : "clamp(20px, 2.12vw, 32px)",
+            lineHeight: 1.45,
+            letterSpacing: mob ? "-0.03em" : "-0.06em",
+            color: "#FFFFFF",
+            margin: 0,
+            textTransform: "uppercase",
+          }}>
+            Welcome to the Journey
+            <br />
+            Every highway connects people.
+            <br />
+            Every meal creates memories.
+          </p>
+        </div>
+
+        {/* Right flower — mirrored */}
+        <img
+          src="/assets/home-page/new/Flower left and right .png"
+          alt=""
+          aria-hidden="true"
+          style={{
+            width: mob ? "clamp(52px, 14vw, 80px)" : "clamp(80px, 8.7vw, 132px)",
+            height: "auto",
+            flexShrink: 0,
+            display: "block",
+            transform: "scaleX(-1)",
+          }}
+        />
       </div>
     </section>
   );
 }
+
 
 function Sayings() {
   const [active, setActive] = useState(0);

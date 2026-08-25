@@ -168,7 +168,17 @@ export default function SiteFooter() {
             <p style={{ ...ftBody(scale), marginBottom: `${(295 - 216 - 45) * scale}px` }}>
               HAVE A QUESTION OR A SPECIAL REQUEST?
               <br />
-              EMAIL US AT [NH48@NH48RESTAURANT.COM].
+              EMAIL US AT{" "}
+              <a
+                href="mailto:NH48@NH48RESTAURANT.COM"
+                style={{
+                  color: "inherit",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "3px",
+                }}
+              >
+                [NH48@NH48RESTAURANT.COM]
+              </a>.
             </p>
 
             {/* PHONE NUMBER label — y=295 */}
@@ -256,7 +266,17 @@ export default function SiteFooter() {
             <p style={ftBody(0.75)}>
               HAVE A QUESTION OR A SPECIAL REQUEST?
               <br />
-              EMAIL US AT [NH48@NH48RESTAURANT.COM].
+              EMAIL US AT{" "}
+              <a
+                href="mailto:NH48@NH48RESTAURANT.COM"
+                style={{
+                  color: "inherit",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "3px",
+                }}
+              >
+                [NH48@NH48RESTAURANT.COM]
+              </a>.
             </p>
           </div>
 
