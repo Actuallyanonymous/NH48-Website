@@ -39,7 +39,7 @@ function HeroSection() {
       lineHeight: 0,
     }}>
       <img
-        src="/assets/home-page/new/hero-new.png"
+        src="/assets/home-page/new/new hero image to be replaced.png"
         alt="Welcome to NH48"
         style={{
           width: "100%",
