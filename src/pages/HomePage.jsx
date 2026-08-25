@@ -184,19 +184,186 @@ function CityCardsSection() {
 }
 
 // ─── "a taste of india mile by mile" — Figma node 1:386, exported whole ───────
+// ─── Story Section (Frame 1430101517, 1512×598) ──────────────────────────────
+// Asset natural sizes (= the clipped visible portion as exported from Figma):
+//   top-left flower PNG:     145×129px  → position at top:0, left:0
+//   bottom-left SVG:         431×474px  → position at bottom:0, left:0
+//   pagri SVG:               236×214px  → top-right of photo
+//   bottom-right SVG:        210×389px  → position at bottom:0, right:0
+//   food photo PNG:          400×361px  → right half of section
+//   heading: 34px BERNIER color #E62F80
+//   body:    19px fw500 Helvetica color #14534D
 function StorySection() {
+  const width = useWindowWidth();
+  const mob = width < 768;
+  const YELLOW    = "#F5C011";
+  const RED       = "#E62F80";
+  const TEAL_TEXT = "#14534D";
+
   return (
-    <section style={{ width: "100%", lineHeight: 0 }}>
+    <section style={{
+      position: "relative",
+      width: "100%",
+      backgroundColor: YELLOW,
+      overflow: "hidden",
+      minHeight: mob ? "auto" : "clamp(380px, 39.5vw, 598px)",
+      display: "flex",
+      flexDirection: mob ? "column" : "row",
+      alignItems: mob ? "flex-start" : "center",
+      // Horizontal padding: text starts at x=182/1512=12vw from left
+      paddingLeft:   mob ? "24px" : "clamp(90px, 12vw, 182px)",
+      paddingRight:  "0",
+      paddingTop:    mob ? "56px" : "0",
+      paddingBottom: mob ? "56px" : "0",
+      boxSizing: "border-box",
+    }}>
+
+      {/* TOP-LEFT flower — 145px wide in 1512px frame = 9.6vw */}
       <img
-        src="/assets/home-page/new/section-3-v2-complete.png"
-        alt="Every mile has a flavour. Every plate tells a story."
-        style={{ width: "100%", height: "auto", display: "block" }}
+        src="/assets/home-page/new/yellow section tol left corner flower.png"
+        alt="" aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: 0, left: 0,
+          width: mob ? "clamp(80px, 19vw, 120px)" : "clamp(100px, 9.6vw, 145px)",
+          height: "auto",
+          pointerEvents: "none",
+          zIndex: 3,
+        }}
+      />
+
+      {/* BOTTOM-LEFT botanical — SVG 431×474px natural
+          In 1512px frame it fills the bottom-left corner.
+          The section is 598px tall, SVG is 474px tall at natural.
+          Height relative to section: 474/598 = 79.3% of section height.
+          Width at that height: 431 × (section_height×0.793 / 474) = 431 × section_height/598
+          Simpler: width = 431/598 × section_height = 72% of section height
+          Or just set height = 79.3% of section and width auto. */}
+      <img
+        src="/assets/home-page/new/yellow section bottom left corner flower.svg"
+        alt="" aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: 0, left: 0,
+          // Height covers 79.3% of section height (474 / 598 × 100)
+          height: mob ? "clamp(130px, 42vw, 220px)" : "clamp(200px, 79.3%, 474px)",
+          width: "auto",
+          pointerEvents: "none",
+          zIndex: 3,
+        }}
+      />
+
+      {/* TEXT COLUMN — x=182 to x=878 in design = 46.1% of 1512 */}
+      <div style={{
+        position: "relative",
+        zIndex: 2,
+        flex: mob ? "none" : "0 0 clamp(280px, 46.1%, 697px)",
+        width: mob ? "100%" : "auto",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}>
+        {/* fs=34 BERNIER DISTRESSED #E62F80 */}
+        <h2 style={{
+          fontFamily: "'BERNIER Distressed', cursive",
+          fontWeight: 400,
+          color: RED,
+          fontSize: mob ? "clamp(20px, 5.5vw, 28px)" : "clamp(20px, 2.25vw, 34px)",
+          lineHeight: 1.15,
+          textTransform: "uppercase",
+          margin: "0 0 clamp(14px, 1.8vw, 26px)",
+        }}>
+          Every Mile Has A Flavour.{!mob && <br />}
+          {mob && " "}Every Plate Tells A Story.
+        </h2>
+
+        {/* fs=19 fw=500 Helvetica Neue #14534D */}
+        {[
+          "N.H. 48 Indian Kitchen is inspired by one of India's most iconic roads—National Highway 48, the highway that stretches from Delhi to Mumbai. Along its route, the landscape, culture, and cuisine change with every mile, connecting vibrant cities, small towns, roadside dhabas, and generations of family recipes.",
+          "That journey is the heart of our restaurant.",
+          "We created N.H. 48 to celebrate the incredible diversity of Indian food beyond the dishes most people know. Our menu brings together bold street food, regional specialties, and comforting classics inspired by the states connected by NH48, each prepared with respect for tradition and a passion for hospitality."
+        ].map((txt, i, arr) => (
+          <p key={i} style={{
+            fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            fontWeight: 500,
+            color: TEAL_TEXT,
+            fontSize: mob ? "clamp(13px, 3.5vw, 15px)" : "clamp(12px, 1.26vw, 19px)",
+            lineHeight: 1.6,
+            margin: i < arr.length - 1 ? "0 0 clamp(8px, 1.1vw, 16px)" : "0",
+          }}>{txt}</p>
+        ))}
+      </div>
+
+      {/* RIGHT SIDE: food photo + pagri
+          Photo: x=929, width=400 in 1512 = starts at 61.4vw from left
+          Photo width: 400/1512 = 26.5vw */}
+      <div style={{
+        position: mob ? "relative" : "absolute",
+        left:      mob ? "auto" : "61.4vw",
+        top:       mob ? "auto" : "50%",
+        transform: mob ? "none" : "translateY(-50%)",
+        width:     mob ? "100%" : "auto",
+        marginTop: mob ? "28px" : "0",
+        display:   "flex",
+        alignItems: "center",
+        justifyContent: mob ? "center" : "flex-start",
+        zIndex: 2,
+      }}>
+        <img
+          src="/assets/home-page/new/yellow section main image .png"
+          alt="NH48 signature tandoori platter"
+          style={{
+            display: "block",
+            width:  mob ? "min(80%, 280px)" : "clamp(240px, 26.5vw, 400px)",
+            height: "auto",
+            borderRadius: "4px",
+            position: "relative",
+            zIndex: 2,
+          }}
+        />
+
+        {/* Pagri SVG: 236×214px natural
+            Figma pos=(1181,12) — sits to the RIGHT of photo center, above photo.
+            Relative to photo left edge (x=929): 1181-929=252px = 63% of photo width (400px)
+            y offset: 12-125=-113px = -28% of photo width */}
+        {!mob && (
+          <img
+            src="/assets/home-page/new/yellow section pagi on the photo.svg"
+            alt="" aria-hidden="true"
+            style={{
+              position: "absolute",
+              top:  "-28%",
+              left: "63%",
+              width: "clamp(100px, 15.6vw, 236px)",
+              height: "auto",
+              pointerEvents: "none",
+              zIndex: 4,
+            }}
+          />
+        )}
+      </div>
+
+      {/* BOTTOM-RIGHT botanical — SVG 210×389px natural
+          Sits at bottom-right corner.
+          In 1512px frame, its width = 210/1512 = 13.9vw
+          Its height = 389/598 = 65% of section height */}
+      <img
+        src="/assets/home-page/new/yellow section bottom right corner flower.svg"
+        alt="" aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: 0, right: 0,
+          // height = 65% of section height (389/598)
+          height: mob ? "clamp(130px, 45vw, 240px)" : "clamp(200px, 65%, 389px)",
+          width: "auto",
+          pointerEvents: "none",
+          zIndex: 3,
+        }}
       />
     </section>
   );
 }
 
-// ─── Empty section (quote to come later) — Figma node 1:329 ───────────────────
 function QuotePlaceholderSection() {
   const width = useWindowWidth();
   const mob = width < 768;
