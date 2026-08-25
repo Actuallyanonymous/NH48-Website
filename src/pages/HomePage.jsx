@@ -172,11 +172,11 @@ function CityCardsSection() {
             lineHeight: "1.05",
             textAlign: "center",
             letterSpacing: "0.04em",
-            maxWidth: "569px",
+            textTransform: "uppercase",
+            maxWidth: "480px",
           }}
         >
-          FOURTEEN HUNDRED KILOMETERS OF FLAVOR, DISTILLED INTO A SINGLE SEAT AT
-          OUR TABLE.
+          More Than a Restaurant. A Journey Through India.
         </p>
       </div>
     </section>
@@ -188,8 +188,8 @@ function StorySection() {
   return (
     <section style={{ width: "100%", lineHeight: 0 }}>
       <img
-        src="/assets/home-page/new/section-3-complete.png"
-        alt="A taste of India mile by mile"
+        src="/assets/home-page/new/section-3-v2-complete.png"
+        alt="Every mile has a flavour. Every plate tells a story."
         style={{ width: "100%", height: "auto", display: "block" }}
       />
     </section>
@@ -200,32 +200,90 @@ function StorySection() {
 function QuotePlaceholderSection() {
   const width = useWindowWidth();
   const mob = width < 768;
+  const leafW = mob ? "28px" : "clamp(32px, 4.2vw, 63px)";
 
   return (
     <section style={{
       position: "relative",
       width: "100%",
       backgroundColor: TEAL,
-      height: mob ? "clamp(160px, 40vw, 240px)" : "clamp(280px, 47.4vw, 717px)",
+      paddingTop: mob ? "36px" : "clamp(24px, 3.9vw, 59px)",
       overflow: "hidden",
     }}>
-      {/* Top vectors */}
+      <div style={{ padding: mob ? "0 24px" : "0 24px" }}>
+      {/* Heading, flanked by leaf vectors */}
       <div style={{
-        position: "absolute",
-        top: mob ? "20px" : "clamp(24px, 3.9vw, 59px)",
-        left: "50%",
-        transform: "translateX(-50%)",
         display: "flex",
-        gap: mob ? "16px" : "clamp(24px, 4vw, 60px)",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: mob ? "14px" : "clamp(16px, 2vw, 30px)",
+        marginBottom: mob ? "20px" : "clamp(20px, 3.5vw, 53px)",
       }}>
-        <img src="/assets/home-page/new/section-4-vector.png" alt="" style={{ width: mob ? "28px" : "clamp(32px, 4.2vw, 63px)", height: "auto", display: "block" }} />
-        <img src="/assets/home-page/new/section-4-vector.png" alt="" style={{ width: mob ? "28px" : "clamp(32px, 4.2vw, 63px)", height: "auto", display: "block" }} />
+        <img src="/assets/home-page/new/section-4-vector.png" alt="" style={{ width: leafW, height: "auto", display: "block" }} />
+        <h2 style={{
+          fontFamily: "'BERNIER Distressed', cursive",
+          fontSize: mob ? "28px" : "clamp(28px, 3.17vw, 48px)",
+          color: "white",
+          margin: 0,
+          textAlign: "center",
+        }}>
+          Our Hospitality
+        </h2>
+        <img src="/assets/home-page/new/section-4-vector.png" alt="" style={{ width: leafW, height: "auto", display: "block" }} />
+      </div>
+
+      {/* Body copy */}
+      <div style={{
+        maxWidth: "820px",
+        margin: mob ? "0 auto 28px" : "0 auto clamp(28px, 3.7vw, 56px)",
+        textAlign: "center",
+      }}>
+        <p style={{
+          fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+          color: "white",
+          fontSize: mob ? "15px" : "clamp(15px, 1.59vw, 24px)",
+          lineHeight: 1.5,
+          margin: "0 0 16px",
+        }}>
+          In India, guests are welcomed like family. That belief is at the core of everything we do.
+        </p>
+        <p style={{
+          fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+          color: "white",
+          fontSize: mob ? "15px" : "clamp(15px, 1.59vw, 24px)",
+          lineHeight: 1.5,
+          margin: "0 0 16px",
+        }}>
+          Whether you're joining us for a quick lunch, a family celebration, date night, or your first experience with Indian cuisine, our goal is simple—to make you feel comfortable, cared for, and excited to come back.
+        </p>
+        <p style={{
+          fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+          color: "white",
+          fontSize: mob ? "15px" : "clamp(15px, 1.59vw, 24px)",
+          lineHeight: 1.5,
+          margin: 0,
+        }}>
+          We want N.H.48 to become more than your favorite Indian restaurant. and your favorite neighborhood gathering place.
+        </p>
+      </div>
+
+      {/* Photo */}
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        marginBottom: mob ? "24px" : "clamp(28px, 3.8vw, 58px)",
+      }}>
+        <img
+          src="/assets/home-page/new/section-4-mid-image.png"
+          alt="Family dining at NH48"
+          style={{ width: mob ? "100%" : "clamp(320px, 34.5vw, 522px)", height: "auto", display: "block" }}
+        />
+      </div>
       </div>
 
       {/* Bottom boundary strip */}
       <div style={{
-        position: "absolute",
-        bottom: 0, left: 0, right: 0,
+        width: "100%",
         height: mob ? "24px" : "clamp(30px, 4.8vw, 72px)",
         display: "flex",
         alignItems: "flex-end",
@@ -302,26 +360,34 @@ const MENU_LEFT = [
   {
     title: "Khau Galli (Small Plates)",
     items: [
-      { name: "Palak Chaat", price: "14", desc: "crispy spinach | yogurt | chutneys" },
-      { name: "Aloo Tikki Chaat", price: "14", desc: "spiced potato | chana masala | yogurt" },
-      { name: "Samosa (2pc)", price: "7", desc: "mint chutney | tamarind chutney" },
-      { name: "Vada Pav", price: "14", desc: "Bombay quintessential spicy, deep-fried potato fritter tucked inside a soft bread bun (pav)" },
-      { name: "Dahi Ke Kebab", price: "14", desc: "hung yogurt | herbs | kataifi pastry" },
-      { name: "Lasooni Gobhi", price: "12", desc: "cauliflower | garlic glaze | green chili" },
-      { name: "Pani Puri", price: "8", desc: "spiced potato | white vatana | mint water | tamarind water" },
-      { name: "Patra Ni Machhi", price: "16", desc: "banana leaf | green chutney" },
-      { name: "Chicken Lollipop", price: "14", desc: "sweet & spicy sauce" },
+      { name: "Palak Chaat", price: "12", desc: "crispy spinach | yogurt | tamarind" },
+      { name: "Multigrain Sev Puri", price: "12", desc: "spiced potato | avocado | green chutney | pomegranate" },
+      { name: "Samosa (2pc)", price: "8", desc: "potato | peas | mint chutney | tamarind chutney" },
+      { name: "Vada Pav", price: "12", desc: "spiced potato | curry leaves | garlic chutney | buns" },
+      { name: "Dahi Ke Kebab", price: "14", desc: "hung yogurt | herbs | kataifi" },
+      { name: "Lasooni Gobhi", price: "12", desc: "crispy cauliflower | garlic glaze | green chili" },
+      { name: "Pani Puri", price: "8", desc: "spiced potato | white peas | mint water | tamarind water" },
+      { name: "Chicken Lollipop", price: "16", desc: "sweet & spicy sauce" },
+      { name: "Patra Ni Machhi", price: "16", desc: "seabass | coconut chutney | banana leaf" },
+      { name: "Shrimp Koliwada", price: "16", desc: "crispy shrimp | coastal spices | curry leaves" },
     ],
   },
   {
-    title: "Sabzi (Vegetarian Mains)",
+    title: "Sides",
     items: [
-      { name: "Halloumi Saag", price: "18", desc: "spinach | garlic | cream" },
-      { name: "Kadhai Paneer", price: "18", desc: "spicy tomato sauce | onions | bell peppers" },
-      { name: "Dal Makhani", price: "18", desc: "lentils | kidney beans | butter" },
-      { name: "Gobhi Aloo", price: "18", desc: "cauliflower | cumin | ginger" },
-      { name: "Eggplant Bharta", price: "18", desc: "roasted eggplant | tomatoes | onions | smoked spices" },
-      { name: "Vegetable Biryani", price: "20", desc: "yogurt | green chili | garam masala" },
+      { name: "Dal Makhani", price: "10", desc: "lentils | kidney beans | butter" },
+      { name: "Gobhi Aloo", price: "10", desc: "cauliflower | cumin | ginger" },
+      { name: "Eggplant Bharta", price: "10", desc: "roasted eggplant | tomatoes | onions | smoked spices" },
+    ],
+  },
+  {
+    title: "Breads",
+    items: [
+      { name: "Garlic Naan", price: "4" },
+      { name: "Butter Naan", price: "4" },
+      { name: "Multigrain Roti", price: "5" },
+      { name: "Lachha Paratha", price: "5" },
+      { name: "Amul Cheese Kulcha", price: "6" },
     ],
   },
 ];
@@ -330,34 +396,37 @@ const MENU_RIGHT = [
   {
     title: "Tandoor",
     items: [
-      { name: "Tandoori Chicken Tikka", price: "18", desc: "garam masala | green chutney" },
-      { name: "Malai Chicken Tikka", price: "18", desc: "cream | cheese | clay oven roasted" },
       { name: "Paneer Dil Khush Kebab", price: "16", desc: "stuffed paneer | cheese | cashews" },
-      { name: "Lamb Seekh Kebab", price: "18", desc: "minced lamb | ginger | green chili" },
       { name: "Malai Broccoli", price: "16", desc: "cream | cheese | clay oven roasted" },
+      { name: "Tandoori Chicken Tikka", price: "16", desc: "garam masala" },
+      { name: "Malai Chicken Tikka", price: "16", desc: "cream | cheese | clay oven roasted" },
+      { name: "Lamb Seekh Kebab", price: "16", desc: "minced lamb | ginger | green chili" },
+      { name: "Chicken Seekh Kebab", price: "16" },
+      { name: "Tandoori Salmon", price: "22" },
     ],
   },
   {
     title: "Mains",
     items: [
-      { name: "Mangalorean Fish Curry", price: "22", desc: "kingfish | tamarind | coastal spices" },
-      { name: "Prawn Koliwada", price: "22", desc: "crispy prawns | coastal spices" },
-      { name: "Butter Chicken", price: "22", desc: "creamy tomato | fenugreek" },
-      { name: "Chicken Kolhapuri", price: "22", desc: "whole spices | dry coconut | onions" },
-      { name: "Bombay Chicken Biryani", price: "24", desc: "aromatic spices | tomato | yogurt" },
+      { name: "Burrata Lasooni Saag", price: "18", desc: "spinach | garlic | cream" },
+      { name: "Kadhai Paneer", price: "18", desc: "spicy tomato sauce | onions | bell peppers" },
+      { name: "Vegetable Biryani", price: "20", desc: "yogurt | green chili | garam masala" },
+      { name: "Mangalorean Fish Curry", price: "24", desc: "kingfish | tamarind | coastal spices" },
+      { name: "Shrimp Moilee", price: "22", desc: "shrimp | coconut milk | curry leaves" },
+      { name: "Butter Chicken", price: "20", desc: "creamy tomato | fenugreek" },
+      { name: "Chicken Kolhapuri", price: "20", desc: "whole spices | dry coconut | onions" },
+      { name: "Bombay Chicken Biryani", price: "22", desc: "aromatic spices | tomato | yogurt" },
       { name: "Laal Maas", price: "24", desc: "Rajasthani red chili | whole spices" },
-      { name: "Mutton Ghee Roast", price: "24", desc: "Mangalorean spices | ghee | curry leaves" },
-      { name: "Dum Lamb Biryani", price: "24", desc: "saffron | ghee | whole spices" },
+      { name: "Dum Lamb Biryani", price: "26", desc: "saffron | ghee | whole spices" },
     ],
   },
   {
-    title: "Breads",
+    title: "Desserts",
     items: [
-      { name: "Garlic Naan", price: "4" },
-      { name: "Butter Naan", price: "4" },
-      { name: "Tandoori Roti", price: "5" },
-      { name: "Lachha Paratha", price: "5" },
-      { name: "Amul Cheese Kulcha", price: "6" },
+      { name: "Gulab Jamun", price: "9", desc: "condensed milk dumplings fried in pure ghee & soaked in rose-cardamom syrup" },
+      { name: "Rasmalai", price: "9", desc: "soft, spongy cottage cheese patties soaked in rich, sweetened, thickened milk" },
+      { name: "Brownie Sizzler with Vanilla Ice Cream", price: "10", desc: "warm, fudgy chocolate brownie topped with a cold, melting scoop of vanilla ice cream" },
+      { name: "Ice Cream / Sorbet", price: "8", desc: "ask your server for flavours" },
     ],
   },
 ];
