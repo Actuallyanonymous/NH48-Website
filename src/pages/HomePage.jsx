@@ -196,7 +196,7 @@ function CityCardsSection() {
 function StorySection() {
   const width = useWindowWidth();
   const mob = width < 768;
-  const YELLOW    = "#F5C011";
+  const YELLOW    = "#F8B519"; // Figma golden-yellow color
   const RED       = "#E62F80";
   const TEAL_TEXT = "#14534D";
 
@@ -206,135 +206,123 @@ function StorySection() {
       width: "100%",
       backgroundColor: YELLOW,
       overflow: "hidden",
-      minHeight: mob ? "auto" : "clamp(380px, 39.5vw, 598px)",
       display: "flex",
       flexDirection: mob ? "column" : "row",
       alignItems: mob ? "flex-start" : "center",
-      // Horizontal padding: text starts at x=182/1512=12vw from left
-      paddingLeft:   mob ? "24px" : "clamp(90px, 12vw, 182px)",
-      paddingRight:  "0",
-      paddingTop:    mob ? "56px" : "0",
-      paddingBottom: mob ? "56px" : "0",
+      paddingLeft:   mob ? "24px" : "clamp(80px, 12.03vw, 182px)",
+      paddingRight:  mob ? "24px" : "clamp(20px, 2vw, 30px)",
+      paddingTop:    mob ? "48px" : "clamp(40px, 3.97vw, 60px)",
+      paddingBottom: mob ? "48px" : "clamp(40px, 3.97vw, 60px)",
       boxSizing: "border-box",
+      gap: mob ? "0" : "clamp(30px, 3.2vw, 48px)",
     }}>
 
       {/* TOP-LEFT flower — 145px wide in 1512px frame = 9.6vw */}
-      <img
-        src="/assets/home-page/new/yellow section tol left corner flower.png"
-        alt="" aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: 0, left: 0,
-          width: mob ? "clamp(80px, 19vw, 120px)" : "clamp(100px, 9.6vw, 145px)",
-          height: "auto",
-          pointerEvents: "none",
-          zIndex: 3,
-        }}
-      />
+      {!mob && (
+        <img
+          src="/assets/home-page/new/yellow section tol left corner flower.png"
+          alt="" aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: 0, left: 0,
+            width: "clamp(95px, 9.59vw, 145px)",
+            height: "auto",
+            pointerEvents: "none",
+            zIndex: 3,
+          }}
+        />
+      )}
 
-      {/* BOTTOM-LEFT botanical — SVG 431×474px natural
-          In 1512px frame it fills the bottom-left corner.
-          The section is 598px tall, SVG is 474px tall at natural.
-          Height relative to section: 474/598 = 79.3% of section height.
-          Width at that height: 431 × (section_height×0.793 / 474) = 431 × section_height/598
-          Simpler: width = 431/598 × section_height = 72% of section height
-          Or just set height = 79.3% of section and width auto. */}
+      {/* BOTTOM-LEFT botanical — SVG 431×474px natural */}
       <img
         src="/assets/home-page/new/yellow section bottom left corner flower.svg"
         alt="" aria-hidden="true"
         style={{
           position: "absolute",
           bottom: 0, left: 0,
-          // Height covers 79.3% of section height (474 / 598 × 100)
-          height: mob ? "clamp(130px, 42vw, 220px)" : "clamp(200px, 79.3%, 474px)",
+          height: mob ? "clamp(130px, 40vw, 210px)" : "clamp(280px, 31.35vw, 474px)",
           width: "auto",
           pointerEvents: "none",
           zIndex: 3,
         }}
       />
 
-      {/* TEXT COLUMN — x=182 to x=878 in design = 46.1% of 1512 */}
+      {/* ── TEXT COLUMN ──
+          Figma proportions: text column is ~46vw wide (measured from Figma file). */}
       <div style={{
         position: "relative",
         zIndex: 2,
-        flex: mob ? "none" : "0 0 clamp(280px, 46.1%, 697px)",
+        flex: mob ? "none" : "0 0 clamp(350px, 46vw, 696px)",
         width: mob ? "100%" : "auto",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
       }}>
-        {/* fs=34 BERNIER DISTRESSED #E62F80 */}
         <h2 style={{
           fontFamily: "'BERNIER Distressed', cursive",
           fontWeight: 400,
           color: RED,
-          fontSize: mob ? "clamp(20px, 5.5vw, 28px)" : "clamp(20px, 2.25vw, 34px)",
-          lineHeight: 1.15,
+          fontSize: mob ? "clamp(22px, 5.8vw, 30px)" : "clamp(22px, 2.12vw, 32px)",
+          lineHeight: 1.2,
           textTransform: "uppercase",
-          margin: "0 0 clamp(14px, 1.8vw, 26px)",
+          margin: "0 0 clamp(16px, 1.65vw, 25px)",
+          letterSpacing: "0.01em",
+          textAlign: mob ? "center" : "left",
         }}>
-          Every Mile Has A Flavour.{!mob && <br />}
-          {mob && " "}Every Plate Tells A Story.
+          Every Mile Has A Flavour. Every Plate Tells A Story.
         </h2>
 
-        {/* fs=19 fw=500 Helvetica Neue #14534D */}
         {[
-          "N.H. 48 Indian Kitchen is inspired by one of India's most iconic roads—National Highway 48, the highway that stretches from Delhi to Mumbai. Along its route, the landscape, culture, and cuisine change with every mile, connecting vibrant cities, small towns, roadside dhabas, and generations of family recipes.",
-          "That journey is the heart of our restaurant.",
-          "We created N.H. 48 to celebrate the incredible diversity of Indian food beyond the dishes most people know. Our menu brings together bold street food, regional specialties, and comforting classics inspired by the states connected by NH48, each prepared with respect for tradition and a passion for hospitality."
+          "N.H. 48 Indian Kitchen Is Inspired By One Of India's Most Iconic Roads—National Highway 48, The Highway That Stretches From Delhi To Mumbai. Along Its Route, The Landscape, Culture, And Cuisine Change With Every Mile, Connecting Vibrant Cities, Small Towns, Roadside Dhabas, And Generations Of Family Recipes.",
+          "That Journey Is The Heart Of Our Restaurant.",
+          "We Created N.H. 48 To Celebrate The Incredible Diversity Of Indian Food Beyond The Dishes Most People Know. Our Menu Brings Together Bold Street Food, Regional Specialties, And Comforting Classics Inspired By The States Connected By NH48, Each Prepared With Respect For Tradition And A Passion For Hospitality."
         ].map((txt, i, arr) => (
           <p key={i} style={{
             fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
             fontWeight: 500,
             color: TEAL_TEXT,
-            fontSize: mob ? "clamp(13px, 3.5vw, 15px)" : "clamp(12px, 1.26vw, 19px)",
-            lineHeight: 1.6,
-            margin: i < arr.length - 1 ? "0 0 clamp(8px, 1.1vw, 16px)" : "0",
+            fontSize: mob ? "clamp(12px, 3.2vw, 14px)" : "clamp(12.5px, 1.06vw, 16px)",
+            lineHeight: 1.68,
+            margin: i < arr.length - 1 ? "0 0 clamp(10px, 1.06vw, 16px)" : "0",
+            textAlign: mob ? "center" : "left",
           }}>{txt}</p>
         ))}
       </div>
 
-      {/* RIGHT SIDE: food photo + pagri
-          Photo: x=929, width=400 in 1512 = starts at 61.4vw from left
-          Photo width: 400/1512 = 26.5vw */}
+      {/* ── PHOTO COLUMN ──
+          Figma proportions: photo is ~26.5vw wide (measured from Figma file).
+          Flex sibling of text column so they CANNOT overlap. */}
       <div style={{
-        position: mob ? "relative" : "absolute",
-        left:      mob ? "auto" : "61.4vw",
-        top:       mob ? "auto" : "50%",
-        transform: mob ? "none" : "translateY(-50%)",
-        width:     mob ? "100%" : "auto",
-        marginTop: mob ? "28px" : "0",
-        display:   "flex",
+        position: "relative",
+        zIndex: 5,
+        flex: mob ? "none" : "0 0 clamp(260px, 26.5vw, 400px)",
+        width: mob ? "100%" : "auto",
+        marginTop: mob ? "32px" : "0",
+        display: "flex",
         alignItems: "center",
-        justifyContent: mob ? "center" : "flex-start",
-        zIndex: 2,
+        justifyContent: "center",
       }}>
         <img
           src="/assets/home-page/new/yellow section main image .png"
           alt="NH48 signature tandoori platter"
           style={{
             display: "block",
-            width:  mob ? "min(80%, 280px)" : "clamp(240px, 26.5vw, 400px)",
+            width: mob ? "min(82%, 290px)" : "100%",
             height: "auto",
             borderRadius: "4px",
-            position: "relative",
-            zIndex: 2,
           }}
         />
 
-        {/* Pagri SVG: 236×214px natural
-            Figma pos=(1181,12) — sits to the RIGHT of photo center, above photo.
-            Relative to photo left edge (x=929): 1181-929=252px = 63% of photo width (400px)
-            y offset: 12-125=-113px = -28% of photo width */}
+        {/* Pagri: sits top-right of the photo */}
         {!mob && (
           <img
             src="/assets/home-page/new/yellow section pagi on the photo.svg"
             alt="" aria-hidden="true"
             style={{
               position: "absolute",
-              top:  "-28%",
-              left: "63%",
-              width: "clamp(100px, 15.6vw, 236px)",
+              top:  "-26%",
+              right: "-20%",
+              width: "clamp(140px, 15.6vw, 236px)",
               height: "auto",
               pointerEvents: "none",
               zIndex: 4,
@@ -343,23 +331,21 @@ function StorySection() {
         )}
       </div>
 
-      {/* BOTTOM-RIGHT botanical — SVG 210×389px natural
-          Sits at bottom-right corner.
-          In 1512px frame, its width = 210/1512 = 13.9vw
-          Its height = 389/598 = 65% of section height */}
-      <img
-        src="/assets/home-page/new/yellow section bottom right corner flower.svg"
-        alt="" aria-hidden="true"
-        style={{
-          position: "absolute",
-          bottom: 0, right: 0,
-          // height = 65% of section height (389/598)
-          height: mob ? "clamp(130px, 45vw, 240px)" : "clamp(200px, 65%, 389px)",
-          width: "auto",
-          pointerEvents: "none",
-          zIndex: 3,
-        }}
-      />
+      {/* BOTTOM-RIGHT botanical — SVG 210×389px natural */}
+      {!mob && (
+        <img
+          src="/assets/home-page/new/yellow section bottom right corner flower.svg"
+          alt="" aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: 0, right: 0,
+            height: "clamp(250px, 25.73vw, 389px)",
+            width: "auto",
+            pointerEvents: "none",
+            zIndex: 1,
+          }}
+        />
+      )}
     </section>
   );
 }
