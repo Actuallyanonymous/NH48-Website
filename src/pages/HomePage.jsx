@@ -639,7 +639,7 @@ function FoodMenuSection() {
           textAlign: "center",
           margin: mob ? "0 0 32px" : "0 0 48px",
         }}>
-          food menu
+          menu
         </h2>
 
         <div style={{
