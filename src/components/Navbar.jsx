@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
@@ -18,8 +18,6 @@ const SOCIALS = [
 // Links: Helvetica Neue 20px, white, uppercase
 export default function Navbar() {
   const [drawerOpen, setDrawer] = useState(false)
-  const { pathname } = useLocation()
-  const isPrivateEvents = pathname === '/private-events'
 
   const linkStyle = (isActive) => ({
     fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -45,17 +43,6 @@ export default function Navbar() {
         padding: '0 32px',
         backgroundColor: '#A94545',
       }}>
-        {/* Logo — only shown on Private Events pages, straddling the header/section boundary */}
-        {isPrivateEvents && (
-          <Link to="/" className="nav-desktop" style={{
-            position: 'absolute', left: '50%', top: '100%',
-            transform: 'translate(-50%, -50%)',
-            display: 'block', lineHeight: 0,
-          }}>
-            <img src="/assets/home-page/new/footer-logo.png" alt="NH48 Indian Kitchen" style={{ height: '92px', width: 'auto', display: 'block' }} />
-          </Link>
-        )}
-
         {/* Desktop links */}
         <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}
              className="nav-desktop">
