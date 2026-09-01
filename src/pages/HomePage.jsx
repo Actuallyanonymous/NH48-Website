@@ -293,13 +293,13 @@ function StorySection() {
           letterSpacing: "0.01em",
           textAlign: mob ? "center" : "left",
         }}>
-          Every Mile Has A Flavour. Every Plate Tells A Story.
+          Every mile has a flavour. Every plate tells a story.
         </h2>
 
         {[
-          "N.H. 48 Indian Kitchen Is Inspired By One Of India's Most Iconic Roads—National Highway 48, The Highway That Stretches From Delhi To Mumbai. Along Its Route, The Landscape, Culture, And Cuisine Change With Every Mile, Connecting Vibrant Cities, Small Towns, Roadside Dhabas, And Generations Of Family Recipes.",
-          "That Journey Is The Heart Of Our Restaurant.",
-          "We Created N.H. 48 To Celebrate The Incredible Diversity Of Indian Food Beyond The Dishes Most People Know. Our Menu Brings Together Bold Street Food, Regional Specialties, And Comforting Classics Inspired By The States Connected By NH48, Each Prepared With Respect For Tradition And A Passion For Hospitality."
+          "N.H. 48 indian kitchen is inspired by one of India's most iconic roads—national highway 48, the highway that stretches from delhi to mumbai. along its route, the landscape, culture, and cuisine change with every mile, connecting vibrant cities, small towns, roadside dhabas, and generations of family recipes.",
+          "that journey is the heart of our restaurant.",
+          "We created n.h. 48 to celebrate the incredible diversity of indian food beyond the dishes most people know. our menu brings together bold street food, regional specialties, and comforting classics inspired by the states connected by nh48, each prepared with respect for tradition and a passion for hospitality."
         ].map((txt, i, arr) => (
           <p key={i} style={{
             fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -327,7 +327,7 @@ function StorySection() {
         justifyContent: "center",
       }}>
         <img
-          src="/assets/home-page/new/yellow section main image .png"
+          src="/assets/home-page/new/yellow section image change new image .png"
           alt="NH48 signature tandoori platter"
           style={{
             display: "block",
