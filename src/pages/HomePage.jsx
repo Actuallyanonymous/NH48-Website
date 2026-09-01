@@ -149,6 +149,30 @@ function CityCardsSection() {
                 <img src="/assets/home-page/new/city-card-mumbai.png" alt="Mumbai"
                   style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
+
+              {/* Card 5 — NEW Oval food 3 */}
+              <div style={{ width: ovalW, flexShrink: 0 }}>
+                <img src="/assets/home-page/new/section-after-home-page-new-image-1.png" alt="NH48 dish"
+                  style={{ width: "100%", height: "auto", display: "block" }} />
+              </div>
+
+              {/* Card 6 — Arch Delhi (repeat) */}
+              <div style={{ width: archW, flexShrink: 0 }}>
+                <img src="/assets/home-page/new/city-card-delhi.png" alt="Delhi"
+                  style={{ width: "100%", height: "auto", display: "block" }} />
+              </div>
+
+              {/* Card 7 — NEW Oval food 4 */}
+              <div style={{ width: ovalW, flexShrink: 0 }}>
+                <img src="/assets/home-page/new/section-after-home-page-new-image-2.png" alt="NH48 dish"
+                  style={{ width: "100%", height: "auto", display: "block" }} />
+              </div>
+
+              {/* Card 8 — Arch Mumbai (repeat) */}
+              <div style={{ width: archW, flexShrink: 0 }}>
+                <img src="/assets/home-page/new/city-card-mumbai.png" alt="Mumbai"
+                  style={{ width: "100%", height: "auto", display: "block" }} />
+              </div>
             </div>
           ))}
         </div>
