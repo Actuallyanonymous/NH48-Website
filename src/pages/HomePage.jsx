@@ -411,44 +411,44 @@ function QuotePlaceholderSection() {
 
       {/* Body copy */}
       <div style={{
-        maxWidth: mob ? "820px" : "950px",
+        maxWidth: mob ? "820px" : "920px",
         margin: mob ? "0 auto 28px" : "0 auto clamp(28px, 3.7vw, 56px)",
         textAlign: "center",
-        paddingLeft: mob ? "0" : "40px",
-        paddingRight: mob ? "0" : "40px",
+        paddingLeft: mob ? "0" : "25px",
+        paddingRight: mob ? "0" : "25px",
       }}>
         <p style={{
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
           color: "white",
-          fontSize: mob ? "15px" : "clamp(18px, 1.7vw, 26px)",
-          lineHeight: 1.45,
-          margin: "0 0 clamp(18px, 2vw, 30px)",
+          fontSize: mob ? "15px" : "clamp(12.5px, 1.12vw, 17px)",
+          lineHeight: 1.65,
+          margin: "0 0 clamp(12px, 1.45vw, 22px)",
         }}>
           In india, a guest is welcomed as family. at n.h. 48, that belief is at the heart of everything we do.
         </p>
         <p style={{
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
           color: "white",
-          fontSize: mob ? "15px" : "clamp(18px, 1.7vw, 26px)",
-          lineHeight: 1.45,
-          margin: "0 0 clamp(18px, 2vw, 30px)",
+          fontSize: mob ? "15px" : "clamp(12.5px, 1.12vw, 17px)",
+          lineHeight: 1.65,
+          margin: "0 0 clamp(12px, 1.45vw, 22px)",
         }}>
           whether you join us for a quick lunch, an intimate date night, a family celebration, or your first exploration of indian cuisine, our intention is simple: to make every guest feel genuinely welcomed, thoughtfully cared for, and eager to return.
         </p>
         <p style={{
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
           color: "white",
-          fontSize: mob ? "15px" : "clamp(18px, 1.7vw, 26px)",
-          lineHeight: 1.45,
-          margin: "0 0 clamp(18px, 2vw, 30px)",
+          fontSize: mob ? "15px" : "clamp(12.5px, 1.12vw, 17px)",
+          lineHeight: 1.65,
+          margin: "0 0 clamp(12px, 1.45vw, 22px)",
         }}>
           we believe hospitality is found in the details—the warmth of the welcome, the generosity of the table, and the feeling that there is always a place for you here.
         </p>
         <p style={{
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
           color: "white",
-          fontSize: mob ? "15px" : "clamp(18px, 1.7vw, 26px)",
-          lineHeight: 1.45,
+          fontSize: mob ? "15px" : "clamp(12.5px, 1.12vw, 17px)",
+          lineHeight: 1.65,
           margin: 0,
         }}>
           our hope is for n.h. 48 to become more than your favorite indian restaurant. we want it to be your favorite neighborhood gathering place—a place to celebrate, connect, and linger.
