@@ -422,7 +422,7 @@ function QuotePlaceholderSection() {
           lineHeight: 1.5,
           margin: "0 0 16px",
         }}>
-          In India, guests are welcomed like family. That belief is at the core of everything we do.
+          In india, a guest is welcomed as family. at n.h. 48, that belief is at the heart of everything we do.
         </p>
         <p style={{
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -431,7 +431,16 @@ function QuotePlaceholderSection() {
           lineHeight: 1.5,
           margin: "0 0 16px",
         }}>
-          Whether you're joining us for a quick lunch, a family celebration, date night, or your first experience with Indian cuisine, our goal is simple—to make you feel comfortable, cared for, and excited to come back.
+          whether you join us for a quick lunch, an intimate date night, a family celebration, or your first exploration of indian cuisine, our intention is simple: to make every guest feel genuinely welcomed, thoughtfully cared for, and eager to return.
+        </p>
+        <p style={{
+          fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+          color: "white",
+          fontSize: mob ? "15px" : "clamp(15px, 1.59vw, 24px)",
+          lineHeight: 1.5,
+          margin: "0 0 16px",
+        }}>
+          we believe hospitality is found in the details—the warmth of the welcome, the generosity of the table, and the feeling that there is always a place for you here.
         </p>
         <p style={{
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -440,7 +449,7 @@ function QuotePlaceholderSection() {
           lineHeight: 1.5,
           margin: 0,
         }}>
-          We want N.H.48 to become more than your favorite Indian restaurant. and your favorite neighborhood gathering place.
+          our hope is for n.h. 48 to become more than your favorite indian restaurant. we want it to be your favorite neighborhood gathering place—a place to celebrate, connect, and linger.
         </p>
       </div>
 
