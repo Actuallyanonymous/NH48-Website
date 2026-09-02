@@ -614,7 +614,7 @@ function FoodMenuSection() {
   const px = mob ? "20px" : "clamp(24px, 6vw, 93px)";
 
   return (
-    <section style={{
+    <section id="menu-section" style={{
       position: "relative",
       width: "100%",
       backgroundColor: GOLD,

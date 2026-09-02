@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
   { label: 'HOME',           to: '/',               external: false },
+  { label: 'MENU',           to: '/#menu',          external: false, scroll: true },
   { label: 'PRIVATE EVENTS', to: '/private-events',  external: false },
   { label: 'ORDER ONLINE',   to: 'https://order.toasttab.com/online/nh48-bombay-to-delhi-4828-macarthur-boulevard-northwest-ll', external: true  },
 ]
@@ -16,6 +17,14 @@ const SOCIALS = [
 // Links: Helvetica Neue 20px, white, uppercase
 export default function Navbar() {
   const [drawerOpen, setDrawer] = useState(false)
+
+  const handleMenuClick = (e) => {
+    e.preventDefault()
+    const menuSection = document.getElementById('menu-section')
+    if (menuSection) {
+      menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   const linkStyle = (isActive) => ({
     fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -44,9 +53,11 @@ export default function Navbar() {
         {/* Desktop links */}
         <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}
              className="nav-desktop">
-          {NAV_LINKS.map(({ label, to, external }) =>
+          {NAV_LINKS.map(({ label, to, external, scroll }) =>
             external ? (
               <a key={label} href={to} style={linkStyle(false)}>{label}</a>
+            ) : scroll ? (
+              <a key={label} href={to} onClick={handleMenuClick} style={linkStyle(false)}>{label}</a>
             ) : (
               <NavLink
                 key={label}
@@ -126,9 +137,14 @@ export default function Navbar() {
               >✕</button>
 
               {/* Drawer links */}
-              {NAV_LINKS.map(({ label, to, external }) =>
+              {NAV_LINKS.map(({ label, to, external, scroll }) =>
                 external ? (
                   <a key={label} href={to} onClick={() => setDrawer(false)}
+                     style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: 20, color: 'white', textTransform: 'uppercase', textDecoration: 'none' }}>
+                    {label}
+                  </a>
+                ) : scroll ? (
+                  <a key={label} href={to} onClick={(e) => { handleMenuClick(e); setDrawer(false); }}
                      style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: 20, color: 'white', textTransform: 'uppercase', textDecoration: 'none' }}>
                     {label}
                   </a>
