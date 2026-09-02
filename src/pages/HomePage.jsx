@@ -454,6 +454,7 @@ function QuotePlaceholderSection() {
           Our hope is for N.H. 48 to become more than your favorite Indian restaurant; we want it to be your favorite neighborhood gathering place— a place to celebrate, connect, and linger.
         </p>
       </div>
+      </div>
 
       {/* Bottom boundary strip */}
       <div style={{
