@@ -298,8 +298,8 @@ function StorySection() {
 
         {[
           "N.H. 48 indian kitchen is inspired by one of India's most iconic roads—national highway 48, the highway that stretches from delhi to mumbai. along its route, the landscape, culture, and cuisine change with every mile, connecting vibrant cities, small towns, roadside dhabas, and generations of family recipes.",
-          "that journey is the heart of our restaurant.",
-          "We created n.h. 48 to celebrate the incredible diversity of indian food beyond the dishes most people know. our menu brings together bold street food, regional specialties, and comforting classics inspired by the states connected by nh48, each prepared with respect for tradition and a passion for hospitality."
+          "That journey is the heart of our restaurant.",
+          "We created NH48 to celebrate the incredible diversity of indian food beyond the dishes most people know. our menu brings together bold street food, regional specialties, and comforting classics inspired by the states connected by nh48, each prepared with respect for tradition and a passion for hospitality."
         ].map((txt, i, arr) => (
           <p key={i} style={{
             fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -673,12 +673,27 @@ function FoodMenuSection() {
           maxWidth: "980px",
           margin: "0 auto",
         }}>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            {MENU_LEFT.map((section) => <MenuColumn key={section.title} section={section} />)}
-          </div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            {MENU_RIGHT.map((section) => <MenuColumn key={section.title} section={section} />)}
-          </div>
+          {mob ? (
+            // Mobile: Custom order - Khau Galli, Tandoor, Mains, Sides, Breads, Desserts
+            <>
+              <MenuColumn section={MENU_LEFT[1]} /> {/* Khau Galli */}
+              <MenuColumn section={MENU_RIGHT[0]} /> {/* Tandoor */}
+              <MenuColumn section={MENU_RIGHT[1]} /> {/* Mains */}
+              <MenuColumn section={MENU_LEFT[2]} /> {/* Sides */}
+              <MenuColumn section={MENU_LEFT[3]} /> {/* Breads */}
+              <MenuColumn section={MENU_RIGHT[2]} /> {/* Desserts */}
+            </>
+          ) : (
+            // Desktop: Two columns
+            <>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                {MENU_LEFT.map((section) => <MenuColumn key={section.title} section={section} />)}
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                {MENU_RIGHT.map((section) => <MenuColumn key={section.title} section={section} />)}
+              </div>
+            </>
+          )}
         </div>
       </div>
 
