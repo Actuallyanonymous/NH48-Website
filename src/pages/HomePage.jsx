@@ -424,7 +424,7 @@ function QuotePlaceholderSection() {
           lineHeight: 1.65,
           margin: "0 0 clamp(12px, 1.45vw, 22px)",
         }}>
-          In india, a guest is welcomed as family. at n.h. 48, that belief is at the heart of everything we do.
+          In India, guests are welcomed as family. At N.H. 48, that belief is at the heart of everything we do.
         </p>
         <p style={{
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -433,7 +433,7 @@ function QuotePlaceholderSection() {
           lineHeight: 1.65,
           margin: "0 0 clamp(12px, 1.45vw, 22px)",
         }}>
-          whether you join us for a quick lunch, an intimate date night, a family celebration, or your first exploration of indian cuisine, our intention is simple: to make every guest feel genuinely welcomed, thoughtfully cared for, and eager to return.
+          Whether you join us for a quick lunch, an intimate date night, a family celebration, or your first exploration of indian cuisine, our intention is simple: to make every guest feel genuinely welcomed, thoughtfully cared for, and eager to return.
         </p>
         <p style={{
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -442,7 +442,7 @@ function QuotePlaceholderSection() {
           lineHeight: 1.65,
           margin: "0 0 clamp(12px, 1.45vw, 22px)",
         }}>
-          we believe hospitality is found in the details—the warmth of the welcome, the generosity of the table, and the feeling that there is always a place for you here.
+          We believe hospitality is found in the details—the warmth of the welcome, the generosity of the table, and the feeling that there is always a place for you here.
         </p>
         <p style={{
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -451,22 +451,8 @@ function QuotePlaceholderSection() {
           lineHeight: 1.65,
           margin: 0,
         }}>
-          our hope is for n.h. 48 to become more than your favorite indian restaurant. we want it to be your favorite neighborhood gathering place—a place to celebrate, connect, and linger.
+          Our hope is for N.H. 48 to become more than your favorite Indian restaurant; we want it to be your favorite neighborhood gathering place— a place to celebrate, connect, and linger.
         </p>
-      </div>
-
-      {/* Photo */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        marginBottom: mob ? "24px" : "clamp(28px, 3.8vw, 58px)",
-      }}>
-        <img
-          src="/assets/home-page/new/section-4-mid-image.png"
-          alt="Family dining at NH48"
-          style={{ width: mob ? "100%" : "clamp(320px, 34.5vw, 522px)", height: "auto", display: "block" }}
-        />
-      </div>
       </div>
 
       {/* Bottom boundary strip */}
@@ -519,7 +505,9 @@ function MenuColumn({ section }) {
                 fontFamily: "'BERNIER Distressed', cursive",
                 fontSize: "clamp(16px, 1.9vw, 29px)",
                 color, whiteSpace: "nowrap",
-              }}>$ {item.price}</span>
+              }}>
+
+{item.price}</span>
             </div>
             {item.desc && (
               <p style={{
@@ -589,14 +577,14 @@ const MENU_RIGHT = [
       { name: "Tandoori Chicken Tikka", price: "16", desc: "garam masala" },
       { name: "Malai Chicken Tikka", price: "16", desc: "cream | cheese | clay oven roasted" },
       { name: "Lamb Seekh Kebab", price: "16", desc: "minced lamb | ginger | green chili" },
-      { name: "Chicken Seekh Kebab", price: "16" },
-      { name: "Tandoori Salmon", price: "22" },
+      { name: "Chicken Seekh Kebab", price: "16", desc: "ginger | coriander | green chillies" },
+      { name: "Tandoori Salmon", price: "22", desc: "yogurt | pickling spices | garam masala" },
     ],
   },
   {
     title: "Mains",
     items: [
-      { name: "Burrata Lasooni Saag", price: "18", desc: "spinach | garlic | cream" },
+      { name: "Saag Paneer", price: "18", desc: "spinach | garlic | cream" },
       { name: "Kadhai Paneer", price: "18", desc: "spicy tomato sauce | onions | bell peppers" },
       { name: "Vegetable Biryani", price: "20", desc: "yogurt | green chili | garam masala" },
       { name: "Mangalorean Fish Curry", price: "24", desc: "kingfish | tamarind | coastal spices" },

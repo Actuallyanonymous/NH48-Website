@@ -9,9 +9,7 @@ const NAV_LINKS = [
 ]
 
 const SOCIALS = [
-  { label: 'Instagram', href: '#' },
-  { label: 'Facebook',  href: '#' },
-  { label: 'TikTok',    href: '#' },
+  { label: 'Instagram', href: 'https://www.instagram.com/nh48indiankitchen/' },
 ]
 
 // Figma: bg=#A94545 red, 72px tall
@@ -65,12 +63,6 @@ export default function Navbar() {
           <a href={SOCIALS[0].href} aria-label={SOCIALS[0].label} style={{ display: 'block', position: 'relative', width: 22, height: 22 }}>
             <img src="/assets/home-page/new/icon-instagram-1.svg" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
             <img src="/assets/home-page/new/icon-instagram-2.svg" alt="" style={{ position: 'absolute', width: '38%', height: '38%', top: '31%', left: '31%' }} />
-          </a>
-          <a href={SOCIALS[1].href} aria-label={SOCIALS[1].label} style={{ display: 'block', width: 22, height: 22 }}>
-            <img src="/assets/home-page/new/icon-facebook.svg" alt="" style={{ width: '100%', height: '100%', display: 'block' }} />
-          </a>
-          <a href={SOCIALS[2].href} aria-label={SOCIALS[2].label} style={{ display: 'block', width: 19, height: 19 }}>
-            <img src="/assets/home-page/new/icon-tiktok.svg" alt="" style={{ width: '100%', height: '100%', display: 'block' }} />
           </a>
         </div>
 
@@ -154,12 +146,6 @@ export default function Navbar() {
                 <a href={SOCIALS[0].href} aria-label={SOCIALS[0].label} style={{ display: 'block', position: 'relative', width: 22, height: 22 }}>
                   <img src="/assets/home-page/new/icon-instagram-1.svg" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
                   <img src="/assets/home-page/new/icon-instagram-2.svg" alt="" style={{ position: 'absolute', width: '38%', height: '38%', top: '31%', left: '31%' }} />
-                </a>
-                <a href={SOCIALS[1].href} aria-label={SOCIALS[1].label} style={{ display: 'block', width: 22, height: 22 }}>
-                  <img src="/assets/home-page/new/icon-facebook.svg" alt="" style={{ width: '100%', height: '100%', display: 'block' }} />
-                </a>
-                <a href={SOCIALS[2].href} aria-label={SOCIALS[2].label} style={{ display: 'block', width: 19, height: 19 }}>
-                  <img src="/assets/home-page/new/icon-tiktok.svg" alt="" style={{ width: '100%', height: '100%', display: 'block' }} />
                 </a>
               </div>
             </motion.div>

@@ -177,8 +177,8 @@ export default function SiteFooter() {
                   textUnderlineOffset: "3px",
                 }}
               >
-                [NH48@NH48RESTAURANT.COM]
-              </a>.
+                NH48@NH48RESTAURANT.COM
+              </a>
             </p>
 
             {/* PHONE NUMBER label — y=295 */}
@@ -275,8 +275,8 @@ export default function SiteFooter() {
                   textUnderlineOffset: "3px",
                 }}
               >
-                [NH48@NH48RESTAURANT.COM]
-              </a>.
+                NH48@NH48RESTAURANT.COM
+              </a>
             </p>
           </div>
 
