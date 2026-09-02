@@ -19,7 +19,7 @@ export default function HomePage() {
       <QuotePlaceholderSection />
       <FoodMenuSection />
       <QuoteBanner />
-      <Sayings />
+      {/* <Sayings /> */}
       <GetInTouchSection />
       <SiteFooter />
     </div>
