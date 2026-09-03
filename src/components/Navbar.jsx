@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const NAV_LINKS = [
   { label: 'HOME',           to: '/',               external: false },
   { label: 'MENU',           to: '/#menu',          external: false, scroll: true },
+  { label: 'GIFT CARD',      to: 'https://order.toasttab.com/egiftcards/nh48-bombay-to-delhi-4828-macarthur-boulevard-northwest-ll', external: true },
   { label: 'PRIVATE EVENTS', to: '/private-events',  external: false },
   { label: 'ORDER ONLINE',   to: 'https://order.toasttab.com/online/nh48-bombay-to-delhi-4828-macarthur-boulevard-northwest-ll', external: true  },
 ]

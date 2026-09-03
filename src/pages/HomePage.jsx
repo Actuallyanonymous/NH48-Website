@@ -299,7 +299,7 @@ function StorySection() {
         {[
           "N.H. 48 indian kitchen is inspired by one of India's most iconic roads—national highway 48, the highway that stretches from delhi to mumbai. along its route, the landscape, culture, and cuisine change with every mile, connecting vibrant cities, small towns, roadside dhabas, and generations of family recipes.",
           "That journey is the heart of our restaurant.",
-          "We created NH48 to celebrate the incredible diversity of indian food beyond the dishes most people know. our menu brings together bold street food, regional specialties, and comforting classics inspired by the states connected by nh48, each prepared with respect for tradition and a passion for hospitality."
+          "We created N.H. 48 to celebrate the incredible diversity of indian food beyond the dishes most people know. our menu brings together bold street food, regional specialties, and comforting classics inspired by the states connected by nh48, each prepared with respect for tradition and a passion for hospitality."
         ].map((txt, i, arr) => (
           <p key={i} style={{
             fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
