@@ -506,9 +506,7 @@ function MenuColumn({ section }) {
                 fontFamily: "'BERNIER Distressed', cursive",
                 fontSize: "clamp(16px, 1.9vw, 29px)",
                 color, whiteSpace: "nowrap",
-              }}>
-
-{item.price}</span>
+              }}>{item.price}</span>
             </div>
             {item.desc && (
               <p style={{
@@ -535,18 +533,18 @@ const MENU_LEFT = [
     ],
   },
   {
-    title: "Khau Galli (Small Plates)",
+    title: "Safar Ki Shuruaat (Small Plates)",
     items: [
       { name: "Palak Chaat", price: "12", desc: "crispy spinach | yogurt | tamarind" },
       { name: "Multigrain Sev Puri", price: "12", desc: "spiced potato | avocado | green chutney | pomegranate" },
       { name: "Samosa (2pc)", price: "8", desc: "potato | peas | mint chutney | tamarind chutney" },
       { name: "Vada Pav", price: "12", desc: "spiced potato | curry leaves | garlic chutney | buns" },
-      { name: "Dahi Ke Kebab", price: "14", desc: "hung yogurt | herbs | kataifi" },
+      { name: "Dahi Ke Kebab", price: "14", desc: "hung yogurt | herbs | vermicelli" },
       { name: "Lasooni Gobhi", price: "12", desc: "crispy cauliflower | garlic glaze | green chili" },
       { name: "Pani Puri", price: "8", desc: "spiced potato | white peas | mint water | tamarind water" },
       { name: "Chicken Lollipop", price: "16", desc: "sweet & spicy sauce" },
       { name: "Patra Ni Machhi", price: "16", desc: "seabass | coconut chutney | banana leaf" },
-      { name: "Shrimp Koliwada", price: "16", desc: "crispy shrimp | coastal spices | curry leaves" },
+      { name: "Amritsari Fish Fry", price: "16", desc: "cod | gram flour | red chilli" },
     ],
   },
   {
@@ -558,13 +556,24 @@ const MENU_LEFT = [
     ],
   },
   {
-    title: "Breads",
+    title: "Safar Ke Saath (Breads)",
     items: [
       { name: "Garlic Naan", price: "4" },
       { name: "Butter Naan", price: "4" },
-      { name: "Multigrain Roti", price: "5" },
+      { name: "Multigrain Roti", price: "4" },
       { name: "Lachha Paratha", price: "5" },
       { name: "Amul Cheese Kulcha", price: "6" },
+    ],
+  },
+  {
+    title: "Cocktail Menu",
+    items: [
+      { name: "Kaffir Lime & Lemongrass Gimlet", price: "16", desc: "gin, kaffir lime & lemongrass cordial, peychaud's bitters" },
+      { name: "Highway48 Sour", price: "16", desc: "white rum, spiced rum, almond syrup, coconut liqueur, lime juice" },
+      { name: "Strawberry Negroni", price: "16", desc: "strawberry gin, sweet red vermouth, campari, grapefruit sour, grapefruit bitters" },
+      { name: "Aam Margarita", price: "16", desc: "tequila blanco, mango vodka, citric acid mix, simple syrup, mango foam" },
+      { name: "Old Fashioned – Banana & Jaggery", price: "16", desc: "bourbon whiskey, banana oleo, angostura, cacao bitters" },
+      { name: "Paloma Guava", price: "16", desc: "tequila, guava soda, simple syrup, lime juice" },
     ],
   },
 ];
@@ -583,7 +592,7 @@ const MENU_RIGHT = [
     ],
   },
   {
-    title: "Mains",
+    title: "Safar Ka Swaad (Mains)",
     items: [
       { name: "Saag Paneer", price: "18", desc: "spinach | garlic | cream" },
       { name: "Kadhai Paneer", price: "18", desc: "spicy tomato sauce | onions | bell peppers" },
@@ -594,16 +603,25 @@ const MENU_RIGHT = [
       { name: "Chicken Kolhapuri", price: "20", desc: "whole spices | dry coconut | onions" },
       { name: "Bombay Chicken Biryani", price: "22", desc: "aromatic spices | tomato | yogurt" },
       { name: "Laal Maas", price: "24", desc: "Rajasthani red chili | whole spices" },
+      { name: "Lamb Nihari", price: "24", desc: "slowly cooked lamb | star anise | fennel seeds" },
       { name: "Dum Lamb Biryani", price: "26", desc: "saffron | ghee | whole spices" },
     ],
   },
   {
-    title: "Desserts",
+    title: "Meetha Safar (Desserts)",
     items: [
       { name: "Gulab Jamun", price: "9", desc: "condensed milk dumplings fried in pure ghee & soaked in rose-cardamom syrup" },
-      { name: "Rasmalai", price: "9", desc: "soft, spongy cottage cheese patties soaked in rich, sweetened, thickened milk" },
-      { name: "Brownie Sizzler with Vanilla Ice Cream", price: "10", desc: "warm, fudgy chocolate brownie topped with a cold, melting scoop of vanilla ice cream" },
+      { name: "Rasmalai", price: "9", desc: "classic south asian dessert consisting of soft, spongy cottage cheese patties soaked in rich, sweetened, and thickened milk" },
       { name: "Ice Cream / Sorbet", price: "8", desc: "ask your server for flavours" },
+    ],
+  },
+  {
+    title: "Zero Proof",
+    items: [
+      { name: "Garden Smash", price: "9", desc: "seedlip garden, basil, lemon, elderflower" },
+      { name: "Lychee Spritz", price: "9", desc: "seedlip garden, lemon, sparkling lychee, lychee boba" },
+      { name: "Masala Nimbu Shikanji", price: "9", desc: "lime juice, simple syrup, nh48 special masala blend, soda water" },
+      { name: "Malabar Colada", price: "9", desc: "lyre's n/a white rum, coconut water, pineapple & ginger syrup, soda water, pineapple boba" },
     ],
   },
 ];
@@ -674,14 +692,17 @@ function FoodMenuSection() {
           margin: "0 auto",
         }}>
           {mob ? (
-            // Mobile: Custom order - Khau Galli, Tandoor, Mains, Sides, Breads, Desserts
+            // Mobile: Papad, Small Plates, Tandoor, Mains, Sides, Breads, Desserts, Cocktail, Zero Proof
             <>
-              <MenuColumn section={MENU_LEFT[1]} /> {/* Khau Galli */}
+              <MenuColumn section={MENU_LEFT[0]} /> {/* Papad */}
+              <MenuColumn section={MENU_LEFT[1]} /> {/* Small Plates */}
               <MenuColumn section={MENU_RIGHT[0]} /> {/* Tandoor */}
               <MenuColumn section={MENU_RIGHT[1]} /> {/* Mains */}
               <MenuColumn section={MENU_LEFT[2]} /> {/* Sides */}
               <MenuColumn section={MENU_LEFT[3]} /> {/* Breads */}
               <MenuColumn section={MENU_RIGHT[2]} /> {/* Desserts */}
+              <MenuColumn section={MENU_LEFT[4]} /> {/* Cocktail */}
+              <MenuColumn section={MENU_RIGHT[3]} /> {/* Zero Proof */}
             </>
           ) : (
             // Desktop: Two columns
