@@ -141,7 +141,7 @@ export default function SiteFooter() {
               <br />
               5:00 PM - 9:30 PM
               <br />
-              (* TUESDAY- CLOSED)
+              (TUESDAY- CLOSED)
             </p>
 
             {/* Copyright — y=433, fs=15px, color white */}
