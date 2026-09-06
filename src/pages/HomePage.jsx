@@ -584,8 +584,8 @@ const MENU_RIGHT = [
     items: [
       { name: "Paneer Dil Khush Kebab", price: "16", desc: "stuffed paneer | cheese | cashews" },
       { name: "Malai Broccoli", price: "16", desc: "cream | cheese | clay oven roasted" },
-      { name: "Tandoori Chicken Tikka", price: "16", desc: "garam masala" },
-      { name: "Malai Chicken Tikka", price: "16", desc: "cream | cheese | clay oven roasted" },
+      { name: "Tandoori Chicken Tikka", price: "18", desc: "garam masala" },
+      { name: "Malai Chicken Tikka", price: "18", desc: "cream | cheese | clay oven roasted" },
       { name: "Lamb Seekh Kebab", price: "16", desc: "minced lamb | ginger | green chili" },
       { name: "Chicken Seekh Kebab", price: "16", desc: "ginger | coriander | green chillies" },
       { name: "Tandoori Salmon", price: "22", desc: "yogurt | pickling spices | garam masala" },
@@ -604,7 +604,7 @@ const MENU_RIGHT = [
       { name: "Bombay Chicken Biryani", price: "22", desc: "aromatic spices | tomato | yogurt" },
       { name: "Laal Maas", price: "24", desc: "Rajasthani red chili | whole spices" },
       { name: "Lamb Nihari", price: "24", desc: "slowly cooked lamb | star anise | fennel seeds" },
-      { name: "Dum Lamb Biryani", price: "26", desc: "saffron | ghee | whole spices" },
+      { name: "Dum Lamb Biryani", price: "24", desc: "saffron | ghee | whole spices" },
     ],
   },
   {
