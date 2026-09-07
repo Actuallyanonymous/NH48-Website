@@ -603,7 +603,7 @@ const MENU_RIGHT = [
       { name: "Chicken Kolhapuri", price: "20", desc: "whole spices | dry coconut | onions" },
       { name: "Bombay Chicken Biryani", price: "22", desc: "aromatic spices | tomato | yogurt" },
       { name: "Laal Maas", price: "24", desc: "Rajasthani red chili | whole spices" },
-      { name: "Lamb Nihari", price: "24", desc: "slowly cooked lamb | star anise | fennel seeds" },
+      { name: "Lamb Nihari", price: "24", desc: "slowly cooked lamb shank | star anise | fennel seeds" },
       { name: "Dum Lamb Biryani", price: "24", desc: "saffron | ghee | whole spices" },
     ],
   },

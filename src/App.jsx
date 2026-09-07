@@ -28,17 +28,6 @@ function WelcomePopup() {
 
   if (!visible) return null
 
-  const bodyStyle = {
-    fontFamily: "'BERNIER Distressed', cursive",
-    fontSize: 'clamp(14px, 3.19vw, 24px)',
-    lineHeight: 1.146,
-    letterSpacing: '-0.96px',
-    color: '#FFFFFF',
-    textAlign: 'center',
-    margin: 0,
-    textTransform: 'uppercase',
-  }
-
   return (
     <AnimatePresence>
       {visible && (
@@ -78,7 +67,6 @@ function WelcomePopup() {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '0 min(180px, 12vw)',
             }}
           >
             <button
@@ -104,33 +92,16 @@ function WelcomePopup() {
               />
             </button>
 
-            <div style={{ width: '100%', maxWidth: '391px' }}>
-              <h2 style={{
-                fontFamily: "'BERNIER Distressed', cursive",
-                fontWeight: 400,
-                fontSize: 'clamp(22px, 4.8vw, 36px)',
-                lineHeight: 0.996,
-                letterSpacing: '-0.96px',
-                color: '#FFFFFF',
-                textAlign: 'center',
-                margin: '0 0 24px',
-                textTransform: 'uppercase',
-              }}>
-                A Little Holiday Pause
-              </h2>
-
-              <p style={{ ...bodyStyle, marginBottom: '24px' }}>
-                In observance of Labor Day, N.H.48 Indian Kitchen will be closed on Monday, September 7th.
-              </p>
-
-              <p style={{ ...bodyStyle, marginBottom: '24px' }}>
-                We’re taking a day to recharge and spend time with our families, and we’ll be back Wednesday September 8th, ready to welcome you around the table.
-              </p>
-
-              <p style={bodyStyle}>
-                Thank you for your understanding, and we look forward to seeing you soon.
-              </p>
-            </div>
+            <img
+              src="/assets/home-page/new/Holiday labor day text.png"
+              alt="A Little Holiday Pause. In observance of Labor Day, N.H.48 Indian Kitchen will be closed on Monday, September 7th. We’re taking a day to recharge and spend time with our families, and we’ll be back Wednesday September 8th, ready to welcome you around the table. Thank you for your understanding, and we look forward to seeing you soon."
+              style={{
+                width: 'min(484px, 72%)',
+                height: 'auto',
+                display: 'block',
+                pointerEvents: 'none',
+              }}
+            />
           </motion.div>
         </motion.div>
       )}
