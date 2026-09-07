@@ -13,23 +13,30 @@ function ScrollToTop() {
   return null
 }
 
-// Opening popup — shows once per session
-// Figma: popup 752×533px, left half = image (381px), right half = red panel (371px)
-// Text: BERNIER 40px white — "BOOK TODAY AND GET 30% OFF THE NEXT TIME YOU VIST US."
-// Overlay: black 0.57
+// Holiday closure popup — shows once per session
 function WelcomePopup() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    if (!sessionStorage.getItem('nh48_popup_seen')) {
+    if (!sessionStorage.getItem('nh48_holiday_popup_seen')) {
       setVisible(true)
-      sessionStorage.setItem('nh48_popup_seen', '1')
+      sessionStorage.setItem('nh48_holiday_popup_seen', '1')
     }
   }, [])
 
   const close = () => setVisible(false)
 
   if (!visible) return null
+
+  const bodyStyle = {
+    fontFamily: "'BERNIER Distressed', cursive",
+    fontSize: 'clamp(14px, 1.7vw, 22px)',
+    lineHeight: 1.45,
+    color: '#F8F0EC',
+    textAlign: 'center',
+    margin: 0,
+    textTransform: 'uppercase',
+  }
 
   return (
     <AnimatePresence>
@@ -52,7 +59,6 @@ function WelcomePopup() {
             padding: '20px',
           }}
         >
-          {/* Popup — Figma: 752×533, left image 381px, right red panel 371px */}
           <motion.div
             initial={{ opacity: 0, y: 36, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -61,13 +67,14 @@ function WelcomePopup() {
             onClick={e => e.stopPropagation()}
             style={{
               position: 'relative',
-              display: 'flex',
-              width: 'clamp(300px, 49.7vw, 752px)',
+              width: 'clamp(300px, 56vw, 820px)',
               maxHeight: '90vh',
-              overflow: 'hidden',
+              overflowY: 'auto',
+              backgroundColor: 'rgb(169,69,69)',
+              padding: 'clamp(48px, 6vw, 72px) clamp(28px, 5vw, 64px) clamp(40px, 5vw, 56px)',
+              boxSizing: 'border-box',
             }}
           >
-            {/* Close button — vector cross from Figma */}
             <button
               onClick={close}
               style={{
@@ -89,75 +96,30 @@ function WelcomePopup() {
               />
             </button>
 
-            {/* Left half — image (381/752 = 50.7% of popup width) */}
-            <div style={{ flex: '381 0 0px', minWidth: 0, overflow: 'hidden' }}>
-              <img
-                src="/assets/coming-soon-image.png"
-                alt="Coming soon"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                  display: 'block',
-                }}
-              />
-            </div>
-
-            {/* Right half — red panel with Figma noise effect (371/752 = 49.3%) */}
-            <div style={{
-              flex: '371 0 0px',
-              position: 'relative',
-              backgroundColor: 'rgb(169,69,69)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 'clamp(20px, 4vw, 48px)',
-              overflow: 'hidden',
+            <h2 style={{
+              fontFamily: "'BERNIER Distressed', cursive",
+              fontWeight: 400,
+              fontSize: 'clamp(26px, 3.6vw, 48px)',
+              lineHeight: 1.15,
+              color: '#F8F0EC',
+              textAlign: 'center',
+              margin: '0 0 clamp(20px, 2.4vw, 32px)',
+              textTransform: 'uppercase',
             }}>
-              {/* Figma NOISE effect: MONOTONE, noiseSize=0.5, black 25% opacity, density=1.0 */}
-              <svg
-                aria-hidden="true"
-                style={{
-                  position: 'absolute', inset: 0,
-                  width: '100%', height: '100%',
-                  pointerEvents: 'none', zIndex: 0,
-                }}
-              >
-                <filter id="popup-noise">
-                  <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0.65 0.65"
-                    numOctaves="3"
-                    stitchTiles="stitch"
-                    result="noise"
-                  />
-                  <feColorMatrix type="saturate" values="0" in="noise" result="monoNoise" />
-                  <feBlend in="SourceGraphic" in2="monoNoise" mode="normal" result="blended" />
-                  <feComposite in="blended" in2="SourceGraphic" operator="in" />
-                </filter>
-                <rect
-                  width="100%" height="100%"
-                  fill="rgba(0,0,0,0.25)"
-                  filter="url(#popup-noise)"
-                />
-              </svg>
+              A Little Holiday Pause
+            </h2>
 
-              {/* Text */}
-              <p style={{
-                fontFamily: "'BERNIER Distressed', cursive",
-                fontSize: 'clamp(16px, 3.2vw, 40px)',
-                lineHeight: 1.15,
-                color: '#ffffff',
-                textAlign: 'center',
-                margin: 0,
-                textTransform: 'uppercase',
-                position: 'relative',
-                zIndex: 1,
-              }}>
-                book today and get 30% off the next time you vist us.
-              </p>
-            </div>
+            <p style={{ ...bodyStyle, marginBottom: 'clamp(18px, 2.2vw, 28px)' }}>
+              In observance of Labor Day, N.H.48 Indian Kitchen will be closed on Monday, September 7th.
+            </p>
+
+            <p style={{ ...bodyStyle, marginBottom: 'clamp(18px, 2.2vw, 28px)' }}>
+              We’re taking a day to recharge and spend time with our families, and we’ll be back Wednesday September 8th, ready to welcome you around the table.
+            </p>
+
+            <p style={bodyStyle}>
+              Thank you for your understanding, and we look forward to seeing you soon.
+            </p>
           </motion.div>
         </motion.div>
       )}
@@ -195,7 +157,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <div style={{ width: '100%' }}>
-      {/* <WelcomePopup /> */}
+      <WelcomePopup />
       <ScrollToTop />
       <Navbar />
       <AnimatedRoutes />
