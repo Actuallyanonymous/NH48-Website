@@ -30,8 +30,8 @@ function WelcomePopup() {
 
   const bodyStyle = {
     fontFamily: "'BERNIER Distressed', cursive",
-    fontSize: 'clamp(14px, 1.7vw, 22px)',
-    lineHeight: 1.45,
+    fontSize: 'clamp(13px, 1.55vw, 20px)',
+    lineHeight: 1.5,
     color: '#F8F0EC',
     textAlign: 'center',
     margin: 0,
@@ -67,20 +67,25 @@ function WelcomePopup() {
             onClick={e => e.stopPropagation()}
             style={{
               position: 'relative',
-              width: 'clamp(300px, 56vw, 820px)',
+              width: 'min(88vw, 740px)',
+              height: 'min(88vw, 740px)',
               maxHeight: '90vh',
               overflowY: 'auto',
               backgroundColor: 'rgb(169,69,69)',
-              padding: 'clamp(48px, 6vw, 72px) clamp(28px, 5vw, 64px) clamp(40px, 5vw, 56px)',
+              padding: 'clamp(52px, 7vw, 90px) clamp(40px, 6.5vw, 78px)',
               boxSizing: 'border-box',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             <button
               onClick={close}
               style={{
                 position: 'absolute',
-                top: '10px',
-                right: '10px',
+                top: '12px',
+                right: '12px',
                 zIndex: 10,
                 background: 'none',
                 border: 'none',
@@ -99,26 +104,30 @@ function WelcomePopup() {
             <h2 style={{
               fontFamily: "'BERNIER Distressed', cursive",
               fontWeight: 400,
-              fontSize: 'clamp(26px, 3.6vw, 48px)',
-              lineHeight: 1.15,
+              fontSize: 'clamp(28px, 4vw, 52px)',
+              lineHeight: 1.1,
               color: '#F8F0EC',
               textAlign: 'center',
-              margin: '0 0 clamp(20px, 2.4vw, 32px)',
+              margin: '0 0 clamp(28px, 3.2vw, 44px)',
               textTransform: 'uppercase',
             }}>
               A Little Holiday Pause
             </h2>
 
-            <p style={{ ...bodyStyle, marginBottom: 'clamp(18px, 2.2vw, 28px)' }}>
-              In observance of Labor Day, N.H.48 Indian Kitchen will be closed on Monday, September 7th.
+            <p style={{ ...bodyStyle, marginBottom: 'clamp(24px, 2.8vw, 40px)' }}>
+              In observance of Labor Day, N.H.48 Indian Kitchen will be<br />
+              closed on Monday, September 7th.
             </p>
 
-            <p style={{ ...bodyStyle, marginBottom: 'clamp(18px, 2.2vw, 28px)' }}>
-              We’re taking a day to recharge and spend time with our families, and we’ll be back Wednesday September 8th, ready to welcome you around the table.
+            <p style={{ ...bodyStyle, marginBottom: 'clamp(24px, 2.8vw, 40px)' }}>
+              We’re taking a day to recharge and spend time with our<br />
+              families, and we’ll be back Wednesday September 8th, ready<br />
+              to welcome you around the table.
             </p>
 
             <p style={bodyStyle}>
-              Thank you for your understanding, and we look forward to seeing you soon.
+              Thank you for your understanding, and we look forward to<br />
+              seeing you soon.
             </p>
           </motion.div>
         </motion.div>
