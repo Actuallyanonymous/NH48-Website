@@ -139,7 +139,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <div style={{ width: '100%' }}>
-      <WelcomePopup />
+      {/* <WelcomePopup /> */}
       <ScrollToTop />
       <Navbar />
       <AnimatedRoutes />
