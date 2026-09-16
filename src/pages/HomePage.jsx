@@ -544,7 +544,6 @@ const MENU_LEFT = [
       { name: "Pani Puri", price: "10", desc: "spiced potato | white peas | mint water | tamarind water" },
       { name: "Chicken Lollipop", price: "16", desc: "sweet & spicy sauce" },
       { name: "Patra Ni Machhi", price: "16", desc: "seabass | coconut chutney | banana leaf" },
-      { name: "Amritsari Fish Fry", price: "16", desc: "cod | gram flour | red chilli" },
     ],
   },
   {
@@ -583,9 +582,7 @@ const MENU_RIGHT = [
     title: "Tandoor",
     items: [
       { name: "Paneer Dil Khush Kebab", price: "16", desc: "stuffed paneer | cheese | cashews" },
-      { name: "Malai Broccoli", price: "16", desc: "cream | cheese | clay oven roasted" },
       { name: "Tandoori Chicken Tikka", price: "18", desc: "garam masala" },
-      { name: "Malai Chicken Tikka", price: "18", desc: "cream | cheese | clay oven roasted" },
       { name: "Lamb Seekh Kebab", price: "16", desc: "minced lamb | ginger | green chili" },
       { name: "Chicken Seekh Kebab", price: "16", desc: "ginger | coriander | green chillies" },
       { name: "Tandoori Salmon", price: "22", desc: "yogurt | pickling spices | garam masala" },
@@ -602,7 +599,6 @@ const MENU_RIGHT = [
       { name: "Butter Chicken", price: "22", desc: "creamy tomato | fenugreek" },
       { name: "Chicken Kolhapuri", price: "22", desc: "whole spices | dry coconut | onions" },
       { name: "Bombay Chicken Biryani", price: "24", desc: "aromatic spices | tomato | yogurt" },
-      { name: "Laal Maas", price: "24", desc: "Rajasthani red chili | whole spices" },
       { name: "Lamb Nihari", price: "26", desc: "slowly cooked lamb shank | star anise | fennel seeds" },
       { name: "Dum Lamb Biryani", price: "25", desc: "saffron | ghee | whole spices" },
     ],
