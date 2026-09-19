@@ -19,7 +19,7 @@ export default function HomePage() {
       <QuotePlaceholderSection />
       <FoodMenuSection />
       <QuoteBanner />
-      {/* <Sayings /> */}
+      <Sayings />
       <GetInTouchSection />
       <SiteFooter />
     </div>
@@ -827,15 +827,48 @@ function Sayings() {
   const [visible, setVisible] = useState(true);
   const width = useWindowWidth();
   const mob = width < 768;
+  const timerRef = useRef(null);
 
   const slides = [
-    "NH48 captures the spirit of the open road, blending vintage-inspired highway decor with a sprawling menu that masterfully fuses regional Indian specialties and global flavors into a high-spirited culinary journey.",
-    "A feast for the senses — the flavors transport you from the streets of Delhi to the shores of Mumbai in a single meal.",
-    "The ambiance is unmatched. Every corner tells a story of the road, and every dish delivers on that promise.",
-    "Bold, honest, unforgettable. NH48 is not just a restaurant — it is a journey you keep coming back to.",
+    {
+      href: "https://washingtonian.com/2026/09/11/a-subcontinent-traversing-indian-restaurant-arrives-in-the-palisades/?utm_source=rss&utm_medium=rss&utm_campaign=a-subcontinent-traversing-indian-restaurant-arrives-in-the-palisades",
+      photo: "/assets/home-page/new/press/washingtonian-photo.png",
+      photoPos: "center 42%",
+      alt: "Washingtonian feature on NH48",
+      kind: "washingtonian",
+      headline: "A Subcontinent-Traversing Indian Restaurant Arrives in the Palisades",
+      body: "N.H. 48 Indian Kitchen comes from alums of Rasika and Chai Pani.",
+    },
+    {
+      href: "https://dc.eater.com/maps/best-new-restaurants-heatmap-dc",
+      photo: "/assets/home-page/new/press/eater-photo.png",
+      photoPos: "center 40%",
+      alt: "Eater Washington D.C. feature on NH48",
+      kind: "eater",
+      headline: "N.H. 48",
+      body: "Named for the iconic highway connecting Delhi and Mumbai, N.H. 48 brings crispy pani puri, vada pav sliders, saag paneer, slow-cooked goat curry, biryani, and all sorts of naan to the upper Northwest neighborhood. The color-soaked space, which opened Thursday, September 3, comes courtesy of Indian hospitality vets Prady Rana and Bhakti More.",
+    },
+    {
+      href: "https://dc.citycast.fm/food-drink/nh-48-dc-neighborhood-indian-restaurant-palisades",
+      photo: "/assets/home-page/new/press/citycast-photo.png",
+      photoPos: "center center",
+      alt: "City Cast DC feature on NH48",
+      kind: "citycast",
+      headline: "New Palisades Restaurant Takes Diners on an Indian Road Trip",
+      body: "N.H. 48 Indian Kitchen opens in D.C. on Sept. 3, serving everything from street food to home-style specialties.",
+    },
   ];
 
-  const timerRef = useRef(null);
+  const startTimer = () => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setActive((prev) => (prev + 1) % slides.length);
+        setVisible(true);
+      }, 300);
+    }, 5000);
+  };
 
   const goTo = (i) => {
     setVisible(false);
@@ -843,95 +876,176 @@ function Sayings() {
       setActive(i);
       setVisible(true);
     }, 300);
+    startTimer();
   };
 
   useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setActive((prev) => (prev + 1) % slides.length);
-        setVisible(true);
-      }, 300);
-    }, 4000);
+    startTimer();
     return () => clearInterval(timerRef.current);
   }, []);
+
+  const slide = slides[active];
+  const helvetica = "'Helvetica Neue', Helvetica, Arial, sans-serif";
+  const TEXT = "#1E413D";
+  const YELLOW = "#FFD05C";
 
   return (
     <section
       style={{
         width: "100%",
         backgroundColor: "#F5EFE0",
-        paddingTop: "52px",
-        paddingBottom: "52px",
+        paddingTop: mob ? "36px" : "52px",
+        paddingBottom: mob ? "36px" : "52px",
       }}
     >
-      {/* Heading — Figma: BERNIER Distressed 64px, #14534D, tracking -0.04em */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: mob ? "24px" : "40px", padding: "0 24px" }}>
         <h2 style={{
-          fontFamily: "BERNIER Distressed, cursive",
+          fontFamily: "'BERNIER Distressed', cursive",
           color: "#14534D",
           fontSize: mob ? "clamp(24px, 7vw, 36px)" : "clamp(28px, 4.23vw, 64px)",
           letterSpacing: "-0.04em",
-          lineHeight: 1.1,
+          lineHeight: 1.059,
           margin: 0,
           textAlign: "center",
+          textTransform: "uppercase",
         }}>
           what they say about us
         </h2>
       </div>
 
-      {/* Card — stacks on mobile */}
-      <div style={{
-        display: "flex",
-        flexDirection: mob ? "column" : "row",
-        margin: "0 auto",
-        width: mob ? "calc(100% - 48px)" : "clamp(320px, 68.8vw, 1040px)",
-        height: mob ? "auto" : "clamp(180px, 19.4vw, 293px)",
-        overflow: "hidden",
-      }}>
-        {/* Image — Figma: "THE NH48 CHRONICLE" press clipping */}
+      <a
+        href={slide.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: "flex",
+          flexDirection: mob ? "column" : "row",
+          margin: "0 auto",
+          width: mob ? "calc(100% - 48px)" : "clamp(320px, 68.8vw, 1040px)",
+          height: mob ? "auto" : "clamp(180px, 19.4vw, 293px)",
+          overflow: "hidden",
+          textDecoration: "none",
+          color: "inherit",
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.3s ease",
+        }}
+      >
         <div style={{
           width: mob ? "100%" : "50.6%",
           height: mob ? "200px" : "auto",
-          flexShrink: 0, overflow: "hidden",
+          flexShrink: 0,
+          overflow: "hidden",
         }}>
           <img
-            src="/assets/home-page/new/nh48-chronicle.png"
-            alt="The NH48 Chronicle press clipping"
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
+            src={slide.photo}
+            alt={slide.alt}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: slide.photoPos,
+              display: "block",
+            }}
           />
         </div>
 
-        {/* Quote text */}
         <div style={{
           flex: 1,
-          backgroundColor: "#14534D",
+          backgroundColor: YELLOW,
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: mob ? "24px 20px" : "clamp(16px, 2.5vw, 36px) clamp(16px, 3.8vw, 57px)",
+          padding: mob ? "28px 20px" : "clamp(16px, 2.4vw, 36px) clamp(16px, 3.2vw, 40px)",
+          textAlign: "center",
+          boxSizing: "border-box",
+          minHeight: mob ? "220px" : undefined,
         }}>
+          {slide.kind === "washingtonian" && (
+            <img
+              src="/assets/home-page/new/press/washingtonian-logo.png"
+              alt="Washingtonian"
+              style={{
+                width: mob ? "180px" : "clamp(160px, 15.7vw, 237px)",
+                height: "auto",
+                display: "block",
+                marginBottom: mob ? "18px" : "clamp(14px, 1.8vw, 22px)",
+              }}
+            />
+          )}
+
+          {slide.kind === "eater" && (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: mob ? "16px" : "clamp(12px, 1.6vw, 20px)" }}>
+              <img
+                src="/assets/home-page/new/press/eater-logo.png"
+                alt="Eater"
+                style={{
+                  width: mob ? "120px" : "clamp(110px, 10.5vw, 159px)",
+                  height: "auto",
+                  display: "block",
+                }}
+              />
+              <img
+                src="/assets/home-page/new/press/eater-logo-sub.png"
+                alt="Washington, D.C."
+                style={{
+                  width: mob ? "72px" : "clamp(68px, 6.3vw, 95px)",
+                  height: "auto",
+                  display: "block",
+                  marginTop: "7px",
+                }}
+              />
+            </div>
+          )}
+
+          {slide.kind === "citycast" && (
+            <p style={{
+              fontFamily: helvetica,
+              fontSize: mob ? "26px" : "clamp(22px, 2.56vw, 38.7px)",
+              lineHeight: 1.21,
+              letterSpacing: "0.16px",
+              margin: "0 0 clamp(14px, 1.7vw, 22px)",
+              textTransform: "uppercase",
+            }}>
+              <span style={{ fontWeight: 500, color: "#000" }}>city cast </span>
+              <span style={{ fontWeight: 700, color: "#ED7564" }}>dc</span>
+            </p>
+          )}
+
           <p style={{
-            fontFamily: "BERNIER Distressed, cursive",
-            color: "white",
-            fontSize: mob ? "15px" : "clamp(11px, 1.06vw, 16px)",
-            lineHeight: 1.4,
-            textAlign: "center",
-            margin: 0,
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.3s ease",
+            fontFamily: helvetica,
+            fontWeight: 700,
+            color: TEXT,
+            fontSize: mob ? "15px" : "clamp(13px, 1.135vw, 17.164px)",
+            lineHeight: 1.059,
+            textTransform: "uppercase",
+            margin: "0 0 clamp(8px, 1vw, 14px)",
+            maxWidth: slide.kind === "citycast" ? "445px" : "90%",
           }}>
-            {slides[active]}
+            {slide.headline}
+          </p>
+
+          <p style={{
+            fontFamily: helvetica,
+            fontWeight: 500,
+            color: TEXT,
+            fontSize: mob ? "12px" : "clamp(10px, 0.71vw, 10.73px)",
+            lineHeight: 1.21,
+            letterSpacing: "-0.43px",
+            margin: 0,
+            maxWidth: slide.kind === "eater" ? "366px" : slide.kind === "citycast" ? "314px" : "92%",
+          }}>
+            {slide.body}
           </p>
         </div>
-      </div>
+      </a>
 
-      {/* Dot indicators — Figma: 11px, 15px spacing, #14534D */}
       <div style={{ display: "flex", justifyContent: "center", gap: "4px", marginTop: "25px" }}>
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
+            aria-label={`Show press mention ${i + 1}`}
             style={{
               width: "11px",
               height: "11px",
