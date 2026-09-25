@@ -564,17 +564,6 @@ const MENU_LEFT = [
       { name: "Amul Cheese Kulcha", price: "6" },
     ],
   },
-  {
-    title: "Cocktail Menu",
-    items: [
-      { name: "Kaffir Lime & Lemongrass Gimlet", price: "16", desc: "gin, kaffir lime & lemongrass cordial, peychaud's bitters" },
-      { name: "Highway48 Sour", price: "16", desc: "white rum, spiced rum, almond syrup, coconut liqueur, lime juice" },
-      { name: "Strawberry Negroni", price: "16", desc: "strawberry gin, sweet red vermouth, campari, grapefruit sour, grapefruit bitters" },
-      { name: "Aam Margarita", price: "16", desc: "tequila blanco, mango vodka, citric acid mix, simple syrup, mango foam" },
-      { name: "Old Fashioned – Banana & Jaggery", price: "16", desc: "bourbon whiskey, banana oleo, angostura, cacao bitters" },
-      { name: "Paloma Guava", price: "16", desc: "tequila, guava soda, simple syrup, lime juice" },
-    ],
-  },
 ];
 
 const MENU_RIGHT = [
@@ -609,15 +598,6 @@ const MENU_RIGHT = [
       { name: "Gulab Jamun", price: "9", desc: "condensed milk dumplings fried in pure ghee & soaked in rose-cardamom syrup" },
       { name: "Rasmalai", price: "9", desc: "classic south asian dessert consisting of soft, spongy cottage cheese patties soaked in rich, sweetened, and thickened milk" },
       { name: "Ice Cream / Sorbet", price: "8", desc: "ask your server for flavours" },
-    ],
-  },
-  {
-    title: "Zero Proof",
-    items: [
-      { name: "Garden Smash", price: "9", desc: "seedlip garden, basil, lemon, elderflower" },
-      { name: "Lychee Spritz", price: "9", desc: "seedlip garden, lemon, sparkling lychee, lychee boba" },
-      { name: "Masala Nimbu Shikanji", price: "9", desc: "lime juice, simple syrup, nh48 special masala blend, soda water" },
-      { name: "Malabar Colada", price: "9", desc: "lyre's n/a white rum, coconut water, pineapple & ginger syrup, soda water, pineapple boba" },
     ],
   },
 ];
@@ -688,7 +668,7 @@ function FoodMenuSection() {
           margin: "0 auto",
         }}>
           {mob ? (
-            // Mobile: Papad, Small Plates, Tandoor, Mains, Sides, Breads, Desserts, Cocktail, Zero Proof
+            // Mobile: Papad, Small Plates, Tandoor, Mains, Sides, Breads, Desserts
             <>
               <MenuColumn section={MENU_LEFT[0]} /> {/* Papad */}
               <MenuColumn section={MENU_LEFT[1]} /> {/* Small Plates */}
@@ -697,8 +677,6 @@ function FoodMenuSection() {
               <MenuColumn section={MENU_LEFT[2]} /> {/* Sides */}
               <MenuColumn section={MENU_LEFT[3]} /> {/* Breads */}
               <MenuColumn section={MENU_RIGHT[2]} /> {/* Desserts */}
-              <MenuColumn section={MENU_LEFT[4]} /> {/* Cocktail */}
-              <MenuColumn section={MENU_RIGHT[3]} /> {/* Zero Proof */}
             </>
           ) : (
             // Desktop: Two columns
