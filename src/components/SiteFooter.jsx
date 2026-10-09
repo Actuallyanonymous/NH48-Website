@@ -137,9 +137,7 @@ export default function SiteFooter() {
 
             {/* Hours text — y=336 */}
             <p style={{ ...ftBody(scale), marginBottom: `${(433 - 336 - 68) * scale}px` }}>
-              WEDNESDAY - MONDAY: 11:00 AM - 2:30 PM (Currently Closed for Lunch)
-              <br />
-              5:00 PM - 9:30 PM
+              WEDNESDAY - MONDAY: 5:00 PM - 9:30 PM
               <br />
               (TUESDAY- CLOSED)
             </p>
@@ -251,11 +249,9 @@ export default function SiteFooter() {
           <div>
             <p style={{ ...ftLabel(0.75), marginBottom: "10px" }}>HOURS</p>
             <p style={ftBody(0.75)}>
-              WEDNESDAY - MONDAY: 11:00 AM - 2:30 PM (Currently Closed for Lunch)
+              WEDNESDAY - MONDAY: 5:00 PM - 9:30 PM
               <br />
-              5:00 PM - 9:30 PM
-              <br />
-              (* TUESDAY- CLOSED)
+              (TUESDAY- CLOSED)
             </p>
           </div>
 

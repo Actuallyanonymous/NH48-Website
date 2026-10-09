@@ -1,10 +1,17 @@
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+
+const RESY_URL = 'https://resy.com/cities/washington-dc/venues/n-h-48-indian-kitchen'
+const RESY_CONFIG = {
+  venueId: 99688,
+  apiKey: '1LC4DSS5r2vMPHwS49z0Jmq3mhcgauTz',
+}
 
 const NAV_LINKS = [
   { label: 'HOME',           to: '/',               external: false },
   { label: 'MENU',           to: '/#menu',          external: false, scroll: true },
+  { label: 'RESERVATIONS',   to: RESY_URL,          external: true, resy: true },
   { label: 'GIFT CARD',      to: 'https://order.toasttab.com/egiftcards/nh48-bombay-to-delhi-4828-macarthur-boulevard-northwest-ll', external: true },
   { label: 'PRIVATE EVENTS', to: '/private-events',  external: false },
   { label: 'ORDER ONLINE',   to: 'https://order.toasttab.com/online/nh48-bombay-to-delhi-4828-macarthur-boulevard-northwest-ll', external: true  },
@@ -25,6 +32,13 @@ export default function Navbar() {
     if (menuSection) {
       menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
+  }
+
+  const openReservations = (e) => {
+    setDrawer(false)
+    if (typeof window.resyWidget?.openModal !== 'function') return
+    e.preventDefault()
+    window.resyWidget.openModal(RESY_CONFIG)
   }
 
   const linkStyle = (isActive) => ({
@@ -54,8 +68,10 @@ export default function Navbar() {
         {/* Desktop links */}
         <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}
              className="nav-desktop">
-          {NAV_LINKS.map(({ label, to, external, scroll }) =>
-            external ? (
+          {NAV_LINKS.map(({ label, to, external, scroll, resy }) =>
+            resy ? (
+              <a key={label} href={to} onClick={openReservations} style={linkStyle(false)}>{label}</a>
+            ) : external ? (
               <a key={label} href={to} style={linkStyle(false)}>{label}</a>
             ) : scroll ? (
               <a key={label} href={to} onClick={handleMenuClick} style={linkStyle(false)}>{label}</a>
@@ -138,8 +154,13 @@ export default function Navbar() {
               >✕</button>
 
               {/* Drawer links */}
-              {NAV_LINKS.map(({ label, to, external, scroll }) =>
-                external ? (
+              {NAV_LINKS.map(({ label, to, external, scroll, resy }) =>
+                resy ? (
+                  <a key={label} href={to} onClick={openReservations}
+                     style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: 20, color: 'white', textTransform: 'uppercase', textDecoration: 'none' }}>
+                    {label}
+                  </a>
+                ) : external ? (
                   <a key={label} href={to} onClick={() => setDrawer(false)}
                      style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: 20, color: 'white', textTransform: 'uppercase', textDecoration: 'none' }}>
                     {label}
@@ -174,7 +195,7 @@ export default function Navbar() {
       <style>{`
         .nav-desktop { display: flex; }
         .nav-hamburger { display: none; }
-        @media (max-width: 768px) {
+        @media (max-width: 980px) {
           .nav-desktop { display: none !important; }
           .nav-hamburger { display: block !important; }
         }
