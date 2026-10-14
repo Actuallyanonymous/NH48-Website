@@ -13,14 +13,14 @@ function ScrollToTop() {
   return null
 }
 
-// Holiday closure popup — shows once per session
+// Closure popup — shows once per session
 function WelcomePopup() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    if (!sessionStorage.getItem('nh48_holiday_popup_seen')) {
+    if (!sessionStorage.getItem('nh48_closure_1014_seen')) {
       setVisible(true)
-      sessionStorage.setItem('nh48_holiday_popup_seen', '1')
+      sessionStorage.setItem('nh48_closure_1014_seen', '1')
     }
   }, [])
 
@@ -92,16 +92,29 @@ function WelcomePopup() {
               />
             </button>
 
-            <img
-              src="/assets/home-page/new/Holiday labor day text.png"
-              alt="A Little Holiday Pause. In observance of Labor Day, N.H.48 Indian Kitchen will be closed on Monday, September 7th. We’re taking a day to recharge and spend time with our families, and we’ll be back Wednesday September 8th, ready to welcome you around the table. Thank you for your understanding, and we look forward to seeing you soon."
+            <div
               style={{
-                width: 'min(484px, 72%)',
-                height: 'auto',
-                display: 'block',
-                pointerEvents: 'none',
+                maxWidth: '560px',
+                width: '82%',
+                textAlign: 'center',
+                color: '#FFFFFF',
+                fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+                fontWeight: 500,
+                letterSpacing: '0.04em',
+                lineHeight: 1.45,
+                textTransform: 'uppercase',
               }}
-            />
+            >
+              <p style={{ fontSize: 'clamp(18px, 2.2vw, 26px)', margin: '0 0 28px' }}>
+                We will be closed Wednesday 10/14 due to maintenance.
+              </p>
+              <p style={{ fontSize: 'clamp(16px, 1.9vw, 22px)', margin: '0 0 28px' }}>
+                We apologize for any inconvenience.
+              </p>
+              <p style={{ fontSize: 'clamp(18px, 2.2vw, 26px)', margin: 0 }}>
+                We will reopen Thursday 10/15.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       )}
@@ -139,7 +152,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <div style={{ width: '100%' }}>
-      {/* <WelcomePopup /> */}
+      <WelcomePopup />
       <ScrollToTop />
       <Navbar />
       <AnimatedRoutes />
