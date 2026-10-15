@@ -543,7 +543,6 @@ const MENU_LEFT = [
       { name: "Lasooni Gobhi", price: "12", desc: "crispy cauliflower | garlic glaze | green chili" },
       { name: "Pani Puri", price: "10", desc: "spiced potato | white peas | mint water | tamarind water" },
       { name: "Chicken Lollipop", price: "16", desc: "sweet & spicy sauce" },
-      { name: "Patra Ni Machhi", price: "16", desc: "seabass | coconut chutney | banana leaf" },
     ],
   },
   {
@@ -590,6 +589,7 @@ const MENU_RIGHT = [
       { name: "Bombay Chicken Biryani", price: "24", desc: "aromatic spices | tomato | yogurt" },
       { name: "Lamb Nihari", price: "26", desc: "slowly cooked lamb shank | star anise | fennel seeds" },
       { name: "Dum Lamb Biryani", price: "25", desc: "saffron | ghee | whole spices" },
+      { name: "Lamb Taar Korma", price: "25", desc: "caramelized onions | almonds | coconut" },
     ],
   },
   {
